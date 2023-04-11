@@ -1,0 +1,38 @@
+
+
+<?php
+    // Connection parameters
+    $host = "db.albvpiascovyowczwqez.supabase.co";
+    $port = "5432";
+    $dbname = "postgres";
+    $user = "postgres";
+    $password = "Krrishman0#";
+
+    // Establish connection
+    $conn = pg_connect("host=$host port=$port dbname=$dbname user=$user password=$password");
+
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . pg_last_error());
+    }
+
+    // Run a query
+    $query = "SELECT * FROM User";
+    $result = pg_query($conn, $query);
+
+    // Check query result
+    if (!$result) {
+        die("Query failed: " . pg_last_error($conn));
+    }
+
+    // Fetch and display results
+    while ($row = pg_fetch_assoc($result)) {
+        echo "ID: " . $row['User_id'] . "<br>";
+        echo "Name: " . $row['F_Name'] . "<br>";
+        echo "Email: " . $row['Role'] . "<br>";
+        // ... (fetch and display other columns)
+    }
+
+    // Close connection
+    pg_close($conn);
+?>
