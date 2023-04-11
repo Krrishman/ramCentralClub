@@ -17,7 +17,7 @@
     }
 
     // Run a query
-    $query = 'SELECT * FROM "User"';
+    $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
     $result = pg_query($conn, $query);
 
     // Check query result
