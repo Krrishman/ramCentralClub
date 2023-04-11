@@ -210,16 +210,16 @@ echo " <table style='background-color: #FAF0E6' width='650' align='center' rules
 
 while ($row = pg_fetch_assoc($result)) {
     $User_id = $row['User_id'];
-	$F_Name = $row['F_Name'];
-	$L_Name = $row['L_Name'];
-	$user_name = $row['user_name'];
-	$Pass_Code = $row['Pass_Code'];
-	$Role = $row['Role'];
-	$Year = $row[6];
-	$Major = $row[7];
-	$Email = $row[8];
-	$Phone = $row[9];
-	$Date = $row['created_at'];
+    $F_Name = $row['F_Name'];
+    $L_Name = $row['L_Name'];
+    $user_name = $row['User_Name'];
+    $Pass_Code = $row['Pass_Code'];
+    $Role = $row['Role'];
+    $Year = $row['6'];
+    $Major = $row[7];
+    $Email = $row['Email'];
+    $Phone = $row['Phone'];
+    $Date = $row['created_at'];
 
     // Use the fetched values as needed
    // echo "Club ID: " . $club_id . "<br>";

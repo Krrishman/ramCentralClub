@@ -90,7 +90,7 @@ if (pg_num_rows($result) > 0) {
 					$msg					= "<font color='green'><b>$user Logon Successful</b></font>";
 					$logon 					= TRUE;
 					}
-				else {$msg = "Invalid pass_code"; }
+				else {$msg = "Invalid pass_code[$pass_code]"; }
 				}
 			else {$msg = "user_name [$user_name] is invalid"; }
 			}
