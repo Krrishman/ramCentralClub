@@ -5,7 +5,6 @@
 	include('menubar.php');
 	include('header.php');
 
-
   
 ?>
 

@@ -1,7 +1,6 @@
 
 
 
-
 <?php
 // home.php - Home Page 
 // Written by:  Prof. Kaplan, November 2021

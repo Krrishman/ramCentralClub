@@ -1,7 +1,6 @@
 
 
 
-
 <?php
 
 	echo"<p style=' width:100%; padding: 30px;'></p>";
