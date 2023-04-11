@@ -57,7 +57,7 @@ if (!$result) {
 
 if (pg_num_rows($result) > 0) {
 	echo"gooos";
-	$row = pg_fetch_row($result);
+	$row = pg_fetch_assoc($result);
 	$User_id = $row['User_id'];
 	$F_Name = $row['F_Name'];
 	$L_Name = $row['L_Name'];
