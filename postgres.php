@@ -19,7 +19,7 @@
     }
 
     // Run a query
-    $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
+    $query = 'SELECT * FROM "User" where "User_Name" = \'aqusa\'';
     $result = pg_query($conn, $query);
 
     // Check query result
@@ -34,13 +34,13 @@
             $User_id = $row['User_id'];
             $F_Name = $row['F_Name'];
             $L_Name = $row['L_Name'];
-            $user_name = $row['user_name'];
+            $user_name = $row['User_Name'];
             $Pass_Code = $row['Pass_Code'];
             $Role = $row['Role'];
-            $Year = $row[6];
+            $Year = $row['6'];
             $Major = $row[7];
-            $Email = $row[8];
-            $Phone = $row[9];
+            $Email = $row['Email'];
+            $Phone = $row['Phone'];
             $Date = $row['created_at'];
 
  echo "User_id:  $User_id       <br>";
