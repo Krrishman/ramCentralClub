@@ -100,7 +100,7 @@ try {$dbuser = 'postgres';
 	echo"<p style=' width:100%; padding: 30px;'></p>";
 
     include('session.php');
-    include('check_logon.php');
+   // include('check_logon.php');
 	include('menubar.php');
 	//include('FSC_connect.php');
 	include('Supabase_connect.php');
@@ -182,6 +182,11 @@ echo "</table><br>
 <tr><td><center>Good job</center></td></tr>";
 */
 //$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
+
+$query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
+$result = pg_query($conn, $query);
+
+
 
 echo " <table style='background-color: #FAF0E6' width='650' align='center' rules='all' border='frame' cellpadding='2'>
 	<tr>

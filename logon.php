@@ -43,11 +43,12 @@
 			
 // If user_name is FOUND, Verify pass_code		
 if (pg_num_rows($result) > 0) {
+	echo"gooos";
 	$row = pg_fetch_row($result);
 	$User_id = $row['User_id'];
 	$F_Name = $row['F_Name'];
 	$L_Name = $row['L_Name'];
-	$user_name = $row['user_name'];
+	$user_name = $row['User_Name'];
 	$Pass_Code2 = $row['Pass_Code'];
 	$Role = $row['Role'];
 	$Year = $row[6];
@@ -66,6 +67,7 @@ if (pg_num_rows($result) > 0) {
 				
 // If pass_code matches, Complete LOGON				
 				if ($pass_code == $Pass_Code2) {
+					echo"goood";
 					$_SESSION['logon']		= TRUE;
 					$_SESSION['user_name'] 	= $user_name;
 					$_SESSION['user'] 		= $user = "$user_name";
