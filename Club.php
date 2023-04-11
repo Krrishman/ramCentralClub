@@ -7,7 +7,7 @@
 
     include('session.php');
 	include('menubar.php');
-    include('FSC_connect.php');
+    //include('FSC_connect.php');
 
 ?>
 
