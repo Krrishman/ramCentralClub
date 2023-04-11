@@ -102,9 +102,9 @@ try {$dbuser = 'postgres';
     include('session.php');
     include('check_logon.php');
 	include('menubar.php');
-	include('FSC_connect.php');
-
-
+	//include('FSC_connect.php');
+	include('Supabase_connect.php');
+/*
 	$cat	= array('club_id', 'made_date', 'c_members');
 	$sort	= array('Ascending', 'Descending');
 	if (isset($_POST['orderby'])) 	$orderby = $_POST['orderby'];	else $orderby = 'club_id';
@@ -159,7 +159,7 @@ else($color="black");
         <td align='center'>$made_by</td>
         <td align='center'>$made_date</td>
 		</tr>";
-*/
+
       
         echo"<div class='club_Container'>
             <div class='image_Container'>
@@ -180,8 +180,57 @@ echo "</div><br>";
 echo "</table><br>
 <table width='650' align='center'>
 <tr><td><center>Good job</center></td></tr>";
-
+*/
 //$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
+
+echo " <table style='background-color: #FAF0E6' width='650' align='center' rules='all' border='frame' cellpadding='2'>
+	<tr>
+	<th >ID</th> 
+	<th >Date</th>
+	<th >Reason</th>
+	<th >Amount</th>
+	</tr>";
+
+    echo "<div class='club_Grid'>";
+
+while ($row = pg_fetch_row($result)) {
+    $User_id = $row['User_id'];
+	$F_Name = $row['F_Name'];
+	$L_Name = $row['L_Name'];
+	$user_name = $row['user_name'];
+	$Pass_Code = $row['Pass_Code'];
+	$Role = $row['Role'];
+	$Year = $row[6];
+	$Major = $row[7];
+	$Email = $row[8];
+	$Phone = $row[9];
+	$Date = $row['created_at'];
+
+    // Use the fetched values as needed
+   // echo "Club ID: " . $club_id . "<br>";
+   // echo "Club Name: " . $c_name . "<br>";
+   // echo "Club Tag: " . $c_tag . "<br>";
+   // ... (use other fetched values as needed)
+
+	echo "<tr>
+		
+		<td align='center'>$User_id</td>
+		<td align='left'>$F_Name</td>
+		<td align='center'>$L_Name</td>
+		<td align='center'>$user_name</td>
+        <td align='left'>$Pass_Code</td>
+		<td align='center'>$Role</td>
+		<td align='center'>$Year</td>
+
+		</tr>";
+}
+
+echo "</table><br>
+<table width='650' align='center'>
+<tr><td><center>Good job</center></td></tr>";
+
+
+
 
 ?>
 

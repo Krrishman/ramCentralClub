@@ -44,12 +44,12 @@
 // If user_name is FOUND, Verify pass_code		
 if (pg_num_rows($result) > 0) {
 	$row = pg_fetch_row($result);
-	$User_id = $row[0];
-	$F_Name = $row[1];
-	$L_Name = $row[2];
-	$user_name = $row[3];
-	$Pass_Code2 = $row[4];
-	$Role = $row[5];
+	$User_id = $row['User_id'];
+	$F_Name = $row['F_Name'];
+	$L_Name = $row['L_Name'];
+	$user_name = $row['user_name'];
+	$Pass_Code2 = $row['Pass_Code'];
+	$Role = $row['Role'];
 	$Year = $row[6];
 	$Major = $row[7];
 	$Email = $row[8];
