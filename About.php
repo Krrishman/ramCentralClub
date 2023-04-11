@@ -102,7 +102,7 @@ try {$dbuser = 'postgres';
     include('session.php');
    // include('check_logon.php');
 	include('menubar.php');
-    include('header.php');
+    //include('header.php');
 	//include('FSC_connect.php');
 	include('Supabase_connect.php');
 /*
@@ -139,17 +139,17 @@ try {$dbuser = 'postgres';
 	</tr>";
 
     echo "<div class='club_Grid'>";
-// Process Query Results 
-while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date) = mysqli_fetch_row($result)) {
-		$n=number_format($amount,2);
-if ($reason=="Pay Bill"){$color="#191970";}
-else if ($reason=="Shopping"){$color="#DA70D6";}
-else if ($reason=="Travel"){$color="#FFA500";}
-else if ($reason=="Food"){$color="#FF4500";}
-else if ($reason=="Deposit"){$color="#green";}
-else if ($reason=="Transfer"){$color="#663399";}
-else if ($reason=="Withdraw"){$color="#DC143C";}
-else($color="black");
+ // Process Query Results 
+    while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date) = mysqli_fetch_row($result)) {
+            $n=number_format($amount,2);
+    if ($reason=="Pay Bill"){$color="#191970";}
+    else if ($reason=="Shopping"){$color="#DA70D6";}
+    else if ($reason=="Travel"){$color="#FFA500";}
+    else if ($reason=="Food"){$color="#FF4500";}
+    else if ($reason=="Deposit"){$color="#green";}
+    else if ($reason=="Transfer"){$color="#663399";}
+    else if ($reason=="Withdraw"){$color="#DC143C";}
+    else($color="black");
 
 		echo "<tr>
 		
@@ -186,8 +186,9 @@ echo "</table><br>
 echo "pgggggg";
 $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
 $result = pg_query($conn, $query);
-
+echo "oddddddddd";
 if (!$result) {
+    echo "faiked";
     die("Query failed: " . pg_last_error($conn));
 }
 
@@ -197,6 +198,9 @@ echo " <table style='background-color: #FAF0E6' width='650' align='center' rules
 	<tr>
 	<th >ID</th> 
 	<th >Date</th>
+	<th >Reason</th>
+	<th >Amount</th>
+    <th >Date</th>
 	<th >Reason</th>
 	<th >Amount</th>
 	</tr>";
@@ -235,7 +239,7 @@ while ($row = pg_fetch_assoc($result)) {
 		</tr>";
 }
 
-echo "</table><br>
+echo "</table><br>  dfdfdfssdfsdf
 <table width='650' align='center'>
 <tr><td><center>Good job</center></td></tr>";
 
