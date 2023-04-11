@@ -40,7 +40,7 @@
 			//		  WHERE user_name = '$user_name'";
 			//$result = mysqli_query($mysqli, $query);
 		//	if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
-			
+		echo"gooodddd";
 // If user_name is FOUND, Verify pass_code		
 if (pg_num_rows($result) > 0) {
 	echo"gooos";

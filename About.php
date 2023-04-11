@@ -186,6 +186,7 @@ echo "</table><br>
 echo "pgggggg";
 $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
 $result = pg_query($conn, $query);
+
 if (!$result) {
     die("Query failed: " . pg_last_error($conn));
 }
@@ -202,7 +203,7 @@ echo " <table style='background-color: #FAF0E6' width='650' align='center' rules
 
     echo "<div class='club_Grid'>";
 
-while ($row = pg_fetch_row($result)) {
+while ($row = pg_fetch_assoc($result)) {
     $User_id = $row['User_id'];
 	$F_Name = $row['F_Name'];
 	$L_Name = $row['L_Name'];
