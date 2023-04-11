@@ -32,16 +32,37 @@
 			
 // Query Student Using the user_name			
 			//include('bcs350_mysqli_connect.php');
-			include('FSC_connect.php');
+			//include('FSC_connect.php');
+			include('Supabase_connect.php');
+			
 			//$query = "SELECT account_number, account_type, pass_code, role 
 			//		  FROM bank 
 			//		  WHERE user_name = '$user_name'";
 			//$result = mysqli_query($mysqli, $query);
 		//	if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
 			
-// If user_name is FOUND, Verify pass_code			
-			if (mysqli_num_rows($result) > 0) {
-				list($User_id, $F_Name, $L_Name, $user_name, $Pass_Code2, $Role, $Year,$Major , $Email , $Phone, $Date, $Status) = mysqli_fetch_row($result);
+// If user_name is FOUND, Verify pass_code		
+if (pg_num_rows($result) > 0) {
+	$row = pg_fetch_row($result);
+	$User_id = $row[0];
+	$F_Name = $row[1];
+	$L_Name = $row[2];
+	$user_name = $row[3];
+	$Pass_Code2 = $row[4];
+	$Role = $row[5];
+	$Year = $row[6];
+	$Major = $row[7];
+	$Email = $row[8];
+	$Phone = $row[9];
+	$Date = $row['created_at'];
+
+
+
+
+
+
+		//	if (mysqli_num_rows($result) > 0) {
+		//		list($User_id, $F_Name, $L_Name, $user_name, $Pass_Code2, $Role, $Year,$Major , $Email , $Phone, $Date, $Status) = mysqli_fetch_row($result);
 				
 // If pass_code matches, Complete LOGON				
 				if ($pass_code == $Pass_Code2) {
