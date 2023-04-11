@@ -28,10 +28,10 @@
     // Fetch and display results
     while ($row = pg_fetch_assoc($result)) {
         echo "ID: " . $row['User_id'] . "<br>";
-        echo "ID:  $row[0]  <br>";
-        echo "ID:   $row[1] ";
-        echo "Name: " . $row['F_Name'] . "<br>";
-        echo "Email: " . $row['Role'] . "<br>";
+        echo "ID: ". $row['0'] ." <br>";
+        echo "ID: ".  $row[1] ."<br>";
+        echo "Name:" .  $row[F_Name] . "<br>";
+        echo "Email:  $row[Role] <br>";
         // ... (fetch and display other columns)
     }
 

@@ -102,6 +102,7 @@ try {$dbuser = 'postgres';
     include('session.php');
    // include('check_logon.php');
 	include('menubar.php');
+    include('header.php');
 	//include('FSC_connect.php');
 	include('Supabase_connect.php');
 /*
@@ -140,7 +141,7 @@ try {$dbuser = 'postgres';
     echo "<div class='club_Grid'>";
 // Process Query Results 
 while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date) = mysqli_fetch_row($result)) {
-/*		$n=number_format($amount,2);
+		$n=number_format($amount,2);
 if ($reason=="Pay Bill"){$color="#191970";}
 else if ($reason=="Shopping"){$color="#DA70D6";}
 else if ($reason=="Travel"){$color="#FFA500";}
@@ -182,11 +183,14 @@ echo "</table><br>
 <tr><td><center>Good job</center></td></tr>";
 */
 //$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
-
+echo "pgggggg";
 $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
 $result = pg_query($conn, $query);
+if (!$result) {
+    die("Query failed: " . pg_last_error($conn));
+}
 
-
+echo "offfffffff";
 
 echo " <table style='background-color: #FAF0E6' width='650' align='center' rules='all' border='frame' cellpadding='2'>
 	<tr>
