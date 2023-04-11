@@ -13,7 +13,9 @@
     // Check connection
     if (!$conn) {
       echo "failllled";
-        die("Connection failed: " . pg_last_error());
+      echo "PostgreSQL Connection Failure: " . pg_last_error();
+      exit;
+       // die("Connection failed: " . pg_last_error());
     }
 
     // Run a query
@@ -23,7 +25,8 @@
     // Check query result
     if (!$result) {
       echo "faikeddddddddd";
-        die("Query failed: " . pg_last_error($conn));
+      echo "Query Error [$query] " . pg_last_error($conn);
+       // die("Query failed: " . pg_last_error($conn));
     }
 /*
     // Fetch and display results

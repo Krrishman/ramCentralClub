@@ -190,7 +190,7 @@ $result = pg_query($conn, $query);
 echo "oddddddddd";
 if (!$result) {
     echo "faiked";
-    die("Query failed: " . pg_last_error($conn));
+    echo "Query Error [$query] " . pg_last_error($conn);
 }
 
 echo "offfffffff";
