@@ -204,6 +204,10 @@ echo " <table style='background-color: #FAF0E6' width='650' align='center' rules
     <th >Date</th>
 	<th >Reason</th>
 	<th >Amount</th>
+    <th >Date</th>
+	<th >Reason</th>
+	<th >Amount</th>
+    <th >Amount</th>
 	</tr>";
 
     echo "<div class='club_Grid'>";
@@ -215,8 +219,8 @@ while ($row = pg_fetch_assoc($result)) {
     $user_name = $row['User_Name'];
     $Pass_Code = $row['Pass_Code'];
     $Role = $row['Role'];
-    $Year = $row['6'];
-    $Major = $row[7];
+    $Year = $row['Year'];
+    $Major = $row['Major'];
     $Email = $row['Email'];
     $Phone = $row['Phone'];
     $Date = $row['created_at'];
@@ -236,7 +240,9 @@ while ($row = pg_fetch_assoc($result)) {
         <td align='left'>$Pass_Code</td>
 		<td align='center'>$Role</td>
 		<td align='center'>$Year</td>
-
+        <td align='center'>$Major</td>
+		<td align='center'>$Phone</td>
+        <td align='center'>$Date</td>
 		</tr>";
 }
 
@@ -245,7 +251,7 @@ echo "</table><br>  dfdfdfssdfsdf
 <tr><td><center>Good job</center></td></tr>";
 
 
-pg_close($conn);
+//pg_close($conn);
 
 ?>
 

@@ -70,7 +70,7 @@ if (pg_num_rows($result) > 0) {
 	$Phone = $row[9];
 	$Date = $row['created_at'];
 
-
+	echo"  $Pass_Code2  ";
 
 
 
