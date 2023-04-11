@@ -185,6 +185,7 @@ echo "</table><br>
 //$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
 echo "pgggggg";
 $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
+echo "ovvvvvv";
 $result = pg_query($conn, $query);
 echo "oddddddddd";
 if (!$result) {
