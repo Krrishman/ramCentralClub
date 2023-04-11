@@ -18,7 +18,7 @@
        // die("Connection failed: " . pg_last_error());
     }
 
-    // Run a query
+ /*   // Run a query
     $query = 'SELECT * FROM "User" where "User_Name" = \'$user_name\'';
     $result = pg_query($conn, $query);
 
@@ -28,7 +28,7 @@
       echo "Query Error [$query] " . pg_last_error($conn);
        // die("Query failed: " . pg_last_error($conn));
     }
-/*
+
     // Fetch and display results
     while ($row = pg_fetch_assoc($result)) {
         echo "ID: " . $row['User_id'] . "<br>";

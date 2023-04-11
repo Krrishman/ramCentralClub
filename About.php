@@ -245,7 +245,7 @@ echo "</table><br>  dfdfdfssdfsdf
 <tr><td><center>Good job</center></td></tr>";
 
 
-
+pg_close($conn);
 
 ?>
 
