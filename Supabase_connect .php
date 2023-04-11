@@ -12,7 +12,7 @@
 
     // Check connection
     if (!$conn) {
-      echo "faiked";
+      echo "failllled";
         die("Connection failed: " . pg_last_error());
     }
 
@@ -22,7 +22,7 @@
 
     // Check query result
     if (!$result) {
-      echo "faiked";
+      echo "faikeddddddddd";
         die("Query failed: " . pg_last_error($conn));
     }
 /*
