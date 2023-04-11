@@ -17,9 +17,9 @@
         echo "PostgreSQL Connection Failure: " . pg_last_error();
         die("Connection failed: " . pg_last_error());
     }
-
+    $user_name = "haqusa";
     // Run a query
-    $query = 'SELECT * FROM "User" where "User_Name" = \'aqusa\'';
+    $query = 'SELECT * FROM "User" where "User_Name" = \'' . $user_name . '\'';
     $result = pg_query($conn, $query);
 
     // Check query result

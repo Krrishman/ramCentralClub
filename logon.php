@@ -42,6 +42,19 @@
 		//	if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
 		echo"gooodddd";
 // If user_name is FOUND, Verify pass_code		
+
+$query = 'SELECT * FROM "User" where "User_Name" = \'' . $user_name . '\'';
+$result = pg_query($conn, $query);
+
+// Check query result
+if (!$result) {
+  echo "faikeddddddddd";
+  echo "Query Error [$query] " . pg_last_error($conn);
+   // die("Query failed: " . pg_last_error($conn));
+}
+
+
+
 if (pg_num_rows($result) > 0) {
 	echo"gooos";
 	$row = pg_fetch_row($result);
