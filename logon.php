@@ -50,7 +50,7 @@
 					$_SESSION['user'] 		= $user = "$user_name";
 					$_SESSION['role']		= $Role; 
 					$_SESSION['date']		= $Date; 
-					$_SESSION['User_id']		= $User_id; 
+					$_SESSION['User_id']	= $User_id; 
 					$msg					= "<font color='green'><b>$user Logon Successful</b></font>";
 					$logon 					= TRUE;
 					}
