@@ -292,7 +292,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 */
 
   $supabase_url = 'https://albvpiascovyowczwqez.supabase.co';
-  $storage_bucket_name = 'clubpic';
+  $storage_bucket_name = 'pic';
   $public_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsYnZwaWFzY292eW93Y3p3cWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwNDk1MzcsImV4cCI6MTk5MjYyNTUzN30.GPMlnXEDxeIjFcPw9IrJTkxzSc8QhC4kbwWXJpeaPPQ';
   $secret_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsYnZwaWFzY292eW93Y3p3cWV6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3NzA0OTUzNywiZXhwIjoxOTkyNjI1NTM3fQ.iZ9wYemkj3oJsx8Ip4r7pP8paVH7W4AfHlvUS62nk0A';
   
@@ -329,7 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Insert image metadata into PostgreSQL database
         echo "yes it worked ";
       }
-      
+
       $image_url = "{$supabase_url}/storage/v1/object/{$storage_bucket_name}/{$image_name}";
       //$image_url = $supabase_url . '/storage/v1/object/' . $storage_bucket_name . '/' . $image_name;
       $query = "INSERT INTO images (file_name, file_url) VALUES ('$image_name', '$image_url')";
