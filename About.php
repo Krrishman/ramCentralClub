@@ -301,37 +301,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $image_name = $_FILES['image']['name'];
     $image_tmp_name = $_FILES['image']['tmp_name'];
   
-    // Create signed URL for uploading file to storage
-  $expiration = time() + (60 * 60 * 24); // Set expiration time for signed URL (1 day)
-  $path = '/' . $storage_bucket_name . '/' . $image_name;
-  $method = 'PUT';
-  $content_type = mime_content_type($image_tmp_name);
-  $signature = base64_encode(hash_hmac('sha256', "{$method}\n{$path}\n{$expiration}\n{$content_type}", $secret_key, true));
-  $signed_url = "{$supabase_url}/storage/v1/object{$path}?expiry={$expiration}&signature={$signature}";
-
-  // Upload image file to Supabase storage using signed URL
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $signed_url);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-  curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, fopen($image_tmp_name, 'r'));
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'Content-Type: ' . $content_type,
-    'Authorization: Bearer ' . $public_key . ':' . $secret_key
-  ));
-  $response = curl_exec($ch);
-  $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-  curl_close($ch);
+    // Upload image file to Supabase storage
+    $ch = curl_init();
+    $url = $supabase_url . '/storage/buckets/' . $storage_bucket_name . '/' . $image_name;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, fopen($image_tmp_name, 'r'));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: ' . mime_content_type($image_tmp_name),
+      'Content-Length: ' . filesize($image_tmp_name),
+      'Authorization: Bearer ' . $public_key . ':' . $secret_key
+    ));
+    $response = curl_exec($ch);
+    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
   
     // Check if image file was successfully uploaded
     if ($http_status === 200) {
       // Insert image metadata into PostgreSQL database
         echo "yes it worked ";
       }
-
-      $image_url = "{$supabase_url}/storage/v1/object/{$storage_bucket_name}/{$image_name}";
-      //$image_url = $supabase_url . '/storage/v1/object/' . $storage_bucket_name . '/' . $image_name;
+  
+      $image_url = $supabase_url . '/storage/buckets/' . $storage_bucket_name . '/' . $image_name;
       $query = "INSERT INTO images (file_name, file_url) VALUES ('$image_name', '$image_url')";
       $result = pg_query($conn, $query);
   
@@ -354,7 +347,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </head>
   <body>
     <h1>Image Upload</h1>
-    <form action="About.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
       <input type="file" name="image">
       <input type="submit" name="submit" value="Upload">
     </form>
