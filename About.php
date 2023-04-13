@@ -303,7 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   
     // Upload image file to Supabase storage
     $ch = curl_init();
-    $url = $supabase_url . '/storage/buckets/' . $storage_bucket_name . '/' . $image_name;
+    $url = $supabase_url . '/storage/v1/object/public/' . $storage_bucket_name . '/' . $image_name;
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
@@ -324,7 +324,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "yes it worked ";
       }
   
-      $image_url = $supabase_url . '/storage/buckets/' . $storage_bucket_name . '/' . $image_name;
+      $image_url = $supabase_url . '/storage/v1/object/public/' . $storage_bucket_name . '/' . $image_name;
       $query = "INSERT INTO images (file_name, file_url) VALUES ('$image_name', '$image_url')";
       $result = pg_query($conn, $query);
   
