@@ -101,6 +101,42 @@
 </body>
 
 <?php
+include('Supabase_connect.php');
+
+
+if(isset($_FILES['image'])) {
+    $file_name = $_FILES['image']['name'];
+    $file_tmp = $_FILES['image']['tmp_name'];
+    $file_type = $_FILES['image']['type'];
+    //$file_ext = strtolower(end(explode('.', $file_name)));
+    $file_parts = explode('.', $file_name);
+    $file_ext = strtolower(end($file_parts));
+
+
+    $valid_exts = array("jpg", "jpeg", "png","tif","gif<br>");
+    
+    if(in_array($file_ext, $valid_exts)) {
+      $upload_path = "./upload/club_page/" . $file_name;
+      move_uploaded_file($file_tmp, $upload_path);
+      echo "File uploaded successfully.<br>";
+    } else {
+        $file_name =NULL;
+      echo "Invalid file type. JPG, GIF, PNG or TIF files are allowed.<br>";
+    }
+  }
+  ?>
+
+
+
+  <h1>Image Upload</h1>
+  <form action="index.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="image">
+    <input type="submit" value="Upload">
+  </form>
+
+
+  <?php
+
 
 
 	include('footer.php');
