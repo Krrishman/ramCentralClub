@@ -3,7 +3,7 @@
 
 include('Home.php');
 include('postgres.php');
-
+include('Supabase_connect.php');
 
 /*
 
@@ -49,6 +49,7 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
   echo "Failed to upload image to Supabase storage: " . $result['message'];
 }
 */
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $file = $_FILES['image'];
     $file_name = $file['name'];
