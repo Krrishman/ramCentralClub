@@ -252,7 +252,7 @@ echo "</table><br>  dfdfdfssdfsdf
 
 
 //pg_close($conn);
-
+/*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $file = $_FILES['image'];
     $file_name = $file['name'];
@@ -288,6 +288,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
   }
+
+*/
+
+  $supabase_url = 'https://albvpiascovyowczwqez.supabase.co';
+  $storage_bucket_name = 'clubpic';
+  $public_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsYnZwaWFzY292eW93Y3p3cWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwNDk1MzcsImV4cCI6MTk5MjYyNTUzN30.GPMlnXEDxeIjFcPw9IrJTkxzSc8QhC4kbwWXJpeaPPQ';
+  $secret_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsYnZwaWFzY292eW93Y3p3cWV6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY3NzA0OTUzNywiZXhwIjoxOTkyNjI1NTM3fQ.iZ9wYemkj3oJsx8Ip4r7pP8paVH7W4AfHlvUS62nk0A';
+  
+  // Check if image file was submitted
+  if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+    $image_name = $_FILES['image']['name'];
+    $image_tmp_name = $_FILES['image']['tmp_name'];
+  
+    // Upload image file to Supabase storage
+    $ch = curl_init();
+    $url = $supabase_url . '/storage/v1/object/' . $storage_bucket_name . '/' . $image_name;
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, fopen($image_tmp_name, 'r'));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'Content-Type: ' . mime_content_type($image_tmp_name),
+      'Content-Length: ' . filesize($image_tmp_name),
+      'Authorization: Bearer ' . $public_key . ':' . $secret_key
+    ));
+    $response = curl_exec($ch);
+    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+  
+    // Check if image file was successfully uploaded
+    if ($http_status === 200) {
+      // Insert image metadata into PostgreSQL database
+        echo "yes it worked ";
+      }
+  
+      $image_url = $supabase_url . '/storage/v1/object/' . $storage_bucket_name . '/' . $image_name;
+      $query = "INSERT INTO images (file_name, file_url) VALUES ('$image_name', '$image_url')";
+      $result = pg_query($conn, $query);
+  
+      if ($result) {
+        echo "Image file was successfully uploaded and metadata was inserted into database.";
+      } else {
+        echo "Failed to insert image metadata into database: " . pg_last_error();
+      }
+    } else {
+      echo "Failed to upload image file to Supabase storage: " . $response;
+    }
+
+
   ?>
   
   <!DOCTYPE html>
@@ -297,9 +347,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </head>
   <body>
     <h1>Image Upload</h1>
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="About.php" method="post" enctype="multipart/form-data">
       <input type="file" name="image">
-      <input type="submit" value="Upload">
+      <input type="submit" name="submit" value="Upload">
     </form>
   </body>
   </html>
