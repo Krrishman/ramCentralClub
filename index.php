@@ -61,25 +61,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $supabase_api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsYnZwaWFzY292eW93Y3p3cWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwNDk1MzcsImV4cCI6MTk5MjYyNTUzN30.GPMlnXEDxeIjFcPw9IrJTkxzSc8QhC4kbwWXJpeaPPQ';
     
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $supabase_url . '/storage/v1/object/public/' . $supabase_bucket_name . '/' . $file_name);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_POST, true);
-    curl_setopt($curl, CURLOPT_POSTFIELDS, file_get_contents($file_tmp));
-    curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-      'Content-Type: application/octet-stream',
-      'Authorization: Bearer ' . $supabase_api_key
-    ));
-    $response = curl_exec($curl);
-    curl_close($curl);
-    
+  curl_setopt($curl, CURLOPT_URL, $supabase_url . '/storage/v1/upload/' . $supabase_bucket_name . '/' . $file_name);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_POSTFIELDS, file_get_contents($file_tmp));
+  curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+    'Content-Type: application/octet-stream',
+    'Authorization: Bearer ' . $supabase_api_key
+  ));
+  $response = curl_exec($curl);
+  $error = curl_error($curl);
+  $http_status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+  curl_close($curl);
+
+  if ($http_status == 200) {
     $file_url = json_decode($response)->data->url;
-    
+    echo "Image uploaded successfully!";
+
+  }
     
     $query = "INSERT INTO images (file_name, file_url) VALUES ('$file_name', '$file_url')";
     $result = pg_query($conn, $query);
     
     if ($result) {
-      echo "Image uploaded and metadata stored successfully!";
+      echo "metadata stored successfully!";
     } else {
       echo "Failed to upload image or store metadata: " . pg_last_error();
     }
@@ -96,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
   <h1>Image Upload</h1>
-  <form action="" method="post" enctype="multipart/form-data">
+  <form action="index.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="image">
     <input type="submit" value="Upload">
   </form>
