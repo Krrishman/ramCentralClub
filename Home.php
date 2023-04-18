@@ -102,7 +102,7 @@
 
 <?php
 include('Supabase_connect.php');
-
+/*
 
 if(isset($_FILES['image'])) {
     $file_name = $_FILES['image']['name'];
@@ -134,10 +134,60 @@ if(isset($_FILES['image'])) {
     <input type="submit" value="Upload">
   </form>
 
-
-  <?php
-
+*/
 
 
-	include('footer.php');
+
+
+
+
+
+// Include the Google APIs Client Library for PHP
+require_once 'path/to/google-api-php-client/vendor/autoload.php';
+
+// Define your Google Drive API credentials
+$client = new Google_Client();
+$client->setClientId('1097487834590-9vlh5l35uv8ors7ui29l47b4t6h7d824.apps.googleusercontent.com');
+$client->setClientSecret('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');
+$client->setRedirectUri('https://fscclub01.herokuapp.com');
+$client->setScopes(array('https://www.googleapis.com/auth/drive.file'));
+
+// Create a new Google Drive service instance
+$service = new Google_Service_Drive($client);
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  // Handle form submission
+  $file = $_FILES['image'];
+  $file_name = $file['name'];
+  $file_tmp = $file['tmp_name'];
+
+  // Upload file to Google Drive
+  $file_metadata = new Google_Service_Drive_DriveFile(array(
+    'name' => $file_name
+  ));
+  $file = file_get_contents($file_tmp);
+  $drive_file = $service->files->create($file_metadata, array(
+    'data' => $file,
+    'mimeType' => 'image/jpeg', // Change the MIME type to match your file type
+    'uploadType' => 'multipart'
+  ));
+
+  // Get the URL of the uploaded file
+  $file_url = 'https://drive.google.com/uc?id=' . $drive_file->getId();
+
+  // Store file metadata or do other actions as needed
+  // ...
+  
+  echo "Image uploaded successfully! File URL: " . $file_url;
+}
+
+
+
+include('footer.php');
 ?>
+
+  <h1>Image Upload</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    <input type="file" name="image">
+    <input type="submit" value="Upload">
+  </form>
