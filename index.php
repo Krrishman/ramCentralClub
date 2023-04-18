@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = curl_exec($curl);
     
     if (curl_errno($curl)) {
-        $cc=curl_error($curl);
-      echo "Error uploading file: $curl ffff  $cc ree  $response " . curl_error($curl);
+        //$cc=curl_error($curl);
+      echo "Error uploading file: $curl ffff ree  $response " . curl_error($curl);
       exit;
     }
     
