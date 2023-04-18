@@ -27,10 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       'Authorization: Bearer ' . $supabase_api_key
     ));
     $response = curl_exec($curl);
-    
+    echo "$response";
+    $cc=curl_error($curl);
+    echo "$cc";
+
     if (curl_errno($curl)) {
         //$cc=curl_error($curl);
-      echo "Error uploading file: $curl ffff ree  $response " . curl_error($curl);
+      echo "Error uploading file:  ffff ree " . curl_error($curl);
       exit;
     }
     
