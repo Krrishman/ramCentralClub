@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $supabase_api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFsYnZwaWFzY292eW93Y3p3cWV6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwNDk1MzcsImV4cCI6MTk5MjYyNTUzN30.GPMlnXEDxeIjFcPw9IrJTkxzSc8QhC4kbwWXJpeaPPQ';
     
     $curl = curl_init();
-    curl_setopt($curl, CURLOPT_URL, $supabase_url . '/storage/v1/upload/' . $supabase_bucket_name . '/' . $file_name);
+    curl_setopt($curl, CURLOPT_URL, $supabase_url . '/storage/v1/object/public/' . $supabase_bucket_name . '/' . $file_name);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($curl, CURLOPT_POST, true);
     curl_setopt($curl, CURLOPT_POSTFIELDS, file_get_contents($file_tmp));
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $response = curl_exec($curl);
     
     if (curl_errno($curl)) {
-      echo 'Error uploading file: ' . curl_error($curl);
+      echo 'Error uploading file: $curl ffff curl_error($curl)  ree  $response ' . curl_error($curl);
       exit;
     }
     
