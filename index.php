@@ -1,7 +1,7 @@
 
 <?php
 
-include('Home.php');
+//include('Home.php');
 include('postgres.php');
 include('Supabase_connect.php');
 
