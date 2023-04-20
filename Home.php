@@ -139,7 +139,7 @@ if(isset($_FILES['image'])) {
 
 
 
-
+/*
 
 
 // Include the Google APIs Client Library for PHP
@@ -184,10 +184,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 include('footer.php');
-?>
 
   <h1>Image Upload</h1>
   <form action="" method="post" enctype="multipart/form-data">
     <input type="file" name="image">
     <input type="submit" value="Upload">
   </form>
+
+
+*/
+  
+require_once 'drive/vendor/autoload.php';
+
+use Google\Client;
+use Google\Service\Drive;
+
+if(isset($_POST['submit'])){
+    try {
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $client = new Client();
+		putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $fileMetadata = new Drive\DriveFile(array(
+            'name' => $_FILES['image']['name'],
+			'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+        ));
+        $content = file_get_contents($_FILES['image']['tmp_name']);
+        $file = $driveService->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => $_FILES['image']['type'],
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        printf("File ID: %s\n", $file->id);
+        $message = "File uploaded successfully.";
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    } 
+}
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+</head>
+<body>
+    <h1>Image Upload</h1>
+    <?php if(isset($message)): ?>
+        <p><?php echo $message; ?></p>
+    <?php endif; ?>
+    <form action="" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" name="submit" value="Upload">
+    </form>
+</body>
+</html>
