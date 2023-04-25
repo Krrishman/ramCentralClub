@@ -201,16 +201,14 @@ if ($ad == $value) $se = 'SELECTED'; else $se = NULL;
 echo "<option $se>$value</option>\n";
 }
 echo "</select></p></form>"; 
-$query = "SELECT * FROM `club_page` ORDER BY $orderby $desc";
-$result = mysqli_query($mysqli, $query);
-if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
+// $query = "SELECT * FROM `club_page` ORDER BY $orderby $desc";
+// $result = mysqli_query($mysqli, $query);
+// if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
 
 
-$query = 'SELECT * FROM "club_page" ORDER BY $orderby $desc ';
+$query = 'SELECT * FROM "club_page" ';
 $result = pg_query($conn, $query);
-if (!$result) {
-    echo "Query Error [$query] " . pg_last_error($conn);
-}
+if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 // club_id | c_name  | c_tag  | c_desc  | c_pic | c_members | made_by | made_date | t_color1 | t_color2 | t_text  |des_color | des_text status
 
 while ($row = pg_fetch_assoc($result)) {
