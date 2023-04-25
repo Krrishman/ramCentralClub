@@ -48,6 +48,7 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
 
 .club_Container{
     background: linear-gradient(#006f71, #ffc21c);
+    position: relative;
     width: 200px;
     color: white;
     text-shadow: black 1px 1px 2px;
@@ -55,15 +56,55 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
     box-shadow: 0px 0px 5px rgba(0,0,0,1);
  
 }
+.icon {
+    position: absolute;
+    right: 10px;
+}
+
+.more_icon{
+    height: 30px;
+    object-fit: cover;
+    display: block;
+
+}
+.icon a img:hover {
+    background-color: #ddd;
+  }
+
+.icon_option{
+    position: absolute;
+    box-shadow: 0px 0px 5px rgba(0,0,0,1);
+    right: -70px;
+    background-color: #ffffff;
+    display: none;
+}
+
+.icon_option a{
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    text-shadow:none;
+    padding: 0 20 5 5;
+    text-decoration: none;
+    color: black;
+    
+}
+
+.icon_option a:hover {
+    background-color: #bebcbc;
+  }
+
 
 .image_Container {
-    height: 150px;
+    height: 120px;
     display: flex;
     justify-content: center;
 }
 
 .club_Icon{
-    width: 60%;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     margin: auto;
     display: block;
     border-radius: 50%;
