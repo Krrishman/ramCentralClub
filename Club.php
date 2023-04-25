@@ -75,7 +75,7 @@ while ($row = pg_fetch_assoc($result)) {
     $c_members = $row['c_members'];
     $Date = $row['made_date'];
         
-        echo"<div class='club_Container'>
+echo"<div class='club_Container'>
         <div class='icon'>
             <a href='#' ><img class='more_icon' onclick='showMore($club_id)' src='./icon/more_menu_icon.png' alt='avatar'>  </a>
         </div>
@@ -100,6 +100,8 @@ while ($row = pg_fetch_assoc($result)) {
 echo "</div><br>";
 
 ?>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="touggle.js"></script>
 
     </body>
 
