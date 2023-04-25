@@ -211,6 +211,7 @@ $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 // club_id | c_name  | c_tag  | c_desc  | c_pic | c_members | made_by | made_date | t_color1 | t_color2 | t_text  |des_color | des_text status
 
+echo "<div class='club_Grid'>";
 while ($row = pg_fetch_assoc($result)) {
     $club_id = $row['club_id'];
     $c_name = $row['c_name'];
@@ -228,17 +229,9 @@ while ($row = pg_fetch_assoc($result)) {
         <td align='left'>$c_pic</td>
 		<td align='center'>$c_members</td>
 		<td align='center'>$Date</td>
-		</tr>";
-}
-
-
-
-
-
-echo "<div class='club_Grid'>";
-// Process Query Results 
-while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date) = mysqli_fetch_row($result)) {
-    echo"<div class='club_Container'>
+		</tr>"; 
+        
+        echo"<div class='club_Container'>
         <div class='image_Container'>
             <img class='club_Icon' src='./upload/club_page/$c_pic' alt='avatar'>
         </div>
@@ -251,26 +244,13 @@ while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $mad
         </div>
     </div>";
 
-
 }
-echo "</div><br>";
 
-//$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
+echo "</div><br>";
 
 ?>
 
-
-
-
-
-
-
-
-
-
     </body>
-
-
 
 <?php
 
