@@ -23,8 +23,13 @@
 
 	$btn='color: black; padding: 10px 15px;  border: none; cursor: pointer;';
 // Output
-	echo "<p><table width='1366' align='center' cellpadding='5' 
-	style='background-color:rgba(1, 79, 81, 1); position:fixed; z-index: 2; margin-left:182px; top:0%; padding: 0px 10px'>";
+	echo "  <div class='header'>
+	<div class='header_front'>
+                   <p> </p>
+    </div>
+	<div class='header_table'>
+	<table align='center' width='1366' align='center' cellpadding='5' > <tr>";
+	
 	echo "<td style='font-size: 14px; color: white;'>
 	<b >Farmingdale State Collage <br align='center'> RamCentral</b><br> \n
 	<p>Welcome $user,  $role </p></td>";
@@ -53,47 +58,6 @@
 			}
 
 
-	echo "</tr></table>";
-	//include('test00.php');
-	//include('logon.php');
+	echo "</tr></table></div><div class='header_back'> <p> </p></div></div>";
+
 ?>
-<!--
-<!DOCTYPE html>
-	<html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="loginclick.css">
-    </head>
-<body>
-
-<div id="myDIV" class="modal" style="display: none;">
-  
-  <form class="modal-content animate" action="/action_page.php" method="post">
-
-    <div class="container">
-      <label for="uname"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="myFunction()" class="cancelbtn">Cancel</button>
-      <span class="psw">Forgot <a href="#">password?</a></span>
-    </div>
-  </form>
-</div>
-
-
-
-<script src="click.js"></script>
-</body>
-</html>
-
-	-->

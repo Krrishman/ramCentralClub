@@ -1,4 +1,28 @@
 
+.header_front{
+    width: 100%;
+    height: 50px;
+}
+.header_table{
+    display: flex;
+    align-items: center;
+    background-color:rgba(1, 79, 81, 1);
+}
+.header_back{
+    width: 100%;
+    height: 50px;
+}
+.header{
+    width: 100%;
+    position:fixed; 
+    z-index: 2; 
+    top:0%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
 .sectionDivider{
     display: flex;
     flex-direction: row;
