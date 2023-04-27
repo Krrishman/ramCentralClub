@@ -45,6 +45,7 @@ if (isset($_POST['click'])) {   $click = trim($_POST['click']);
 
 // Verify Input
 if (isset($_POST['register'])){
+	echo"kk $domain";
 	if ($f_name == NULL) 		{$msg = "First Name is missing<br>"; }
 	if ($l_name == NULL) 		{$msg = "Last Name is missing<br>"; }
 	if ($u_name == NULL) 		{$msg = "User Name is missing<br>"; }
@@ -61,7 +62,7 @@ if (isset($_POST['register'])){
 	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\',
 	 \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
 	$result = pg_query($conn, $query);
-	if ($result) $msg="Your NEW Account Created.";
+	if ($result) $msg="<font color='green'> Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
 	}
 }
@@ -91,15 +92,12 @@ $result = pg_query($conn, $query);
 
 // Check query result
 if (!$result) {
-  echo "faikeddddddddd";
   echo "Query Error [$query] " . pg_last_error($conn);
-   // die("Query failed: " . pg_last_error($conn));
 }
 
 
 
 if (pg_num_rows($result) > 0) {
-	echo"gooos";
 	$row = pg_fetch_assoc($result);
 	$User_id = $row['User_id'];
 	$F_Name = $row['F_Name'];
@@ -113,8 +111,6 @@ if (pg_num_rows($result) > 0) {
 	$Phone = $row[9];
 	$Date = $row['created_at'];
 
-	echo"  $Pass_Code2  ";
-
 
 
 
@@ -123,7 +119,6 @@ if (pg_num_rows($result) > 0) {
 				
 // If pass_code matches, Complete LOGON				
 				if ($pass_code == $Pass_Code2) {
-					echo"goood";
 					$_SESSION['logon']		= TRUE;
 					$_SESSION['user_name'] 	= $user_name;
 					$_SESSION['user'] 		= $user = "$user_name";
