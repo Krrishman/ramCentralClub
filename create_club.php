@@ -226,7 +226,7 @@ case "Finish":
 	                 \''.$t_color1.'\', \''.$t_color2.'\', \''.$t_text.'\', \''.$des_color.'\', \''.$des_text.'\', 1)';
 	                $result = pg_query($conn, $query);
                     if ($result) {
-                        $club_id = pg_fetch_result($result, 0, 0);
+                        $club_id = pg_fetch_result($result, 0, "club_id");
                         echo "<font color='green'>Your NEW Club Created. $club_id";  //} else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
                     $pics = $_POST['p_pic'];
                     $names = $_POST['p_name'];
