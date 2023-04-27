@@ -218,15 +218,16 @@ case "signup":
     
                 //INSERT INTO `bank` (`account_number`, `user_name`, `pass_code`, `account_type`, `role`, `account_balance`, `date`) VALUES (NULL, '', '', '', NULL, '', NULL)
                 echo"goooood"; break;
-case "Finish": 	    include('FSC_connect.php');
-
-                    $query ="INSERT INTO `club_page` (`c_name`, `c_tag`, `c_desc`, `c_pic`,
-                     `c_members`, `t_color1`, `t_color2`, `t_text`, `des_color`, `des_text`) 
-                    VALUES ( '$c_name', '$c_tag', '$c_desc', '$file_name', '$c_members',
-                     '$t_color1', '$t_color2', '$t_text', '$des_color', '$des_text')";
-                    $result = mysqli_query($mysqli, $query);
-                    if ($result) { $club_id = mysqli_insert_id($mysqli); echo"Your NEW Club Created. $club_id";
-                    
+case "Finish": 	    include('Supabase_connect.php');
+                    $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
+                    "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
+	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$file_name.'\', \''.$c_members.'\',
+	                 \''.$t_color1.'\', \''.$t_color2.'\', \''.$t_text.'\', \''.$des_color.'\', \''.$des_text.'\', 1)';
+	                $result = pg_query($conn, $query);
+                    if ($result) {
+                        $club_id = pg_fetch_result($result, 0, 0);
+                        echo "<font color='green'>Your NEW Club Created. $club_id";
+                        }
                     $pics = $_POST['p_pic'];
                     $names = $_POST['p_name'];
                     $descs = $_POST['p_desc'];
