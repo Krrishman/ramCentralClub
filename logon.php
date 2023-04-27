@@ -35,8 +35,8 @@
 
 
 //	if (isset($_POST['click']))			$click	= trim($_POST['click']);				else $click 	= NULL;
-if (isset($_POST['click'])) {   $click = trim($_POST['click']);
-	if ($click == 'register') {   $msg = "Fill Out All the Info!";	}  } else { $click = NULL; }
+ //if (isset($_POST['click'])) {   $click = trim($_POST['click']);
+	//if ($click == 'register') {   $msg = "Fill Out All the Info!";	}  } else { $click = NULL; }
 
 	$desiredDomain = 'farmingdale.edu';
 
@@ -66,7 +66,7 @@ if (isset($_POST['register'])){
 	if ($result) $msg="<font color='green'> Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
 	}
-}
+} else{ $msg = NULL;}
 // Verify Input
 	if (isset($_POST['logon'])) {
 		if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
