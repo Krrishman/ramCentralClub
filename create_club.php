@@ -223,11 +223,15 @@ case "Finish":
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
                     "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
 	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$file_name.'\', \''.$c_members.'\',
-	                 \''.$t_color1.'\', \''.$t_color2.'\', \''.$t_text.'\', \''.$des_color.'\', \''.$des_text.'\', 1)';
+	                 \''.$t_color1.'\', \''.$t_color2.'\', \''.$t_text.'\', \''.$des_color.'\', \''.$des_text.'\', 1)
+                     RETURNING "club_id";';
 	                $result = pg_query($conn, $query);
                     if ($result) {
-                        $club_id = pg_fetch_result($result, 0, "club_id");
-                        echo "<font color='green'>Your NEW Club Created. $club_id";  //} else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
+                        $club_id = pg_fetch_result($result, 0, "$club_id");
+                        echo "font $result color $club_id>Your NEW Club Created";
+                        $row = pg_fetch_assoc($result);
+                        $club_id = $row['club_id'];
+                        echo "<font color='green'> $club_id Your NEW Club Created. $club_id";  //} else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
                     $pics = $_POST['p_pic'];
                     $names = $_POST['p_name'];
                     $descs = $_POST['p_desc'];
@@ -252,7 +256,7 @@ case "Finish":
                         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
                         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
                 
-                    $query3 ='INSERT INTO "club_slide" (`S_title`, `S_des`, `S_pic`, `club_id`)
+                    $query3 ='INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
                     VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$club_id.'\')';
                      $result3 = pg_query($conn, $query3);
                      if ($result3) {
