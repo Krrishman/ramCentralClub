@@ -227,7 +227,7 @@ case "Finish":
 	                $result = pg_query($conn, $query);
                     if ($result) {
                         $club_id = pg_fetch_result($result, 0, 0);
-                        echo "<font color='green'>Your NEW Club Created. $club_id";} else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
+                        echo "<font color='green'>Your NEW Club Created. $club_id";  //} else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
                     $pics = $_POST['p_pic'];
                     $names = $_POST['p_name'];
                     $descs = $_POST['p_desc'];
@@ -238,11 +238,12 @@ case "Finish":
                         $_pic = $product[0];
                         $_name = $product[1];
                         $_desc = $product[2];
-                    $query2 ="INSERT INTO `club_perks` (`perk_id`, `p_name`, `p_desc`, `p_pic`, `club_id`, `color`) 
-                    VALUES (NULL,  '$_name', '$_desc', '$_pic', '$club_id', NULL)";
-                    $result2 = mysqli_query($mysqli, $query2);
-                    if ($result2) echo"Your perk Created.";
-                    else { echo"Unable to add perk" . mysqli_error($mysqli);}}
+                    $query2 ='INSERT INTO "club_perks" ("p_name", "p_desc", "p_pic", "club_id", "color") 
+                    VALUES (\''.$_name.'\', \''.$_desc.'\', \''.$_pic.'\', \''.$club_id.'\', NULL)';
+                     $result2 = pg_query($conn, $query2);
+                     if ($result2) {
+                         echo "<font color='green'>Your NEW perk Created.";}
+                         else { echo"Unable to add perk\n" . pg_last_error($conn);}}
 
 
                     for ($i = 0; $i < $max_entry; $i++) {
@@ -251,15 +252,14 @@ case "Finish":
                         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
                         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
                 
-                    $query3 ="INSERT INTO `slide_pic` (`slide_id`, `S_title`, `S_des`, `S_pic`, `club_id`)
-                    VALUES (NULL,  '$Slide_title', '$Slide_des', '$Slide_pic', '$club_id')";
-                    $result3 = mysqli_query($mysqli, $query3);
-                    if ($result3) echo"Your slideshow pic Created.";
-                    else { echo"Unable to add slideshow" . mysqli_error($mysqli);}}
+                    $query3 ='INSERT INTO "club_slide" (`S_title`, `S_des`, `S_pic`, `club_id`)
+                    VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$club_id.'\')';
+                     $result3 = pg_query($conn, $query3);
+                     if ($result3) {
+                         echo "<font color='green'>Your NEW slideshow Created.";}
+                         else { echo"Unable to add slideshow\n" . pg_last_error($conn);}}
                     
-                    
-                    
-                  //  }else { echo"Unable to Make Account" . mysqli_error($mysqli);}
+                    }else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
                     
                     echo"ooooook"; break;
 
