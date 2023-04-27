@@ -227,8 +227,10 @@ case "Finish":
                      RETURNING "club_id";';
 	                $result = pg_query($conn, $query);
                     if ($result) {
-                        //$club_id = pg_fetch_result($result, 0, "$club_id");
-                        echo "font $result color $club_id>Your NEW Club Created";
+                        $club_id = pg_fetch_result($result, 0, "$club_id");
+                        echo "font color $club_id>Your NEW Club Created";
+                        $club_id = pg_fetch_result($result, 0, 0);
+                        echo "font color $club_id>Your NEW Club Created";
                         $row = pg_fetch_assoc($result);
                         $club_id = $row['club_id'];
                         echo "<font color='green'> $club_id Your NEW Club Created. $club_id";  //} else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
