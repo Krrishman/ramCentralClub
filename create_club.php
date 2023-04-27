@@ -227,7 +227,6 @@ case "Finish": 	    include('Supabase_connect.php');
                     if ($result) {
                         $club_id = pg_fetch_result($result, 0, 0);
                         echo "<font color='green'>Your NEW Club Created. $club_id";
-                        }
                     $pics = $_POST['p_pic'];
                     $names = $_POST['p_name'];
                     $descs = $_POST['p_desc'];
