@@ -45,11 +45,11 @@
 
 // Verify Input
 if (isset($_POST['logon'])) {
-		if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
-		if ($pass_code == NULL) 		{$msg = "pass_code is missing<br>"; }
-		
+	if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
+	if ($pass_code == NULL) 		{$msg = "pass_code is missing<br>"; }
+	
 // LOGON		
-		if ($msg == NULL) {
+	if ($msg == NULL) {
 			
 // Query Student Using the user_name			
 			//include('bcs350_mysqli_connect.php');
@@ -152,6 +152,7 @@ if (pg_num_rows($result) > 0) {
 	echo"
 	
 <div id='myDIV' class='modal'>
+
   <form class='modal-content animate' action='logon.php' method='post' >
   <div class='con' id='con0'>
 	<div class='container' id='container0'>
@@ -202,7 +203,7 @@ if (pg_num_rows($result) > 0) {
 	  <div class='container' style='background-color:#f1f1f1'>
 			<button type='button' onclick='myFunction()' class='cancelbtn'>Cancel</button>
 			<button type='submit' name='register' value='register' >Submit</button>
-		  <p>Message: $msg</p>
+		  
 		</div>
 	
   </div>
@@ -217,7 +218,7 @@ if (pg_num_rows($result) > 0) {
 	//include('footer.php');		  
 
 
-//include('test00.php');
+//include('test00.php');<p>Message: $msg</p>
 
 	//INSERT INTO `bank` (`account_number`, `user_name`, `pass_code`, `account_type`, `role`, `account_balance`, `date`) VALUES ('1001', 'dm', '2222', 'Checking', 'admin', '10000', '2022-12-12');
 ?>
