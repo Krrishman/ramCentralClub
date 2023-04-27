@@ -45,6 +45,7 @@
 
 // Verify Input
 if (isset($_POST['logon'])) {
+	echo"kk";
 	if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
 	if ($pass_code == NULL) 		{$msg = "pass_code is missing<br>"; }
 	
@@ -110,6 +111,9 @@ if (pg_num_rows($result) > 0) {
 			else {$msg = "user_name [$user_name] is invalid"; }
 			}
 		}
+
+
+
   if (isset($_POST['register'])){
 	echo"kk $domain";
 	if ($f_name == NULL) 		{$msg = "First Name is missing<br>"; }
@@ -177,7 +181,7 @@ if (pg_num_rows($result) > 0) {
 	</div> </div>
 	<div class='container_register' id='container_register0' style='background-color:#f1f1f1'>
 	<label><b>First Name</b></label>
-		<input autocomplete='off' type='text' placeholder='Enter First Name' name='f_name'   value='$f_name' required>
+		<input autocomplete='off' type='text' placeholder='Enter First Name' name='f_name'   value='$f_name'>
 	<label ><b>Last Name</b></label>
 	  <input autocomplete='off' type='text' placeholder='Enter Last Name' name='l_name'   value='$l_name'>
 	  <label ><b>Username</b></label>
