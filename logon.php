@@ -5,8 +5,7 @@
 
 <?PHP
 // logon.php - Website Logon
-// Written by:  Charles Kaplan, November 2021
-	
+
 // Start Session	
 	include('session.php');
 	include('header.php');
@@ -22,6 +21,34 @@
 	if (isset($_POST['user_name']))		$user_name	= trim($_POST['user_name']);		else $user_name 	= NULL;
 	if (isset($_POST['pass_code']))		$pass_code 	= trim($_POST['pass_code']);		else $pass_code 	= NULL;
 		
+	
+	if (isset($_POST['f_name']))		$f_name 	= trim($_POST['f_name']);		else $f_name 	= NULL;
+	if (isset($_POST['l_name']))		$l_name 	= trim($_POST['l_name']);		else $l_name 	= NULL;
+	if (isset($_POST['u_name']))		$u_name 	= trim($_POST['u_name']);		else $u_name 	= NULL;
+	if (isset($_POST['p_code']))		$p_code 	= trim($_POST['p_code']);		else $p_code 	= NULL;
+	if (isset($_POST['s_type']))		$s_type 	= trim($_POST['s_type']);		else $s_type 	= NULL;
+	if (isset($_POST['major']))			$major 	= trim($_POST['major']);			else $major 	= NULL;
+	if (isset($_POST['email']))			$email 	= trim($_POST['email']);			else $email 	= NULL;
+	if (isset($_POST['number']))		$number = trim($_POST['number']);			else $number 	= 0;
+	if (isset($_POST['role']))			$role 	= trim($_POST['role']);				else $role 	= NULL;
+
+
+
+//	if (isset($_POST['click']))			$click	= trim($_POST['click']);				else $click 	= NULL;
+if (isset($_POST['click'])) {   $click = trim($_POST['click']);
+	if ($click == 'register') {   $msg = "Fill Out All the Info!";	}  } else { $click = NULL; }
+		
+// Verify Input
+if (isset($_POST['register'])){
+
+	include('Supabase_connect.php');
+	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
+	VALUES ('.$f_name.','. $l_name.','.$u_name.', '.$p_code.', '.$role.', '.$s_type.', '.$major.', '.$email.', '.$number.', 1)';
+	$result = pg_query($conn, $query);
+	if ($result) $msg="Your NEW Account Created.";
+	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
+	
+}
 // Verify Input
 	if (isset($_POST['logon'])) {
 		if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
@@ -115,35 +142,66 @@ if (pg_num_rows($result) > 0) {
 	echo"
 	
 <div id='myDIV' class='modal'>
+  <form class='modal-content animate' action='logon.php' method='post' >
+  <div class='con' id='con0'>
+	<div class='container' id='container0'>
+	  <label for='uname'><b>Username</b></label>
+	  <input type='text' placeholder='Enter Username' name='user_name'   value=''  >
   
-<form class='modal-content animate' action='logon.php' method='post' >
-
-  <div class='container'>
-	<label for='uname'><b>Username</b></label>
-	<input type='text' placeholder='Enter Username' name='user_name'   value=''  >
-
-	<label for='psw'><b>Password</b></label>
-	<input type='Password' placeholder='Enter Password' name='pass_code' value='' >
+	  <label for='psw'><b>Password</b></label>
+	  <input type='Password' placeholder='Enter Password' name='pass_code' value='' >
+		
+	  <button type='submit'  name='logon' value='LOGON' >Login</button>
+	  <label>
+		<input type='checkbox' checked='checked' name='remember'> Remember me
+	  </label>
+	</div>
+  
+	<div class='container' id='container0' style='background-color:#f1f1f1'>
+	  <button type='button' onclick='myFunction()' class='cancelbtn'>Cancel</button>
+	  <button type='button'  name='click' value='register' onclick='showRegister(0)' class='register'>Register</button>
+	</div>
+	<div class='container' id='container0' style='background-color:#f1f1f1'>
+	  <p>Message: $msg</p>
+	</div> </div>
+	<div class='container_register' id='container_register0' style='background-color:#f1f1f1'>
+	<label><b>First Name</b></label>
+		<input autocomplete='off' type='text' placeholder='Enter First Name' name='f_name'   value='$f_name'>
+	<label ><b>Last Name</b></label>
+	  <input autocomplete='off' type='text' placeholder='Enter Last Name' name='l_name'   value='$l_name'>
+	  <label ><b>Username</b></label>
+	  <input autocomplete='off' type='text' placeholder='Enter Username' name='u_name'   value='$u_name'>
+	  <label ><b>Password</b></label>
+	  <input autocomplete='off' type='text' placeholder='Enter Password' name='p_code'   value='$p_code'>
+	  <label>
+		<input type='checkbox' name='role' value='student'> Are You A Regular Student
+	  </label >
+	  <label ><br> 
+	  <input type='radio' name='s_type' value='Freshman' >Freshman
+	  <input type='radio' name='s_type' value='Sophemore' >Sophemore
+	  <input type='radio' name='s_type' value='Junior' >Junior
+	  <input type='radio' name='s_type' value='Senior' >Senior
+	  </label>
+	  <label for='uname'><b>Major</b></label>
+	  <input autocomplete='off' type='text' placeholder='Enter Major' name='major'   value='$major'>
+	  <label for='uname'><b>Email</b></label>
+	  <input autocomplete='off' type='email' placeholder='Enter Email' name='email'   value='$email'>
+	  <label for='uname'><b>Phone Number</b></label>
+	  <input autocomplete='off' type='number' placeholder='Enter Phone Number' name='number'   value='$number'>
 	  
-	<button type='submit'  name='logon' value='LOGON' >Login</button>
-	<label>
-	  <input type='checkbox' checked='checked' name='remember'> Remember me
-	</label>
+	  <div class='container' style='background-color:#f1f1f1'>
+			<button type='button' onclick='myFunction()' class='cancelbtn'>Cancel</button>
+			<button type='submit' name='register' value='register' >Submit</button>
+		  <p>Message: $msg</p>
+		</div>
+	
   </div>
-
-  <div class='container' style='background-color:#f1f1f1'>
-	<button type='button' onclick='myFunction()' class='cancelbtn'>Cancel</button>
-	<span class='psw'>Forgot <a href='#'>password?</a></span>
+  </form>
   </div>
-  <div class='con' style='background-color:#f1f1f1'>
-	<p>Message: $msg</p>
-  </div>
-</form>
-</div>
-<script src='click.js'></script>
-
-</body>
-</html>
+  <script src='click.js'></script>
+  <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+  </body>
+  </html>
 		
 	";
 	//include('footer.php');		  

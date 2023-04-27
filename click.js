@@ -12,3 +12,14 @@ function myFunction() {
     x.style.display = "none";
     }
   }
+
+  function showRegister(x) {
+    var register = $('#container_register'+x);
+    var con = $('#con'+x);
+    con.hide();
+    register.toggle();
+    //document.getElementById("container0").style.display = "none";
+    //document.getElementsByClassName("con")[0].style.display = "none";
+    //iconOption.show()
+
+}
