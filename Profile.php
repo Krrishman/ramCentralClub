@@ -8,6 +8,7 @@
 	include('header.php');
 	//include('bcs350_mysqli_connect.php');
 	include('FSC_connect.php');
+	
 
 	//include('Supabase_connect.php');`,``, ``, ``, ``, ``
 	while(list($User_id, $F_Name, $L_Name, $User_Name, $Pass_Code, $Role, $Year,$Major , $Email , $Phone, $Date, $Status  ) = mysqli_fetch_row($result)
