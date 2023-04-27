@@ -66,9 +66,9 @@ if (isset($_POST['register'])){
 	if ($result) $msg="<font color='green'> Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
 	}
-} else{ $msg = NULL;}
+}
 // Verify Input
-	if (isset($_POST['logon'])) {
+elseif (isset($_POST['logon'])) {
 		if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
 		if ($pass_code == NULL) 		{$msg = "pass_code is missing<br>"; }
 		
