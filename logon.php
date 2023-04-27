@@ -43,7 +43,7 @@ if (isset($_POST['register'])){
 
 	include('Supabase_connect.php');
 	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
-	VALUES ('.$f_name.','. $l_name.','.$u_name.', '.$p_code.', '.$role.', '.$s_type.', '.$major.', '.$email.', '.$number.', 1)';
+	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\', \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
 	$result = pg_query($conn, $query);
 	if ($result) $msg="Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
