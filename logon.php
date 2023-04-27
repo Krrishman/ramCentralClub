@@ -37,9 +37,24 @@
 //	if (isset($_POST['click']))			$click	= trim($_POST['click']);				else $click 	= NULL;
 if (isset($_POST['click'])) {   $click = trim($_POST['click']);
 	if ($click == 'register') {   $msg = "Fill Out All the Info!";	}  } else { $click = NULL; }
-		
+
+	$desiredDomain = 'farmingdale.edu';
+
+// Extract the domain from the email address
+	$domain = substr($email, strrpos($email, '@') + 1);
+
 // Verify Input
 if (isset($_POST['register'])){
+	if ($f_name == NULL) 		{$msg = "First Name is missing<br>"; }
+	if ($l_name == NULL) 		{$msg = "Last Name is missing<br>"; }
+	if ($u_name == NULL) 		{$msg = "User Name is missing<br>"; }
+	if ($p_code == NULL) 		{$msg = "Pass Code is missing<br>"; }
+	if ($s_type == NULL) 		{$msg = "Year is missing<br>"; }
+	if ($role == NULL) 			{$msg = "Please, Check the box<br>"; }
+	if ($email == NULL) 			{$msg = "Email is missing<br>"; }
+	if ($domain == $desiredDomain) {$msg = "Must Use '@Farmingdale.edu'<br>"; }
+// LOGON		
+	if ($msg == NULL) {
 
 	include('Supabase_connect.php');
 	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
@@ -48,7 +63,7 @@ if (isset($_POST['register'])){
 	$result = pg_query($conn, $query);
 	if ($result) $msg="Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
-	
+	}
 }
 // Verify Input
 	if (isset($_POST['logon'])) {
@@ -167,7 +182,7 @@ if (pg_num_rows($result) > 0) {
 	</div> </div>
 	<div class='container_register' id='container_register0' style='background-color:#f1f1f1'>
 	<label><b>First Name</b></label>
-		<input autocomplete='off' type='text' placeholder='Enter First Name' name='f_name'   value='$f_name'>
+		<input autocomplete='off' type='text' placeholder='Enter First Name' name='f_name'   value='$f_name' required>
 	<label ><b>Last Name</b></label>
 	  <input autocomplete='off' type='text' placeholder='Enter Last Name' name='l_name'   value='$l_name'>
 	  <label ><b>Username</b></label>
