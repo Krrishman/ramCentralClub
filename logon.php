@@ -29,7 +29,7 @@
 	if (isset($_POST['s_type']))		$s_type 	= trim($_POST['s_type']);		else $s_type 	= NULL;
 	if (isset($_POST['major']))			$major 	= trim($_POST['major']);			else $major 	= NULL;
 	if (isset($_POST['email']))			$email 	= trim($_POST['email']);			else $email 	= NULL;
-	if (isset($_POST['number']))		$number = trim($_POST['number']);			else $number 	= 0;
+	if (isset($_POST['number']))		$number = trim($_POST['number']);			else $number 	= NUll;
 	if (isset($_POST['role']))			$role 	= trim($_POST['role']);				else $role 	= NULL;
 
 
@@ -43,7 +43,8 @@ if (isset($_POST['register'])){
 
 	include('Supabase_connect.php');
 	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
-	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\', \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
+	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\',
+	 \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
 	$result = pg_query($conn, $query);
 	if ($result) $msg="Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
