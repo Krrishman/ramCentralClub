@@ -45,7 +45,7 @@ if (isset($_POST['click'])) {   $click = trim($_POST['click']);
 
 // Verify Input
 if (isset($_POST['register'])){
-	echo"kk $domain";
+	
 	if ($f_name == NULL) 		{$msg = "First Name is missing<br>"; }
 	if ($l_name == NULL) 		{$msg = "Last Name is missing<br>"; }
 	if ($u_name == NULL) 		{$msg = "User Name is missing<br>"; }
