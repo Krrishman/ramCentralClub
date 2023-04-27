@@ -29,7 +29,7 @@
 	if (isset($_POST['s_type']))		$s_type 	= trim($_POST['s_type']);		else $s_type 	= NULL;
 	if (isset($_POST['major']))			$major 	= trim($_POST['major']);			else $major 	= NULL;
 	if (isset($_POST['email']))			$email 	= trim($_POST['email']);			else $email 	= NULL;
-	if (isset($_POST['number']))		$number = trim($_POST['number']);			else $number 	= NUll;
+	if (isset($_POST['number']))		$number = trim($_POST['number']);			else $number 	= 0;
 	if (isset($_POST['role']))			$role 	= trim($_POST['role']);				else $role 	= NULL;
 
 
@@ -53,6 +53,7 @@ if (isset($_POST['register'])){
 	if ($s_type == NULL) 		{$msg = "Year is missing<br>"; }
 	if ($role == NULL) 			{$msg = "Please, Check the box<br>"; }
 	if ($email == NULL) 			{$msg = "Email is missing<br>"; }
+	if ($major == NULL) 			{$msg = "Major is missing<br>"; }
 	if ($domain == $desiredDomain) {$msg = "Must Use '@Farmingdale.edu'<br>"; }
 // LOGON		
 	if ($msg == NULL) {
