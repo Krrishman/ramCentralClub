@@ -54,7 +54,7 @@ if (isset($_POST['register'])){
 	if ($role == NULL) 			{$msg = "Please, Check the box<br>"; }
 	if ($email == NULL) 			{$msg = "Email is missing<br>"; }
 	if ($major == NULL) 			{$msg = "Major is missing<br>"; }
-	if ($domain == $desiredDomain) {$msg = "Must Use '@Farmingdale.edu'<br>"; }
+	if ($domain != $desiredDomain) {$msg = "Must Use '@Farmingdale.edu'<br>"; }
 // LOGON		
 	if ($msg == NULL) {
 
