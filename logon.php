@@ -44,31 +44,7 @@
 	$domain = substr($email, strrpos($email, '@') + 1);
 
 // Verify Input
-if (isset($_POST['register'])){
-	echo"kk $domain";
-	if ($f_name == NULL) 		{$msg = "First Name is missing<br>"; }
-	if ($l_name == NULL) 		{$msg = "Last Name is missing<br>"; }
-	if ($u_name == NULL) 		{$msg = "User Name is missing<br>"; }
-	if ($p_code == NULL) 		{$msg = "Pass Code is missing<br>"; }
-	if ($s_type == NULL) 		{$msg = "Year is missing<br>"; }
-	if ($role == NULL) 			{$msg = "Please, Check the box<br>"; }
-	if ($email == NULL) 			{$msg = "Email is missing<br>"; }
-	if ($major == NULL) 			{$msg = "Major is missing<br>"; }
-	if ($domain != $desiredDomain) {$msg = "Must Use '@Farmingdale.edu'<br>"; }
-// LOGON		
-	if ($msg == NULL) {
-
-	include('Supabase_connect.php');
-	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
-	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\',
-	 \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
-	$result = pg_query($conn, $query);
-	if ($result) $msg="<font color='green'> Your NEW Account Created.";
-	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
-	}
-}
-// Verify Input
-elseif (isset($_POST['logon'])) {
+if (isset($_POST['logon'])) {
 		if ($user_name == NULL) 		{$msg = "user_name is missing<br>"; }
 		if ($pass_code == NULL) 		{$msg = "pass_code is missing<br>"; }
 		
@@ -134,7 +110,29 @@ if (pg_num_rows($result) > 0) {
 			else {$msg = "user_name [$user_name] is invalid"; }
 			}
 		}
-  
+  if (isset($_POST['register'])){
+	echo"kk $domain";
+	if ($f_name == NULL) 		{$msg = "First Name is missing<br>"; }
+	if ($l_name == NULL) 		{$msg = "Last Name is missing<br>"; }
+	if ($u_name == NULL) 		{$msg = "User Name is missing<br>"; }
+	if ($p_code == NULL) 		{$msg = "Pass Code is missing<br>"; }
+	if ($s_type == NULL) 		{$msg = "Year is missing<br>"; }
+	if ($role == NULL) 			{$msg = "Please, Check the box<br>"; }
+	if ($email == NULL) 			{$msg = "Email is missing<br>"; }
+	if ($major == NULL) 			{$msg = "Major is missing<br>"; }
+	if ($domain != $desiredDomain) {$msg = "Must Use '@Farmingdale.edu'<br>"; }
+// LOGON		
+	if ($msg == NULL) {
+
+	include('Supabase_connect.php');
+	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
+	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\',
+	 \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
+	$result = pg_query($conn, $query);
+	if ($result) $msg="<font color='green'> Your NEW Account Created.";
+	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
+	}
+}
 // OUTPUT Logon Screen
 	if ($msg == NULL)  	{$msg = "Enter User ID and pass_code";}
 	else if (!$logon){ $msg = "<font color='red'>$msg Please try again</font>";	}
