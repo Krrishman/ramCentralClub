@@ -247,7 +247,7 @@ echo "</table><br>
 
 $query3 ='INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
 VALUES (\'rgrgrgr\', \'gjyjyjbhg\', \'thrtrjjrjyt.png\', \'20\') 
- RETURNING "club_id"';
+ RETURNING "slide_id"';
  $result3 = pg_query($conn, $query3);
  if ($result3) {
        // $slide_id = pg_fetch_result($result3, 0, "$slide_id");
