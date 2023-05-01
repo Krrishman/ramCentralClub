@@ -238,7 +238,7 @@ case "Finish":
 	                $result = pg_query($conn, $query);
                     if ($result) {
                         $club_id = pg_fetch_result($result, 0, 0);
-                        echo "<font color='green'> $club_id Your NEW Club Created."; 
+                        echo "<font color='green'> $club_id Your NEW Club Created.</font>\n"; 
           /*           $pics = $_POST['p_pic'];
                     $names = $_POST['p_name'];
                     $descs = $_POST['p_desc'];
@@ -254,14 +254,14 @@ case "Finish":
                         $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
                         $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                         $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-          
+                        echo "font $Per_name df $Per_desc";
                     $query2 ='INSERT INTO "club_perk" ("p_name", "p_desc", "p_pic", "club_id", "color") 
                     VALUES (\''.$per_name.'\', \''.$per_desc.'\', \''.$per_pic.'\', \''.$club_id.'\', NULL) 
                     RETURNING "perk_id";';
                      $result2 = pg_query($conn, $query2);
                      if ($result2) {
                         $perk_id = pg_fetch_result($result2, 0, 0);
-                         echo "<font color='green'>$perk_id Your NEW perk Created.";}
+                         echo "<font color='green'>$perk_id Your NEW perk Created.</font>\n";}
                          else { echo"Unable to add perk\n" . pg_last_error($conn);}}
 
 
@@ -277,7 +277,7 @@ case "Finish":
                      $result3 = pg_query($conn, $query3);
                      if ($result3) {
                         $slide_id = pg_fetch_result($result3, 0, 0);
-                         echo "<font color='green'>$slide_id Your NEW slideshow Created.";}
+                         echo "<font color='green'>$slide_id Your NEW slideshow Created.</font>\n";}
                          else { echo"Unable to add slideshow\n" . pg_last_error($conn);}}
                     
                     }else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
