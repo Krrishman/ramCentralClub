@@ -196,7 +196,7 @@ if(isset($_POST['submit'])){
         <p><?php echo $message; ?></p>
     <?php endif; ?>
     <form action="" method="post" enctype="multipart/form-data">
-        <input type="file" name="image">
+        <input type="file" name="image" accept="image/jpeg, image/jpg, image/gif, image/png, image/tif" >
         <input type="submit" name="submit" value="Upload">
     </form>
 </body>

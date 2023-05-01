@@ -63,7 +63,7 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else
 //if (isset($_POST['perk_desc']))	       $perk_desc = $_POST['perk_desc'];     else $perk_desc = Null;
 
 //$perk_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array();
-
+/*
 if (isset($_POST['p']))			$p = trim($_POST['p']); else $p = NULL;
 if (isset($_POST['addd'])) {
     $number = $_POST['number'];
@@ -89,7 +89,50 @@ if(isset($_FILES['image'])) {
       echo "Invalid file type. JPG, GIF, PNG or TIF files are allowed.<br>";
     }
   }
+  */
+
   
+  require_once 'drive/vendor/autoload.php';
+
+  use Google\Client;
+  use Google\Service\Drive;
+  if(isset($_FILES['image'])) {
+  //if(isset($_POST['submit'])){
+    try {
+        $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+        $file_type = $_FILES['image']['type'];
+        if (!in_array($file_type, $valid_types)) {
+            throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+        }
+		
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+        $client = new Client();
+		putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $fileMetadata = new Drive\DriveFile(array(
+            'name' => $_FILES['image']['name'],
+			'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+        ));
+        $content = file_get_contents($_FILES['image']['tmp_name']);
+        $file = $driveService->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => $file_type,
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        $filename = $file->id;
+        $message = "File uploaded successfully. $filename";
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    } 
+}
+  
+
 
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 echo " <div class='club_make'>";
@@ -107,7 +150,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
 
 <tr><td>Club Members</td><td><input type='number' name='c_members' value='$c_members'   size='12'></td>
 <tr><td>Upload Club Photo(JPG, GIF, PNG or TIF File only):
-        <td> <input type='file' name='image' >$file_name</td></tr>
+        <td> <input type='file' name='image' >$filename</td></tr>
         <tr><td></td>
         <td><br></td>
         </tr>";
@@ -218,7 +261,7 @@ case "Finish":
                     include('Supabase_connect.php');
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
                     "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
-	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$file_name.'\', \''.$c_members.'\',
+	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$filename.'\', \''.$c_members.'\',
 	                 \''.$t_color1.'\', \''.$t_color2.'\', \''.$t_text.'\', \''.$des_color.'\', \''.$des_text.'\', 1)
                      RETURNING "club_id";';
 	                $result = pg_query($conn, $query);
