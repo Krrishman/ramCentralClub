@@ -214,20 +214,6 @@ for ($i = 0; $i < $max_entry; $i++) {
 
 switch($task) {
 
-case "signup": 
-                echo "    <form action='home.php' method='post'>
-                <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='2'>
-                <tr><td width='30%'>User Name</td><td ><input type='text' name='user_name' value='$user_name' rows='4' cols='10'  size='12'></td>
-                <tr><td>Password </td><td><input type='number' name='pass_code' value='$pass_code'   size='12'></td>
-                <tr><td>Amount</td><td><input type='number' name='account_balance' value='$account_balance'   size='12'></td>
-                <tr ><td>Account Type    </td>
-                <td ><input type='radio' name='account_type' value='Checking' >Checking
-                <input type='radio' name='account_type' value='Savings' >Savings</td></tr>
-                <td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
-                </table></form>";
-    
-                //INSERT INTO `bank` (`account_number`, `user_name`, `pass_code`, `account_type`, `role`, `account_balance`, `date`) VALUES (NULL, '', '', '', NULL, '', NULL)
-                echo"goooood"; break;
 case "Finish": 	    
                     include('Supabase_connect.php');
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
@@ -239,17 +225,8 @@ case "Finish":
                     if ($result) {
                         $club_id = pg_fetch_result($result, 0, 0);
                         echo "<font color='green'> $club_id Your NEW Club Created.</font>\n"; 
-          /*           $pics = $_POST['p_pic'];
-                    $names = $_POST['p_name'];
-                    $descs = $_POST['p_desc'];
                     
-                    $products = array_combine(range(1, count($pics)), array_map(null, $pics, $names, $descs));
-                    
-                   foreach ($products as $id => $product) {
-                        $_pic = $product[0];
-                        $_name = $product[1];
-                        $_desc = $product[2];
-           */           for ($i = 0; $i < $max_entries; $i++) {
+                        for ($i = 0; $i < $max_entries; $i++) {
                         // Check if the array values are set, otherwise set them to null
                         $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
                         $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
@@ -375,30 +352,8 @@ case "preview":
 <script src='clickSlide.js'></script>
 
 </section>
-            
-            
-            
-            
-            
-            ";  break;
+             ";  break;
 
-case "ad_club": 
-   
-            echo "    <form action='create_club.php' method='post'>
-            <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
-            <tr><td width='30%'>Club Name</td><td ><input type='text' name='c_name' value='$c_name'  size='40'></td>
-            <tr><td>Club Tag </td><td><input type='text' name='c_tag' value='$c_tag' rows='10'  size='50'></td>
-            <tr><td>Club Description</td><td><textarea name='c_desc' size='500' cols='40' rows='10' >"; echo"$c_desc </textarea></td>
-            <tr><td>Club Members</td><td><input type='number' name='c_members' value='$c_members'   size='12'></td>
-            <tr><td>Upload Club Photo(JPG, GIF, PNG or TIF File only):
-                    <td><input type='file' name='image' value='$c_pic'></td>
-            <tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
-            <input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
-            </table></form>";
-
-
-    //INSERT INTO `bank` (`account_number`, `user_name`, `pass_code`, `account_type`, `role`, `account_balance`, `date`) VALUES (NULL, '', '', '', NULL, '', NULL)
-    echo"goooood"; break;
 }
 
 ?>
