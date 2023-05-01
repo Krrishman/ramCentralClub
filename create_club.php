@@ -194,7 +194,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
            $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
           // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
-           $perk_pic = isset($_FILES['images']['name']) ? $_FILES['images']['name'] : array();
+           $perk_pic = isset($_FILES[$filena]) ? $_FILES[$filena] : array();
 
             $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
