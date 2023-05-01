@@ -183,17 +183,12 @@ echo "</table><br>
 <tr><td><center>Good job</center></td></tr>";
 */
 //$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
-echo "pgggggg";
 $query = 'SELECT * FROM "User" where "User_Name" = \'haqusa\'';
-echo "ovvvvvv";
 $result = pg_query($conn, $query);
-echo "oddddddddd";
 if (!$result) {
     echo "faiked";
     echo "Query Error [$query] " . pg_last_error($conn);
 }
-
-echo "offfffffff";
 
 echo " <table style='background-color: #FAF0E6' width='650' align='center' rules='all' border='frame' cellpadding='2'>
 	<tr>
@@ -246,12 +241,12 @@ while ($row = pg_fetch_assoc($result)) {
 		</tr>";
 }
 
-echo "</table><br>  dfdfdfssdfsdf
+echo "</table><br>
 <table width='650' align='center'>
 <tr><td><center>Good job</center></td></tr>";
 
-$query3 ='INSERT INTO "club_slide" ("slide_id","S_title", "S_des", "S_pic", "club_id")
-VALUES (Null,\'rgrgrgr\', \'gjyjyjbhg\', \'thrtrjjrjyt.png\', \'20\') 
+$query3 ='INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
+VALUES (\'rgrgrgr\', \'gjyjyjbhg\', \'thrtrjjrjyt.png\', \'20\') 
  RETURNING "club_id"';
  $result3 = pg_query($conn, $query3);
  if ($result3) {
