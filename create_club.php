@@ -113,10 +113,20 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
         </tr>";
         $max_entries = 4;
         for ($i = 0; $i < $max_entries; $i++) {
-            $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : '';
-            echo "
+           // $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : '';
+           $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
+           $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
+          // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
+           $perk_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array();
+
+            $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+            $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+            $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+        
+       echo"
+
             <tr>
-                <td>Perk No " . ($i+1) . "</td>
+                <td>Perk No " . ($i+1) . " </td>
             </tr>
             <tr>
                 <td>Perk Pic</td>
@@ -124,11 +134,11 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             </tr>
             <tr>
                 <td>Perk Name</td>
-                <td><input type='text' name='perk_name[]' value='" . (isset($perk_name[$i]) ? $perk_name[$i] : '') . "' size='50'></td>
+                <td><input type='text' name='perk_name[]' value='" . $Per_name . "' size='50'></td>
             </tr>
             <tr>
                 <td>Perk Description</td>
-                <td><input type='text' name='perk_desc[]' value='" . (isset($perk_desc[$i]) ? $perk_desc[$i] : '') . "' size='50'></td>
+                <td><input type='text' name='perk_desc[]' value='" . $Per_desc . "' size='50'></td>
             </tr>
             ";
         }
