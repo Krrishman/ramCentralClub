@@ -94,7 +94,7 @@ echo"
         
             <div class='listOfBenefits'>
                 <div class='benefitsIcon'>
-                    <img src='./ClubHomePage/ClubHomePagePictures/network-icon.jpg' alt='$p_pic'>
+                    <img src='$imageUrl$p_pic' alt='$p_pic'>
                 </div>
                 <div class='listOfBenefitsDesciption'>
                     <h3>$p_name</h3>

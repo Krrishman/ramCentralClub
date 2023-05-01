@@ -74,7 +74,8 @@ while ($row = pg_fetch_assoc($result)) {
     $c_pic = $row['c_pic'];
     $c_members = $row['c_members'];
     $Date = $row['made_date'];
-        
+    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+
 echo"<div class='club_Container'>
         <div class='icon'>
             <a href='#' ><img class='more_icon' onclick='showMore($club_id)' src='./icon/more_menu_icon.png' alt='avatar'>  </a>
@@ -84,7 +85,7 @@ echo"<div class='club_Container'>
             <a href='#'>Delete</a>
         </div>
         <div class='image_Container'>
-            <img class='club_Icon' src='./upload/club_page/$c_pic' alt='avatar'>
+            <img class='club_Icon' src='$imageUrl$c_pic' alt='avatar'>
         </div>
             <div class='information'>
                 <h1 ><a style='text-decoration:none; color:white;' href='./auto_club_page.php?r=$club_id'>$c_name</a></h1>

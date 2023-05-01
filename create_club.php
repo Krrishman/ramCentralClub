@@ -132,7 +132,41 @@ if(isset($_FILES['image'])) {
     } 
 }
   
-
+if(isset($_FILES['images'])) {
+    //if(isset($_POST['submit'])){
+      try {
+          $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+          $file_type = $_FILES['image']['type'];
+          if (!in_array($file_type, $valid_types)) {
+              throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+          }
+          
+          $curl = curl_init();
+          curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+          curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  
+          $client = new Client();
+          putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+          $client->useApplicationDefaultCredentials();
+          $client->addScope(Drive::DRIVE);
+          $driveService = new Drive($client);
+          $fileMetadata = new Drive\DriveFile(array(
+              'name' => $_FILES['image']['name'],
+              'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+          ));
+          $content = file_get_contents($_FILES['image']['tmp_name']);
+          $file = $driveService->files->create($fileMetadata, array(
+              'data' => $content,
+              'mimeType' => $file_type,
+              'uploadType' => 'multipart',
+              'fields' => 'id'
+          ));
+          $filena = $file->id;
+          $message = "File uploaded successfully. $filena";
+      } catch(Exception $e) {
+          $message = "Error Message: ".$e->getMessage();
+      } 
+  }
 
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 echo " <div class='club_make'>";
@@ -160,12 +194,12 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
            $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
           // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
-           $perk_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array();
+           $perk_pic = isset($_FILES['images']['name']) ? $_FILES['images']['name'] : array();
 
             $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
             $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-        
+        //<td><input type='file' name='perk_pic[]' value='" . $per_pic . "' size='50'></td>
        echo"
 
             <tr>
@@ -173,7 +207,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             </tr>
             <tr>
                 <td>Perk Pic</td>
-                <td><input type='file' name='perk_pic[]' value='" . $per_pic . "' size='50'></td>
+                <td> <input type='file' name='images[]' size='50'>$filena</td>
             </tr>
             <tr>
                 <td>Perk Name</td>
@@ -242,12 +276,13 @@ for ($i = 0; $i < $max_entry; $i++) {
         <td><input type='text' name='S_des[]' value='" . (isset($S_des[$i]) ? $S_des[$i] : '') . "' size='50'></td>
     </tr>
     <tr>
-        <td>Slide Pic</td>
-        <td><input type='file' name='picture[]' value='" . $Slide_pic . "' size='50'></td>
+        <td>Slide Pic</td> 
+        <td> <input type='file' name='images[]' >$filename</td></tr>
+       
     </tr>";
 }
 
-
+// <td><input type='file' name='picture[]' value='" . $Slide_pic . "' size='50'></td>
 
 
         echo "
