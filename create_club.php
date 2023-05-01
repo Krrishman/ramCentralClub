@@ -171,11 +171,11 @@ if(isset($_FILES['images'])) {
   */
   if(isset($_FILES['images'])) {
     try {
-        $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-        $file_type = $_FILES['image']['type'];
-        if (!in_array($file_type, $valid_types)) {
-            throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
-        }
+       // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+       // $file_type = $_FILES['image']['type'];
+       // if (!in_array($file_type, $valid_types)) {
+       //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+       // }
           
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
@@ -386,7 +386,7 @@ case "Finish":
 
 case "First": break;
 case "preview": 
-                $imageUrl = 'https://drive.google.com/uc?export=view&id='.$filename;
+                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
         echo"<div class='club_right'><div class='club_Container'>
                 <div class='image_Container'>
@@ -432,10 +432,10 @@ case "preview":
 
             <div class='listOfBenefits'>
                 <div class='benefitsIcon'>
-                    <img src='./ClubHomePage/ClubHomePagePictures/network-icon.jpg' alt='$Per_pic'>
+                    <img src='$imageUrl$Per_pic' alt='$Per_pic'>
                 </div>
                 <div class='listOfBenefitsDesciption'>
-                    <h3>$Per_name</h3>
+                    <h3>$Per_name $Per_pic</h3>
                     <p>$Per_desc</p>
                 </div>
             </div>  ";}
