@@ -250,7 +250,21 @@ echo "</table><br>  dfdfdfssdfsdf
 <table width='650' align='center'>
 <tr><td><center>Good job</center></td></tr>";
 
-
+$query3 ='INSERT INTO "club_slide" ("slide_id","S_title", "S_des", "S_pic", "club_id")
+VALUES (Null,\'rgrgrgr\', \'gjyjyjbhg\', \'thrtrjjrjyt.png\', \'20\') 
+ RETURNING "club_id"';
+ $result3 = pg_query($conn, $query3);
+ if ($result3) {
+        $slide_id = pg_fetch_result($result3, 0, "$slide_id");
+         echo "font color $slide_id Your NEW Club Created";
+         $slide_id = pg_fetch_result($result3, 0, 0);
+         echo "font color $slide_id>Your NEW Club Created";
+         $row = pg_fetch_assoc($result3);
+         $slide_id = $row['slide_id'];
+         echo "<font color='green'> $slide_id Your NEW Club Created. $slide_id"; 
+     echo "<font color='green'>Your NEW slideshow Created.";}
+     else { echo"Unable to add slideshow\n" . pg_last_error($conn);}
+         
 //pg_close($conn);
 /*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
