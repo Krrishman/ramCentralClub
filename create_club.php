@@ -59,10 +59,10 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);          else $
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
-if (isset($_POST['perk_name']))	       $perk_name = $_POST['perk_name'];     else $perk_name = Null;
-if (isset($_POST['perk_desc']))	       $perk_desc = $_POST['perk_desc'];     else $perk_desc = Null;
+//if (isset($_POST['perk_name']))	       $perk_name = $_POST['perk_name'];     else $perk_name = Null;
+//if (isset($_POST['perk_desc']))	       $perk_desc = $_POST['perk_desc'];     else $perk_desc = Null;
 
-$perk_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array();
+//$perk_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array();
 
 if (isset($_POST['p']))			$p = trim($_POST['p']); else $p = NULL;
 if (isset($_POST['addd'])) {
