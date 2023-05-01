@@ -172,7 +172,7 @@ if(isset($_FILES['images'])) {
   if(isset($_FILES['images'])) {
     try {
         $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-        $file_type = $_FILES['images']['type'];
+        $file_type = $_FILES['image']['type'];
         if (!in_array($file_type, $valid_types)) {
             throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
         }
