@@ -259,6 +259,7 @@ switch($task) {
 
 case "Finish": 	    
                     include('Supabase_connect.php');
+                    echo "$filename";
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
                     "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
 	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$filename.'\', \''.$c_members.'\',
@@ -305,9 +306,11 @@ case "Finish":
 
 case "First": break;
 case "preview": 
+                $imageUrl = 'https://drive.google.com/uc?export=view&id='.$filename;
+
         echo"<div class='club_right'><div class='club_Container'>
                 <div class='image_Container'>
-                <img class='club_Icon' src=\"./upload/club_page/$file_name\"  alt=\"Avatar\">
+                <img class='club_Icon' src='$imageUrl' alt=\"Avatar\">
                 </div>
                 <div class='information'>
                     <h1 ><a style='text-decoration:none; color:white;' href='./club_home_page.php'>$c_name</a></h1>
