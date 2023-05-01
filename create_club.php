@@ -241,12 +241,12 @@ case "Finish":
                         $_desc = $product[2];
            */           for ($i = 0; $i < $max_entries; $i++) {
                         // Check if the array values are set, otherwise set them to null
-                        $perk_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-                        $perk_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
-                        $perk_name = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+                        $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+                        $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+                        $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
           
                     $query2 ='INSERT INTO "club_perk" ("p_name", "p_desc", "p_pic", "club_id", "color") 
-                    VALUES (\''.$perk_name.'\', \''.$perk_name.'\', \''.$perk_pic.'\', \''.$club_id.'\', NULL) 
+                    VALUES (\''.$per_name.'\', \''.$per_desc.'\', \''.$per_pic.'\', \''.$club_id.'\', NULL) 
                     RETURNING "perk_id";';
                      $result2 = pg_query($conn, $query2);
                      if ($result2) {
@@ -262,10 +262,12 @@ case "Finish":
                         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
                 
                     $query3 ='INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
-                    VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$club_id.'\')';
+                    VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$club_id.'\')
+                     RETURNING "slide_id";';
                      $result3 = pg_query($conn, $query3);
                      if ($result3) {
-                         echo "<font color='green'>Your NEW slideshow Created.";}
+                        $slide_id = pg_fetch_result($result3, 0, 0);
+                         echo "<font color='green'>$slide_id Your NEW slideshow Created.";}
                          else { echo"Unable to add slideshow\n" . pg_last_error($conn);}}
                     
                     }else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
