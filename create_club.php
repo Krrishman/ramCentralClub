@@ -254,9 +254,8 @@ case "Finish":
                         $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
                         $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                         $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-                        echo "font $Per_name df $Per_desc";
                     $query2 ='INSERT INTO "club_perk" ("p_name", "p_desc", "p_pic", "club_id", "color") 
-                    VALUES (\''.$per_name.'\', \''.$per_desc.'\', \''.$per_pic.'\', \''.$club_id.'\', NULL) 
+                    VALUES (\''.$Per_name.'\', \''.$Per_desc.'\', \''.$Per_pic.'\', \''.$club_id.'\', NULL) 
                     RETURNING "perk_id";';
                      $result2 = pg_query($conn, $query2);
                      if ($result2) {
