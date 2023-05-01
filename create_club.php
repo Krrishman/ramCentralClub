@@ -250,7 +250,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             </tr>
             <tr>
                 <td>Perk Pic</td>
-                <td> <input type='file' name='images[]' size='50'>$Per_pic</td>
+                <td> <input type='file' name='images[]' value='" . $Per_pic . "' size='50'>$Per_pic</td>
             </tr>
             <tr>
                 <td>Perk Name</td>
