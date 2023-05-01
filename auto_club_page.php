@@ -57,12 +57,13 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
         $t_text = $row['t_text'];
         $des_color = $row['des_color'];
         $des_text = $row['$des_text'];
+        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
 echo"
 
     <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);'>
                 <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src=\"./upload/club_page/$c_pic\"  alt=\"Avatar\" alt=''>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt=\"Avatar\" alt=''>
                 </div>
             <div class='nametag'>
             <h1 style='color:$t_text;' >$c_name</h1>
