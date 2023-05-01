@@ -163,6 +163,7 @@ if(isset($_FILES['images'])) {
           ));
           $filena = $file->id;
           $message = "File uploaded successfully. $filena";
+          $perk_pic = isset($_FILES[$filena]) ? $_FILES[$filena] : array();
       } catch(Exception $e) {
           $message = "Error Message: ".$e->getMessage();
       } 
@@ -194,7 +195,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
            $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
           // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
-           $perk_pic = isset($_FILES[$filena]) ? $_FILES[$filena] : array();
+          // $perk_pic = isset($_FILES[$filena]) ? $_FILES[$filena] : array();
 
             $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
@@ -207,7 +208,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             </tr>
             <tr>
                 <td>Perk Pic</td>
-                <td> <input type='file' name='images[]' size='50'>$filena</td>
+                <td> <input type='file' name='images[]' size='50'>$Per_pic</td>
             </tr>
             <tr>
                 <td>Perk Name</td>
