@@ -238,7 +238,7 @@ switch($task) {
     
                 <div class='listOfBenefits'>
                     <div class='benefitsIcon'>
-                        <img src='./ClubHomePage/ClubHomePagePictures/network-icon.jpg' alt='Per_pic'>
+                        <img src='$imageUrl' alt='Per_pic'>
                     </div>
                     <div class='listOfBenefitsDesciption'>
                         <h3>$Per_name</h3>
@@ -288,23 +288,23 @@ switch($task) {
     case "Finish":   
                     include('Supabase_connect.php');
 
-                    $query = "UPDATE `club_page` SET `c_name` = '$c_name',`c_tag` = '$c_tag',
-                    `c_desc` = '$c_desc',`c_members` = '$c_members',
-                    `t_color1` = '$t_color1',`t_color2` = '$t_color2',`t_text` = '$t_text',
-                    `des_color` = '$des_color',`des_text` = '$des_text'
-                    WHERE `club_page`.`club_id` = '$club_id'";
-                    $result = mysqli_query($mysqli, $query);
+                    $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
+                    "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
+                    "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
+                    "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\'
+                    WHERE "club_page"."club_id" = \'' . $club_id . '\';';
+                    $result = pg_query($conn, $query);
                     if ($result) { echo"Your Club updated. $club_id";
                     
                     for ($i = 0; $i < $max_entries; $i++) {
                             $Per_name = $perk_names[$i];
                             $Per_desc = $perk_descs[$i];
                         
-                    $query2 ="UPDATE `club_perks` SET `p_name` = '$Per_name', `p_desc` = '$Per_desc', `color` = NULL
-                    WHERE `club_perks`.`club_id` = '$club_id';";
-                    $result2 = mysqli_query($mysqli, $query2);
+                    $query2 ='UPDATE "club_perk" SET "p_name" =  \'' .$Per_name. '\', "p_desc" =  \'' .$Per_desc. '\', "color" = NULL
+                    WHERE "club_perks"."club_id" = \'' . $club_id . '\';';
+                    $result2 = pg_query($conn, $query2);
                     if ($result2) echo"Your perk updated.";
-                    else { echo"Unable to add perk" . mysqli_error($mysqli);}}
+                    else { echo"Unable to add perk" . pg_last_error($conn);}}
 
 
                     for ($i = 0; $i < $max_entry; $i++) {
@@ -313,16 +313,16 @@ switch($task) {
                         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
                         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
 
-                    $query3 = "UPDATE `slide_pic`  SET `S_title` = '$Slide_title', `S_des` = '$Slide_des'
-                    WHERE `slide_pic`.`club_id` = '$club_id';";
-                    $result3 = mysqli_query($mysqli, $query3);
+                    $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
+                    WHERE "slide_pic"."club_id" = \'' . $club_id . '\';';
+                    $result3 = pg_query($conn, $query3);
                     if ($result3) echo"Your slideshow pic Updated.";
-                    else { echo"Unable to add slideshow" . mysqli_error($mysqli);}}
+                    else { echo"Unable to add slideshow" . pg_last_error($conn);}}
                     
                     
                     
                     }
-                    else { echo"Unable to Make update" . mysqli_error($mysqli);}
+                    else { echo"Unable to Make update" . pg_last_error($conn);}
                     
                     echo"ooooook"; break;
 

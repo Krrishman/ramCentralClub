@@ -193,7 +193,7 @@ if(isset($_FILES['picture'])) {
         $client->addScope(Drive::DRIVE);
         $driveService = new Drive($client);
         $S_pic = array();
-        $uploaded_files = $_FILES['images'];
+        $uploaded_files = $_FILES['picture'];
         foreach ($uploaded_files['name'] as $key => $name) {
             if ($uploaded_files['error'][$key] == 0) {
                 $fileMetadata = new Drive\DriveFile(array(
@@ -334,7 +334,7 @@ for ($i = 0; $i < $max_entry; $i++) {
     </tr>
     <tr>
         <td>Slide Pic</td> 
-        <td> <input type='file' name='picture[]' size='50'>$Slide_pic</td>
+        <td> <input type='file' name='picture[]' value='$Slide_pic' size='50'>$Slide_pic</td>
        
     </tr>";
 }
