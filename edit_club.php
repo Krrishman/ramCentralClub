@@ -368,7 +368,7 @@ echo "    <div class='add_club_info'>
                 $club_id = $row['club_id'];
                 $color = $row['color'];
                 */
-                for ($i = 0; $i < count($perk_names); $i++) {
+                for ($i = 0; $i < $max_entries; $i++) {
         echo "
             <input type='hidden' name='perk_id[]' value='$perk_id'>
         <tr>
