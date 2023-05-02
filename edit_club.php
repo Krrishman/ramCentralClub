@@ -368,6 +368,7 @@ echo "    <div class='add_club_info'>
                 $club_id = $row['club_id'];
                 $color = $row['color'];
                 */
+                for ($i = 0; $i < count($perk_names); $i++) {
         echo "
             <input type='hidden' name='perk_id[]' value='$perk_id'>
         <tr>
@@ -387,9 +388,9 @@ echo "    <div class='add_club_info'>
         </tr>
 
         ";
-        $i++;
+      //  $i++;
        // if ($i >= $max_entries) break;
-  //  }
+    }
 
     echo "  <tr><td></td>
     <td><br></td>
