@@ -75,7 +75,7 @@ $Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
     if (!$result2) { echo "Query Error [$query2] " . pg_last_error($conn);}
 
 
-    $query3 = 'SELECT * FROM "slide_pic" WHERE "club_id" =\'' . $club_id . '\';';
+    $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
     $result3 = pg_query($conn, $query3);
     if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
 

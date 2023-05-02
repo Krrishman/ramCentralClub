@@ -402,7 +402,7 @@ case "preview":
 
         echo"<div class='club_right'><div class='club_Container'>
                 <div class='image_Container'>
-                <img class='club_Icon' src='$imageUrl' alt=\"Avatar\">
+                <img class='club_Icon' src='$imageUrl$filename' alt=\"Avatar\">
                 </div>
                 <div class='information'>
                     <h1 ><a style='text-decoration:none; color:white;' href='./club_home_page.php'>$c_name</a></h1>
@@ -415,7 +415,7 @@ case "preview":
  <section>
             <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
                 <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src=\"./upload/club_page/$file_name\"  alt=\"Avatar\" alt=''>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$filename' alt='avatar'>
                 </div>
             <div class='nametag'>
             <h1 style='color:$t_text;' >$c_name</h1>
@@ -466,7 +466,7 @@ case "preview":
 
             <div class='mySlides fade'>
 			<div class='numbertext'> " . ($i+1) . "</div>
-			<img src=\"./upload/club_page/$Slide_pic\" style='width:100%'>
+			<img src='$imageUrl$Slide_pic' style='width:100%'>
 			<div class='text'>$Slide_title<br>$Slide_des</div>
 			</div>
             ";}
