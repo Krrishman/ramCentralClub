@@ -90,6 +90,7 @@ echo"
         $p_pic = $row['p_pic'];
         $club_id = $row['club_id'];
         $color = $row['color'];
+        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
     echo"
         
             <div class='listOfBenefits'>
@@ -116,11 +117,12 @@ echo"
                 $S_des = $row['S_des'];
                 $S_pic = $row['S_pic'];
                 $club_id = $row['club_id'];
+                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
                 echo"
                 
                 <div class='mySlides fade'>
 			<div class='numbertext'>$slide_id</div>
-			<img src=\"./upload/club_page/$S_pic\" style='width:100%'>
+			<img src='$imageUrl$S_pic' style='width:100%'>
 			<div class='text'>$S_title<br>$S_des</div>
 			</div>
             ";}

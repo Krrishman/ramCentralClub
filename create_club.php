@@ -131,44 +131,7 @@ if(isset($_FILES['image'])) {
         $message = "Error Message: ".$e->getMessage();
     } 
 }
-  /*
-if(isset($_FILES['images'])) {
-    //if(isset($_POST['submit'])){
-      try {
-          $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-          $file_type = $_FILES['image']['type'];
-          if (!in_array($file_type, $valid_types)) {
-              throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
-          }
-          
-          $curl = curl_init();
-          curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-          curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-  
-          $client = new Client();
-          putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
-          $client->useApplicationDefaultCredentials();
-          $client->addScope(Drive::DRIVE);
-          $driveService = new Drive($client);
-          $fileMetadata = new Drive\DriveFile(array(
-              'name' => $_FILES['image']['name'],
-              'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
-          ));
-          $content = file_get_contents($_FILES['image']['tmp_name']);
-          $file = $driveService->files->create($fileMetadata, array(
-              'data' => $content,
-              'mimeType' => $file_type,
-              'uploadType' => 'multipart',
-              'fields' => 'id'
-          ));
-          $filena = $file->id;
-          $message = "File uploaded successfully. $filena";
-          $perk_pic = isset($_FILES[$filena]) ? $_FILES[$filena] : array();
-      } catch(Exception $e) {
-          $message = "Error Message: ".$e->getMessage();
-      } 
-  }
-  */
+
   if(isset($_FILES['images'])) {
     try {
        // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
@@ -207,6 +170,47 @@ if(isset($_FILES['images'])) {
             }
         }
         $message = "Files uploaded successfully. ".implode(",", $perk_pic);
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    } 
+}
+if(isset($_FILES['picture'])) {
+    try {
+       // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+       // $file_type = $_FILES['image']['type'];
+       // if (!in_array($file_type, $valid_types)) {
+       //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+       // }
+          
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  
+        $client = new Google_Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $S_pic = array();
+        $uploaded_files = $_FILES['images'];
+        foreach ($uploaded_files['name'] as $key => $name) {
+            if ($uploaded_files['error'][$key] == 0) {
+                $fileMetadata = new Drive\DriveFile(array(
+                    'name' => $name,
+                    'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                ));
+                $content = file_get_contents($uploaded_files['tmp_name'][$key]);
+                $file = $driveService->files->create($fileMetadata, array(
+                    'data' => $content,
+                    'mimeType' => $uploaded_files['type'][$key],
+                    'uploadType' => 'multipart',
+                    'fields' => 'id'
+                ));
+                $S_pic[] = $file->id;
+            }
+        }
+        $message = "Files uploaded successfully. ".implode(",", $S_pic);
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
@@ -267,7 +271,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
         <td><br></td>
         </tr>";
 
-
+/*
         if(isset($_FILES['picture'])) {
             $max_entry = 3; // Number of entries to loop through
             $S_title = $_POST['S_title']; // Assuming S_title is an array of values
@@ -301,26 +305,36 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             }
         }
 
-
+*/
 
 $max_entry = 3;
 for ($i = 0; $i < $max_entry; $i++) {
-    $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : '';
+
+    $S_title = $_POST['S_title']; // Assuming S_title is an array of values
+    $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+   // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
+    //$S_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array(); // Assuming S_pic is an array of file names
+        // Check if the array values are set, otherwise set them to null
+        $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+        $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+        $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+
+
     echo "
     <tr>
         <td>Slide No " . ($i+1) . "</td>
     </tr>
     <tr>
         <td>Slide Title</td>
-        <td><input type='text' name='S_title[]' value='" . (isset($S_title[$i]) ? $S_title[$i] : '') . "' size='50'></td>
+        <td><input type='text' name='S_title[]' value='$Slide_title' size='50'></td>
     </tr>
     <tr>
         <td>Slide Description</td>
-        <td><input type='text' name='S_des[]' value='" . (isset($S_des[$i]) ? $S_des[$i] : '') . "' size='50'></td>
+        <td><input type='text' name='S_des[]' value='$Slide_des' size='50'></td>
     </tr>
     <tr>
         <td>Slide Pic</td> 
-        <td> <input type='file' name='image[]' >$filename</td></tr>
+        <td> <input type='file' name='picture[]' size='50'>$Slide_pic</td>
        
     </tr>";
 }
@@ -337,7 +351,7 @@ switch($task) {
 
 case "Finish": 	    
                     include('Supabase_connect.php');
-                    echo "$message";
+                    //echo "$message";
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
                     "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
 	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$filename.'\', \''.$c_members.'\',
@@ -351,8 +365,6 @@ case "Finish":
                         for ($i = 0; $i < $max_entries; $i++) {
                         // Check if the array values are set, otherwise set them to null
                         $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-                        //$Per_pic = isset($filena[$i]) ? $filena[$i] : null;
-
                         $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                         $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
                     $query2 ='INSERT INTO "club_perk" ("p_name", "p_desc", "p_pic", "club_id", "color") 

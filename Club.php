@@ -55,9 +55,7 @@ if ($ad == $value) $se = 'SELECTED'; else $se = NULL;
 echo "<option $se>$value</option>\n";
 }
 echo "</select></p></form>"; 
-// $query = "SELECT * FROM `club_page` ORDER BY $orderby $desc";
-// $result = mysqli_query($mysqli, $query);
-// if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
+
 
 
 $query = 'SELECT * FROM "club_page" ';
