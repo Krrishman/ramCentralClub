@@ -260,7 +260,7 @@ case "test":
         $t_text = $row['t_text'];
         $des_color = $row['des_color'];
         $des_text = $row['$des_text']; }
-
+/*
         if (pg_num_rows($result2) > 0) {
             $row = pg_fetch_assoc($result2);
             $perk_id = $row['perk_id'];
@@ -269,7 +269,14 @@ case "test":
             $p_pic = $row['p_pic'];
             $club_id = $row['club_id'];
             $color = $row['color']; }
-
+            */
+            while ($row = pg_fetch_assoc($result2)) {
+                $perk_id = $row['perk_id'];
+                $p_name = $row['p_name'];
+                $p_desc = $row['p_desc'];
+                $p_pic = $row['p_pic'];
+                $club_id = $row['club_id'];
+                $color = $row['color'];}
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
 
