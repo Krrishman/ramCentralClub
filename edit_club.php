@@ -9,6 +9,9 @@ include('check_logon.php');
 include('menubar.php');
 include('Supabase_connect.php');
 
+
+if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
+
 $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
@@ -60,7 +63,7 @@ $i=1;
 $file_name =NULL;
 
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "First";
-if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
+
 if (isset($_POST['club_id']))			$club_id = trim($_POST['club_id']);
 if (isset($_POST['c_name']))			$c_name = trim($_POST['c_name']);       //else $c_name = NULL;
 if (isset($_POST['color']))			$color = trim($_POST['color']);       //else $color = NULL;
