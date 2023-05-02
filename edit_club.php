@@ -230,10 +230,21 @@ case "Finish":
                 echo"ooooook"; break;
 case "test":
     include('Supabase_connect.php');
+
     $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
     if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
     
+        
+    $query2 = 'SELECT * FROM "club_perk" WHERE "club_id" =\'' . $club_id . '\';';
+    $result2 = pg_query($conn, $query2);
+    if (!$result2) { echo "Query Error [$query2] " . pg_last_error($conn);}
+
+
+    $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
+    $result3 = pg_query($conn, $query3);
+    if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
+
     if (pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
         $club_id = $row['club_id'];
@@ -249,6 +260,16 @@ case "test":
         $t_text = $row['t_text'];
         $des_color = $row['des_color'];
         $des_text = $row['$des_text']; }
+
+        if (pg_num_rows($result2) > 0) {
+            $row = pg_fetch_assoc($result2);
+            $perk_id = $row['perk_id'];
+            $p_name = $row['p_name'];
+            $p_desc = $row['p_desc'];
+            $p_pic = $row['p_pic'];
+            $club_id = $row['club_id'];
+            $color = $row['color']; }
+
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
 
@@ -339,13 +360,14 @@ echo "    <div class='add_club_info'>
     $i = 0;
       //  while(list($perk_id, $p_name, $p_desc,$p_pic, $club_id, $color) = mysqli_fetch_row($result2)){
 
-            while ($row = pg_fetch_assoc($result2)) {
+     /*     while ($row = pg_fetch_assoc($result2)) {
                 $perk_id = $row['perk_id'];
                 $p_name = $row['p_name'];
                 $p_desc = $row['p_desc'];
                 $p_pic = $row['p_pic'];
                 $club_id = $row['club_id'];
                 $color = $row['color'];
+                */
         echo "
             <input type='hidden' name='perk_id[]' value='$perk_id'>
         <tr>
@@ -367,7 +389,7 @@ echo "    <div class='add_club_info'>
         ";
         $i++;
        // if ($i >= $max_entries) break;
-    }
+  //  }
 
     echo "  <tr><td></td>
     <td><br></td>
