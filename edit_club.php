@@ -9,6 +9,26 @@ include('check_logon.php');
 include('menubar.php');
 include('Supabase_connect.php');
 
+$query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
+$result = pg_query($conn, $query);
+if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
+
+if (pg_num_rows($result) > 0) {
+	$row = pg_fetch_assoc($result);
+    $club_id = $row['club_id'];
+    $c_name = $row['c_name'];
+    $c_tag = $row['c_tag'];
+    $c_desc = $row['c_desc'];
+    $c_pic = $row['c_pic'];
+    $c_members = $row['c_members'];
+    $Date = $row['made_date'];
+    $made_by = $row['made_by'];
+    $t_color1 = $row['t_color1'];
+    $t_color2 = $row['t_color2'];
+    $t_text = $row['t_text'];
+    $des_color = $row['des_color'];
+    $des_text = $row['$des_text']; }
+
 
 ?>
 
@@ -65,7 +85,7 @@ $Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
 
 //if (isset($_POST['p']))			$p = trim($_POST['p']);     else $p = NULL;
 //if (isset($_POST['addd']))   {  $number = $_POST['number']; } else $number = NULL;
-
+/*
     $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
     if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
@@ -100,7 +120,7 @@ if (pg_num_rows($result) > 0) {
     $des_text = $row['$des_text']; }
 
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
-/*
+
 while ($row = pg_fetch_assoc($result)) {
     $club_id = $row['club_id'];
     $c_name = $row['c_name'];
