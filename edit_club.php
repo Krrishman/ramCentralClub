@@ -10,8 +10,8 @@ include('menubar.php');
 include('Supabase_connect.php');
 
 
-if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
 
+/*
 $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
@@ -31,7 +31,7 @@ if (pg_num_rows($result) > 0) {
     $t_text = $row['t_text'];
     $des_color = $row['des_color'];
     $des_text = $row['$des_text']; }
-
+*/
 
 ?>
 
@@ -62,7 +62,8 @@ $dd= date("Y-m-d");
 $i=1;
 $file_name =NULL;
 
-if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "First";
+if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
+if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
 
 if (isset($_POST['club_id']))			$club_id = trim($_POST['club_id']);
 if (isset($_POST['c_name']))			$c_name = trim($_POST['c_name']);       //else $c_name = NULL;
@@ -375,6 +376,29 @@ switch($task) {
                     else { echo"Unable to Make update" . pg_last_error($conn);}
                     
                     echo"ooooook"; break;
+    case "test":
+
+        $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
+        $result = pg_query($conn, $query);
+        if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
+        
+        if (pg_num_rows($result) > 0) {
+            $row = pg_fetch_assoc($result);
+            $club_id = $row['club_id'];
+            $c_name = $row['c_name'];
+            $c_tag = $row['c_tag'];
+            $c_desc = $row['c_desc'];
+            $c_pic = $row['c_pic'];
+            $c_members = $row['c_members'];
+            $Date = $row['made_date'];
+            $made_by = $row['made_by'];
+            $t_color1 = $row['t_color1'];
+            $t_color2 = $row['t_color2'];
+            $t_text = $row['t_text'];
+            $des_color = $row['des_color'];
+            $des_text = $row['$des_text']; }
+						
+            break;
 
 
     }
