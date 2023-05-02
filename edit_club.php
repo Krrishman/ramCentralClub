@@ -98,6 +98,166 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
 $result3 = pg_query($conn, $query3);
 if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
 
+
+
+
+
+
+switch($task) {
+
+    case "preview": 
+        echo"   
+
+ <section>
+        <input type='hidden' name='club_id' value='$club_id'> 
+        <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
+                <div class='imageHeader'>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src=\"./upload/club_page/$file_name\"  alt=\"Avatar\" alt=''>
+                </div>
+            <div class='nametag'>
+            <h1 style='color:$t_text;' >$c_name</h1>
+            <p  style='color:$t_text;' > $c_tag</p>
+            </div>
+            <div class='buttonSection'>
+                <div >
+                <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
+                <button class='joinButton'>Join Now</button></div>
+            </div>      
+        </div>
+
+
+        <div class='clubInfo'  style='background-color:$des_color;'>
+            <p  style='color: $des_text;' >$c_desc</p>
+        </div> </section>  
+        <section>
+        <div class='listOfBenefitsGrid'>";
+
+                for ($i = 0; $i < $max_entries; $i++) {
+                    $Per_name = $perk_names[$i];
+                    $Per_desc = $perk_descs[$i];
+                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+            
+           echo"
+
+            <div class='listOfBenefits'>
+                <div class='benefitsIcon'>
+                    <img src='$imageUrl' alt='Per_pic'>
+                </div>
+                <div class='listOfBenefitsDesciption'>
+                    <h3>$Per_name</h3>
+                    <p>$Per_desc</p>
+                </div>
+            </div>  ";}
+
+            echo"</div> </section>  
+            
+            <section> 
+            <div class='slideshow-container'>";
+
+            $max_entry = 3;
+                for ($i = 0; $i < $max_entry; $i++) {
+                    $Slide_title = $Slide_titles[$i];
+                    $Slide_des = $Slide_dess[$i];
+                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+           echo"
+
+            <div class='mySlides fade'>
+            <div class='numbertext'> " . ($i+1) . "</div>
+            <img src=\"./upload/club_page/$Slide_pic\" style='width:100%' alt='Per_pic'>
+            <div class='text'>$Slide_title<br>$Slide_des</div>
+            </div>
+            ";}
+            echo"	
+            <div class='prev' onclick='plusSlides(-1)'>❮</div>
+            <div class='next'  onclick='plusSlides(1)'>❯</div>
+            <br>
+            <div class='do' style='text-align:center'>
+                <span class='dot' onclick='currentSlide(1)'></span> 
+                <span class='dot' onclick='currentSlide(2)'></span> 
+                <span class='dot' onclick='currentSlide(3)'></span> 
+            </div>
+
+</div>
+<br>
+
+
+        
+
+<script src='autoSlide.js'></script>
+<script src='clickSlide.js'></script>
+
+</section>";     break;
+
+case "Finish":   
+                include('Supabase_connect.php');
+
+                $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
+                "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
+                "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
+                "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\'
+                WHERE "club_page"."club_id" = \'' . $club_id . '\';';
+                $result = pg_query($conn, $query);
+                if ($result) { echo"Your Club updated. $club_id";
+                
+                for ($i = 0; $i < $max_entries; $i++) {
+                        $Per_name = $perk_names[$i];
+                        $Per_desc = $perk_descs[$i];
+                    
+                $query2 ='UPDATE "club_perk" SET "p_name" =  \'' .$Per_name. '\', "p_desc" =  \'' .$Per_desc. '\', "color" = NULL
+                WHERE "club_perks"."club_id" = \'' . $club_id . '\';';
+                $result2 = pg_query($conn, $query2);
+                if ($result2) echo"Your perk updated.";
+                else { echo"Unable to add perk" . pg_last_error($conn);}}
+
+
+                for ($i = 0; $i < $max_entry; $i++) {
+                    // Check if the array values are set, otherwise set them to null
+                    $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+                    $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+                    $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+
+                $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
+                WHERE "slide_pic"."club_id" = \'' . $club_id . '\';';
+                $result3 = pg_query($conn, $query3);
+                if ($result3) echo"Your slideshow pic Updated.";
+                else { echo"Unable to add slideshow" . pg_last_error($conn);}}
+                
+                
+                
+                }
+                else { echo"Unable to Make update" . pg_last_error($conn);}
+                
+                echo"ooooook"; break;
+case "test":
+
+    $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
+    $result = pg_query($conn, $query);
+    if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
+    
+    if (pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        $club_id = $row['club_id'];
+        $c_name = $row['c_name'];
+        $c_tag = $row['c_tag'];
+        $c_desc = $row['c_desc'];
+        $c_pic = $row['c_pic'];
+        $c_members = $row['c_members'];
+        $Date = $row['made_date'];
+        $made_by = $row['made_by'];
+        $t_color1 = $row['t_color1'];
+        $t_color2 = $row['t_color2'];
+        $t_text = $row['t_text'];
+        $des_color = $row['des_color'];
+        $des_text = $row['$des_text']; }
+        echo"yyyyyyyyyeeeeeeeeeesssssss";
+        break;
+
+
+}
+
+
+
+
 //if (isset($_POST['p']))			$p = trim($_POST['p']);     else $p = NULL;
 //if (isset($_POST['addd']))   {  $number = $_POST['number']; } else $number = NULL;
 /*
@@ -249,159 +409,6 @@ echo "    <div class='add_club_info'>
 </table></form></div>  <section>";
 
 
-
-
-switch($task) {
-
-        case "preview": 
-            echo"   
-
-     <section>
-            <input type='hidden' name='club_id' value='$club_id'> 
-            <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
-                    <div class='imageHeader'>
-                        <img style='width:100%; height: 100px; object-fit: cover;' src=\"./upload/club_page/$file_name\"  alt=\"Avatar\" alt=''>
-                    </div>
-                <div class='nametag'>
-                <h1 style='color:$t_text;' >$c_name</h1>
-                <p  style='color:$t_text;' > $c_tag</p>
-                </div>
-                <div class='buttonSection'>
-                    <div >
-                    <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                    <button class='joinButton'>Join Now</button></div>
-                </div>      
-            </div>
-    
-    
-            <div class='clubInfo'  style='background-color:$des_color;'>
-                <p  style='color: $des_text;' >$c_desc</p>
-            </div> </section>  
-            <section>
-            <div class='listOfBenefitsGrid'>";
-    
-                    for ($i = 0; $i < $max_entries; $i++) {
-                        $Per_name = $perk_names[$i];
-                        $Per_desc = $perk_descs[$i];
-                        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                
-               echo"
-    
-                <div class='listOfBenefits'>
-                    <div class='benefitsIcon'>
-                        <img src='$imageUrl' alt='Per_pic'>
-                    </div>
-                    <div class='listOfBenefitsDesciption'>
-                        <h3>$Per_name</h3>
-                        <p>$Per_desc</p>
-                    </div>
-                </div>  ";}
-    
-                echo"</div> </section>  
-                
-                <section> 
-                <div class='slideshow-container'>";
-
-                $max_entry = 3;
-                    for ($i = 0; $i < $max_entry; $i++) {
-                        $Slide_title = $Slide_titles[$i];
-                        $Slide_des = $Slide_dess[$i];
-                        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-               echo"
-    
-                <div class='mySlides fade'>
-                <div class='numbertext'> " . ($i+1) . "</div>
-                <img src=\"./upload/club_page/$Slide_pic\" style='width:100%' alt='Per_pic'>
-                <div class='text'>$Slide_title<br>$Slide_des</div>
-                </div>
-                ";}
-                echo"	
-                <div class='prev' onclick='plusSlides(-1)'>❮</div>
-                <div class='next'  onclick='plusSlides(1)'>❯</div>
-                <br>
-                <div class='do' style='text-align:center'>
-                    <span class='dot' onclick='currentSlide(1)'></span> 
-                    <span class='dot' onclick='currentSlide(2)'></span> 
-                    <span class='dot' onclick='currentSlide(3)'></span> 
-                </div>
-    
-    </div>
-    <br>
-    
-    
-            
-    
-    <script src='autoSlide.js'></script>
-    <script src='clickSlide.js'></script>
-    
-    </section>";     break;
-
-    case "Finish":   
-                    include('Supabase_connect.php');
-
-                    $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
-                    "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
-                    "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
-                    "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\'
-                    WHERE "club_page"."club_id" = \'' . $club_id . '\';';
-                    $result = pg_query($conn, $query);
-                    if ($result) { echo"Your Club updated. $club_id";
-                    
-                    for ($i = 0; $i < $max_entries; $i++) {
-                            $Per_name = $perk_names[$i];
-                            $Per_desc = $perk_descs[$i];
-                        
-                    $query2 ='UPDATE "club_perk" SET "p_name" =  \'' .$Per_name. '\', "p_desc" =  \'' .$Per_desc. '\', "color" = NULL
-                    WHERE "club_perks"."club_id" = \'' . $club_id . '\';';
-                    $result2 = pg_query($conn, $query2);
-                    if ($result2) echo"Your perk updated.";
-                    else { echo"Unable to add perk" . pg_last_error($conn);}}
-
-
-                    for ($i = 0; $i < $max_entry; $i++) {
-                        // Check if the array values are set, otherwise set them to null
-                        $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                        $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-                        $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
-
-                    $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
-                    WHERE "slide_pic"."club_id" = \'' . $club_id . '\';';
-                    $result3 = pg_query($conn, $query3);
-                    if ($result3) echo"Your slideshow pic Updated.";
-                    else { echo"Unable to add slideshow" . pg_last_error($conn);}}
-                    
-                    
-                    
-                    }
-                    else { echo"Unable to Make update" . pg_last_error($conn);}
-                    
-                    echo"ooooook"; break;
-    case "test":
-
-        $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
-        $result = pg_query($conn, $query);
-        if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
-        
-        if (pg_num_rows($result) > 0) {
-            $row = pg_fetch_assoc($result);
-            $club_id = $row['club_id'];
-            $c_name = $row['c_name'];
-            $c_tag = $row['c_tag'];
-            $c_desc = $row['c_desc'];
-            $c_pic = $row['c_pic'];
-            $c_members = $row['c_members'];
-            $Date = $row['made_date'];
-            $made_by = $row['made_by'];
-            $t_color1 = $row['t_color1'];
-            $t_color2 = $row['t_color2'];
-            $t_text = $row['t_text'];
-            $des_color = $row['des_color'];
-            $des_text = $row['$des_text']; }
-            echo"yyyyyyyyyeeeeeeeeeesssssss";
-            break;
-
-
-    }
 
 
 ?>
