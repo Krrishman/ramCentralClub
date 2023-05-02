@@ -397,7 +397,7 @@ switch($task) {
             $t_text = $row['t_text'];
             $des_color = $row['des_color'];
             $des_text = $row['$des_text']; }
-						
+            echo"yyyyyyyyyeeeeeeeeeesssssss";
             break;
 
 

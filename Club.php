@@ -79,7 +79,7 @@ echo"<div class='club_Container'>
             <a href='#' ><img class='more_icon' onclick='showMore($club_id)' src='./icon/more_menu_icon.png' alt='avatar'>  </a>
         </div>
         <div class='icon_option' id='icon_option_$club_id'>
-            <a href='edit_club.php?r=$club_id'>Edit</a>
+            <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
             <a href='#'>Delete</a>
         </div>
         <div class='image_Container'>
