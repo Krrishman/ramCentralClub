@@ -86,6 +86,17 @@ $perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
 $Slide_titles = isset($_POST['S_title']) ? $_POST['S_title'] : array();
 $Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
 
+
+
+$query2 = 'SELECT * FROM "club_perk" WHERE "club_id" =\'' . $club_id . '\';';
+$result2 = pg_query($conn, $query2);
+if (!$result2) { echo "Query Error [$query2] " . pg_last_error($conn);}
+
+
+$query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
+$result3 = pg_query($conn, $query3);
+if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
+
 //if (isset($_POST['p']))			$p = trim($_POST['p']);     else $p = NULL;
 //if (isset($_POST['addd']))   {  $number = $_POST['number']; } else $number = NULL;
 /*
