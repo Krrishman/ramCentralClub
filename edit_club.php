@@ -229,7 +229,7 @@ case "Finish":
                 
                 echo"ooooook"; break;
 case "test":
-
+    include('Supabase_connect.php');
     $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
     if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
