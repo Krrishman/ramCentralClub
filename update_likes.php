@@ -33,14 +33,13 @@ include('Supabase_connect.php');
     $query6 = 'UPDATE "club_comment" SET "Likes" = "Likes" + 1  WHERE "com_id" = \'' . $com_id . '\';';
     $result6 = pg_query($conn, $query6);
 
-    // send response to client
+    
     if ($result6) {
-        echo "Success";
-    } else {
-        console.log("Error [" + $query6 + "] " + pg_last_error($conn));
+        echo "<script>console.log('Success');</script>";
     }
-
-
+    else {
+        echo "<script>console.log('Error [" . $query6 . "] " . pg_last_error($conn) . "');</script>";
+    }
 ?>
 
 
