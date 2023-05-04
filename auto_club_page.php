@@ -261,6 +261,7 @@ echo " <section>
                         </form>
                 </div>
             </div> 
+            </div> 
             
             </section> ";
 
@@ -324,7 +325,7 @@ echo " <section>
                                                             </div>
                                                         </div>
                             </div>                
-                    </div> ";
+                            </div>    </div> ";
 
             }
 

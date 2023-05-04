@@ -354,7 +354,9 @@ section{
     padding: 5px;
     font-weight: bold;
 }
-
+.reply-section {
+    display: none;
+}
 .fa-star, .fa-thumbs-up, .fa-thumbs-down{
 }
 
