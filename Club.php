@@ -103,7 +103,7 @@ echo"<form method='post' action='Club.php'>
         </div>
         <div class='icon_option' id='icon_option_$club_id'>
             <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
-            <input type='submit' name='delete' value='delete' >Delete
+            <input type='submit' name='delete' value='delete' >
         </div>
         <div class='image_Container'>
             <img class='club_Icon' src='$imageUrl$c_pic' alt='avatar'>
