@@ -49,6 +49,7 @@ $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
     $result4 = pg_query($conn, $query4);
     if (!$result4) {echo "Query Error [$query4] " . pg_last_error($conn);}
 
+foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 // Process Query Results 
  //  while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
    //  $made_by, $made_date, $t_color1, $t_color2, $t_text, $des_color, $des_text) = mysqli_fetch_row($result)) {
@@ -344,12 +345,14 @@ echo " <section>
                                     echo "<font color='green'>$com_id Your Review Added.</font>\n";}
                                     else { echo"Unable to add Review\n" . pg_last_error($conn);}
                                 
-                                echo"ooooook"; break;
+                                echo"ooooook $club_id"; break;
                 }
         include('footer.php');
 ?>
 
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
 <script>
+
 
 function showReplyForm(com_id) {
     // Get the reply form element based on the comment ID
