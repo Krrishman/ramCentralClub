@@ -35,9 +35,10 @@
             </div>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
+    if (isset($_GET['r']))					{$club_id = $_GET['r'];}
+    echo" $club_id";
     if (isset($_POST['delete'])) {
-        echo" ";
+        echo" $club_id";
         include('Supabase_connect.php');
         echo"<input type='hidden' name='club_id' value='$club_id'> ";
 
@@ -95,7 +96,7 @@ while ($row = pg_fetch_assoc($result)) {
     $Date = $row['made_date'];
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
-echo"<form method='post' action='Club.php'>
+echo"<form method='post' action='Club.php?r=$club_id'>
         <div class='club_Container'>   
            
         <div class='icon'>
