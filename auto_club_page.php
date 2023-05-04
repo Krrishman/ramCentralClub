@@ -13,6 +13,22 @@
 
     if (isset($_POST['comments']))			$comments = trim($_POST['comments']);	    else $comments = NULL;
     if (isset($_POST['rating']))			$rating = trim($_POST['rating']);       else $rating = NULL;
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        echo"<input type='hidden' name='club_id' value='$club_id'> ";
+        $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
+        VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$com_name.'\')
+        RETURNING "com_id";';
+        $result5 = pg_query($conn, $query5);
+        if ($result5) {
+            $com_id = pg_fetch_result($result5, 0, 0);
+            echo "<font color='green'>$com_id Your Review Added.</font>\n";}
+            else { echo"Unable to add Review\n" . pg_last_error($conn);}
+        
+        echo"oovvvvvdddff $club_id";
+
+    }
 ?>
 
 
@@ -258,7 +274,7 @@ echo " <section>
             </div>
                 <div class='reviewDescription'>
                         <textarea name='comments' value='$comments' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
-                        <input class='reviewButton' type='submit' name='task' value='Submit_Review'>
+                        <input class='reviewButton' type='submit' name='submit' value='Submit_Review'>
                         </form>
                 </div>
             </div> 

@@ -7,7 +7,7 @@ $action = $_POST['action'];
 // update database
 
 if ($action == 'like') {
-    $query6 = 'UPDATE "club_comment" SET "Likes" = \'Likes+1\'  WHERE "com_id" = \'' . $com_id . '\';';
+    $query6 = 'UPDATE "club_comment" SET "Likes" = Likes+1  WHERE "com_id" = \'' . $com_id . '\';';
 } elseif ($action == 'dislike') {
     $query6 = 'UPDATE "club_comment" SET "Dislikes" = \'Dislikes+1\'  WHERE "com_id" = \'' . $com_id . '\';';
 }
