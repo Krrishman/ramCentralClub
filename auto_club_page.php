@@ -97,10 +97,11 @@ echo"
             </div>
             <div class='buttonSection'>
                 <div >
+                <form method='post' action='auto_club_page.php'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
                 <button class='joinButton' type='submit' name='task' value='Submit_join'>Join Now</button></div>
-            </div>      
+            </form></div>      
         </div>
 
 
