@@ -284,7 +284,7 @@ case "test":
                         $per_name = $row['p_name'];
                         $per_desc = $row['p_desc'];
                         $per_pic = $row['p_pic'];
-                        $club_id = $row['club_id'];
+                       // $club_id = $row['club_id'];
                         $color = $row['color'];}
                     }
 

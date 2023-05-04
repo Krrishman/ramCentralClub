@@ -228,7 +228,31 @@ echo " <section>
                         <span class='likeIcon'> <i class='fa-regular fa-thumbs-down'></i></span>
                         <button class='replyButton'>Reply</button>
                 </div>                
+            </div> ";
+
+            echo" <form method='post' action='auto_club_page.php'>
+            <div class='reviews'>
+            <div class='reviewAvatar'>
+                <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
+                <h3>Alex Jones </h3>
+                <div class='Rating'>
+                <label>Rating:</label>
+                <select name='rating'>
+                    <option value='1'>1 star</option>
+                    <option value='2'>2 stars</option>
+                    <option value='3'>3 stars</option>
+                    <option value='4'>4 stars</option>
+                    <option value='5'>5 stars</option>
+                </select><br><br>
+                </div>
+            </div>
+                <div class='reviewDescription'>
+                        <textarea name='content' value='' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
+                        <input class='reviewButton' type='submit' value='Submit Review'>
+                        </form>
+                </div>
             </div> 
+            
             </section> ";
 
         include('footer.php');
