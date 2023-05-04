@@ -149,6 +149,87 @@ echo"
         
         
         }
+echo " <section> 
+
+        <div class='overallReview'>
+            <h1>Reviews & Ratings</h1>
+            <div class='overallNumber'>
+                <p class='number'>4.1</p>
+                <p class='outOf5'>Out of 5</p>
+            </div>
+            <div class='ratingList'>
+                <p class='starList'>
+                    <i class='fa-solid fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    ________________________
+                </p>
+                <p class='starList'>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    ________________________
+                </p>
+                <p class='starList'>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    ________________________
+                </p>
+                <p class='starList'>
+                    <i class='fa fa-star'></i>
+                    <i class='fa fa-star'></i>
+                    ________________________
+                </p>
+                <p class='starList'>
+                    <i class='fa fa-star'></i>
+                    ________________________
+                </p>
+                <p class='averageRating'>
+                    4.13 Rating
+                </p>
+            </div>
+        </div>
+
+        <div class='sortComments'>
+            <label for='order'>Sort By: </label>
+            <select name='options' id='options'>
+                <option value='none' selected disabled hidden>Select an Option</option>
+                <option value='$'>Most Liked</option>
+                <option value='$'>Most Disliked</option>
+                <option value='$'>Oldest</option>
+                <option value='$'>Latest</option>
+            </select>
+        </div>
+
+        <div class='reviewGrid'>
+        <div class='reviews'>
+                <div class='reviewAvatar'>
+                    <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
+                    <h3>Alex Jones </h3>
+                    <div>
+                    <span class='fa fa-star checked'></span>
+                    <span class='fa fa-star checked'></span>
+                    <span class='fa fa-star checked'></span>
+                    <span class='fa fa-star'></span>
+                    <span class='fa fa-star'></span> 
+                    </div>
+                    <p>Feb 27, 2023</p>
+                      
+                </div>
+                <div class='reviewDescription'>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, ipsa.</p>
+                </div>
+                <div class='reviewfunction'>        
+                        <span class='likeIcon'> <i class='fa-regular fa-thumbs-up'></i></span>
+                        <span class='likeIcon'> <i class='fa-regular fa-thumbs-down'></i></span>
+                        <button class='replyButton'>Reply</button>
+                </div>                
+            </div> 
+            </section> ";
 
         include('footer.php');
 ?>

@@ -81,22 +81,12 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);         // else
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);   // else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // else $des_text = 'white';
 
-$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
-$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
+//$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
+//$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
 
 $Slide_titles = isset($_POST['S_title']) ? $_POST['S_title'] : array();
 $Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
 
-
-
-$query2 = 'SELECT * FROM "club_perk" WHERE "club_id" =\'' . $club_id . '\';';
-$result2 = pg_query($conn, $query2);
-if (!$result2) { echo "Query Error [$query2] " . pg_last_error($conn);}
-
-
-$query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
-$result3 = pg_query($conn, $query3);
-if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
 
 
 
@@ -277,6 +267,30 @@ case "test":
                 $p_pic = $row['p_pic'];
                 $club_id = $row['club_id'];
                 $color = $row['color'];}
+
+                $max_entries = 4;
+                for ($i = 0; $i < $max_entries; $i++) {
+
+                   $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
+                   $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
+
+        
+                    $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+                    $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+                    $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+
+                if (pg_num_rows($result2) > 0) {
+                    $row = pg_fetch_assoc($result2);
+                    $perk_id = $row['perk_id'];
+                    $per_name = $row['p_name'];
+                    $per_desc = $row['p_desc'];
+                    $per_pic = $row['p_pic'];
+                    $club_id = $row['club_id'];
+                    $color = $row['color']; }
+               echo"
+
+                ";}
+
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
 
@@ -383,15 +397,15 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Perk Pic</td>
-            <td><input type='file' name='perk_pic[]' value='$p_pic' size='50'>$p_pic</td>
+            <td><input type='file' name='perk_pic[]' value='$per_pic' size='50'>$per_pic</td>
         </tr>
         <tr>
             <td>Perk Name</td>
-            <td><input type='text' name='perk_name[]' value='$p_name' size='50'></td>
+            <td><input type='text' name='perk_name[]' value='$per_name' size='50'></td>
         </tr>
         <tr>
             <td>Perk Description</td>
-            <td><input type='text' name='perk_desc[]' value='$p_desc' size='50'></td>
+            <td><input type='text' name='perk_desc[]' value='$per_desc' size='50'></td>
         </tr>
 
         ";
@@ -402,6 +416,8 @@ echo "    <div class='add_club_info'>
     echo "  <tr><td></td>
     <td><br></td>
     </tr>";
+
+
 
     $j=0;
 
