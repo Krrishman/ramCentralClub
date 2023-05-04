@@ -53,6 +53,8 @@
 </body>
 
 <?php
+include('./NewHomePage/NewHomePage.html');
+
 
 include('footer.php');
 
@@ -147,7 +149,7 @@ include('footer.php');
   </form>
 
 
-*/
+
   
 require_once 'drive/vendor/autoload.php';
 
@@ -183,7 +185,6 @@ if(isset($_POST['submit'])){
     } 
 }
 
-?>
 
 <!DOCTYPE html>
 <html>
@@ -201,3 +202,13 @@ if(isset($_POST['submit'])){
     </form>
 </body>
 </html>
+
+
+
+
+
+
+*/
+
+
+?>
