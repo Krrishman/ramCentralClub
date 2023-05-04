@@ -298,12 +298,12 @@ echo " <section>
                                 <p>$comments</p>
                         </div>
                         <div class='reviewfunction'>        
-                        <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton' onclick='likePost()'>Like</button>
-                        <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikePost()'>Dislike</button>
+                        <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton' onclick='likePost($com_id)'>Like</button>
+                        <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikePost($com_id)'>Dislike</button>
                                 <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
                         </div>
                         <div class='reply-section' id='reply-section-$com_id'>
-                                <form method='post' id='reply-form-$com_id' action='auto_club_page.php'>
+                                <form method='post' class='reply-form' id='reply-form-$com_id' action='auto_club_page.php'>
                                                         <div class='reviews'>
                                                         <div class='reviewAvatar'>
                                                             <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
@@ -362,3 +362,35 @@ function showReplyForm(com_id) {
 
 }
 	</script>
+
+<script>
+function likePost(com_id) {
+  // update button state
+  document.getElementById("likeButton").innerHTML = "Liked";
+  document.getElementById("dislikeButton").disabled = true;
+  // submit data to server via AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'like_post.php', true);
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.onload = function () {
+      // handle response from server
+      console.log(this.responseText);
+  };
+  xhr.send('com_id=' + com_id + '&action=like');
+}
+
+function dislikePost(com_id) {
+  // update button state
+  document.getElementById("dislikeButton").innerHTML = "Disliked";
+  document.getElementById("likeButton").disabled = true;
+  // submit data to server via AJAX
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'like_post.php', true);
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.onload = function () {
+      // handle response from server
+      console.log(this.responseText);
+  };
+  xhr.send('com_id=' + com_id + '&action=dislike');
+}
+</script>
