@@ -257,6 +257,7 @@ echo " <section>
             </div> ";
 
             echo" <form method='post' action='auto_club_page.php'>
+            <input type='hidden' name='club_id' value='$club_id'>
             <div class='reviews'>
             <div class='reviewAvatar'>
                 <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
