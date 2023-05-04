@@ -232,31 +232,7 @@ echo " <section>
         </div>
 
         <div class='reviewGrid'>
-        <div class='reviews'>
-                <div class='reviewAvatar'>
-                    <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
-                    <h3>Alex Jones </h3>
-                    <div>
-                    <span class='fa fa-star checked'></span>
-                    <span class='fa fa-star checked'></span>
-                    <span class='fa fa-star checked'></span>
-                    <span class='fa fa-star'></span>
-                    <span class='fa fa-star'></span> 
-                    </div>
-                    <p>Feb 27, 2023</p>
-                      
-                </div>
-                <div class='reviewDescription'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, ipsa.</p>
-                </div>
-                <div class='reviewfunction'>        
-                        <span class='likeIcon'> <i class='fa-regular fa-thumbs-up'></i></span>
-                        <span class='likeIcon'> <i class='fa-regular fa-thumbs-down'></i></span>
-                        <button class='replyButton'>Reply</button>
-                </div>                
-            </div> ";
-
-            echo" <form method='post' action='auto_club_page.php'>
+             <form method='post' action='auto_club_page.php'>
             <input type='hidden' name='club_id' value='$club_id'>
             <div class='reviews'>
             <div class='reviewAvatar'>
@@ -279,9 +255,7 @@ echo " <section>
                         </form>
                 </div>
             </div> 
-            </div> 
-            
-            </section> ";
+            </div>  ";
 
             while ($row = pg_fetch_assoc($result4)) {
                 $com_id = $row['com_id'];
@@ -296,7 +270,6 @@ echo " <section>
                 $com_name = $row['com_name'];
 
                 echo"
-                <div class='reviewGrid'>
                 <div class='reviews'>
                         <div class='reviewAvatar'>
                             <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
@@ -319,8 +292,8 @@ echo " <section>
                                 <p>$comments</p>
                         </div>
                         <div class='reviewfunction'>        
-                        <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton' onclick='likePost($com_id)'>Like</button>
-                        <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikePost($com_id)'>Dislike</button>
+                        <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
+                        <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
                         <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
                         </div></div>
                         <div class='reply-section' id='reply-section-$com_id'>
