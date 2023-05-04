@@ -36,9 +36,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_GET['r']))					{$club_id = $_GET['r'];}
-    echo" $club_id";
     if (isset($_POST['delete'])) {
-        echo" $club_id";
         include('Supabase_connect.php');
         echo"<input type='hidden' name='club_id' value='$club_id'> ";
 
@@ -47,9 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
            $result2 = pg_query($conn, $query2);
 
            if ($result2) {
-             echo "Joined successfully!";
+             echo "Deleted successfully!";
            } else {
-             echo "Error joining club: " . pg_last_error($conn);
+             echo "Error Deleted club: " . pg_last_error($conn);
            }
     }
 }
