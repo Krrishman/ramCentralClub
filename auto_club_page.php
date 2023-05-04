@@ -31,7 +31,7 @@
     }
     if (isset($_POST['join'])) {
         echo" ";
-      
+        include('Supabase_connect.php');
         // Update database with new user ID
         $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
         $result9 = pg_query($conn, $query9);
@@ -115,7 +115,7 @@ echo"
                 <form method='post' action='auto_club_page.php'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton' type='button' name='click' value='join' >Join Now</button></form> </div>
+                <button class='joinButton' type='submit' name='join' value='join' >Join Now</button></form> </div>
             </div>      
         </div>
 
@@ -362,7 +362,21 @@ echo " <section>
                                     else { echo"Unable to add Review\n" . pg_last_error($conn);}
                                 
                                 echo"ooooook $club_id"; break;
-            
+        case "join":
+                                echo" ff";
+                                include('Supabase_connect.php');
+                                // Update database with new user ID
+                                $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+                                $result9 = pg_query($conn, $query9);
+                              //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+                        
+                                // Check if query was successful
+                                if ($result9) {
+                                  echo "Joined successfully!";
+                                } else {
+                                  echo "Error joining club: " . pg_last_error($conn);
+                                }
+                                echo"ooooook $club_id"; break;
 
                 case "Submit_join":     
                     echo "ssssssssssss";  
