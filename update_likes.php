@@ -37,7 +37,7 @@ include('Supabase_connect.php');
     if ($result6) {
         echo "Success";
     } else {
-        echo "Error"[$query6];
+        console.log("Error [" + $query6 + "] " + pg_last_error($conn));
     }
 
 

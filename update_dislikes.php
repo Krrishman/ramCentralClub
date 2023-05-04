@@ -14,7 +14,8 @@ include('Supabase_connect.php');
     if ($result6) {
         echo "Success";
     } else {
-        echo "Error";
+        console.log("Error [" + $query6 + "] ");
     }
+
 
     ?>
