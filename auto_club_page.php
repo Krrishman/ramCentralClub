@@ -119,7 +119,7 @@ echo"
                 <form method='post' action='auto_club_page.php'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton' type='submit' name='submit' value='join' >Join Now</button></form> </div>
+                <button class='joinButton' type='submit' name='join' value='join' >Join Now</button></form> </div>
             </div>      
         </div>
 
@@ -272,7 +272,7 @@ echo " <section>
             </div>
                 <div class='reviewDescription'>
                         <textarea name='comments' value='$comments' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
-                        <input class='reviewButton' type='submit' name='submit' value='Submit_Review'>
+                        <input class='reviewButton' type='submit' name='Submit_Review' value='Submit_Review'>
                         </form>
                 </div>
             </div> 
