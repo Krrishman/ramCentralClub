@@ -34,6 +34,26 @@
                 </select>
             </div>
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if (isset($_POST['delete'])) {
+        echo" ";
+        include('Supabase_connect.php');
+        echo"<input type='hidden' name='club_id' value='$club_id'> ";
+
+        $query2 = 'UPDATE "club_page" SET "status" = 3
+        WHERE "club_page"."club_id"= \'' . $club_id . '\'';
+           $result2 = pg_query($conn, $query2);
+
+           if ($result2) {
+             echo "Joined successfully!";
+           } else {
+             echo "Error joining club: " . pg_last_error($conn);
+           }
+    }
+}
+
+
 
 $cat	= array('club_id', 'made_date', 'c_members');
 $sort	= array('Ascending', 'Descending');
@@ -41,6 +61,7 @@ if (isset($_POST['orderby'])) 	$orderby = $_POST['orderby'];	else $orderby = 'cl
 if (isset($_POST['ad'])) 		$ad 	 = $_POST['ad'];		else $ad 	  = NULL;
 if ($ad == 'Descending')		$desc	 = 'DESC';				else $desc	  = NULL;
 foreach($_POST as $keyx => $value) echo "$keyx = $value<br>"; 
+
 
 
 echo "<form action='club.php' method='POST' align='center' > 
@@ -79,8 +100,10 @@ echo"<div class='club_Container'>
             <a href='#' ><img class='more_icon' onclick='showMore($club_id)' src='./icon/more_menu_icon.png' alt='avatar'>  </a>
         </div>
         <div class='icon_option' id='icon_option_$club_id'>
+        <form method='post' action='club.php'>
+            <input type='hidden' name='club_id' value='$club_id'>
             <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
-            <a href='#'>Delete</a>
+            <button class='joinButton' type='submit' name='delete' value='delete' >Delete</button></form> </div>
         </div>
         <div class='image_Container'>
             <img class='club_Icon' src='$imageUrl$c_pic' alt='avatar'>
