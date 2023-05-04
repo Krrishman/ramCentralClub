@@ -29,6 +29,22 @@
         echo"oovvvvvdddff $club_id";
 
     }
+
+    if (isset($_POST['join'])) {
+        echo" ";
+      
+        // Update database with new user ID
+        $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "Joined successfully!";
+        } else {
+          echo "Error joining club: " . pg_last_error($conn);
+        }
+      }
 ?>
 
 
@@ -97,11 +113,11 @@ echo"
             </div>
             <div class='buttonSection'>
                 <div >
-                <form method='post' action='auto_club_page.php'>
+                <form method='post'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <input class='joinButton' type='submit' name='task' value='Submit_join'>Join Now</div>
-            </form></div>      
+                <button class='joinButton' type='submit' name='join' value='join'>Join Now</button></form> </div>
+            </div>      
         </div>
 
 
