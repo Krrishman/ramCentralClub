@@ -333,7 +333,7 @@ echo " <section>
             switch($task) {
 
                 case "Submit_Review":  include('Supabase_connect.php');
-                                //<input type='hidden' name='account_number' value='$account_number'> 
+                                echo"<input type='hidden' name='club_id' value='$club_id'> ";
                                 $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
                                 VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$com_name.'\')
                                 RETURNING "com_id";';
@@ -344,9 +344,6 @@ echo " <section>
                                     else { echo"Unable to add Review\n" . pg_last_error($conn);}
                                 
                                 echo"ooooook"; break;
-                
-                
-                
                 }
         include('footer.php');
 ?>
