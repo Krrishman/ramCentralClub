@@ -97,8 +97,9 @@ echo"
             </div>
             <div class='buttonSection'>
                 <div >
+                <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton'>Join Now</button></div>
+                <button class='joinButton' type='submit' name='task' value='Submit_join'>Join Now</button></div>
             </div>      
         </div>
 
@@ -345,10 +346,37 @@ echo " <section>
                                     else { echo"Unable to add Review\n" . pg_last_error($conn);}
                                 
                                 echo"ooooook $club_id"; break;
+            
+
+                case "Submit_join":     
+                    echo "ssssssssssss";  
+                     include('Supabase_connect.php');
+                
+                
+                // Check if user is already joined
+                $query8 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" = \'' . $club_id . '\'';
+                $result8 = pg_query($conn, $query8);
+                $row = pg_fetch_row($result8);
+                $joined_users = explode(',', $row[0]);
+                
+                if (in_array($user_name, $joined_users)) {
+                    // User is already joined, remove from list
+                    $joined_users = array_diff($joined_users, [$user_name]);
+                    $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+                } else {
+                    // User is not joined, add to list
+                    array_push($joined_users, $user_id);
+                    $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
                 }
-
-     
-
+                
+                $result9 = pg_query($conn, $query9);
+                
+                if ($result9) {
+                    echo "Success";
+                } else {
+                    echo "Error [" . $query9 . "] " . pg_last_error($conn);
+                }
+    }
         include('footer.php');
 ?>
 
