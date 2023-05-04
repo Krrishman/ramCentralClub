@@ -303,15 +303,14 @@ echo " <section>
                             <h3>$com_name </h3>
                             <div> ";
                             for ($i = 1; $i <= 5; $i++) {
-                                echo '<span class="star';
                                 if ($i <= $rating) {
-                                    echo "<span class='fa fa-star checked'></span>";
-                                }    else {echo "<span class='fa fa-star'></span>";}
+                                    echo '<i class="fas fa-star"></i>'; // full star
+                                } else {
+                                  echo '<i class="far fa-star"></i>'; // empty star
+                                }
                             }
 
  echo"
-
-
                             </div>
                             <p>$date</p>
                               
@@ -348,13 +347,13 @@ echo " <section>
                                                                     </form>
                                                             </div>
                                                         </div>
-                                    </div>     </div>           
+                                    </div>          
                             </div>    
                     </div> ";
 
             }
 
-
+           echo" </section>";
 
             switch($task) {
 
@@ -371,6 +370,9 @@ echo " <section>
                                 
                                 echo"ooooook $club_id"; break;
                 }
+
+     
+
         include('footer.php');
 ?>
 
