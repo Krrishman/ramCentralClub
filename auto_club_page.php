@@ -264,12 +264,12 @@ echo " <section>
             
             </section> ";
 
-            while ($row = pg_fetch_assoc($result2)) {
+            while ($row = pg_fetch_assoc($result4)) {
                 $com_id = $row['com_id'];
                 $parent_id = $row['parent_id'];
                 $Likes = $row['Likes'];
                 $Dislikes = $row['Dislikes'];
-                $club_id = $row['club_id'];
+               // $club_id = $row['club_id'];
                 $event_id = $row['event_id'];
                 $comments = $row['comments'];
                 $rating = $row['rating'];
@@ -333,9 +333,9 @@ echo " <section>
             switch($task) {
 
                 case "Submit_Review":  include('Supabase_connect.php');
-
-                                $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id")
-                                VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\')
+                                //<input type='hidden' name='account_number' value='$account_number'> 
+                                $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
+                                VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$com_name.'\')
                                 RETURNING "com_id";';
                                 $result5 = pg_query($conn, $query5);
                                 if ($result5) {
