@@ -95,13 +95,13 @@ while ($row = pg_fetch_assoc($result)) {
     $Date = $row['made_date'];
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
-echo"<form method='post' action='club.php'>  <div class='club_Container'>   
-            <input type='hidden' name='club_id' value='$club_id'>
+echo"<form method='post' action='club.php'> <input type='hidden' name='club_id' value='$club_id'>  
+        <div class='club_Container'>   
+           
         <div class='icon'>
             <a href='#' ><img class='more_icon' onclick='showMore($club_id)' src='./icon/more_menu_icon.png' alt='avatar'>  </a>
         </div>
         <div class='icon_option' id='icon_option_$club_id'>
-
             <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
             <button type='submit' name='delete' value='delete' >Delete</button> </div>
         </div>
