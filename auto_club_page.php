@@ -16,6 +16,8 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        if (isset($_POST['Submit_Review'])) {
+            echo" ";
         echo"<input type='hidden' name='club_id' value='$club_id'> ";
         $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
         VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$user_name.'\')
@@ -26,24 +28,26 @@
             echo "<font color='green'>$com_id Your Review Added.</font>\n";}
             else { echo"Unable to add Review\n" [$query5] . pg_last_error($conn);}
         
-        echo"oovvvvvdddff $club_id";
+        echo"oovvvvvdddff $club_id"; }
+
+
+        if (isset($_POST['join'])) {
+            echo" ";
+            include('Supabase_connect.php');
+            // Update database with new user ID
+            $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+            $result9 = pg_query($conn, $query9);
+          //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+    
+            // Check if query was successful
+            if ($result9) {
+              echo "Joined successfully!";
+            } else {
+              echo "Error joining club: " . pg_last_error($conn);
+            }
+          }
 
     }
-    if (isset($_POST['join'])) {
-        echo" ";
-        include('Supabase_connect.php');
-        // Update database with new user ID
-        $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
-        $result9 = pg_query($conn, $query9);
-      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-
-        // Check if query was successful
-        if ($result9) {
-          echo "Joined successfully!";
-        } else {
-          echo "Error joining club: " . pg_last_error($conn);
-        }
-      }
 ?>
 
 
@@ -115,7 +119,7 @@ echo"
                 <form method='post' action='auto_club_page.php'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton' type='submit' name='task' value='join' >Join Now</button></form> </div>
+                <button class='joinButton' type='submit' name='submit' value='join' >Join Now</button></form> </div>
             </div>      
         </div>
 
