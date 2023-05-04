@@ -5,7 +5,7 @@ $com_id = $_POST['com_id'];
 $action = $_POST['action'];
 
 // update database
-
+include('Supabase_connect.php');
 if ($action == 'like') {
     $query6 = 'UPDATE "club_comment" SET "Likes" = Likes+1  WHERE "com_id" = \'' . $com_id . '\';';
 } elseif ($action == 'dislike') {

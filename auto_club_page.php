@@ -301,12 +301,17 @@ echo " <section>
                         <div class='reviewAvatar'>
                             <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
                             <h3>$com_name </h3>
-                            <div>
-                            <span class='fa fa-star checked'></span>
-                            <span class='fa fa-star checked'></span>
-                            <span class='fa fa-star checked'></span>
-                            <span class='fa fa-star'></span>
-                            <span class='fa fa-star'></span> 
+                            <div> ";
+                            for ($i = 1; $i <= 5; $i++) {
+                                echo '<span class="star';
+                                if ($i <= $rating) {
+                                    echo "<span class='fa fa-star checked'></span>";
+                                }    else {echo "<span class='fa fa-star'></span>";}
+                            }
+
+ echo"
+
+
                             </div>
                             <p>$date</p>
                               
@@ -370,6 +375,7 @@ echo " <section>
 ?>
 
 <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src='commment.js'></script>
 <script>
 
 
