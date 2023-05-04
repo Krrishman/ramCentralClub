@@ -37,7 +37,7 @@ include('Supabase_connect.php');
     if ($result6) {
         echo "Success";
     } else {
-        echo "Error";
+        echo "Error"[$query6];
     }
 
 

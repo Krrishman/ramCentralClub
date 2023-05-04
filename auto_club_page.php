@@ -294,7 +294,7 @@ echo " <section>
                         <div class='reviewfunction'>        
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
-                        <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
+                        <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
                         </div></div>
                         <div class='reply-section' id='reply-section-$com_id'>
                                 <form method='post' class='reply-form' id='reply-form-$com_id' action='auto_club_page.php'>
@@ -326,7 +326,10 @@ echo " <section>
 
             }
 
-           echo" </section>";
+           echo"
+           <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+        <script src='commment.js'></script>
+           </section>";
 
             switch($task) {
 
