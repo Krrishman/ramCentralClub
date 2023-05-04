@@ -95,15 +95,15 @@ while ($row = pg_fetch_assoc($result)) {
     $Date = $row['made_date'];
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
-echo"<div class='club_Container'>
+echo"<div class='club_Container'>   <form method='post' action='club.php'>  
+            <input type='hidden' name='club_id' value='$club_id'>
         <div class='icon'>
             <a href='#' ><img class='more_icon' onclick='showMore($club_id)' src='./icon/more_menu_icon.png' alt='avatar'>  </a>
         </div>
         <div class='icon_option' id='icon_option_$club_id'>
-        <form method='post' action='club.php'>
-            <input type='hidden' name='club_id' value='$club_id'>
+
             <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
-            <button class='joinButton' type='submit' name='delete' value='delete' >Delete</button></form> </div>
+            <button class='joinButton' type='submit' name='delete' value='delete' >Delete</button> </div>
         </div>
         <div class='image_Container'>
             <img class='club_Icon' src='$imageUrl$c_pic' alt='avatar'>
@@ -114,7 +114,7 @@ echo"<div class='club_Container'>
             </div>
         <div class='member_Counter'>
             <h1 class='counter_Text'><i class='fas fa-user-friends'></i> Members: $c_members</h1>
-        </div>
+        </div></form>
     </div>";
 
 }
