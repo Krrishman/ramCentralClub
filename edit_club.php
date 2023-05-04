@@ -259,7 +259,7 @@ case "test":
             $p_pic = $row['p_pic'];
             $club_id = $row['club_id'];
             $color = $row['color']; }
-            */
+          
             while ($row = pg_fetch_assoc($result2)) {
                 $perk_id = $row['perk_id'];
                 $p_name = $row['p_name'];
@@ -268,7 +268,7 @@ case "test":
                 $club_id = $row['club_id'];
                 $color = $row['color'];}
 
-                $max_entries = 4;
+  */                $max_entries = 4;
                 for ($i = 0; $i < $max_entries; $i++) {
 
                    $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
@@ -279,17 +279,14 @@ case "test":
                     $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                     $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
 
-                if (pg_num_rows($result2) > 0) {
-                    $row = pg_fetch_assoc($result2);
-                    $perk_id = $row['perk_id'];
-                    $per_name = $row['p_name'];
-                    $per_desc = $row['p_desc'];
-                    $per_pic = $row['p_pic'];
-                    $club_id = $row['club_id'];
-                    $color = $row['color']; }
-               echo"
-
-                ";}
+                    while ($row = pg_fetch_assoc($result2)) {
+                        $perk_id = $row['perk_id'];
+                        $per_name = $row['p_name'];
+                        $per_desc = $row['p_desc'];
+                        $per_pic = $row['p_pic'];
+                        $club_id = $row['club_id'];
+                        $color = $row['color'];}
+                    }
 
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
