@@ -317,10 +317,11 @@ echo " <section>
                         <div class='reviewfunction'>        
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton' onclick='likePost($com_id)'>Like</button>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikePost($com_id)'>Dislike</button>
-                                <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
+                        <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
                         </div>
                         <div class='reply-section' id='reply-section-$com_id'>
                                 <form method='post' class='reply-form' id='reply-form-$com_id' action='auto_club_page.php'>
+                                <input type='hidden' name='club_id' value='$club_id'>
                                                         <div class='reviews'>
                                                         <div class='reviewAvatar'>
                                                             <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>

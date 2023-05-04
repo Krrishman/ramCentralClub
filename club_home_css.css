@@ -358,7 +358,7 @@ section{
     display: none;
 }
 .reply-form {
-    display: none;
+    display: block;
 }
 .fa-star, .fa-thumbs-up, .fa-thumbs-down{
 }
@@ -388,6 +388,7 @@ section{
     border-style: none;
     font-weight: bold;
 }
+
 .replyButton:hover{
     background-color: gray;
 }
