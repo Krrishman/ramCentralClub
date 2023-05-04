@@ -376,7 +376,8 @@ echo " <section>
                     echo "Success";
                 } else {
                     echo "Error [" . $query9 . "] " . pg_last_error($conn);
-                }
+                }  
+                echo"ooooook $club_id"; break;
     }
         include('footer.php');
 ?>
