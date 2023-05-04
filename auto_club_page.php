@@ -18,13 +18,13 @@
 
         echo"<input type='hidden' name='club_id' value='$club_id'> ";
         $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
-        VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$com_name.'\')
+        VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$user_name.'\')
         RETURNING "com_id";';
         $result5 = pg_query($conn, $query5);
         if ($result5) {
             $com_id = pg_fetch_result($result5, 0, 0);
             echo "<font color='green'>$com_id Your Review Added.</font>\n";}
-            else { echo"Unable to add Review\n" . pg_last_error($conn);}
+            else { echo"Unable to add Review\n" [$query5] . pg_last_error($conn);}
         
         echo"oovvvvvdddff $club_id";
 
@@ -318,7 +318,7 @@ echo " <section>
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton' onclick='likePost($com_id)'>Like</button>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikePost($com_id)'>Dislike</button>
                         <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
-                        </div>
+                        </div></div>
                         <div class='reply-section' id='reply-section-$com_id'>
                                 <form method='post' class='reply-form' id='reply-form-$com_id' action='auto_club_page.php'>
                                 <input type='hidden' name='club_id' value='$club_id'>
@@ -343,8 +343,9 @@ echo " <section>
                                                                     </form>
                                                             </div>
                                                         </div>
-                            </div>                
-                            </div>    </div> ";
+                                    </div>     </div>           
+                            </div>    
+                    </div> ";
 
             }
 
@@ -376,7 +377,8 @@ function showReplyForm(com_id) {
     // Get the reply form element based on the comment ID
     //var replyForm = $('#reply-form-' + com_id);
     var replyForm = $('#reply-section-' + com_id);
-    replyForm.toggle();
+    //replyForm.toggle();
+    replyForm.show();
 
 }
 	</script>
