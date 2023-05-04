@@ -9,6 +9,10 @@
     if (isset($_POST['club_id']))					$club_id = $_POST['club_id'];		
     if (isset($_GET['r']))					{$club_id = $_GET['r'];}
 
+    if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "First";
+
+    if (isset($_POST['comments']))			$comments = trim($_POST['comments']);	    else $comments = NULL;
+    if (isset($_POST['rating']))			$rating = trim($_POST['rating']);       else $rating = NULL;
 ?>
 
 
@@ -40,6 +44,11 @@ $query2 = 'SELECT * FROM "club_perk" WHERE "club_id" =\'' . $club_id . '\';';
 $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
     $result3 = pg_query($conn, $query3);
     if (!$result3) {echo "Query Error [$query3] " . pg_last_error($conn);}
+
+$query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
+    $result4 = pg_query($conn, $query4);
+    if (!$result4) {echo "Query Error [$query4] " . pg_last_error($conn);}
+
 // Process Query Results 
  //  while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
    //  $made_by, $made_date, $t_color1, $t_color2, $t_text, $des_color, $des_text) = mysqli_fetch_row($result)) {
@@ -247,16 +256,108 @@ echo " <section>
                 </div>
             </div>
                 <div class='reviewDescription'>
-                        <textarea name='content' value='' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
-                        <input class='reviewButton' type='submit' value='Submit Review'>
+                        <textarea name='comments' value='$comments' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
+                        <input class='reviewButton' type='submit' name='task' value='Submit_Review'>
                         </form>
                 </div>
             </div> 
             
             </section> ";
 
+            while ($row = pg_fetch_assoc($result2)) {
+                $com_id = $row['com_id'];
+                $parent_id = $row['parent_id'];
+                $Likes = $row['Likes'];
+                $Dislikes = $row['Dislikes'];
+                $club_id = $row['club_id'];
+                $event_id = $row['event_id'];
+                $comments = $row['comments'];
+                $rating = $row['rating'];
+                $date = $row['date'];
+                $com_name = $row['com_name'];
+
+                echo"
+                <div class='reviewGrid'>
+                <div class='reviews'>
+                        <div class='reviewAvatar'>
+                            <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
+                            <h3>$com_name </h3>
+                            <div>
+                            <span class='fa fa-star checked'></span>
+                            <span class='fa fa-star checked'></span>
+                            <span class='fa fa-star checked'></span>
+                            <span class='fa fa-star'></span>
+                            <span class='fa fa-star'></span> 
+                            </div>
+                            <p>$date</p>
+                              
+                        </div>
+                        <div class='reviewDescription'>
+                                <p>$comments</p>
+                        </div>
+                        <div class='reviewfunction'>        
+                        <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton' onclick='likePost()'>Like</button>
+                        <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikePost()'>Dislike</button>
+                                <button class='replyButton' onclick='showReplyForm($com_id)>Reply</button>
+                        </div>
+                        <div class='reply-section' id='reply-section-$com_id'>
+                                <form method='post' id='reply-form-$com_id' action='auto_club_page.php'>
+                                                        <div class='reviews'>
+                                                        <div class='reviewAvatar'>
+                                                            <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
+                                                            <h3>$user_name </h3>
+                                                            <div class='Rating'>
+                                                            <label>Rating:</label>
+                                                            <select name='rating'>
+                                                                <option value='1'>1 star</option>
+                                                                <option value='2'>2 stars</option>
+                                                                <option value='3'>3 stars</option>
+                                                                <option value='4'>4 stars</option>
+                                                                <option value='5'>5 stars</option>
+                                                            </select><br><br>
+                                                            </div>
+                                                        </div>
+                                                            <div class='reviewDescription'>
+                                                                    <textarea name='comments' value='$comments' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
+                                                                    <input class='reviewButton' type='submit' name='task' value='Submit_Review'>
+                                                                    </form>
+                                                            </div>
+                                                        </div>
+                            </div>                
+                    </div> ";
+
+            }
+
+
+
+            switch($task) {
+
+                case "Submit_Review":  include('Supabase_connect.php');
+
+                                $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id")
+                                VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\')
+                                RETURNING "com_id";';
+                                $result5 = pg_query($conn, $query5);
+                                if ($result5) {
+                                    $com_id = pg_fetch_result($result5, 0, 0);
+                                    echo "<font color='green'>$com_id Your Review Added.</font>\n";}
+                                    else { echo"Unable to add Review\n" . pg_last_error($conn);}
+                                
+                                echo"ooooook"; break;
+                
+                
+                
+                }
         include('footer.php');
 ?>
 
+<script>
 
-	
+function showReplyForm(com_id) {
+    // Get the reply form element based on the comment ID
+    //var replyForm = $('#reply-form-' + com_id);
+    var replyForm = $('#reply-section-' + com_id);
+    replyForm.toggle();
+
+}
+	</script>
