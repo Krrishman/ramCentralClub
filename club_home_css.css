@@ -344,7 +344,16 @@ section{
     column-gap: 30px;
 }
 
+.Rating{
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
 
+.reviewButton{
+    padding: 5px;
+    font-weight: bold;
+}
 
 .fa-star, .fa-thumbs-up, .fa-thumbs-down{
 }

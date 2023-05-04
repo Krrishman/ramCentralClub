@@ -234,7 +234,7 @@ echo " <section>
             <div class='reviews'>
             <div class='reviewAvatar'>
                 <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
-                <h3>Alex Jones </h3>
+                <h3>$user_name </h3>
                 <div class='Rating'>
                 <label>Rating:</label>
                 <select name='rating'>
