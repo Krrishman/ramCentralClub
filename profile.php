@@ -51,24 +51,24 @@ if (pg_num_rows($result) > 0) {
 echo" 	<section>
 			<div class='containerr'>
 			<h1>Account Profile</h1>
-			<table>
+			<table class='con'>
 			<tr><th colspan='2'>Profile</th></tr>
 			<tr><td rowspan='3'><img src='profile-image.jpg' alt='Profile Image'></td>
 				<th>Username</th><td>$user_name</td></tr>
 			<tr><th>Password</th><td>$Pass_Code</td></tr>
 			</table>
-			<table>
+			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
 			<tr><th>First Name</th><td>$F_Name</td></tr>
 			<tr><th>Last Name</th><td>$L_Name</td></tr>
 			<tr><th>Major</th><td>$Major</td></tr>
 			</table>
-			<table>
+			<table class='con'>
 			<tr><th colspan='2'>Account Information</th></tr>
 			<tr><th>Role</th><td>$Role</td></tr>
 			<tr><th>Year</th><td>$Year</td></tr>
 			</table>
-			<table>
+			<table class='con'>
 			<tr><th colspan='2'>Contact Information</th></tr>
 			<tr><th>Email</th><td>$Email</td></tr>
 			<tr><th>Phone</th><td>$Phone</td></tr>
