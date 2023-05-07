@@ -59,20 +59,20 @@ echo" 	<section>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
-			<tr><th>First Name</th><td>$F_Name</td></tr>
-			<tr><th>Last Name</th><td>$L_Name</td></tr>
-			<tr><th>Major</th><td>$Major</td></tr>
+			<tr><th width='30%'>First Name</th> <td>$F_Name</td></tr>
+			<tr><th width='30%'>Last Name</th> <td>$L_Name</td></tr>
+			<tr><th>Major</th> <td>$Major</td></tr>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Account Information</th></tr>
-			<tr><th>Role</th><td>$Role</td></tr>
-			<tr><th>Year</th><td>$Year</td></tr>
+			<tr><th width='10%'>Role</th> <td>$Role</td></tr>
+			<tr><th>Year</th> <td>$Year</td></tr>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Contact Information</th></tr>
-			<tr><th>Email</th><td>$Email</td></tr>
-			<tr><th>Phone</th><td>$Phone</td></tr>
-			<tr><th>Member Since</th><td>$Date</td></tr>
+			<tr><th width='40%'>Email</th> <td>$Email</td></tr>
+			<tr><th>Phone</th> <td>$Phone</td></tr>
+			<tr><th>Member Since</th> <td>$Date</td></tr>
 			</table>
 			</div></section>";
 
