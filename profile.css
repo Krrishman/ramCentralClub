@@ -10,6 +10,7 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
   
   .containerr h1 {
     text-align: center;
+    color: #f5f5f5;
   }
   
   .con{
@@ -20,11 +21,13 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
   
   .con td {
     padding: 10px;
+    color: #f5f5f5;
     border: 1px solid #ff0000;
   }
   
   .con th {
     padding: 10px;
+    color: #f5f5f5;
     border: 1px solid #ff0000;
     background-color: #006f71;;
   }
