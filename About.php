@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="footer.css">
 </head>
 <body>
-    <div style="margin-bottom: 20px;">
+    <div class="top-section">
         <div class="top-section-description">
             <h1>Welcome To Farmingdale State College Where Success Begins.</h1>
             <p style="text-align: center; width: 400px;"><a href="#"><button class="clubClick">Join Club</button></a>
