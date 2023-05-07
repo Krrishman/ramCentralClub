@@ -63,7 +63,7 @@ foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
 
 
-echo "<form action='club.php' method='POST' align='center' > 
+echo "<form action='Club.php' method='POST' align='center' > 
 <p width='500px' > Sort By: <select name='orderby' onchange='this.form.submit();'>";
 foreach($cat as $category) {
 if ($orderby == $category) $se = 'SELECTED'; else $se = NULL;
