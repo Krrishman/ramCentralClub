@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .containerr {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+  }
+  
+  .containerr h1 {
+    text-align: center;
+  }
+  
+  .containerr table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .containerr th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .containerr th {
+    background-color: #006f71;;
+  }
