@@ -14,12 +14,19 @@ body{
 
 }
 
-
+.top-section{
+    margin-left: 200px;
+    background-color: #006f71;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    flex-direction: row;
+    width: 1366px;
+}
 .top-section-description{
 
     width: 500px;
     display: inline-block;
-    margin-left: 200px;
     
 }
 
