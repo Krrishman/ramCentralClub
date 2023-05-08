@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_GET['j']))					{$User_id = $_GET['j'];}
 
 	if (isset($_POST['profile'])) {
-		echo" ";
+		echo"xx $pro_pic";
 	echo"<input type='hidden' name='User_id' value='$User_id'> ";
 
 
@@ -107,7 +107,7 @@ if(isset($_FILES['picture'])) {
     } 
 }
 
-//foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
+foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
 
 
@@ -150,7 +150,7 @@ echo" 	<section>
 			<th><button type='submit'  value='Change Profile Picture'  onclick='showMor($User_id)' >Change Profile Picture</button></th>
 			<td><button type='submit' name='pass' value='Update User Pass' >Update User Pass</button></td></tr>
 			<form method='post' action='profile.php?r=$pro_pic & j=$User_id' enctype='multipart/form-data'>
-			<tr class='pro_pic' id='pro_pic_$User_id'> <td colspan='2' ><input type='file' name='picture' value='$pro_pic' size='50'></td>
+			<tr class='pro_pic' id='pro_pic_$User_id'> <td colspan='2' ><input type='file' name='picture' value='$pro_pic' size='50'>$pro_pic</td>
 			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
 			</form></table>
 			<table class='con'>
