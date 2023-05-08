@@ -432,9 +432,10 @@ echo " <section>
 
     if ($result15 && pg_num_rows($result15) > 0) {
         $row5 = pg_fetch_assoc($result15);
-        $membersArray = $row5['joined_users'];
-    
-        echo "<h3>Members:$membersArray</h3>";
+        $membersArray2 = $row5['joined_users'];
+        $membersArray = explode(',', $membersArray2);
+
+        echo "<h3>Members:$membersArray2 dd $membersArray</h3>";
         echo "<ul>";
         foreach ($membersArray as $member) {
             echo "<li>$member</li>";
@@ -444,6 +445,7 @@ echo " <section>
         echo "No members found.";
     }
     
+
 if ($result15) {
     $row1 = pg_fetch_assoc($result15);
     $membersArray = json_decode($row1, true); // Convert members string to an array
