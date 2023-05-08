@@ -97,12 +97,6 @@ $userJoined = in_array($user_name, $club1['joined_users']);
 // Display user information
 echo "User: User Name"; // Replace with actual user information
 
-// Display join button or "Joined" text
-if ($userJoined) {
-  echo "<p>Joined</p>";
-} else {
-  echo "<p>did not Joined</p>";
-}
 
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 // Process Query Results 
