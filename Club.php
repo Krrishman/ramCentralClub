@@ -192,6 +192,11 @@ echo "</div><br>";
                 <img src="./AboutPageRedesignImages/ACMClug_Logo.png" alt="">
             </div>
             <div class="eventDescriptionrr">
+                    <div class='icon'>
+                        <a href='#' >
+                            <img class='more_icon' onclick='showMore($club_id)' 
+                            src='./icon/more_menu_icon.png' alt='avatar'>  </a>
+                    </div>
                     <div class='icon_option' id='icon_option_$club_id'>
                         <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
                         <input type='submit' name='delete' value='delete' >

@@ -203,8 +203,7 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
 
 .eventDescriptionrr p{
     font-size: 15px;
-    margin-top: 5px;
-    margin: 0;
+    margin:5px 0 0 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 5;
