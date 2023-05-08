@@ -193,7 +193,7 @@ echo "</div><br>";
             </div>
             <div class="eventDescriptionrr">
                 
-                    <div> <h1 class="Titlerr"><a  href="./EventPage/EventHomePage.html">ACM Club</a></h1></div>
+                    <div> <p class="Titlerr"><a  href="./EventPage/EventHomePage.html">ACM Club</a></p></div>
                     <div> <p class="descriptrrr">
                          ACM Club was founded in 2010 and it was when Mike Adams found an issue of Computer Science students
                          not being involved as much in activities relating to their studies. 
