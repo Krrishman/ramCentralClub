@@ -194,7 +194,6 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
 
 .eventDescriptionrr h1{
     text-align: center;
-    display: inline-block;
     font-size: 20px;
     background-color: #006f71;
     margin: 0;
@@ -209,6 +208,10 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
     display: inline-block;
     background-color: #ffc21c;
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
 
 }
 
