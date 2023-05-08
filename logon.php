@@ -117,9 +117,10 @@ if (pg_num_rows($result) > 0) {
 	if ($msg == NULL) {
 
 	include('Supabase_connect.php');
-	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status") 
+	$pic='1Q8aGAfnu81hebmRO9woGIJQ6RqRS6lHQ';
+	$query = 'INSERT INTO "User" ( "F_Name", "L_Name", "User_Name", "Pass_Code", "Role", "Year", "Major", "Email", "Phone", "Status", "pro_pic") 
 	VALUES (\''.$f_name.'\',\''. $l_name.'\',\''.$u_name.'\', \''.$p_code.'\', \''.$role.'\',
-	 \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1)';
+	 \''.$s_type.'\', \''.$major.'\', \''.$email.'\', \''.$number.'\', 1, \''.$pic.'\')';
 	$result = pg_query($conn, $query);
 	if ($result) $msg="<font color='green'> Your NEW Account Created.";
 	else { $msg="Unable to Make Account\n [$query] " . pg_last_error($conn);}
