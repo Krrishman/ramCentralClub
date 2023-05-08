@@ -92,7 +92,9 @@ if (!$result15) {echo "Query Error [$query4] " . pg_last_error($conn);}
 $club1 = pg_fetch_assoc($result15);
 
 // Check if the user ID exists in the members array
-$userJoined = in_array($user_name, $club1['joined_users']);
+$membersArray = json_decode($club1['joined_users'], true); // Convert members string to an array
+$userJoined = in_array($user_name, $membersArray);
+//$userJoined = in_array($user_name, $club1['joined_users']);
 
 // Display user information
 echo "User: User Name"; // Replace with actual user information
