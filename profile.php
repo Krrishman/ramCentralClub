@@ -151,8 +151,8 @@ echo" 	<section>
 			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
 			</form></table><form method='post' action='profile.php?j=$User_id'>
 			<table class='user_pass' id='user_pass_$User_id'>
-			<tr ><th>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
-			<tr ><th>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td>
+			<tr ><th width='30%'>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
+			<tr ><th width='30%'>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td>
 			<td><button type='submit' name='pass' value='Update User Pass' >Submit</button></td></tr>
 			</form></table>
 			<table class='con'>
