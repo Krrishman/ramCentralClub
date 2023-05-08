@@ -93,11 +93,13 @@ if(isset($_FILES['image'])) {
 
 
 	if (isset($_POST['pass'])) {
-		if (isset($_POST['User_id']))			$User_id = trim($_POST['User_id']);	    else $User_id = NULL;
 		if (isset($_POST['user_name']))			$user_name = trim($_POST['user_name']);       else $user_name = NULL;
 		if (isset($_POST['Pass_Code']))			$Pass_Code = trim($_POST['Pass_Code']);       else $Pass_Code = NULL;
 		echo" ";
 		include('Supabase_connect.php');
+		
+		echo"<input type='hidden' name='User_id' value='$User_id'> ";
+		
 		// Update database with new user ID
 		$query9 = 'UPDATE "User" SET "User_Name" =\''.$user_name.'\', 
 		"Pass_Code" =\''.$Pass_Code.'\' WHERE "User_id" = \'' . $User_id . '\'';
