@@ -53,9 +53,12 @@ echo" 	<section>
 			<h1>Account Profile</h1>
 			<table class='con'>
 			<tr><th colspan='2'>Profile</th></tr>
-			<tr><td rowspan='3'><img src='profile-image.jpg' alt='Profile Image'></td>
+			<tr><td width='160px'rowspan='3'><img src='./ClubHomePage/ClubHomePagePictures/jeff-bezos.jpg' alt='Profile Image'></td>
 				<th>Username</th><td>$user_name</td></tr>
 			<tr><th>Password</th><td>$Pass_Code</td></tr>
+			<tr>
+			<th><button>Change Profile Picture</button></th>
+			<td><button>Update User Pass</button></td></tr>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
@@ -65,12 +68,12 @@ echo" 	<section>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Account Information</th></tr>
-			<tr><th width='10%'>Role</th> <td>$Role</td></tr>
+			<tr><th width='30%'>Role</th> <td>$Role</td></tr>
 			<tr><th>Year</th> <td>$Year</td></tr>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Contact Information</th></tr>
-			<tr><th width='40%'>Email</th> <td>$Email</td></tr>
+			<tr><th width='30%'>Email</th> <td>$Email</td></tr>
 			<tr><th>Phone</th> <td>$Phone</td></tr>
 			<tr><th>Member Since</th> <td>$Date</td></tr>
 			</table>
