@@ -22,6 +22,90 @@
 
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+	if (isset($_POST['profile'])) {
+		echo" ";
+	echo"<input type='hidden' name='User_id' value='$User_id'> ";
+
+
+	$query5 = 'UPDATE "User" SET "pro_pic" = \''.$pro_pic.'\' WHERE "User_id" = \'' . $User_id . '\'';
+	$result5 = pg_query($conn, $query5);
+	if ($result5) {
+		echo "Profile Pic Updated!";
+	  } else {
+		echo "Error adding pic: " . pg_last_error($conn);
+	  }
+	}
+
+
+	if (isset($_POST['pass'])) {
+		echo" ";
+		include('Supabase_connect.php');
+		// Update database with new user ID
+		$query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+		$result9 = pg_query($conn, $query9);
+	  //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+		// Check if query was successful
+		if ($result9) {
+		  echo "Joined successfully!";
+		} else {
+		  echo "Error joining club: " . pg_last_error($conn);
+		}
+	  }
+
+}
+
+require_once 'drive/vendor/autoload.php';
+
+use Google\Client;
+use Google\Service\Drive;
+
+if(isset($_FILES['picture'])) {
+    try {
+       // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+       // $file_type = $_FILES['image']['type'];
+       // if (!in_array($file_type, $valid_types)) {
+       //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+       // }
+          
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  
+        $client = new Google_Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $S_pic = array();
+        $uploaded_files = $_FILES['picture'];
+        foreach ($uploaded_files['name'] as $key => $name) {
+            if ($uploaded_files['error'][$key] == 0) {
+                $fileMetadata = new Drive\DriveFile(array(
+                    'name' => $name,
+                    'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                ));
+                $content = file_get_contents($uploaded_files['tmp_name'][$key]);
+                $file = $driveService->files->create($fileMetadata, array(
+                    'data' => $content,
+                    'mimeType' => $uploaded_files['type'][$key],
+                    'uploadType' => 'multipart',
+                    'fields' => 'id'
+                ));
+                $S_pic[] = $file->id;
+            }
+        }
+        $message = "Files uploaded successfully. ".implode(",", $S_pic);
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    } 
+}
+
+//foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
+
 
 
 $query = 'SELECT * FROM "User" where "User_Name" = \'' . $user_name . '\'';
@@ -57,8 +141,9 @@ echo" 	<section>
 				<th>Username</th><td>$user_name</td></tr>
 			<tr><th>Password</th><td>$Pass_Code</td></tr>
 			<tr>
-			<th><button>Change Profile Picture</button></th>
-			<td><button>Update User Pass</button></td></tr>
+			<th><button type='submit'  value='Change Profile Picture'  onclick='showMore($User_id)' ></button></th>
+			<td><button type='submit' name='pass' value='Update User Pass' ></button></td></tr>
+			<tr class='pro_pic' id='pro_pic_$User_id'> <td><input type='file' name='picture' value='$pro_pic' size='50'></td></tr>
 			</table>
 			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
@@ -80,8 +165,10 @@ echo" 	<section>
 			</div></section>";
 
 }
-
-echo"<br>";
+echo'
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="touggle.js"></script>
+<br>';
 
 	echo "<p align='center'>This is the User Page
 		  <p align='center'>Only User and Admin can access this page, LOGON is required";
