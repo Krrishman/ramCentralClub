@@ -41,7 +41,7 @@
 	</tr>
 	</table>";
 
-	echo "<form action='Dashboard.php' method='POST' align='center' > 
+	echo "<form action='bank.php' method='POST' align='center' > 
 	<p width='500px' > Sort By: <select name='orderby' onchange='this.form.submit();'>";
 	foreach($cat as $category) {
 	if ($orderby == $category) $se = 'SELECTED'; else $se = NULL;
@@ -59,10 +59,10 @@
     $result1 = pg_query($conn, $query1);
     if (!$result1) { echo "Query Error [$query1] " . pg_last_error($conn);}
 
-	$query = "SELECT * FROM `transaction` 
-	WHERE `account_number` = '$account_number' ORDER BY $orderby $desc";
-	$result = mysqli_query($mysqli, $query);
-	if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
+//	$query = "SELECT * FROM `transaction` 
+//	WHERE `account_number` = '$account_number' ORDER BY $orderby $desc";
+//	$result = mysqli_query($mysqli, $query);
+//	if (!$result) echo "Query Error [$query] " . mysqli_error($mysqli);
 
 	echo " <table style='background-color: #FAF0E6' width='650' align='center' rules='all' border='frame' cellpadding='2'>
 	<tr>
