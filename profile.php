@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_GET['j']))					{$User_id = $_GET['j'];}
 
 	if (isset($_POST['profile'])) {
-		echo"xx $pro_pic";
+		echo"xx $pro_pic  $User_id";
 	echo"<input type='hidden' name='User_id' value='$User_id'> ";
 
 
