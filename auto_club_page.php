@@ -117,6 +117,20 @@ if ($result15) {
 } else { echo "Error: Club not found.";}
 
 
+if ($result15) {
+    $row1 = pg_fetch_assoc($result15);
+    $membersArray = json_decode($row1['joined_users'], true); // Convert members string to an array
+
+    echo "<h3>Members:</h3>";
+    echo "<ul>";
+    foreach ($membersArray as $member) {
+        echo "<li>$member</li>";
+    }
+    echo "</ul>";
+} else {
+    echo "Error: Club not found.";
+}
+
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 // Process Query Results 
  //  while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
