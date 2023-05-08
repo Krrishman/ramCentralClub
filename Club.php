@@ -198,7 +198,7 @@ echo "</div><br>";
                          ACM Club was founded in 2010 and it was when Mike Adams found an issue of Computer Science students
                          not being involved as much in activities relating to their studies. 
                          This was an ongoing issue that even the school knew had to be resolved.</p></div>  
-                    <div class='member_Counter'>  <h2 class='counter_Text'><i class='fas fa-user-friends'></i> Members: 55</h2>  </div>             
+                    <div class='member_Counter'>  <h2 class='counter_Text'> Members: 55</h2>  </div>             
             </div>
             
         </div>
