@@ -38,7 +38,7 @@ include('Supabase_connect.php');
         
         <?php
 
- $query = 'SELECT * FROM "event_page" ORDER BY '.$orderby.' '.$desc.'';
+ $query = 'SELECT * FROM "event_page" '.$orderby.' '.$desc.'';
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 
