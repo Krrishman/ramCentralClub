@@ -134,8 +134,6 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
     border-style: solid;
     border-width: 1px;
     transition: 0.25s;
-    height: 100%;
-    display: inline-block;
 }
 
 .member_Counter:hover{
