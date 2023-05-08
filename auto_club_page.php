@@ -86,7 +86,7 @@ $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
 
 
     // Check if the user has already joined the club
-$query15 = 'SELECT joined_users FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
+$query15 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
 $result15 = pg_query($conn, $query15);
 $club1 = pg_fetch_assoc($result15);
 
@@ -104,7 +104,7 @@ if ($userJoined) {
 }
 // Display the full list of members
 echo "<h2>Members:</h2>";
-foreach ($club1['members'] as $member) {
+foreach ($club1['joined_users'] as $member) {
   echo "<p>$member</p>";
 }
 
