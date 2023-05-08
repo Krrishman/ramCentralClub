@@ -150,10 +150,11 @@ echo" 	<section>
 			<tr class='pro_pic' id='pro_pic_$User_id'> <td colspan='2' ><input type='file' name='image' value='$pro_pic' size='50'>$pro_pic</td>
 			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
 			</form><form method='post' action='profile.php?j=$User_id'>
-			<tr class='user_pass' id='user_pass_$User_id'><th>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
-			<tr class='user_pass' id='user_pass_$User_id'><th>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td>
+			<div class='user_pass' id='user_pass_$User_id'>
+			<tr ><th>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
+			<tr ><th>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td>
 			<td><button type='submit' name='pass' value='Update User Pass' >Submit</button></td></tr>
-			</form></table>
+			</div></form></table>
 			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
 			<tr><th width='30%'>First Name</th> <td>$F_Name</td></tr>
