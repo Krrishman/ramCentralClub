@@ -76,3 +76,23 @@ justify-content: center;
     font-size: 32px;
     
 }
+
+
+
+.add_club button{
+    background-color: rgb(25, 118, 210);
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: 0.25s;
+    padding: 10px 15px;  
+    border: none; 
+    cursor: pointer;
+
+}
+
+.add_club button:hover{
+    background-color: rgb(65, 235, 65);
+    color:black;
+    opacity: .8;
+}

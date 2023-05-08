@@ -20,11 +20,11 @@ include('Supabase_connect.php');
     </head>
 
 <body>
-<div class="add_event">
+
+        <div class="sele">
+            <div class="add_event">
     <a href='AddEvent.php?r=add_club'><button>Add Event</button></a>
     </div>
-        <div class="sele">
-             <a href='AddEvent.php?r=add_club'><button>Add Event</button></a>
              <h2>More Upcoming Events</h2>
         <label for="mySelect">Select :</label>
                 <select id="mySelect">
