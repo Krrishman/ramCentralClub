@@ -124,6 +124,101 @@ echo "</div><br>";
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="touggle.js"></script>
 
+<div class="events-Gridrr">
+        <div class="EventContainerrr">
+            <div class="coverrr">
+                <img src="../ClubHomePage/ClubHomePagePictures/artClub.jpg" alt="">
+            </div>
+            <div class="eventDescriptionrr">
+                <div class="textrr">
+                    <h1 class="Titlerr"><a style="text-decoration:none; color: black;" href="./EventPage/EventHomePage.html">Volleyball Club</a></h1>
+                    <p class="descriptrrr">
+                         The Volleyball Club was founded in 1987 and it was when John Smith had went to the
+                         Dean of Farmingdale to propose a club for sports. After a long debate, 
+                         the club has been established. The club has originally started with 7 people but
+                         now has has about 60 members.</p>
+                </div>               
+            </div>
+        </div>
+
+        <div class="EventContainerrr">
+            <div class="coverrr">
+                <img src="./AboutPageRedesignImages/Esports_Logo.jpeg" alt="">
+            </div>
+            <div class="eventDescriptionrr">
+                <div class="textrr" >
+                    <h1 class="Titlerr"><a style="text-decoration:none; color: black;" href="./EventPage/EventHomePage.html">Esports Club</a></h1>
+                    <p class="descriptrrr">
+                         Farmingdale Esports 2004 and it was when a group of gaming enthusiasts called the "Gamers" proposed a gaming club. 
+                         Their intention was to reduce stress from students who had a lot of studies to do by issuing gaming tournaments.
+                         </p>
+                </div>               
+            </div>
+        </div>
+
+        <div class="EventContainerrr">
+            <div class="coverrr">
+                <img src="./AboutPageRedesignImages/Art_Logo.jpeg" alt="">
+            </div>
+            <div class="eventDescriptionrr">
+                <div class="textrr" >
+                    <h1 class="Titlerr"><a style="text-decoration:none; color: black;" href="./EventPage/EventHomePage.html">Art Club</a></h1>
+                    <p class="descriptrrr">
+                         The Art Club was founded in 1980 and it was when Jane Doe and a few of her friends
+                         wanted to propose a club to show creativity and their skills to the entire school. After consideration by the Art Department, 
+                         the club was ratified and became a popular club up to this day.</p>
+                </div>               
+            </div>
+        </div>
+
+        <div class="EventContainerrr">
+            <div class="coverrr">
+                <img src="./AboutPageRedesignImages/IEEE_Club_Logo.png" alt="">
+            </div>
+            <div class="eventDescriptionrr">
+                <div class="textrr" >
+                    <h1 class="Titlerr"><a style="text-decoration:none; color: black;" href="./EventPage/EventHomePage.html">IEEE Club</a></h1>
+                    <p class="descriptrrr">
+                         This club was founded in 2008 and it was when James Johnson thought it would've been a great idea to 
+                         have engineering students come together and work on valuable projects. After a proposal to the Sciences department,
+                         the club was approved.</p>
+                </div>               
+            </div>
+            
+        </div>
+
+        <div class="EventContainerrr">
+            <div class="coverrr">
+                <img src="./AboutPageRedesignImages/ACMClug_Logo.png" alt="">
+            </div>
+            <div class="eventDescriptionrr">
+                <div class="textrr" >
+                    <h1 class="Titlerr"><a style="text-decoration:none; color: black;" href="./EventPage/EventHomePage.html">ACM Club</a></h1>
+                    <p class="descriptrrr">
+                         ACM Club was founded in 2010 and it was when Mike Adams found an issue of Computer Science students
+                         not being involved as much in activities relating to their studies. This was an ongoing issue that even the school knew had to be resolved.</p>
+                </div>               
+            </div>
+            
+        </div>
+
+        <div class="EventContainerrr">
+            <div class="coverrr">
+                <img src="./AboutPageRedesignImages/EnvironmentalClub_Logo.jpeg" alt="">
+            </div>
+            <div class="eventDescriptionrr">
+                <div class="textrr" >
+                    <h1 class="Titlerr"><a style="text-decoration:none; color: black;" href="./EventPage/EventHomePage.html">Environmental Club</a></h1>
+                    <p class="descriptrrr">
+                         A group of students in 2003 proposed an idea to help the environment surronding them as the realization of Global Warming and Climate Change
+                        has started to become recognized. This issue had to be mitigated since Farmingdale struggling keeping the campus clean.</p>
+                </div>               
+            </div>
+            
+        </div>
+
+    </div>
+
     </body>
 
 <?php
