@@ -141,8 +141,8 @@ echo" 	<section>
 				<th>Username</th><td>$user_name</td></tr>
 			<tr><th>Password</th><td>$Pass_Code</td></tr>
 			<tr>
-			<th><button type='submit'  value='Change Profile Picture'  onclick='showMore($User_id)' ></button></th>
-			<td><button type='submit' name='pass' value='Update User Pass' ></button></td></tr>
+			<th><button type='submit'  value='Change Profile Picture'  onclick='showMor($User_id)' >Change Profile Picture</button></th>
+			<td><button type='submit' name='pass' value='Update User Pass' >Update User Pass</button></td></tr>
 			<tr class='pro_pic' id='pro_pic_$User_id'> <td><input type='file' name='picture' value='$pro_pic' size='50'></td></tr>
 			</table>
 			<table class='con'>

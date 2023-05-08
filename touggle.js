@@ -8,6 +8,12 @@ function showMore(club_id) {
 
 }
 
+function showMor(User_id) {
+  var iconOpt = $('#pro_pic_'+User_id);
+  iconOpt.toggle();
+  //iconOption.show()
+
+}
 
 $(document).on('click', function(e) {
     if (!$(e.target).closest('.icon_option').length && !$(e.target).closest('.more_icon').length) {
