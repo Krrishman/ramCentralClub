@@ -96,26 +96,6 @@ $result15 = pg_query($conn, $query15);
 //$userJoined = in_array($user_name, $membersArray);
 //$userJoined = in_array($user_name, $club1['joined_users']);
 
-if ($result15) {
-    $row = pg_fetch_assoc($result15);
-    $membersArray = json_decode($row['joined_users'], true); // Convert members string to an array
-    
-    if (!in_array($user_id, $membersArray)) {
-        $membersArray[] = $user_id; // Add user ID to members array
-        $updatedMembers = json_encode($membersArray); // Convert array back to a string
-        $updateQuery = "UPDATE clubs SET members = '$updatedMembers' WHERE id = $club_id";
-        $updateResult = pg_query($conn, $updateQuery);
-        
-        if ($updateResult) {
-            echo "Joined successfully!";
-        } else {
-            echo "Error joining club: " . pg_last_error($conn);
-        }
-    } else {
-        echo "You are already a member of this club.";
-    }
-} else { echo "Error: Club not found.";}
-
 
 if ($result15) {
     $row1 = pg_fetch_assoc($result15);
