@@ -151,7 +151,7 @@ echo"<form method='post' action='Club.php?r=$club_id'>
         <div class='coverrr'> <img src='$imageUrl$c_pic' alt='pic'>
         </div>
         <div class='eventDescriptionrr'>
-            <div> <h1 class='Titlerr'><a  href='href='./auto_club_page.php?r=$club_id'>$c_name'>$c_name</a></h1></div>
+            <div> <h1 class='Titlerr'><a  href='href='./auto_club_page.php?r=$club_id'>$c_name</a></h1></div>
             <div> <p class='descriptrrr'>$c_desc</p></div>  
             <div class='member_Counter'>  <h2 class='counter_Text'> Members: $c_members </h2>  </div>             
         </div>
