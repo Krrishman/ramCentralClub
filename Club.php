@@ -192,7 +192,10 @@ echo "</div><br>";
                 <img src="./AboutPageRedesignImages/ACMClug_Logo.png" alt="">
             </div>
             <div class="eventDescriptionrr">
-                
+                    <div class='icon_option' id='icon_option_$club_id'>
+                        <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
+                        <input type='submit' name='delete' value='delete' >
+                    </div>
                     <div> <h1 class="Titlerr"><a  href="./EventPage/EventHomePage.html">ACM Club</a></h1></div>
                     <div> <p class="descriptrrr">
                          ACM Club was founded in 2010 and it was when Mike Adams found an issue of Computer Science students
