@@ -109,7 +109,7 @@ foreach ($club1['joined_users'] as $member) {
   echo "<p>$member</p>";
 }
 
-foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
+//foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 // Process Query Results 
  //  while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
    //  $made_by, $made_date, $t_color1, $t_color2, $t_text, $des_color, $des_text) = mysqli_fetch_row($result)) {
