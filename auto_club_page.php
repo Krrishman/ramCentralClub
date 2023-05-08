@@ -88,16 +88,33 @@ $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
     // Check if the user has already joined the club
 $query15 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
 $result15 = pg_query($conn, $query15);
-if (!$result15) {echo "Query Error [$query15] " . pg_last_error($conn);}
-$club1 = pg_fetch_assoc($result15);
+//if (!$result15) {echo "Query Error [$query15] " . pg_last_error($conn);}
+//$club1 = pg_fetch_assoc($result15);
 
 // Check if the user ID exists in the members array
-$membersArray = json_decode($club1['joined_users'], true); // Convert members string to an array
-$userJoined = in_array($user_name, $membersArray);
+//$membersArray = json_decode($club1['joined_users'], true); // Convert members string to an array
+//$userJoined = in_array($user_name, $membersArray);
 //$userJoined = in_array($user_name, $club1['joined_users']);
 
-// Display user information
-echo "User: User Name"; // Replace with actual user information
+if ($result15) {
+    $row = pg_fetch_assoc($result15);
+    $membersArray = json_decode($row['joined_users'], true); // Convert members string to an array
+    
+    if (!in_array($user_id, $membersArray)) {
+        $membersArray[] = $user_id; // Add user ID to members array
+        $updatedMembers = json_encode($membersArray); // Convert array back to a string
+        $updateQuery = "UPDATE clubs SET members = '$updatedMembers' WHERE id = $club_id";
+        $updateResult = pg_query($conn, $updateQuery);
+        
+        if ($updateResult) {
+            echo "Joined successfully!";
+        } else {
+            echo "Error joining club: " . pg_last_error($conn);
+        }
+    } else {
+        echo "You are already a member of this club.";
+    }
+} else { echo "Error: Club not found.";}
 
 
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
