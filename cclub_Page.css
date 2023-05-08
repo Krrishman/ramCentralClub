@@ -155,7 +155,8 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
 .events-Gridrr{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-content: space-around;
+    justify-content: space-between;
+    column-gap: 25px;
     max-width: 1366px;
     position: relative;
     align-items: center;
@@ -186,22 +187,25 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
     display: flex;
     height: 110px;
     text-align: justify;
+    text-decoration:none; 
+    color: black;
 }
 
 .eventDescriptionrr h1{
     text-align: center;
+    font-size: 20px;
 }
 
 .textrr{
-    margin:auto;
-    height: 80px;
     font-size: 12px;
 }
 
 .Titlerr{
+    
+}
+.eventDescriptionrr p{
     font-size: 15px;
 }
-
 .descriptrrr{
 
 }
