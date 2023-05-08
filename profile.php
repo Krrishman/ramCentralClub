@@ -24,6 +24,9 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+	if (isset($_GET['r']))					{$pro_pic = $_GET['r'];}
+	if (isset($_GET['j']))					{$User_id = $_GET['j'];}
+
 	if (isset($_POST['profile'])) {
 		echo" ";
 	echo"<input type='hidden' name='User_id' value='$User_id'> ";
@@ -95,10 +98,10 @@ if(isset($_FILES['picture'])) {
                     'uploadType' => 'multipart',
                     'fields' => 'id'
                 ));
-                $S_pic[] = $file->id;
+                $pro_pic = $file->id;
             }
         }
-        $message = "Files uploaded successfully. ".implode(",", $S_pic);
+        $message = "Files uploaded successfully. ".implode(",", $pro_pic);
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
@@ -131,20 +134,25 @@ if (pg_num_rows($result) > 0) {
 	$Email = $row['Email'];
 	$Phone = $row['Phone'];
 	$Date = $row['created_at'];
+	$pro_pic = $row['pro_pic'];
+	$imageUrl = 'https://drive.google.com/uc?export=view&id=';
 	
 echo" 	<section>
 			<div class='containerr'>
 			<h1>Account Profile</h1>
 			<table class='con'>
 			<tr><th colspan='2'>Profile</th></tr>
-			<tr><td width='160px'rowspan='3'><img src='./ClubHomePage/ClubHomePagePictures/jeff-bezos.jpg' alt='Profile Image'></td>
+			<tr><td width='160px'rowspan='3'><img src='$imageUrl$pro_pic' alt='Profile Image'></td>
 				<th>Username</th><td>$user_name</td></tr>
 			<tr><th>Password</th><td>$Pass_Code</td></tr>
+			
 			<tr>
 			<th><button type='submit'  value='Change Profile Picture'  onclick='showMor($User_id)' >Change Profile Picture</button></th>
 			<td><button type='submit' name='pass' value='Update User Pass' >Update User Pass</button></td></tr>
-			<tr class='pro_pic' id='pro_pic_$User_id'> <td><input type='file' name='picture' value='$pro_pic' size='50'></td></tr>
-			</table>
+			<form method='post' action='profile.php?r=$pro_pic & j=$User_id' enctype='multipart/form-data'>
+			<tr class='pro_pic' id='pro_pic_$User_id'> <td colspan='2' ><input type='file' name='picture' value='$pro_pic' size='50'></td>
+			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
+			</form></table>
 			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
 			<tr><th width='30%'>First Name</th> <td>$F_Name</td></tr>
