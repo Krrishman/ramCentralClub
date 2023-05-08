@@ -120,6 +120,44 @@ echo"<form method='post' action='Club.php?r=$club_id'>
 
 echo "</div><br>";
 
+
+echo "<div class='events-Gridrr'>";
+while ($row = pg_fetch_assoc($result)) {
+    $club_id = $row['club_id'];
+    $c_name = $row['c_name'];
+    $c_tag = $row['c_tag'];
+    $c_desc = $row['c_desc'];
+    $c_pic = $row['c_pic'];
+    $c_members = $row['c_members'];
+    $Date = $row['made_date'];
+    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+
+echo"<form method='post' action='Club.php?r=$club_id'>
+            
+        <div class='EventContainerrr'> 
+        <div class='icon'>
+            <a href='#' >
+                <img class='more_icon' onclick='showMore($club_id)' 
+                src='./icon/more_menu_icon.png' alt='avatar'>  </a>
+        </div>
+        <div class='icon_option' id='icon_option_$club_id'>
+            <a href='edit_club.php?r=$club_id&task=test'>Edit</a>
+            <input type='submit' name='delete' value='delete' >
+        </div>
+        <div class='coverrr'> <img src='$imageUrl$c_pic' alt='pic'>
+        </div>
+        <div class='eventDescriptionrr'>
+            <div> <h1 class='Titlerr'><a  href='href='./auto_club_page.php?r=$club_id'>$c_name'>$c_name</a></h1></div>
+            <div> <p class='descriptrrr'>$c_desc</p></div>  
+            <div class='member_Counter'>  <h2 class='counter_Text'> Members: $c_members </h2>  </div>             
+        </div>
+
+        </div></form>";
+
+}
+
+echo "</div><br>";
+
 ?>
 
 <div class="events-Gridrr">
@@ -227,7 +265,7 @@ echo "</div><br>";
 
     </div>
 
-    
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="touggle.js"></script>
 
