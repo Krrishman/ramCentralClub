@@ -32,9 +32,7 @@ if (!$result) {
 }
 
 
-if (isset($_POST['User_id']))			$User_id = trim($_POST['User_id']);	    else $User_id = NULL;
-if (isset($_POST['user_name']))			$c_name = trim($_POST['user_name']);       else $user_name = NULL;
-if (isset($_POST['Pass_Code']))			$color = trim($_POST['Pass_Code']);       else $Pass_Code = NULL;
+
 
 
 require_once 'drive/vendor/autoload.php';
@@ -95,6 +93,9 @@ if(isset($_FILES['image'])) {
 
 
 	if (isset($_POST['pass'])) {
+		if (isset($_POST['User_id']))			$User_id = trim($_POST['User_id']);	    else $User_id = NULL;
+		if (isset($_POST['user_name']))			$c_name = trim($_POST['user_name']);       else $user_name = NULL;
+		if (isset($_POST['Pass_Code']))			$color = trim($_POST['Pass_Code']);       else $Pass_Code = NULL;
 		echo" ";
 		include('Supabase_connect.php');
 		// Update database with new user ID
