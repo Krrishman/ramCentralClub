@@ -84,6 +84,30 @@ $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
     $result4 = pg_query($conn, $query4);
     if (!$result4) {echo "Query Error [$query4] " . pg_last_error($conn);}
 
+
+    // Check if the user has already joined the club
+$query15 = 'SELECT joined_users FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
+$result15 = pg_query($conn, $query15);
+$club1 = pg_fetch_assoc($result15);
+
+// Check if the user ID exists in the members array
+$userJoined = in_array($user_name, $club1['joined_users']);
+
+// Display user information
+echo "User: User Name"; // Replace with actual user information
+
+// Display join button or "Joined" text
+if ($userJoined) {
+  echo "<p>Joined</p>";
+} else {
+  echo "<p>did not Joined</p>";
+}
+// Display the full list of members
+echo "<h2>Members:</h2>";
+foreach ($club1['members'] as $member) {
+  echo "<p>$member</p>";
+}
+
 foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 // Process Query Results 
  //  while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
