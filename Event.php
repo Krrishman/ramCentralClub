@@ -24,6 +24,7 @@ include('Supabase_connect.php');
     <a href='AddEvent.php?r=add_club'><button>Add Event</button></a>
     </div>
         <div class="sele">
+             <a href='AddEvent.php?r=add_club'><button>Add Event</button></a>
              <h2>More Upcoming Events</h2>
         <label for="mySelect">Select :</label>
                 <select id="mySelect">
@@ -37,7 +38,7 @@ include('Supabase_connect.php');
         
         <?php
 
- $query = 'SELECT * FROM "event_page" where "status"= 1 ORDER BY '.$orderby.' '.$desc.'';
+ $query = 'SELECT * FROM "event_page" ORDER BY '.$orderby.' '.$desc.'';
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 
