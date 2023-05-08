@@ -98,6 +98,13 @@ if(isset($_FILES['image'])) {
 }
 
 
+$query = 'SELECT * FROM "User" where "User_Name" = \'' . $user_name . '\'';
+$result = pg_query($conn, $query);
+
+// Check query result
+if (!$result) {
+  echo "Query Error [$query] " . pg_last_error($conn);
+}
 
 
 if (isset($_POST['User_id']))			$User_id = trim($_POST['User_id']);	    else $User_id = NULL;
@@ -112,13 +119,6 @@ foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
 
 
-$query = 'SELECT * FROM "User" where "User_Name" = \'' . $user_name . '\'';
-$result = pg_query($conn, $query);
-
-// Check query result
-if (!$result) {
-  echo "Query Error [$query] " . pg_last_error($conn);
-}
 
 
 
@@ -155,7 +155,7 @@ echo" 	<section>
 			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
 			</form><form method='post' action='profile.php?j=$User_id'>
 			<tr class='user_pass' id='user_pass_$User_id'><th>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
-			<tr class='user_pass' id='user_pass_$User_id'><th>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td></tr>
+			<tr ><th>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td></tr>
 			<td><button type='submit' name='pass' value='Update User Pass' >Submit</button></td></tr>
 			</form></table>
 			<table class='con'>
