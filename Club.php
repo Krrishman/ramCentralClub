@@ -193,11 +193,11 @@ echo "</div><br>";
             </div>
             <div class="eventDescriptionrr">
                 
-                    <h1 class="Titlerr"><a  href="./EventPage/EventHomePage.html">ACM Club</a></h1>
-                    <p class="descriptrrr">
+                    <div> <h1 class="Titlerr"><a  href="./EventPage/EventHomePage.html">ACM Club</a></h1></div>
+                    <div> <p class="descriptrrr">
                          ACM Club was founded in 2010 and it was when Mike Adams found an issue of Computer Science students
                          not being involved as much in activities relating to their studies. 
-                         This was an ongoing issue that even the school knew had to be resolved.</p>               
+                         This was an ongoing issue that even the school knew had to be resolved.</p></div>               
             </div>
             
         </div>
