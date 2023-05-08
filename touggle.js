@@ -14,6 +14,13 @@ function showMor(User_id) {
   //iconOption.show()
 
 }
+function showMo(User_id) {
+  var iconOp = $('#user_pass_'+User_id);
+  iconOp.toggle();
+  //iconOption.show()
+
+}
+
 
 $(document).on('click', function(e) {
     if (!$(e.target).closest('.icon_option').length && !$(e.target).closest('.more_icon').length) {

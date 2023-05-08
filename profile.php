@@ -67,12 +67,7 @@ if(isset($_FILES['image'])) {
 	  $message = "Error Message: ".$e->getMessage();
   } 
 }
-
-
-		echo"xx $pro_pic  $User_id";
 	echo"<input type='hidden' name='User_id' value='$User_id'> ";
-
-
 	$query5 = 'UPDATE "User" SET "pro_pic" = \''.$pro_pic.'\' WHERE "User_id" = \'' . $User_id . '\'';
 	$result5 = pg_query($conn, $query5);
 	if ($result5) {
@@ -87,19 +82,32 @@ if(isset($_FILES['image'])) {
 		echo" ";
 		include('Supabase_connect.php');
 		// Update database with new user ID
-		$query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+		$query9 = 'UPDATE "User" SET "User_Name" =\''.$user_name.'\', 
+		"Pass_Code" =\''.$Pass_Code.'\' WHERE "User_id" = \'' . $User_id . '\'';
 		$result9 = pg_query($conn, $query9);
 	  //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
 
 		// Check if query was successful
 		if ($result9) {
-		  echo "Joined successfully!";
+		  echo "User Name & Password Updated!";
 		} else {
-		  echo "Error joining club: " . pg_last_error($conn);
+		  echo "Error Update " . pg_last_error($conn);
 		}
 	  }
 
 }
+
+
+
+
+if (isset($_POST['User_id']))			$User_id = trim($_POST['User_id']);	    else $User_id = NULL;
+if (isset($_POST['user_name']))			$c_name = trim($_POST['user_name']);       else $user_name = NULL;
+if (isset($_POST['Pass_Code']))			$color = trim($_POST['Pass_Code']);       else $Pass_Code = NULL;
+if (isset($_POST['c_tag']))				$c_tag = trim($_POST['c_tag']);         else $c_tag = NULL;
+if (isset($_POST['c_desc']))			$c_desc = trim($_POST['c_desc']);       else $c_desc = NULL;
+
+
+
 
 
 foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
@@ -143,10 +151,14 @@ echo" 	<section>
 			
 			<tr>
 			<th><button type='submit'  value='Change Profile Picture'  onclick='showMor($User_id)' >Change Profile Picture</button></th>
-			<td><button type='submit' name='pass' value='Update User Pass' >Update User Pass</button></td></tr>
+			<td><button type='submit' value='Update User Pass' onclick='showMo($User_id)'>Update User Pass</button></td></tr>
 			<form method='post' action='profile.php?j=$User_id' enctype='multipart/form-data'>
 			<tr class='pro_pic' id='pro_pic_$User_id'> <td colspan='2' ><input type='file' name='image' value='$pro_pic' size='50'>$pro_pic</td>
 			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
+			</form><form method='post' action='profile.php?j=$User_id'>
+			<tr class='user_pass' id='user_pass_$User_id'><th>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
+			<tr class='user_pass' id='user_pass_$User_id'><th>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td></tr>
+			<td><button type='submit' name='pass' value='Update User Pass' >Submit</button></td></tr>
 			</form></table>
 			<table class='con'>
 			<tr><th colspan='2'>Personal Information</th></tr>
