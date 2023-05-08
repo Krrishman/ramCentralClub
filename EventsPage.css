@@ -79,7 +79,7 @@ justify-content: center;
 
 
 
-.add_club button{
+.add_event button{
     background-color: rgb(25, 118, 210);
     color: white;
     font-weight: bold;
@@ -91,7 +91,7 @@ justify-content: center;
 
 }
 
-.add_club button:hover{
+.add_event button:hover{
     background-color: rgb(65, 235, 65);
     color:black;
     opacity: .8;
