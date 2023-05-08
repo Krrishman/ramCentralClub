@@ -434,7 +434,7 @@ echo " <section>
         $row5 = pg_fetch_assoc($result15);
         $membersArray = $row5['joined_users'];
     
-        echo "<h3>Members:</h3>";
+        echo "<h3>Members:$membersArray</h3>";
         echo "<ul>";
         foreach ($membersArray as $member) {
             echo "<li>$member</li>";
@@ -448,7 +448,7 @@ if ($result15) {
     $row1 = pg_fetch_assoc($result15);
     $membersArray = json_decode($row1, true); // Convert members string to an array
 
-    echo "<h3>Members:</h3>";
+    echo "<h3>Members:  $membersArray</h3>";
     echo "<ul>";
     foreach ($membersArray as $member) {
         echo "<li> xzczxcz $member zxczxc </li>";
@@ -465,7 +465,7 @@ if ($result15 && pg_num_rows($result15) > 0) {
     echo "<ul>";
     while ($row1 = pg_fetch_assoc($result15)) {
         $membersArray1 = json_decode($row1['joined_users'], true); // Convert members string to an array
-
+        echo "<ul>$membersArray1";
         foreach ($membersArray1 as $member1) {
             echo "<li>ggggg $member1 ggggg</li>";
         }
