@@ -1,17 +1,28 @@
 
 <?php
 
-    include('session.php');
-	include('menubar.php');
-	include('header.php');
+echo"<p style=' width:100%; padding: 30px;'></p>";
 
+include('session.php');
+include('menubar.php');
+include('Supabase_connect.php');
   
 ?>
 
 
 
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="EventsPage.css">
+		<link rel="stylesheet" href="footer.css">
+    </head>
+
 <body>
-       
+<div class="add_event">
+    <a href='AddEvent.php?r=add_club'><button>Add Event</button></a>
+    </div>
         <div class="sele">
              <h2>More Upcoming Events</h2>
         <label for="mySelect">Select :</label>
@@ -23,6 +34,36 @@
                 </select>
             </div>
         <!--Sidebar Menu For Filtering-->
+        
+        <?php
+
+ $query = 'SELECT * FROM "event_page" where "status"= 1 ORDER BY '.$orderby.' '.$desc.'';
+$result = pg_query($conn, $query);
+if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
+
+
+while ($row = pg_fetch_assoc($result)) {
+    $event_id = $row['event_id'];
+    $e_name = $row['e_name'];
+    $e_tag = $row['e_tag'];
+    $e_desc = $row['e_desc'];
+    $e_pic = $row['e_pic'];
+    $e_date = $row['e_date'];
+    $e_time = $row['e_time'];
+    $e_location = $row['e_location'];
+    $e_place = $row['e_place'];
+    $e_price = $row['e_price'];
+    $e_categoris = $row['e_categoris'];
+    $e_max_mem = $row['e_max_mem'];
+    $e_place = $row['e_place'];
+    $e_members = $row['e_members'];
+    $nade_Date = $row['made_date'];
+    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+
+
+}
+?>
+
         
         <!--Events Grid With Multile Divs and SubDivs to list events-->
         <div class="events-Gridr">
