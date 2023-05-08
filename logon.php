@@ -75,11 +75,12 @@ if (pg_num_rows($result) > 0) {
 	$user_name = $row['User_Name'];
 	$Pass_Code2 = $row['Pass_Code'];
 	$Role = $row['Role'];
-	$Year = $row[6];
-	$Major = $row[7];
-	$Email = $row[8];
-	$Phone = $row[9];
+	$Year = $row['Year'];
+	$Major = $row['Major'];
+	$Email = $row['Email'];
+	$Phone = $row['Phone'];
 	$Date = $row['created_at'];
+	$pro_pic = $row['pro_pic'];
 	
 // If pass_code matches, Complete LOGON				
 				if ($pass_code == $Pass_Code2) {
@@ -89,6 +90,7 @@ if (pg_num_rows($result) > 0) {
 					$_SESSION['role']		= $Role; 
 					$_SESSION['date']		= $Date; 
 					$_SESSION['User_id']	= $User_id; 
+					$_SESSION['pro_pic']	= $pro_pic; 
 					$msg					= "<font color='green'><b>$user Logon Successful</b></font>";
 					$logon 					= TRUE;
 					}

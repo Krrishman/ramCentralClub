@@ -19,8 +19,8 @@
         if (isset($_POST['Submit_Review'])) {
             echo" ";
         echo"<input type='hidden' name='club_id' value='$club_id'> ";
-        $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
-        VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$user_name.'\')
+        $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name", "pro_pic")
+        VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$user_name.'\',\''. $pro_pic.'\')
         RETURNING "com_id";';
         $result5 = pg_query($conn, $query5);
         if ($result5) {
@@ -119,7 +119,7 @@ echo"
                 <form method='post' action='auto_club_page.php'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton' type='submit' name='join' value='join' >Join Now</button></form> </div>
+                <button class='joinButton' type='submit' name='join' value='Join Now' >Join Now</button></form> </div>
             </div>      
         </div>
 
@@ -196,6 +196,7 @@ echo"
         
         
         }
+        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 echo " <section> 
 
         <div class='overallReview'>
@@ -257,7 +258,7 @@ echo " <section>
             <input type='hidden' name='club_id' value='$club_id'>
             <div class='reviews'>
             <div class='reviewAvatar'>
-                <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
+                <img class='reviewIcon' src='$imageUrl$pro_pic' alt='./ClubHomePage/ClubHomePagePictures/person-icon.png'>
                 <h3>$user_name </h3>
                 <div class='Rating'>
                 <label>Rating:</label>
@@ -289,11 +290,12 @@ echo " <section>
                 $rating = $row['rating'];
                 $date = $row['date'];
                 $com_name = $row['com_name'];
-
+                $pro_pic = $row['pro_pic'];
+                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
                 echo"
                 <div class='reviews'>
                         <div class='reviewAvatar'>
-                            <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
+                            <img class='reviewIcon' src='$imageUrl$pro_pic' alt='./ClubHomePage/ClubHomePagePictures/person-icon.png'>
                             <h3>$com_name </h3>
                             <div> ";
                             for ($i = 1; $i <= 5; $i++) {
