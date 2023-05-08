@@ -24,41 +24,6 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	if (isset($_GET['r']))					{$pro_pic = $_GET['r'];}
-	if (isset($_GET['j']))					{$User_id = $_GET['j'];}
-
-	if (isset($_POST['profile'])) {
-		echo"xx $pro_pic  $User_id";
-	echo"<input type='hidden' name='User_id' value='$User_id'> ";
-
-
-	$query5 = 'UPDATE "User" SET "pro_pic" = \''.$pro_pic.'\' WHERE "User_id" = \'' . $User_id . '\'';
-	$result5 = pg_query($conn, $query5);
-	if ($result5) {
-		echo "Profile Pic Updated!";
-	  } else {
-		echo "Error adding pic: " . pg_last_error($conn);
-	  }
-	}
-
-
-	if (isset($_POST['pass'])) {
-		echo" ";
-		include('Supabase_connect.php');
-		// Update database with new user ID
-		$query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
-		$result9 = pg_query($conn, $query9);
-	  //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-
-		// Check if query was successful
-		if ($result9) {
-		  echo "Joined successfully!";
-		} else {
-		  echo "Error joining club: " . pg_last_error($conn);
-		}
-	  }
-
-}
 
 require_once 'drive/vendor/autoload.php';
 
@@ -99,6 +64,42 @@ if(isset($_FILES['image'])) {
 	  $message = "Error Message: ".$e->getMessage();
   } 
 }
+
+	if (isset($_GET['j']))					{$User_id = $_GET['j'];}
+
+	if (isset($_POST['profile'])) {
+		echo"xx $pro_pic  $User_id";
+	echo"<input type='hidden' name='User_id' value='$User_id'> ";
+
+
+	$query5 = 'UPDATE "User" SET "pro_pic" = \''.$pro_pic.'\' WHERE "User_id" = \'' . $User_id . '\'';
+	$result5 = pg_query($conn, $query5);
+	if ($result5) {
+		echo "Profile Pic Updated!";
+	  } else {
+		echo "Error adding pic: " . pg_last_error($conn);
+	  }
+	}
+
+
+	if (isset($_POST['pass'])) {
+		echo" ";
+		include('Supabase_connect.php');
+		// Update database with new user ID
+		$query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+		$result9 = pg_query($conn, $query9);
+	  //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+		// Check if query was successful
+		if ($result9) {
+		  echo "Joined successfully!";
+		} else {
+		  echo "Error joining club: " . pg_last_error($conn);
+		}
+	  }
+
+}
+
 
 foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
@@ -142,7 +143,7 @@ echo" 	<section>
 			<tr>
 			<th><button type='submit'  value='Change Profile Picture'  onclick='showMor($User_id)' >Change Profile Picture</button></th>
 			<td><button type='submit' name='pass' value='Update User Pass' >Update User Pass</button></td></tr>
-			<form method='post' action='profile.php?r=$pro_pic & j=$User_id' enctype='multipart/form-data'>
+			<form method='post' action='profile.php?j=$User_id' enctype='multipart/form-data'>
 			<tr class='pro_pic' id='pro_pic_$User_id'> <td colspan='2' ><input type='file' name='picture' value='$pro_pic' size='50'>$pro_pic</td>
 			<td><button type='submit' name='profile' value='Change Profile Picture' >Submit</button></td></tr>
 			</form></table>
@@ -170,7 +171,13 @@ echo'
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="touggle.js"></script>
 <br>';
+switch($task) {
 
+	case "Finish": 	 break;
+
+
+
+}
 	echo "<p align='center'>This is the User Page
 		  <p align='center'>Only User and Admin can access this page, LOGON is required";
 	include('footer.php');
