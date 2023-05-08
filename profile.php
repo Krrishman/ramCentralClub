@@ -21,14 +21,15 @@
     <body>
 
 <?php
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
 require_once 'drive/vendor/autoload.php';
 
 use Google\Client;
 use Google\Service\Drive;
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+
 if(isset($_FILES['image'])) {
 //if(isset($_POST['submit'])){
   try {
