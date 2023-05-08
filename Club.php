@@ -194,7 +194,7 @@ echo "</div><br>";
             <div class="eventDescriptionrr">
                     <div class='icon'>
                         <a href='#' >
-                            <img class='more_icon' onclick='showMore($club_id)' 
+                            <img class='more_icon' onclick='showMore(30)' 
                             src='./icon/more_menu_icon.png' alt='avatar'>  </a>
                     </div>
                     <div class='icon_option' id='icon_option_$club_id'>
