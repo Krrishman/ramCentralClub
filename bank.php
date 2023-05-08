@@ -34,10 +34,10 @@
 
 	echo" <table width='650' align='center' cellpadding='5' style='background-color: #FAF0E6; padding: 5px;'>
 	<tr>
-		<td ><a href='update.php?r=deposit'><button style='background-color: #32CD32; margin: 0px 5px;display:inline-block;padding: 5px; border: 1px solid black;'>Deposit</button></a></td>
-		<td style='margin: 10px;'><a href='update.php?r=withdraw'><button style='background-color: #32CD32; margin: 0px 5px;display:inline-block;padding: 5px; border: 1px solid black;'>Withdraw</button></a></td>
-		<td ><a href='update.php?r=transfer'><button style='background-color: #32CD32; display:inline-block; padding: 5px; border: 1px solid black;'>Transfer</button></a></td>
-		<td ><a href='update.php?r=pay'><button style='background-color: #32CD32; margin: 1px 10px;display:inline-block; padding: 5px; border: 1px solid black;'>Pay</button></a></td>
+		<td ><a href='bank.php?r=deposit'><button style='background-color: #32CD32; margin: 0px 5px;display:inline-block;padding: 5px; border: 1px solid black;'>Deposit</button></a></td>
+		<td style='margin: 10px;'><a href='bank.php?r=withdraw'><button style='background-color: #32CD32; margin: 0px 5px;display:inline-block;padding: 5px; border: 1px solid black;'>Withdraw</button></a></td>
+		<td ><a href='bank.php?r=transfer'><button style='background-color: #32CD32; display:inline-block; padding: 5px; border: 1px solid black;'>Transfer</button></a></td>
+		<td ><a href='bank.php?r=pay'><button style='background-color: #32CD32; margin: 1px 10px;display:inline-block; padding: 5px; border: 1px solid black;'>Pay</button></a></td>
 	</tr>
 	</table>";
 
