@@ -121,8 +121,6 @@ echo"<form method='post' action='Club.php?r=$club_id'>
 echo "</div><br>";
 
 ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="touggle.js"></script>
 
 <div class="events-Gridrr">
         <div class="EventContainerrr">
@@ -228,6 +226,10 @@ echo "</div><br>";
         </div>
 
     </div>
+
+    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="touggle.js"></script>
 
     </body>
 
