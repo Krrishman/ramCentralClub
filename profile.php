@@ -103,8 +103,6 @@ if(isset($_FILES['image'])) {
 if (isset($_POST['User_id']))			$User_id = trim($_POST['User_id']);	    else $User_id = NULL;
 if (isset($_POST['user_name']))			$c_name = trim($_POST['user_name']);       else $user_name = NULL;
 if (isset($_POST['Pass_Code']))			$color = trim($_POST['Pass_Code']);       else $Pass_Code = NULL;
-if (isset($_POST['c_tag']))				$c_tag = trim($_POST['c_tag']);         else $c_tag = NULL;
-if (isset($_POST['c_desc']))			$c_desc = trim($_POST['c_desc']);       else $c_desc = NULL;
 
 
 
