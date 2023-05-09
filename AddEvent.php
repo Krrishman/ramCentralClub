@@ -306,7 +306,7 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
     <td><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
 <tr>
     <td>Event Location</td>
-    <td> <input type='text' name='location' value='$e_location' placeholder='Enter a location'></td>
+    <td> <input type='text' name='location' value='$location' placeholder='Enter a location'></td>
 <tr>
     <td>Event Place</td>
     <td><input type='text' name='e_places' value='$e_places' placeholder='Online or In-Person'></td>
