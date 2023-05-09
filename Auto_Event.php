@@ -10,6 +10,9 @@
 
 <?php
 
+if (isset($_POST['event_id']))					$event_id = $_POST['event_id'];		
+if (isset($_GET['r']))					{$event_id = $_GET['r'];}
+
 
 $query = 'SELECT * FROM "event_page" WHERE "event_id" =\'' . $event_id . '\';';
     $result = pg_query($conn, $query);
@@ -148,6 +151,8 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
      <div class='eventDescriptionBlock2'>
          <h1>Location</h1>
          <img style='margin-bottom:20px;'src='$imageUrl$places_Pic' alt=''>
+         <!--<img src='$map_url' alt='Map'>
+         <p><br> fsdf $map_url </p>-->
          <iframe width='100%' height='400' frameborder='0'
           style='border:0' src='$e_location' allowfullscreen></iframe>
          <h2>$e_place</h2>
