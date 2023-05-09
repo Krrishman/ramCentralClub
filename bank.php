@@ -9,6 +9,18 @@
 	include('menubar.php');
     include('Supabase_connect.php');
 
+    $query0 = 'SELECT * FROM "bank" where "user_name"= \'rony\';';
+    $result0 = pg_query($conn, $query0);
+    if (!$result0) { echo "Query Error [$query0] " . pg_last_error($conn);}
+    if (pg_num_rows($result) > 0) {
+        $row = pg_fetch_assoc($result);
+        $account_number = $row['account_number'];
+        $user_name = $row['user_name'];
+        $pass_code = $row['pass_code'];
+        $account_type = $row['account_type'];
+        $account_balance = $row['account_balance'];
+        $date = $row['date'];
+    }
 ?>
 
 
@@ -26,6 +38,29 @@
 	$color="black";
 	$dd= date("Y/m/d");
 	$_id=1;
+    $jj="width='650' align='center' cellpadding='5' style='background-color: #FAF0E6; padding: 5px;'";
+    $add=0;
+    $acc=0;
+    $type="";
+    $dd= date("Y-m-d");
+    $sign="";
+
+    if (isset($_POST['task']))					$task = $_POST['task'];								else $task = "First";
+    //	if (isset($_GET['r']))					{$user_name = $_GET['r']; $task = "Show";}			// else $user_name = NULL;
+        if (isset($_GET['r']))					{$task = $_GET['r'];}			//else $task = "pay";
+        if (isset($_POST['user_name']))			$user_name = $_POST['user_name']; 					// else $user_name = NULL;
+        if (isset($_POST['account_number']))	$account_number = trim($_POST['account_number']);	// else $account_number = NULL;
+        if (isset($_POST['pass_code']))			$pass_code = trim($_POST['pass_code']);				//else $pass_code = NULL;	
+        if (isset($_POST['role']))				$role = trim($_POST['role']);						//else $role = NULL;
+        if (isset($_POST['account_type']))		$account_type = trim($_POST['account_type']);		//else $account_type = NULL;
+        if (isset($_POST['account_balance']))	$account_balance = trim($_POST['account_balance']);	//else $account_balance = NULL;	
+        if (isset($_POST['date']))				$date = trim($_POST['date']);						//else $date = NULL;
+        if (isset($_POST['add']))				$add = trim($_POST['add']);						//else $date = NULL;
+        if (isset($_POST['acc']))				$acc = trim($_POST['acc']);						//else $date = NULL;
+        if (isset($_POST['type']))				$type = trim($_POST['type']);						//else $date = NULL;
+        if (isset($_POST['sign']))				$type = trim($_POST['sign']);						//else $date = NULL;
+        foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
+
 
 	$cat	= array('id', 'date_created', 'amount');
 	$sort	= array('Ascending', 'Descending');
@@ -33,7 +68,7 @@
 	if (isset($_POST['ad'])) 		$ad 	 = $_POST['ad'];		else $ad 	  = NULL;
 	if ($ad == 'Descending')		$desc	 = 'DESC';				else $desc	  = NULL;
 
-	echo" <table width='650' align='center' cellpadding='5' style='background-color: #FAF0E6; padding: 5px;'>
+	echo" <table $jj>
 	<tr>
 		<td ><button style='background-color: #32CD32; margin: 0px 5px;display:inline-block;padding: 5px; border: 1px solid black;'
         onclick='showM($_id)' >Deposit</button></a></td>
@@ -41,12 +76,12 @@
 		<td ><a href='bank.php?r=transfer'><button style='background-color: #32CD32; display:inline-block; padding: 5px; border: 1px solid black;'>Transfer</button></a></td>
 		<td ><a href='bank.php?r=pay'><button style='background-color: #32CD32; margin: 1px 10px;display:inline-block; padding: 5px; border: 1px solid black;'>Pay</button></a></td>
 	</tr>
-	</table>
+	</table $jj>
     <form method='post' action='bank.php?j=$_id'>
 			<table class='deposit' id='deposit_$_id'>
-			<tr ><th width='30%'>Username</th><td><input type='text' name='user_name' value='$user_name'></td></tr>
-			<tr ><th width='30%'>Password</th><td><input type='text' name='Pass_Code' value='$Pass_Code'></td>
-			<td><button type='submit' name='pass' value='Update User Pass' >Submit</button></td></tr>
+			<tr><td>Total Banalce    </td><td>$account_balance</td>
+						<tr><td>Amount    </td><td><input type='number' name='add' value='$add'   size='08'></td>
+						<td align='center'><input type='submit' name='task' value='add money'></td></tr>
 			</form></table>
             
             
@@ -191,18 +226,19 @@ switch($task) {
 						</table></form>";
 						break;
 	case "add money":
-						$query = "UPDATE `bank` SET `account_balance` = account_balance + $add
-									WHERE `bank`.`account_number` = '$account_number'";
-						$result = mysqli_query($mysqli, $query);
-						if ($result) {$msg="Deposit Added";
-							$query = "INSERT INTO `transaction` (`id`, `account_number`, `sign`,`reason`, `amount`, `date_created`)
-							VALUES (NULL, '$account_number','+', 'Deposit', '$add', '$dd')";
-							$result = mysqli_query($mysqli, $query);
-							if ($result) $msg="$add $ Added to Your Bank";
-							else { $msg="Deposit Failed" . mysqli_error($mysqli);}
-						
-						}
-						else { $msg="Deposit Failed" . mysqli_error($mysqli);}
+        
+						$query = 'UPDATE "bank"  SET "account_balance" = "account_balance" + \'' .$add. '\'
+                                    WHERE "bank"."account_number" = \'' . $account_number . '\';';
+                                    $result = pg_query($conn, $query);
+                                    if ($result) {echo"Money Added.";
+                                        'INSERT INTO "transaction" ("account_number", "sign", "reason", "amount", "date_created")
+                                        VALUES (\''.$account_number.'\',\'+\', \'Deposit\', \''.$add.'\', \''.$dd.'\');';
+                                    $result = pg_query($conn, $query);
+                                    if ($result) {
+                                    echo "<font color='green'>$add $ Added to Your Bank;</font>\n";}
+                                    else { echo"Deposit Failed\n" . pg_last_error($conn);}}
+
+                                    else { echo"Deposit Failed" . pg_last_error($conn);}
 				
 						break;
 	case "withdraw":
