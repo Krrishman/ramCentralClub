@@ -144,6 +144,7 @@ section{
     width: 1366px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 20px;
     background: #FAEACB;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -174,6 +175,7 @@ section{
     width: 1366px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
     background: #FAEACB;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -218,7 +220,7 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    width: 100%;
     
 }
 
