@@ -98,7 +98,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
              <div class='eventDatePosted'>
                  <h2>$made_Date </h2>
                  <h1>
-                     <i class='far fa-heart'></i> 
+                 <!-- <i class='far fa-heart'></i> -->
                      
                  </h1>
              </div>
@@ -230,6 +230,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
 
 
     }
+    echo" <br><br><br>";
 
     include('footer.php');
 ?>
