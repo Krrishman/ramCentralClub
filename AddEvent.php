@@ -139,6 +139,7 @@ if(isset($_FILES['header'])) {
         $message = "File uploaded successfully. $header_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
+        echo"$message";
     }
 }
             
