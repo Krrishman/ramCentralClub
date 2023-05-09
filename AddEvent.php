@@ -142,6 +142,38 @@ if(isset($_FILES['header'])) {
         echo"$message";
     }
 }
+
+if(isset($_FILES['icon'])) {
+    try {
+        $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+        $file_type = $_FILES['icon']['type'];
+        if (!in_array($file_type, $valid_types)) {
+            throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+        }
+        
+        $client = new Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $fileMetadata = new DriveFile(array(
+            'name' => $_FILES['icon']['name'],
+            'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+        ));
+        $content = file_get_contents($_FILES['icon']['tmp_name']);
+        $file = $driveService->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => $file_type,
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        $icon_pic = $file->id;
+        $message = "File uploaded successfully. $icon_pic";
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+        echo"$message";
+    }
+}
             
             if(isset($_FILES['picture'])) {
             try {
