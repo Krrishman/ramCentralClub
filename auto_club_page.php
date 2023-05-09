@@ -178,13 +178,12 @@ echo"
                 $member = trim($member); // Remove any extra spaces
 
                 $query20 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
-                $result20 = pg_query($conn, $query2);
+                $result20 = pg_query($conn, $query20);
                 if (!$result20) {echo "Query Error [$query20] " . pg_last_error($conn);}
 
-}
-              //  if (pg_num_rows($result20) > 0) {
-                //    $row = pg_fetch_assoc($result20);
-                while ($row = pg_fetch_assoc($result20)) {
+
+                if (pg_num_rows($result20) > 0) {
+                   $row = pg_fetch_assoc($result20);
                     $User_id = $row['User_id'];
                     $F_Name = $row['F_Name'];
                     $L_Name = $row['L_Name'];
@@ -201,6 +200,7 @@ echo"
                             <p>$Year</p>
                         </div>";
                 }
+            }
 
             
           
@@ -208,7 +208,17 @@ echo"
             echo"</div> </section> <section> 
   
             <div class='studentMembers'>";
-            while ($row = pg_fetch_assoc($result20)) {
+            foreach ($membersArra as $member) {
+                echo "$$member";
+                $member = trim($member); // Remove any extra spaces
+
+                $query22 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
+                $result22 = pg_query($conn, $query22);
+                if (!$result20) {echo "Query Error [$query22] " . pg_last_error($conn);}
+
+
+                if (pg_num_rows($result22) > 0) {
+                   $row = pg_fetch_assoc($result22);
                 $User_id = $row['User_id'];
                 $F_Name = $row['F_Name'];
                 $L_Name = $row['L_Name'];
@@ -225,7 +235,7 @@ echo"
                     <p>$F_Name $L_Name</p>
                 </div>";
 
-            }
+            }}
 
                  echo"</div> </section> <section> 
                <div class='slideshow-container'>
