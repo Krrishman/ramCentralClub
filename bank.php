@@ -239,7 +239,7 @@ switch($task) {
                                     else { echo"Deposit Failed\n" . pg_last_error($conn);}}
 
                                     else { echo"Deposit Failed" . pg_last_error($conn);}
-                                    header("Location: bank.php");
+                                    header("Location: Home.php");
                                     exit();
 						break;
 	case "withdraw":

@@ -35,7 +35,7 @@
             echo" ";
             include('Supabase_connect.php');
             // Update database with new user ID
-            $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
+            $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "c_members" = "c_members"+ 1 WHERE "club_id" = \'' . $club_id . '\'';
             $result9 = pg_query($conn, $query9);
           //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
     
@@ -44,6 +44,22 @@
               echo "Joined successfully!";
             } else {
               echo "Error joining club: " . pg_last_error($conn);
+            }
+          }
+
+          if (isset($_POST['joined'])) {
+            echo" ";
+            include('Supabase_connect.php');
+            // Update database with new user ID
+            $query9 = 'UPDATE "club_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "c_members" = "c_members"- 1 WHERE "club_id" = \'' . $club_id . '\'';
+            $result9 = pg_query($conn, $query9);
+          //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+    
+            // Check if query was successful
+            if ($result9) {
+              echo "UnJoined successfully!";
+            } else {
+              echo "Error UnJoined club: " . pg_last_error($conn);
             }
           }
 
@@ -121,9 +137,17 @@ $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
 
 $membersStrin = $joined_users;
 $membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
-$membersArra = explode(",", $membersStrin);     // Explode the string into an array using comma as the separator
-
-echo"
+$membersArra = explode(",", $membersStrin);
+     // Explode the string into an array using comma as the separator
+        $userJoined = in_array($user_name, $membersArray);
+        if ($userJoined) {
+            echo "<p>Already joined.</p>";
+            $xx="name='joined' value='Joined' >Joined";
+        } else {echo "<p>didnot joined.</p>";
+            $xx="name='join' value='Join Now ' >Join Now";
+            
+            }
+        echo"
 
     <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);'>
                 <div class='imageHeader'>
@@ -138,7 +162,7 @@ echo"
                 <form method='post' action='auto_club_page.php'>
                 <input type='hidden' name='club_id' value='$club_id'>
                 <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton' type='submit' name='join' value='Join Now' >Join Now</button></form> </div>
+                <button class='joinButton' type='submit' $xx</button></form> </div>
             </div>      
         </div>
 
@@ -180,7 +204,6 @@ echo"
                 $query20 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
                 $result20 = pg_query($conn, $query20);
                 if (!$result20) {echo "Query Error [$query20] " . pg_last_error($conn);}
-
 
                 if (pg_num_rows($result20) > 0) {
                    $row = pg_fetch_assoc($result20);
