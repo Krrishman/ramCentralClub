@@ -120,21 +120,10 @@ $result15 = pg_query($conn, $query15);
         $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
 $membersStrin = $joined_users;
+$membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
+$membersArra = explode(",", $membersStrin);     // Explode the string into an array using comma as the separator
 
-// Remove the curly braces {}
-$membersStrin = trim($membersStrin, "{}");
-
-// Explode the string into an array using comma as the separator
-$membersArra = explode(",", $membersStrin);
-
-echo "<h3>Members:</h3>";
-foreach ($membersArra as $member) {
-    $member = trim($member); // Remove any extra spaces
-    echo "$member<br>";
-}
 echo"
-kk $joined_users ss
-
 
     <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);'>
                 <div class='imageHeader'>
@@ -180,7 +169,42 @@ kk $joined_users ss
                 </div>
             </div>  ";}
 
+            echo"</div> </section>   <section> 
+
+            <div class='staffMembers'>";
+
+            foreach ($membersArra as $member) {
+                $member = trim($member); // Remove any extra spaces
+
+                $query20 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
+                $result20 = pg_query($conn, $query2);
+                if (!$result20) {echo "Query Error [$query20] " . pg_last_error($conn);}
+
+
+                if (pg_num_rows($result20) > 0) {
+                    $row = pg_fetch_assoc($result20);
+                    $User_id = $row['User_id'];
+                    $F_Name = $row['F_Name'];
+                    $L_Name = $row['L_Name'];
+                    $Role = $row['Role'];
+                    $Year = $row['Year'];
+                    $Major = $row['Major'];
+                    $pro_pic = $row['pro_pic'];
+                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                echo "
+                <div class='member'>
+                    <div class='colorBar'></div>
+                        <img class='memberIcons' src='$imageUrl$pro_pic' alt='ghfhgf'>
+                            <h3>$F_Name $L_Name</h3>
+                            <p>$Year</p>
+                        </div>";
+                }
+
+            }
+          
+
             echo"</div> </section> 
+
             <section> 
                <div class='slideshow-container'>
             
@@ -400,62 +424,7 @@ echo " <section>
         echo "No members found.";
     }
 */
-while ($row = pg_fetch_assoc($result)) {
-    $joined_users = $row['joined_users'];
-    echo " f $joined_users f";
-    foreach ($$joined_users as $member) {
-        echo " d $member s";
 
-}}
-
-if ($result15 && pg_num_rows($result15) > 0) {
-    $row5 = pg_fetch_assoc($result15);
-$membersString = $row5['joined_users'];
-$cccc = pg_fetch_result($result15, 0, 0);
-var_dump($membersString);
-$membersArray = json_decode($membersString, true);
-
-echo "<h3>Members: $membersString  cc  $membersArray ss $row5 dd $cccc </h3>";
-foreach ($membersArray as $member) {
-    echo " d $member s";
-}
-foreach ($membersString as $member) {
-    echo " d $member s";
-}
-foreach ($row5 as $member) {
-    echo " d $member s";
-}
-
-}
-
-
-
-if ($result15 && pg_num_rows($result15) > 0) {
-    $row1 = pg_fetch_row($result15);
-    $membersString1 = $row1[0];
-
-    // Debugging: Check the value of $membersString
-    var_dump($membersString1);
-    echo "<h3>Members: $row1 ss $membersString1 dd </h3>";
-    // Remove the outer brackets []
-    $membersString1 = substr($membersString1, 1, -1);
-    echo "<h3>Members: $row1 ss $membersString1 dd </h3>";
-    // Explode the string into an array using comma as the separator
-    $membersArray1 = explode(",", $membersString1);
-
-    echo "<h3>Members: $row1 ss $membersString1 dd $membersArray1</h3>";
-    echo "<ul>";
-    foreach ($membersArray1 as $member) {
-        echo "<h3>Members: $member";
-        $member = trim($member, "\"' "); // Remove any extra quotes or spaces around each member
-        if (!empty($member)) { // Skip empty strings
-            echo "<li>$member</li>";
-        }
-    }
-    echo "</ul>";
-} else {
-    echo "No members found.";
-}
 
         include('footer.php');
 ?>
