@@ -1,22 +1,24 @@
+
 <?php
 
-echo"<p style=' width:100%; padding: 30px;'></p>";
+	echo"<p style=' width:100%; padding: 30px;'></p>";
 
-include('session.php');
-include('menubar.php');
-include('Supabase_connect.php');
-  
+    include('session.php');
+	include('menubar.php');
+    include('Supabase_connect.php');
+
 ?>
 
-<!DOCTYPE html>
-<head>
-    <link rel="stylesheet" href="NewEventHomePage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://kit.fontawesome.com/a076d05399.js">
-</head>
-<body>
+    <!DOCTYPE html>
+	<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="NewEventHomePage.css">
+		<link rel="stylesheet" href="footer.css">
+    </head>
 
-
+    <body>
 
 
 <?php
