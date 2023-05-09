@@ -7,7 +7,7 @@
 	echo"<p style=' width:100%; padding: 30px;'></p>";
 
     include('session.php');
-    include('check_logon.php');
+   // include('check_logon.php');
 	include('menubar.php');
     include('Supabase_connect.php');
 
