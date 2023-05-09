@@ -21,16 +21,16 @@
 
                 </div>
                 <div class="section3">
-                    <h3>Popular Links</h3>
-                    <p>Fundraising</p>
-                    <p>Latest News</p>
-                    <p>Book Store</p>
+                    <h3> Popular Links</h3>
+                    <p><a href="https://alumni.farmingdale.edu/farmingdale-college-foundation" style='text-decoration:none; color:black;'>Fundraising</a></p>
+                    <p><a href="https://www.farmingdale.edu/news/index.shtml" style='text-decoration:none; color:black;'>Latest News</a></p>
+                    <p><a href="https://farmingdale.bncollege.com/" style='text-decoration:none; color:black;'>Book Store</a></p>
                 </div>
                 <div class="section4">
                     <h3>Resources</h3>
-                    <p>Library</p>
-                    <p>FSC Store</p>
-                    <p>About</p>
+                    <p><a href="https://www.farmingdale.edu/library/" style='text-decoration:none; color:black;'>Library</a></p>
+                    <p><a href="https://www.prepsportswear.com/college/us/new-york/farmingdale/farmingdale-state-college-rams?schoolid=1749886&ca_pid=12026390&gclid=CjwKCAjw3ueiBhBmEiwA4BhspHItZ3bDiq8DZqwy_MWuB6qpDtxHvmSI7ZxWtpqAGQYUOsBt6EPJuRoCYzkQAvD_BwE" style='text-decoration:none; color:black;'>FSC Store</a></p>
+                    <p><a href="About.php" style='text-decoration:none; color:black;'>About</a></p>
                 </div>
             </div>
 
