@@ -231,7 +231,7 @@ switch($task) {
                                     WHERE "bank"."account_number" = \'' . $account_number . '\';';
                                     $result = pg_query($conn, $query);
                                     if ($result) {echo"Money Added.";
-                                        'INSERT INTO "transaction" ("account_number", "sign", "reason", "amount", "date_created")
+                            $query =  'INSERT INTO "transaction" ("account_number", "sign", "reason", "amount", "date_created")
                                         VALUES (\''.$account_number.'\',\'+\', \'Deposit\', \''.$add.'\', \''.$dd.'\');';
                                     $result = pg_query($conn, $query);
                                     if ($result) {
