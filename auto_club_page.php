@@ -86,8 +86,8 @@ $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
 
 
     // Check if the user has already joined the club
-$query15 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
-$result15 = pg_query($conn, $query15);
+//$query15 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
+//$result15 = pg_query($conn, $query15);
 //if (!$result15) {echo "Query Error [$query15] " . pg_last_error($conn);}
 //$club1 = pg_fetch_assoc($result15);
 
