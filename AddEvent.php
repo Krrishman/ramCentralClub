@@ -176,10 +176,10 @@ if(isset($_FILES['icon'])) {
 }
 
 
-if(isset($_FILES['place'])) {
+if(isset($_FILES['places'])) {
     try {
         $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-        $file_type = $_FILES['place']['type'];
+        $file_type = $_FILES['places']['type'];
         if (!in_array($file_type, $valid_types)) {
             throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
         }
@@ -190,10 +190,10 @@ if(isset($_FILES['place'])) {
         $client->addScope(Drive::DRIVE);
         $driveService = new Drive($client);
         $fileMetadata = new DriveFile(array(
-            'name' => $_FILES['place']['name'],
+            'name' => $_FILES['places']['name'],
             'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
         ));
-        $content = file_get_contents($_FILES['place']['tmp_name']);
+        $content = file_get_contents($_FILES['places']['tmp_name']);
         $file = $driveService->files->create($fileMetadata, array(
             'data' => $content,
             'mimeType' => $file_type,
@@ -204,7 +204,6 @@ if(isset($_FILES['place'])) {
         $message = "File uploaded successfully. $place_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
-        echo"$message";
     }
 }
 
@@ -236,7 +235,6 @@ if(isset($_FILES['guest'])) {
         $message = "File uploaded successfully. $guest_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
-        echo"$message";
     }
 }
             
@@ -306,9 +304,8 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
     <td><input type='text' name='e_places' value='$e_places' placeholder='Online or In-Person'></td>
 <tr>
     <td>Upload Event Photo For Location
-    <td> <input type='file' name='place' >$place_Pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
-    <tr><td></td>
-    <td><br></td>
+    <td> <input type='file' name='places' >$place_Pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
+    <tr><td></td> <td><br></td>
 <tr>
     <td>Event Price</td>
     <td>
