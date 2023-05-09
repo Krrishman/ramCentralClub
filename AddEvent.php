@@ -72,6 +72,7 @@ require_once 'drive/vendor/autoload.php';
 
 use Google\Client;
 use Google\Service\Drive;
+use Google\Service\Drive\DriveFile;
 
 if(isset($_FILES['image'])) {
 //if(isset($_POST['submit'])){
@@ -109,141 +110,37 @@ if(isset($_FILES['image'])) {
   } 
 }
 
-    if(isset($_FILES['icon'])) {
-        try {
-            // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-            // $file_type = $_FILES['image']['type'];
-            // if (!in_array($file_type, $valid_types)) {
-            //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
-            // }
-          $curl = curl_init();
-          curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-          curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    
-          $client = new Client();
-          putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
-          $client->useApplicationDefaultCredentials();
-          $client->addScope(Drive::DRIVE);
-          $driveService = new Drive($client);
-          $fileMetadata = new Drive\DriveFile(array(
-              'name' => $_FILES['icon']['name'],
-              'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
-          ));
-          $content = file_get_contents($_FILES['icon']['tmp_name']);
-          $file = $driveService->files->create($fileMetadata, array(
-              'data' => $content,
-              'mimeType' => $file_type,
-              'uploadType' => 'multipart',
-              'fields' => 'id'
-          ));
-          $icon_pic = $file->id;
-          $message = "File uploaded successfully. $icon_pic";
-      } catch(Exception $e) {
-          $message = "Error Message: ".$e->getMessage();
-      } 
-}
 
-    if(isset($_FILES['header'])) {
-        try {
-            // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-            // $file_type = $_FILES['image']['type'];
-            // if (!in_array($file_type, $valid_types)) {
-            //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
-            // }
-              $curl = curl_init();
-              curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-              curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        
-              $client = new Client();
-              putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
-              $client->useApplicationDefaultCredentials();
-              $client->addScope(Drive::DRIVE);
-              $driveService = new Drive($client);
-              $fileMetadata = new Drive\DriveFile(array(
-                  'name' => $_FILES['header']['name'],
-                  'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
-              ));
-              $content = file_get_contents($_FILES['header']['tmp_name']);
-              $file = $driveService->files->create($fileMetadata, array(
-                  'data' => $content,
-                  'mimeType' => $file_type,
-                  'uploadType' => 'multipart',
-                  'fields' => 'id'
-              ));
-              $header_pic = $file->id;
-              $message = "File uploaded successfully. $header_pic";
-          } catch(Exception $e) {
-              $message = "Error Message: ".$e->getMessage();
-          } 
-    }
-
-        if(isset($_FILES['guest'])) {
-            try {
-                // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-                // $file_type = $_FILES['image']['type'];
-                // if (!in_array($file_type, $valid_types)) {
-                //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
-                // }
-                  $curl = curl_init();
-                  curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-                  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            
-                  $client = new Client();
-                  putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
-                  $client->useApplicationDefaultCredentials();
-                  $client->addScope(Drive::DRIVE);
-                  $driveService = new Drive($client);
-                  $fileMetadata = new Drive\DriveFile(array(
-                      'name' => $_FILES['guest']['name'],
-                      'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
-                  ));
-                  $content = file_get_contents($_FILES['guest']['tmp_name']);
-                  $file = $driveService->files->create($fileMetadata, array(
-                      'data' => $content,
-                      'mimeType' => $file_type,
-                      'uploadType' => 'multipart',
-                      'fields' => 'id'
-                  ));
-                  $guest_pic = $file->id;
-                  $message = "File uploaded successfully. $guest_pic";
-              } catch(Exception $e) {
-                  $message = "Error Message: ".$e->getMessage();
-              } 
+if(isset($_FILES['header'])) {
+    try {
+        $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+        $file_type = $_FILES['header']['type'];
+        if (!in_array($file_type, $valid_types)) {
+            throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
         }
-
-            if(isset($_FILES['place'])) {
-                try {
-                    // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
-                    // $file_type = $_FILES['image']['type'];
-                    // if (!in_array($file_type, $valid_types)) {
-                    //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
-                    // }
-                      $curl = curl_init();
-                      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-                      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-                
-                      $client = new Client();
-                      putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
-                      $client->useApplicationDefaultCredentials();
-                      $client->addScope(Drive::DRIVE);
-                      $driveService = new Drive($client);
-                      $fileMetadata = new Drive\DriveFile(array(
-                          'name' => $_FILES['place']['name'],
-                          'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
-                      ));
-                      $content = file_get_contents($_FILES['place']['tmp_name']);
-                      $file = $driveService->files->create($fileMetadata, array(
-                          'data' => $content,
-                          'mimeType' => $file_type,
-                          'uploadType' => 'multipart',
-                          'fields' => 'id'
-                      ));
-                      $place_Pic = $file->id;
-                      $message = "File uploaded successfully. $place_Pic";
-                  } catch(Exception $e) {
-                      $message = "Error Message: ".$e->getMessage();
-                  } 
-                }
+        
+        $client = new Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $fileMetadata = new DriveFile(array(
+            'name' => $_FILES['header']['name'],
+            'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+        ));
+        $content = file_get_contents($_FILES['header']['tmp_name']);
+        $file = $driveService->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => $file_type,
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        $header_pic = $file->id;
+        $message = "File uploaded successfully. $header_pic";
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    }
+}
             
             if(isset($_FILES['picture'])) {
             try {
