@@ -26,19 +26,40 @@ include('Supabase_connect.php');
     <a href='AddEvent.php?r=add_club'><button>Add Event</button></a>
     </div>
              <h2>More Upcoming Events</h2>
-        <label for="mySelect">Select :</label>
-                <select id="mySelect">
-                <option value="apple">Date</option>
-                <option value="banana">A to Z</option>
-                <option value="orange">Off-site </option>
-                <option value="pear">In-person</option>
-                </select>
-            </div>
-        <!--Sidebar Menu For Filtering-->
+
+
         
         <?php
 
- $query = 'SELECT * FROM "event_page" '.$orderby.' '.$desc.'';
+
+
+
+$cat	= array('club_id', 'made_date', 'c_members');
+$sort	= array('Ascending', 'Descending');
+if (isset($_POST['orderby'])) 	$orderby = $_POST['orderby'];	else $orderby = 'club_id';
+if (isset($_POST['ad'])) 		$ad 	 = $_POST['ad'];		else $ad 	  = NULL;
+if ($ad == 'Descending')		$desc	 = 'DESC';				else $desc	  = NULL;
+foreach($_POST as $keyx => $value) echo "$keyx = $value<br>"; 
+
+
+
+echo "<form action='Event.php' method='POST' align='center' > 
+<p width='500px' > Sort By: <select name='orderby' onchange='this.form.submit();'>";
+foreach($cat as $category) {
+if ($orderby == $category) $se = 'SELECTED'; else $se = NULL;
+echo "<option $se>$category</option>\n";
+}
+echo "</select> <select name='ad' onchange='this.form.submit();'>";
+foreach($sort as $value) {
+if ($ad == $value) $se = 'SELECTED'; else $se = NULL;
+echo "<option $se>$value</option>\n";
+}
+echo "</select></p></form>"; 
+
+
+
+
+ $query = 'SELECT * FROM "event_page" ORDER BY '.$orderby.' '.$desc.'';
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 
@@ -92,8 +113,8 @@ echo"
 
 echo "</div><br>";
 
-?>
-
+?><?php
+/*
         
         <!--Events Grid With Multile Divs and SubDivs to list events-->
         <div class="events-Gridr">
@@ -272,8 +293,8 @@ echo "</div><br>";
     </body>
 
 
-<?php
 
+*/
 
     include('footer.php');
 

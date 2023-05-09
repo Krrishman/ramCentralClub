@@ -26,13 +26,6 @@
     </div>
         <div class="sele">
              <h3>List of Clubs</h3>
-        <label for="mySelect">Select :</label>
-                <select id="mySelect">
-                <option value="apple">Genre</option>
-                <option value="banana">A to Z</option>
-                <option value="orange">Relevent </option>
-                </select>
-            </div>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_GET['r']))					{$club_id = $_GET['r'];}
