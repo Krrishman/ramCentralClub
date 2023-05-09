@@ -1,3 +1,12 @@
+<?php
+
+echo"<p style=' width:100%; padding: 30px;'></p>";
+
+include('session.php');
+include('menubar.php');
+include('Supabase_connect.php');
+  
+?>
 
 <!DOCTYPE html>
 <head>
@@ -24,15 +33,14 @@ if (isset($_POST['location'])) {
     /*<h2>Map for: <?php echo $_POST['location']; ?></h2>
     <img src="<?php echo $map_url; ?>" alt="Map"> */
 
-    
-  //$cc=$map_url;
-  //echo $location;
   }
 
 
 
 if(isset($_POST['map_url']))        $map_url = $_POST['map_url'];
 if(isset($_POST['mapsUrl']))        $map_url = $_POST['mapsUrl'];
+
+if(isset($_POST['task'])) $task = $_POST['task'];   else $task = "First";
 
 if(isset($_POST['e_name']))         $e_name = trim($_POST['e_name']);         else $e_name = NULL;
 if(isset($_POST['e_tag']))          $e_tag = trim($_POST['e_tag']);           else $e_tag = NULL;
@@ -56,7 +64,6 @@ if(isset($_POST['header_pic']))     $header_pic = trim($_POST['header_pic']);   
 if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       else $icon_pic = NULL;
 
 
-if(isset($_POST['task'])) $task = $_POST['task'];   else $task = 'full';
 
 
 require_once 'drive/vendor/autoload.php';
@@ -402,6 +409,7 @@ for ($i = 0; $i < $max_entry; $i++) {
 switch($task) {
 
  case "preview": 
+    echo"rww";
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 echo"
  <div class='eventHeaderContainer'>
@@ -599,10 +607,6 @@ case "Finish":
     echo"ooooook"; break;
 
 case "First": break;
-
-
-
-
 
 
 }
