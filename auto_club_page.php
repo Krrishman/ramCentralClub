@@ -169,8 +169,8 @@ echo"
                 </div>
             </div>  ";}
 
-            echo"</div> </section>   <section> ";
-/*
+            echo"</div> </section>   <section>
+
             <div class='staffMembers'>";
 
             foreach ($membersArra as $member) {
@@ -205,9 +205,9 @@ echo"
             
           
 
-            echo"</div> </section> <section> 
-*/  
-        echo " <div class='studentMembers'>";
+            echo"</div> </section> <section> ";
+
+/*        echo " <div class='studentMembers'>";
 
             foreach ($membersArra as $member) {
                 //echo "$$member";
@@ -238,11 +238,10 @@ echo"
 
             }}
 
-                 echo"</div> </section> <section> 
-               <div class='slideshow-container'>
-            
-            
-            ";
+                 echo"</div> </section> <section> */  
+
+
+                 echo" <div class='slideshow-container'>";
 
     //     while(list($slide_id, $S_title, $S_des, $S_pic, $club_id) = mysqli_fetch_row($result3)) {
             while ($row = pg_fetch_assoc($result3)) {
