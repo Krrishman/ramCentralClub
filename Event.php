@@ -34,7 +34,7 @@ include('Supabase_connect.php');
 
 
 
-$cat	= array('club_id', 'made_date', 'c_members');
+$cat	= array('event_id', 'e_date', 'e_members');
 $sort	= array('Ascending', 'Descending');
 if (isset($_POST['orderby'])) 	$orderby = $_POST['orderby'];	else $orderby = 'club_id';
 if (isset($_POST['ad'])) 		$ad 	 = $_POST['ad'];		else $ad 	  = NULL;
