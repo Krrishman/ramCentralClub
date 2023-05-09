@@ -112,7 +112,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
         $joined_users = $row['joined_users'];
         $imageUrl = 'https://drive.google.com/uc?export=view&id=';
     
-
+        $DaTi = date("Y-m-d H:i:s", strtotime($made_Date));
             
         $membersStrin = $joined_users;
         $membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
@@ -149,7 +149,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
                  <h1>$e_tag</h1>
              </div>
              <div class='eventDatePosted'>
-                 <h2>$made_Date </h2>
+                 <h2>$DaTi </h2>
                  <h1>
                  <!-- <i class='far fa-heart'></i> -->
                      
