@@ -384,6 +384,22 @@ echo " <section>
         echo "No members found.";
     }
 */
+if ($result15 && pg_num_rows($result15) > 0) {
+    $row5 = pg_fetch_assoc($result15);
+$membersString = $row5['joined_users'];
+$membersArray = json_decode($membersString, true);
+
+echo "<h3>Members: $membersString  cc  $membersArray</h3>";
+echo "<ul>";
+foreach ($membersArray as $member) {
+    if (!empty($member)) {
+        echo "<li>$member</li>";
+    }
+}
+echo "</ul>";
+} else {
+echo "No members found.";
+}
 
 
         include('footer.php');
