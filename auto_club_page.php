@@ -174,7 +174,7 @@ echo"
             <div class='staffMembers'>";
 
             foreach ($membersArra as $member) {
-                echo "$$member";
+                //echo "$$member";
                 $member = trim($member); // Remove any extra spaces
 
                 $query20 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
@@ -192,7 +192,7 @@ echo"
                     $Major = $row['Major'];
                     $pro_pic = $row['pro_pic'];
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                echo "$F_Name $pro_pic
+                echo "
                 <div class='member'>
                     <div class='colorBar'></div>
                         <img class='memberIcons' src='$imageUrl$pro_pic' alt='ghfhgf'>
@@ -227,7 +227,7 @@ echo"
                 $Major = $row['Major'];
                 $pro_pic = $row['pro_pic'];
                 $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-            echo "$F_Name $pro_pic
+            echo "
             <div class='student'>
                 <div class='stColorBar'></div>
                     <img src='$imageUrl$pro_pic' alt='gfgf'>
