@@ -8,8 +8,8 @@
     include('session.php');
 	include('menubar.php');
     include('Supabase_connect.php');
-
-    $query0 = 'SELECT * FROM "bank" where "user_name"= \'rony\';';
+	
+	$query0 = 'SELECT * FROM "bank" where "user_name"= \'rony\';';
     $result0 = pg_query($conn, $query0);
     if (!$result0) { echo "Query Error [$query0] " . pg_last_error($conn);}
     if (pg_num_rows($result0) > 0) {
@@ -21,7 +21,7 @@
         $account_balance = $row['account_balance'];
         $date = $row['date'];
     }
-?>
+    
 
 
 <!DOCTYPE html>
@@ -76,8 +76,7 @@
 		<td ><a href='bank.php?r=transfer'><button style='background-color: #32CD32; display:inline-block; padding: 5px; border: 1px solid black;'>Transfer</button></a></td>
 		<td ><a href='bank.php?r=pay'><button style='background-color: #32CD32; margin: 1px 10px;display:inline-block; padding: 5px; border: 1px solid black;'>Pay</button></a></td>
 	</tr>
-    
-	</table $jj style='display:none;'>
+	</table $jj  style='display:none;'>
     <form method='post' action='bank.php?j=$_id'>
 			<table class='deposit' id='deposit_$_id'>
 			<tr><td>Total Banalce    </td><td>$account_balance</td>
