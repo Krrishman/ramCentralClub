@@ -71,7 +71,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
      <div class='eventImageHeaderContainer'>
          <img src='$imageUrl$header_pic' alt=''>
          <div class='eventImageDescription'>
-             <h1>Job Fair</h1>
+             <h1></h1>
          </div>
      </div>
     </div>
