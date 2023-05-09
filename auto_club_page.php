@@ -395,10 +395,12 @@ echo "<h3>Members: $membersString  cc  $membersArray ss $row5 dd </h3>";
 foreach ($membersArray as $member) {
     echo " d $member s";
 }
-foreach ($sArray as $member) {
+foreach ($membersString as $member) {
     echo " d $member s";
 }
-
+foreach ($row5 as $member) {
+    echo " d $member s";
+}
 }
 
 
