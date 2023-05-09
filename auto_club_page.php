@@ -174,13 +174,14 @@ echo"
             <div class='staffMembers'>";
 
             foreach ($membersArra as $member) {
+                echo "$$member";
                 $member = trim($member); // Remove any extra spaces
 
                 $query20 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
                 $result20 = pg_query($conn, $query2);
                 if (!$result20) {echo "Query Error [$query20] " . pg_last_error($conn);}
 
-
+}
               //  if (pg_num_rows($result20) > 0) {
                 //    $row = pg_fetch_assoc($result20);
                 while ($row = pg_fetch_assoc($result20)) {
@@ -192,7 +193,7 @@ echo"
                     $Major = $row['Major'];
                     $pro_pic = $row['pro_pic'];
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                echo "$F_Name  s$member
+                echo "$F_Name $pro_pic
                 <div class='member'>
                     <div class='colorBar'></div>
                         <img class='memberIcons' src='$imageUrl$pro_pic' alt='ghfhgf'>
@@ -201,12 +202,32 @@ echo"
                         </div>";
                 }
 
-            }
+            
           
 
-            echo"</div> </section> 
+            echo"</div> </section> <section> 
+  
+            <div class='studentMembers'>";
+            while ($row = pg_fetch_assoc($result20)) {
+                $User_id = $row['User_id'];
+                $F_Name = $row['F_Name'];
+                $L_Name = $row['L_Name'];
+                $Role = $row['Role'];
+                $Year = $row['Year'];
+                $Major = $row['Major'];
+                $pro_pic = $row['pro_pic'];
+                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+            echo "$F_Name $pro_pic
+            <div class='student'>
+                <div class='stColorBar'></div>
+                    <img src='$imageUrl$pro_pic' alt='gfgf'>
+                <div class='stName'>
+                    <p>$F_Name $L_Name</p>
+                </div>";
 
-            <section> 
+            }
+
+                 echo"</div> </section> <section> 
                <div class='slideshow-container'>
             
             
