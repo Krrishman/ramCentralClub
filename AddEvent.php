@@ -72,6 +72,7 @@ require_once 'drive/vendor/autoload.php';
 
 use Google\Client;
 use Google\Service\Drive;
+
 if(isset($_FILES['image'])) {
 //if(isset($_POST['submit'])){
   try {
@@ -220,10 +221,10 @@ if(isset($_FILES['image'])) {
                       $client->addScope(Drive::DRIVE);
                       $driveService = new Drive($client);
                       $fileMetadata = new Drive\DriveFile(array(
-                          'name' => $_FILES['places']['name'],
+                          'name' => $_FILES['place']['name'],
                           'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
                       ));
-                      $content = file_get_contents($_FILES['places']['tmp_name']);
+                      $content = file_get_contents($_FILES['place']['tmp_name']);
                       $file = $driveService->files->create($fileMetadata, array(
                           'data' => $content,
                           'mimeType' => $file_type,
@@ -608,7 +609,7 @@ case "Finish":
     
     echo"ooooook"; break;
 
-case "First": break;
+case "First":  echo"oooooofff"; break;
 
 
 }
