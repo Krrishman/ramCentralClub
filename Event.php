@@ -42,7 +42,7 @@ include('Supabase_connect.php');
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 
-
+  echo'  <div class="events-Gridr">';
 while ($row = pg_fetch_assoc($result)) {
     $event_id = $row['event_id'];
     $e_name = $row['e_name'];
@@ -65,8 +65,29 @@ while ($row = pg_fetch_assoc($result)) {
     $joined_users = $row['joined_users'];
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
+echo"
+    <div class='EventContainerr'>
+        <div class='coverr'>
+            <img src='$imageUrl$icon_pic' alt='./Homepage/Pictures/volleyball.png'>
+        </div>
+        <div class='eventDescriptionr'>
+            <div  class='calr'>
+                <p>$e_date</p>
+                <h1>10</h1>
+                <p> $e_time</p>
+            </div>
+
+            <div class='textr'>
+                <h1 class='Titler'><a style='text-decoration:none; color: black;' href='./Auto_Event.php?r=$event_id'>$e_name</a></h1>
+                <p class='Locationr'><i class='fas fa-location-dot'></i> $e_place</p>
+            </div>               
+         </div>  
+    </div>";
 
 }
+
+echo "</div><br>";
+
 ?>
 
         
