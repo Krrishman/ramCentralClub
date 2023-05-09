@@ -392,7 +392,8 @@ $membersArray = json_decode($membersString, true);
 
 echo "<h3>Members: $membersString  cc  $membersArray</h3>";
 foreach ($membersArray as $member) {
-    if (!empty($member)) { echo "$member";}
+    echo " d $member s";
+    if (!empty($member)) { echo " f $member d";}
 }
 } else {    echo "No members found.";}}else {
     echo "Error retrieving members: " . pg_last_error($conn);
