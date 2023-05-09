@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo" ";
         include('Supabase_connect.php');
         // Update database with new user ID
-        $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "e_members" = "e_members"+ 1 WHERE "club_id" = \'' . $club_id . '\'';
+        $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "e_members" = "e_members"+ 1 WHERE "event_id" = \'' . $event_id . '\'';
         $result9 = pg_query($conn, $query9);
       //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
 
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo" ";
         include('Supabase_connect.php');
         // Update database with new user ID
-        $query9 = 'UPDATE "event_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "e_members" = "e_members"- 1 WHERE "club_id" = \'' . $club_id . '\'';
+        $query9 = 'UPDATE "event_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "e_members" = "e_members"- 1 WHERE "event_id" = \'' . $event_id . '\'';
         $result9 = pg_query($conn, $query9);
       //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
 
@@ -209,7 +209,9 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
              </div>
              <div class='joinSection'> 
                  <p>$e_price</p>
-                 <button class='joinButton' $xx</button>
+                 <form method='post' action='Auto_Event.php'>
+                 <input type='hidden' name='event_id' value='$event_id'>
+                 <button class='joinButton' $xx</button></form>
              </div>
          </div>
     
