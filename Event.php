@@ -53,12 +53,16 @@ while ($row = pg_fetch_assoc($result)) {
     $e_time = $row['e_time'];
     $e_location = $row['e_location'];
     $e_place = $row['e_place'];
+    $place_pic = $row['place_pic'];
+    $header_pic = $row['header_pic'];
+    $icon_pic = $row['icon_pic'];
     $e_price = $row['e_price'];
     $e_categoris = $row['e_categoris'];
     $e_max_mem = $row['e_max_mem'];
     $e_place = $row['e_place'];
     $e_members = $row['e_members'];
-    $nade_Date = $row['made_date'];
+    $made_Date = $row['made_date'];
+    $joined_users = $row['joined_users'];
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
 

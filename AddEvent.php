@@ -33,34 +33,260 @@ if (isset($_POST['location'])) {
 
 
 
-if(isset($_POST['map_url'])) $map_url = $_POST['map_url'];
-if(isset($_POST['eventName'])) $eventName = $_POST['eventName']; else $eventName = NULL;
-if(isset($_POST['eventOrganizationName'])) $eventOrganizationName = $_POST['eventOrganizationName']; else $eventOrganizationName = NULL;
-if(isset($_POST['eventDate'])) $eventDate = $_POST['eventDate']; else $eventDate = NULL;
-if(isset($_POST['eventTime'])) $eventTime = $_POST['eventTime']; else $eventTime = NULL;
-if(isset($_POST['eventLocation'])) $eventLocation = trim($_POST['eventLocation']); else $eventLocation = NULL;
-if(isset($_POST['eventLocationPic'])) $eventLocationPic = trim($_POST['eventLocationPic']); else $eventLocationPic = NULL;
-if(isset($_POST['eventPrice'])) $eventPrice = $_POST['eventPrice']; else $eventPrice = NULL;
-if(isset($_POST['eventCategory'])) $eventCategory = $_POST['eventCategory']; else $eventCategory = NULL;
-if(isset($_POST['eventOverview'])) $eventOverview = $_POST['eventOverview']; else $eventOverview = NULL;
-if(isset($_POST['eventNumber'])) $eventNumber = $_POST['eventNumber']; else $eventNumber = NULL;
-if(isset($_POST['eventMaxNumber'])) $eventMaxNumber = $_POST['eventMaxNumber']; else $eventMaxNumber = NULL;
-if(isset($_POST['eventSpecialGuest'])) $eventSpecialGuest = $_POST['eventSpecialGuest']; else $eventSpecialGuest = NULL;
-if(isset($_POST['eventGuestSpeaker'])) $eventGuestSpeaker = $_POST['eventGuestSpeaker']; else $eventGuestSpeaker = NULL;
-if(isset($_POST['eventGuestSpeakerImage'])) $eventGuestSpeakerImage = $_POST['eventGuestSpeakerImage']; else $eventGuestSpeakerImage = NULL;
-if(isset($_POST['eventGuestSpeakerDescription'])) $eventGuestSpeakerDescription = $_POST['eventGuestSpeakerDescription']; else $eventGuestSpeakerDescription = NULL;
+if(isset($_POST['map_url']))        $map_url = $_POST['map_url'];
+if(isset($_POST['mapsUrl']))        $map_url = $_POST['mapsUrl'];
 
-if(isset($_POST['imageHeader'])) $imageHeader = $_POST['imageHeader']; else $imageHeader = NULL;
-if(isset($_POST['image'])) $image = $_POST['image']; else $image = NULL;
+if(isset($_POST['e_name']))         $e_name = trim($_POST['e_name']);         else $e_name = NULL;
+if(isset($_POST['e_tag']))          $e_tag = trim($_POST['e_tag']);           else $e_tag = NULL;
+if(isset($_POST['e_desc']))         $e_desc = trim($_POST['e_desc']);         else $e_desc = NULL;
+if(isset($_POST['e_pic']))          $e_pic = trim($_POST['e_pic']);           else $e_pic = NULL;
+if(isset($_POST['e_date']))         $e_date = trim($_POST['e_date']);         else $e_date = NULL;
+if(isset($_POST['e_time']))         $e_time = trim($_POST['e_time']);         else $e_time = NULL;
+if(isset($_POST['e_location']))     $e_location = trim($_POST['e_location']); else $e_location = NULL;
+if(isset($_POST['e_place']))        $e_place = trim($_POST['e_place']);       else $e_place = NULL;
+if(isset($_POST['places_Pic']))     $places_Pic = trim($_POST['places_Pic']); else $places_Pic = NULL;
+if(isset($_POST['e_price']))        $e_price = trim($_POST['e_price']);       else $e_price = NULL;
+if(isset($_POST['e_categoris']))    $e_categoris = trim($_POST['e_categoris']); else $e_categoris = NULL;
+if(isset($_POST['e_max_mem']))      $e_max_mem = trim($_POST['e_max_mem']);     else $e_max_mem = NULL;
+if(isset($_POST['e_members']))      $e_members = trim($_POST['e_members']);     else $e_members = NULL;
 
-if(isset($_POST['perk_desc'])) $perk_desc = $_POST['perk_desc']; else $perk_desc = NULL;
-if(isset($_POST['S_title'])) $S_title = $_POST['S_title']; else $S_title = NULL;
-if(isset($_POST['S_des'])) $S_des = $_POST['S_des']; else $S_des = NULL;
-if(isset($_POST['picture'])) $picture = $_POST['picture']; else $picture = NULL;
+if(isset($_POST['guest_name']))     $guest_name = trim($_POST['guest_name']);   else $guest_name = NULL;
+if(isset($_POST['guest_desc']))     $guest_desc = trim($_POST['guest_desc']);   else $guest_desc = NULL;
+if(isset($_POST['guest_pic']))      $guest_pic = trim($_POST['guest_pic']);     else $guest_pic = NULL;
+
+
+if(isset($_POST['header_pic']))     $header_pic = trim($_POST['header_pic']);   else $header_pic = NULL;
+if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       else $icon_pic = NULL;
+
+
 if(isset($_POST['task'])) $task = $_POST['task']; else $task = NULL;
 
 
+require_once 'drive/vendor/autoload.php';
 
+use Google\Client;
+use Google\Service\Drive;
+if(isset($_FILES['image'])) {
+//if(isset($_POST['submit'])){
+  try {
+      $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+      $file_type = $_FILES['image']['type'];
+      if (!in_array($file_type, $valid_types)) {
+          throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+      }
+      
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+      $client = new Client();
+      putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+      $client->useApplicationDefaultCredentials();
+      $client->addScope(Drive::DRIVE);
+      $driveService = new Drive($client);
+      $fileMetadata = new Drive\DriveFile(array(
+          'name' => $_FILES['image']['name'],
+          'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+      ));
+      $content = file_get_contents($_FILES['image']['tmp_name']);
+      $file = $driveService->files->create($fileMetadata, array(
+          'data' => $content,
+          'mimeType' => $file_type,
+          'uploadType' => 'multipart',
+          'fields' => 'id'
+      ));
+      $filename = $file->id;
+      $message = "File uploaded successfully. $filename";
+  } catch(Exception $e) {
+      $message = "Error Message: ".$e->getMessage();
+  } 
+}
+
+    if(isset($_FILES['icon'])) {
+    //if(isset($_POST['submit'])){
+      try {
+          $valid_types = ['icon/jpeg', 'icon/jpg', 'icon/gif', 'icon/png', 'icon/tif', 'icon/tiff'];
+          $file_type = $_FILES['icon']['type'];
+          if (!in_array($file_type, $valid_types)) {
+              throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+          }
+          
+          $curl = curl_init();
+          curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+          curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    
+          $client = new Client();
+          putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+          $client->useApplicationDefaultCredentials();
+          $client->addScope(Drive::DRIVE);
+          $driveService = new Drive($client);
+          $fileMetadata = new Drive\DriveFile(array(
+              'name' => $_FILES['icon']['name'],
+              'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+          ));
+          $content = file_get_contents($_FILES['icon']['tmp_name']);
+          $file = $driveService->files->create($fileMetadata, array(
+              'data' => $content,
+              'mimeType' => $file_type,
+              'uploadType' => 'multipart',
+              'fields' => 'id'
+          ));
+          $icon_pic = $file->id;
+          $message = "File uploaded successfully. $icon_pic";
+      } catch(Exception $e) {
+          $message = "Error Message: ".$e->getMessage();
+      } 
+}
+
+    if(isset($_FILES['header'])) {
+        //if(isset($_POST['submit'])){
+          try {
+              $valid_types = ['header/jpeg', 'header/jpg', 'header/gif', 'header/png', 'header/tif', 'header/tiff'];
+              $file_type = $_FILES['header']['type'];
+              if (!in_array($file_type, $valid_types)) {
+                  throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+              }
+              
+              $curl = curl_init();
+              curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+              curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        
+              $client = new Client();
+              putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+              $client->useApplicationDefaultCredentials();
+              $client->addScope(Drive::DRIVE);
+              $driveService = new Drive($client);
+              $fileMetadata = new Drive\DriveFile(array(
+                  'name' => $_FILES['header']['name'],
+                  'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+              ));
+              $content = file_get_contents($_FILES['header']['tmp_name']);
+              $file = $driveService->files->create($fileMetadata, array(
+                  'data' => $content,
+                  'mimeType' => $file_type,
+                  'uploadType' => 'multipart',
+                  'fields' => 'id'
+              ));
+              $header_pic = $file->id;
+              $message = "File uploaded successfully. $header_pic";
+          } catch(Exception $e) {
+              $message = "Error Message: ".$e->getMessage();
+          } 
+    }
+
+        if(isset($_FILES['guest'])) {
+            //if(isset($_POST['submit'])){
+              try {
+                  $valid_types = ['guest/jpeg', 'guest/jpg', 'guest/gif', 'guest/png', 'guest/tif', 'guest/tiff'];
+                  $file_type = $_FILES['guest']['type'];
+                  if (!in_array($file_type, $valid_types)) {
+                      throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+                  }
+                  
+                  $curl = curl_init();
+                  curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            
+                  $client = new Client();
+                  putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+                  $client->useApplicationDefaultCredentials();
+                  $client->addScope(Drive::DRIVE);
+                  $driveService = new Drive($client);
+                  $fileMetadata = new Drive\DriveFile(array(
+                      'name' => $_FILES['guest']['name'],
+                      'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                  ));
+                  $content = file_get_contents($_FILES['guest']['tmp_name']);
+                  $file = $driveService->files->create($fileMetadata, array(
+                      'data' => $content,
+                      'mimeType' => $file_type,
+                      'uploadType' => 'multipart',
+                      'fields' => 'id'
+                  ));
+                  $guest_pic = $file->id;
+                  $message = "File uploaded successfully. $guest_pic";
+              } catch(Exception $e) {
+                  $message = "Error Message: ".$e->getMessage();
+              } 
+        }
+
+            if(isset($_FILES['places'])) {
+                //if(isset($_POST['submit'])){
+                  try {
+                      $valid_types = ['places/jpeg', 'places/jpg', 'places/gif', 'places/png', 'places/tif', 'places/tiff'];
+                      $file_type = $_FILES['places']['type'];
+                      if (!in_array($file_type, $valid_types)) {
+                          throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+                      }
+                      
+                      $curl = curl_init();
+                      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                
+                      $client = new Client();
+                      putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+                      $client->useApplicationDefaultCredentials();
+                      $client->addScope(Drive::DRIVE);
+                      $driveService = new Drive($client);
+                      $fileMetadata = new Drive\DriveFile(array(
+                          'name' => $_FILES['places']['name'],
+                          'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                      ));
+                      $content = file_get_contents($_FILES['places']['tmp_name']);
+                      $file = $driveService->files->create($fileMetadata, array(
+                          'data' => $content,
+                          'mimeType' => $file_type,
+                          'uploadType' => 'multipart',
+                          'fields' => 'id'
+                      ));
+                      $places_Pic = $file->id;
+                      $message = "File uploaded successfully. $places_Pic";
+                  } catch(Exception $e) {
+                      $message = "Error Message: ".$e->getMessage();
+                  } 
+                }
+            
+            if(isset($_FILES['picture'])) {
+            try {
+            // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+            // $file_type = $_FILES['image']['type'];
+            // if (!in_array($file_type, $valid_types)) {
+            //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+            // }
+                
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        
+                $client = new Google_Client();
+                putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+                $client->useApplicationDefaultCredentials();
+
+                $client->addScope(Drive::DRIVE);
+                $driveService = new Drive($client);
+                $S_pic = array();
+                $uploaded_files = $_FILES['picture'];
+                foreach ($uploaded_files['name'] as $key => $name) {
+                    if ($uploaded_files['error'][$key] == 0) {
+                        $fileMetadata = new Drive\DriveFile(array(
+                            'name' => $name,
+                            'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                        ));
+                        $content = file_get_contents($uploaded_files['tmp_name'][$key]);
+                        $file = $driveService->files->create($fileMetadata, array(
+                            'data' => $content,
+                            'mimeType' => $uploaded_files['type'][$key],
+                            'uploadType' => 'multipart',
+                            'fields' => 'id'
+                        ));
+                        $S_pic[] = $file->id;
+                    }
+                }
+                $message = "Files uploaded successfully. ".implode(",", $S_pic);
+            } catch(Exception $e) {
+                $message = "Error Message: ".$e->getMessage();
+            } 
+        }
 
 
 echo " <div class='event_make'>";
@@ -68,99 +294,70 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
 <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
 <tr>
     <td width='30%'>Event Name</td>
-    <td ><input type='text' name='eventName' value='$eventName'  size='40'></td>
-
+    <td ><input type='text' name='e_name' value='$e_name'  size='40'></td>
 <tr>
     <td width='30%'>Organization Name</td>
-    <td ><input type='text' name='eventOrganizationName' value='$eventOrganizationName'  size='40'></td>
-
+    <td ><input type='text' name='e_tag' value='$e_tag'  size='40'></td>
 <tr>
     <td>Event Date</td>
-    <td><input type='date' name='eventDate' value='$eventDate' size='40'></td>
-
+    <td><input type='date' name='e_date' value='$e_date' size='40'></td>
 <tr>
     <td>Event Time</td>
-    <td><input type='text' name='eventTime' value='$eventTime' size='40' placeholder='12:00 PM - 2:00 PM'></td>
-
+    <td><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
 <tr>
     <td>Event Location</td>
-    <td> <input type='text' name='location' placeholder='Enter a location'></td>
-
-    <tr>
-    <td>Event Place</td>
-    <td> 
-        <input type='text' name='eventLocation' value='$eventLocation' placeholder='Online or In-Person'></td>
-
-    
-
+    <td> <input type='text' name='e_location' value='$e_location' placeholder='Enter a location'></td>
 <tr>
-    <td>Upload Event Photo For Location (JPG, GIF, PNG or TIF File only):
-    <td> <input type='file' name='$eventLocationPic' >$eventLocationPic</td></tr>
+    <td>Event Place</td>
+    <td><input type='text' name='e_place' value='$e_place' placeholder='Online or In-Person'></td>
+<tr>
+    <td>Upload Event Photo For Location
+    <td> <input type='file' name='places' >$places_Pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
     <tr><td></td>
     <td><br></td>
-
 <tr>
     <td>Event Price</td>
     <td>
-        <label>Free </label><input type='radio' name='eventPrice' value='Free'>
-        <label>$5 </label><input type='radio' name='eventPrice'   value='$5'>
-        <label>$10 </label><input type='radio' name='eventPrice'  value='$10'>
-        <label>$15 </label><input type='radio' name='eventPrice'  value='$15'>
-        <label>$20 </label><input type='radio' name='eventPrice'  value='$20'>
+        <label><input type='radio' name='e_price' value='Free'>Free
+        <input type='radio' name='e_price'   value='$5'>$5
+        <input type='radio' name='e_price'  value='$10'>$10
+        <input type='radio' name='e_price'  value='$15'>$15
+       <input type='radio' name='e_price'  value='$20'>$20</label>
     </td>
-
-
 <tr>
     <td>Event Category 
     <td>
-        <label> Science </label><input type='radio' name='eventCategory' value='Science'>
-        <label> Health </label><input type='radio' name='eventCategory' value='Health'>
-        <label> Entertainment </label><input type='radio' name='eventCategory'  value='Entertainment'>
-        <label> Sports </label><input type='radio' name='eventCategory' value='Sports'>
-        <label> Studies </label><input type='radio' name='eventCategory' value='Studies'>
-        <label> Seminar </label><input type='radio' name='eventCategory' value='Seminar'>
-        <label> Celebration </label><input type='radio' name='eventCategory' value='Celebration'>
-        <label> Environment </label><input type='radio' name='eventCategory' value='Environment'>
-        <label> Technology </label><input type='radio' name='eventCategory' value='Technology'>
-        <label> Technology </label><input type='radio' name='eventCategory' value='Religion'>
+        <label> Science </label><input type='radio' name='e_categoris' value='Science'>
+        <label> Health </label><input type='radio' name='e_categoris' value='Health'>
+        <label> Entertainment </label><input type='radio' name='e_categoris'  value='Entertainment'>
+        <label> Sports </label><input type='radio' name='e_categoris' value='Sports'>
+        <label> Studies </label><input type='radio' name='e_categoris' value='Studies'>
+        <label> Seminar </label><input type='radio' name='e_categoris' value='Seminar'>
+        <label> Celebration </label><input type='radio' name='e_categoris' value='Celebration'>
+        <label> Environment </label><input type='radio' name='e_categoris' value='Environment'>
+        <label> Technology </label><input type='radio' name='e_categoris' value='Technology'>
+        <label> Technology </label><input type='radio' name='e_categoris' value='Religion'>
+<tr><td>Event Overview</td>
+    <td><textarea name='e_desc' value='$e_desc' size='500' cols='40' rows='10' >$e_desc</textarea></td>
+<tr><td>Event Members</td>
+    <td><input type='number' name='e_members' value='$e_members'   size='12'></td>
+<tr><td>Event Max Members</td>
+    <td><input type='number' name='e_max_mem' value='$e_max_mem'   size='12'></td>
 
-
-
-<tr>
-    <td>Event Overview</td>
-    <td><textarea name='eventOverview' value='$eventOverview' size='500' cols='40' rows='10' >$eventOverview</textarea></td>
-
-<tr>
-    <td>Event Members</td>
-    <td><input type='number' name='eventNumber' value='$eventMaxNumber'   size='12'></td>
-   
-<tr>
-    <td>Event Max Members</td>
-    <td><input type='number' name='eventMaxNumber' value='$eventMaxNumber'   size='12'></td>
-
-<tr>
-    <td>Guest Speaker</td>
-    <td><input type='text' name='eventGuestSpeaker' value='$eventGuestSpeaker' size='30'></td>
-
-<tr>
-    <td>Guest Speaker Image</td>
-    <td><input type='text' name='eventGuestSpeakerImage' value='$eventGuestSpeakerImage' size='30'></td>
-
+<tr><td>Guest Speaker Image</td>
+    <td> <input type='file' name='guest' value='$guest_pic' >$guest_pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
+<tr><td>Guest Speaker</td>
+    <td><input type='text' name='guest_name' value='$guest_name' size='30'></td>
 <tr>
     <td>Guest Speaker Description</td>
-    <td><textarea name='eventGuestSpeakerDescription' value='$eventGuestSpeakerDescription' size='100' cols='40' rows='5' >$eventGuestSpeakerDescription</textarea></td>
+    <td><textarea name='guest_desc' value='$guest_desc' size='100' cols='40' rows='5' >$guest_desc</textarea></td>
 
-    <tr>
-    <td>Upload Event Photo For Header (JPG, GIF, PNG or TIF File only):
-    <td> <input type='file' name='imageHeader' >$imageHeader</td></tr>
-    <tr><td></td>
-    <td><br></td>
-
-<tr>
-    <td>Upload Event Photo Icon (JPG, GIF, PNG or TIF File only):
-    <td> <input type='file' name='image' >$image</td></tr>
-<tr><td></td>
-    <td><br></td>
+<tr><td>Upload Photo For Header
+    <td> <input type='file' name='header' >$header_pic<br>(JPG, GIF, PNG or TIF File only)</td></tr>
+    <tr><td></td>    <td><br></td>
+<tr><td>Upload Event Photo Icon
+    <td> <input type='file' name='icon' >$icon_pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
+<tr><td></td><td><br></td>
 </tr>";
         $max_entries = 4;
         for ($i = 0; $i < $max_entries; $i++) {
@@ -168,12 +365,8 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
              $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
              $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
       
-       echo"
-            <tr>
-                <td>Perk No " . ($i+1) . " </td>
-            </tr>
-            <tr>
-                <td>Perk Description</td>
+       echo" <tr><td>Perk No " . ($i+1) . " </td></tr>
+            <tr><td>Perk Description</td>
                 <td><input type='text' name='perk_desc[]' value='$Per_desc' size='50'></td>
             </tr>
             ";
@@ -186,10 +379,12 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
 
 $max_entry = 3;
 for ($i = 0; $i < $max_entry; $i++) {
-    $S_title = $_POST['S_title']; // Assuming S_des is an array of values
-    $_title = isset($S_title[$i]) ? $S_title[$i] : null;
+    $S_title = $_POST['S_title']; // Assuming S_des is an array of values 
     $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+
+    $_title = isset($S_title[$i]) ? $S_title[$i] : null;
     $_des = isset($S_des[$i]) ? $S_des[$i] : null;
+    $_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
     echo "
     <tr>
         <td>Event Pic No " . ($i+1) . "</td>
@@ -200,11 +395,11 @@ for ($i = 0; $i < $max_entry; $i++) {
     </tr>
     <tr>
         <td>Event Pic Description</td>
-        <td><input type='text' name='S_des[]' value='_des' size='50'></td>
+        <td><input type='text' name='S_des[]' value='$_des' size='50'></td>
     </tr>
     <tr>
         <td>Event Pic</td> 
-        <td> <input type='file' name='picture[]' value='Slide_pic' size='50'>Slide_pic</td>
+        <td> <input type='file' name='picture[]' value='$_pic' size='50'>$_pic</td>
        
     </tr>";
 }
@@ -221,108 +416,15 @@ for ($i = 0; $i < $max_entry; $i++) {
 
 </table></form></div>";
 
-/*echo"
-<form action='AddEvent.php' method='GET'>
-<input type='text' name='location' value='$location' placeholder='Enter a location' required></td>
-<button type='submit'>Show Map</button></form>";*/
-
-echo "Event name: ". $eventName;
 
 switch($task) {
-
-case "test": 
-    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-
-echo"<div class='club_right'><div class='club_Container'>
-    <div class='image_Container'>
-    <img class='club_Icon' src='$imageUrl$filename' alt=\"Avatar\">
-    </div>
-    <div class='information'>
-        <h1 ><a style='text-decoration:none; color:white;' href='./club_home_page.php'>$c_name</a></h1>
-        <p >$c_tag</p>
-    </div>
-    <div class='member_Counter'>
-        <h1 class='counter_Text'><i class='fas fa-user-friends'></i> Members: $c_members</h1>
-    </div>
-</div>   </div></div>
-<section>
-<div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
-    <div class='imageHeader'>
-        <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$filename' alt='avatar'>
-    </div>
-<div class='nametag'>
-<h1 style='color:$t_text;' >$c_name</h1>
-<p  style='color:$t_text;' > $c_tag</p>
-</div>
-<div class='buttonSection'>
-    <div >
-    <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-    <button class='joinButton'>Join Now</button></div>
-</div>      
-</div>
-<div class='clubInfo'  style='background-color:$des_color;'>
-<p  style='color: $des_text;' >$c_desc</p>
-</div> 
-<div class='listOfBenefitsGrid'>";
-
-    for ($i = 0; $i < $max_entries; $i++) {
-        // Check if the array values are set, otherwise set them to null
-        $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-        $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
-        $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-
-echo"
-<div class='listOfBenefits'>
-    <div class='benefitsIcon'>
-        <img src='$imageUrl$Per_pic' alt='$Per_pic'>
-    </div>
-    <div class='listOfBenefitsDesciption'>
-        <h3>$Per_name $Per_pic</h3>
-        <p>$Per_desc</p>
-    </div>
-</div>  ";}
-
-echo"</div> </section>  
-
-<section> 
-<div class='slideshow-container'>";
-
-    for ($i = 0; $i < $max_entry; $i++) {
-        // Check if the array values are set, otherwise set them to null
-        $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-        $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-        $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
-echo"
-<div class='mySlides fade'>
-<div class='numbertext'> " . ($i+1) . "</div>
-<img src='$imageUrl$Slide_pic' style='width:100%'>
-<div class='text'>$Slide_title<br>$Slide_des</div>
-</div>
-";}
-echo"	
-<div class='prev' onclick='plusSlides(-1)'>❮</div>
-<div class='next'  onclick='plusSlides(1)'>❯</div>
-<br>
-<div class='do' style='text-align:center'>
-    <span class='dot' onclick='currentSlide(1)'></span> 
-    <span class='dot' onclick='currentSlide(2)'></span> 
-    <span class='dot' onclick='currentSlide(3)'></span> 
-</div>
-</div>
-<br>
-
-<script src='autoSlide.js'></script>
-<script src='clickSlide.js'></script>
-</section>
- ";  break;
-
 
  case "preview": 
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 echo"
  <div class='eventHeaderContainer'>
  <div class='eventImageHeaderContainer'>
-     <img src='./NewEventHomePagePictures/fsc-job-fair.jpg' alt=''>
+     <img src='$imageUrl$header_pic' alt=''>
      <div class='eventImageDescription'>
          <h1>Job Fair</h1>
      </div>
@@ -333,12 +435,12 @@ echo"
  <div class='eventDescriptionBlock1'>
      <div class='eventDescriptionBlock1Header'>
          <div class='eventIcon1'>
-             <img src='./NewEventHomePagePictures/fsc-office-of-student-activities.jpg' alt=''>
+             <img src='$imageUrl$icon_pic' alt=''>
             
          </div>
          <div class='eventTitle'>
-             <h1>$eventName</h1>
-             <h1>$eventOrganizationName</h1>
+             <h1>$e_name</h1>
+             <h1>$e_tag</h1>
          </div>
          <div class='eventDatePosted'>
              <h2>12:51 PM May, 2023 </h2>
@@ -357,10 +459,11 @@ echo"
             // Check if the array values are set, otherwise set them to null
             $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
             $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+            $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
             echo"
             <div class='mySlides fade'>
             <div class='numbertext'> " . ($i+1) . "</div>
-            <img src='./NewEventHomePagePictures/fsc-job-fair-event.jpg' style='width:100%'>
+            <img src='$imageUrl$Slide_pic' style='width:100%'>
             <div class='text'>$Slide_title<br>$Slide_des</div>
             </div>
             ";}
@@ -386,17 +489,17 @@ echo"
 
      <div class='eventDecriptionBlock1MisDetails'>
          <div class='eventTime'>
-             <p><span class='dateTime'>Date:</span> $eventDate</p>
-             <p><span class='dateTime'>Time:</span> $eventTime</p>
+             <p><span class='dateTime'>Date:</span> $e_date</p>
+             <p><span class='dateTime'>Time:</span> $e_time</p>
          </div>
          <div class='eventMembers' style='text-align: center;'>
              <h1>Members</h1>
              <div>
-                 <button>$eventNumber/$eventMaxNumber</button>
+                 <button>$e_members/$e_max_mem</button>
              </div>
          </div>
          <div class='joinSection'> 
-             <p>$eventPrice</p>
+             <p>$e_price</p>
              <button class='joinButton'>Join</button>
          </div>
      </div>
@@ -405,13 +508,12 @@ echo"
  </div>
  <div class='eventDescriptionBlock2'>
      <h1>Location</h1>
-     <img style='margin-bottom:20px;'src='./NewEventHomePagePictures/fsc-campus-center.jpg' alt=''>
+     <img style='margin-bottom:20px;'src='$imageUrl$places_Pic' alt=''>
      <!--<img src='$map_url' alt='Map'>
-     <p><br> fsdf $map_url </p>-->
      <iframe width='100%' height='400' frameborder='0'
       style='border:0' src='$mapsUrl' allowfullscreen></iframe>
      <h2>Campus Center Ballroom</h2>
-     <h2>$eventLocation</h2>
+     <h2>$e_place</h2>
 
      <div class='eventPerks'>
      <h1>Perks</h1>";
@@ -426,10 +528,10 @@ echo"
      <h1 style='margin-top: 40px; margin-bottom: 0px;'>Guest Speakers</h1>
      <div class='specialGuestsContainer'>
          <div class='guestIconContainter'>
-             <img src='./NewEventHomePagePictures/kim-jong-un.jpeg' alt=''>
+             <img src='$imageUrl$guest_pic' alt=''>
              <div class='guestSpeakerDescription'>
-                 <h2>$eventGuestSpeaker</h2>
-                 <p>$eventGuestSpeakerDescription</p>
+                 <h2>$guest_name</h2>
+                 <p>$guest_desc</p>
              </div>
          </div>
          
@@ -443,23 +545,76 @@ echo"
              </div>
          </div>
 
-
-
-
      </div>
  </div>
 </div>
 <div class='bottomEventContainer'>
  <div class='eventOverviewDescription'>
      <h1>Event Overview</h1>
-     <p>$eventOverview
-     </p>
+     <p>$e_desc</p>
  </div>
 </div>
 
 ";  break;
 
+case "Finish": 	    
+    include('Supabase_connect.php');
+    //echo "$message";
+    $query = 'INSERT INTO "event_page" ( "e_name", "e_tag", "e_desc", "e_pic", 
+    "e_date", "e_time", "e_location", "e_place","place_pic","header_pic","icon_pic", "e_price", "e_categoris","e_max_mem","e_members","status") 
+    VALUES (\''.$e_name.'\',\''.$e_tag.'\',\''.$e_desc.'\', \''.$e_pic.'\', \''.$e_date.'\',
+     \''.$e_time.'\', \''.$e_location.'\', \''.$e_place.'\', \''.$place_pic.'\', \''.$header_pic.'\',
+      \''.$icon_pic.'\', \''.$e_price.'\', \''.$e_categoris.'\', \''.$e_max_mem.'\', \''.$e_members.'\', 1)
+     RETURNING "event_id";';
+    $result = pg_query($conn, $query);
+    if ($result) {
+        $event_id = pg_fetch_result($result, 0, 0);
+        echo "<font color='green'> $event_id Your NEW Event Created.</font>\n";
 
+
+        $query4 ='INSERT INTO "event_guest" ("e_guest_desc","e_guest_name","e_guest_pic","event_id", "color") 
+        VALUES (\''.$guest_desc.'\',\''.$guest_name.'\',\''.$guest_pic.'\', \''.$event_id.'\', NULL) 
+        RETURNING "e_perk_id";';
+         $result4 = pg_query($conn, $query4);
+         if ($result4) {
+            $e_guest_id = pg_fetch_result($result4, 0, 0);
+             echo "<font color='green'>$e_guest_id Your NEW Guest Created.</font>\n";}
+             else { echo"Unable to add guest\n" . pg_last_error($conn);}
+
+
+        for ($i = 0; $i < $max_entries; $i++) {
+        // Check if the array values are set, otherwise set them to null
+        $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+    $query2 ='INSERT INTO "event_perk" ("e_p_desc","event_id", "color") 
+    VALUES (\''.$Per_desc.'\', \''.$event_id.'\', NULL) 
+    RETURNING "e_perk_id";';
+     $result2 = pg_query($conn, $query2);
+     if ($result2) {
+        $e_perk_id = pg_fetch_result($result2, 0, 0);
+         echo "<font color='green'>$e_perk_id Your NEW perk Created.</font>\n";}
+         else { echo"Unable to add perk\n" . pg_last_error($conn);}}
+
+
+    for ($i = 0; $i < $max_entry; $i++) {
+        // Check if the array values are set, otherwise set them to null
+        $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+        $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+        $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+
+    $query3 ='INSERT INTO "event_slide" ("E_S_title", "E_S_des", "E_S_pic", "event_id")
+    VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$event_id.'\')
+     RETURNING "E_slide_id";';
+     $result3 = pg_query($conn, $query3);
+     if ($result3) {
+        $E_slide_id = pg_fetch_result($result3, 0, 0);
+         echo "<font color='green'>$E_slide_id Your NEW slideshow Created.</font>\n";}
+         else { echo"Unable to add slideshow\n" . pg_last_error($conn);}}
+    
+    }else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
+    
+    echo"ooooook"; break;
+
+case "First": break;
 
 
 

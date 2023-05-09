@@ -368,67 +368,6 @@ echo " <section>
         <script src='commment.js'></script>
            </section>";
 
-            switch($task) {
-
-                case "Submit_Review":  include('Supabase_connect.php');
-                                echo"<input type='hidden' name='club_id' value='$club_id'> ";
-                                $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name")
-                                VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$com_name.'\')
-                                RETURNING "com_id";';
-                                $result5 = pg_query($conn, $query5);
-                                if ($result5) {
-                                    $com_id = pg_fetch_result($result5, 0, 0);
-                                    echo "<font color='green'>$com_id Your Review Added.</font>\n";}
-                                    else { echo"Unable to add Review\n" . pg_last_error($conn);}
-                                
-                                echo"ooooook $club_id"; break;
-        case "join":
-                                echo" ff";
-                                include('Supabase_connect.php');
-                                // Update database with new user ID
-                                $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\') WHERE "club_id" = \'' . $club_id . '\'';
-                                $result9 = pg_query($conn, $query9);
-                              //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-                        
-                                // Check if query was successful
-                                if ($result9) {
-                                  echo "Joined successfully!";
-                                } else {
-                                  echo "Error joining club: " . pg_last_error($conn);
-                                }
-                                echo"ooooook $club_id"; break;
-
-                case "Submit_join":     
-                    echo "ssssssssssss";  
-                     include('Supabase_connect.php');
-                
-                
-                // Check if user is already joined
-                $query8 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" = \'' . $club_id . '\'';
-                $result8 = pg_query($conn, $query8);
-                $row = pg_fetch_row($result8);
-                $joined_users = explode(',', $row[0]);
-                
-                if (in_array($user_name, $joined_users)) {
-                    // User is already joined, remove from list
-                    $joined_users = array_diff($joined_users, [$user_name]);
-                    $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-                } else {
-                    // User is not joined, add to list
-                    array_push($joined_users, $user_id);
-                    $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-                }
-                
-                $result9 = pg_query($conn, $query9);
-                
-                if ($result9) {
-                    echo "Success";
-                } else {
-                    echo "Error [" . $query9 . "] " . pg_last_error($conn);
-                }  
-                echo"ooooook $club_id"; break;
-    }
-
 /*
     if ($result15 && pg_num_rows($result15) > 0) {
         $row5 = pg_fetch_assoc($result15);
@@ -459,8 +398,7 @@ function showReplyForm(com_id) {
     // Get the reply form element based on the comment ID
     //var replyForm = $('#reply-form-' + com_id);
     var replyForm = $('#reply-section-' + com_id);
-    //replyForm.toggle();
-    replyForm.show();
+    replyForm.toggle();
 
 }
 	</script>
