@@ -208,6 +208,7 @@ echo"
             echo"</div> </section> <section> 
   
             <div class='studentMembers'>";
+            
             foreach ($membersArra as $member) {
                 //echo "$$member";
                 $member = trim($member); // Remove any extra spaces
