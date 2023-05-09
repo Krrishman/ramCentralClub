@@ -181,8 +181,9 @@ echo"
                 if (!$result20) {echo "Query Error [$query20] " . pg_last_error($conn);}
 
 
-                if (pg_num_rows($result20) > 0) {
-                    $row = pg_fetch_assoc($result20);
+              //  if (pg_num_rows($result20) > 0) {
+                //    $row = pg_fetch_assoc($result20);
+                while ($row = pg_fetch_assoc($result20)) {
                     $User_id = $row['User_id'];
                     $F_Name = $row['F_Name'];
                     $L_Name = $row['L_Name'];
