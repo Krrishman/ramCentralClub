@@ -166,8 +166,8 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
      </div>
      <div class='eventDescriptionBlock2'>
          <h1>Location</h1>
-         <img src='$imageUrl$place_Pic' style='width:100%'>
-         <!--<img style='margin-bottom:20px;' src='$imageUrl$place_Pic' alt='vxvdxx'>
+         <!--<img src='$imageUrl$place_Pic' style='width:100%'>
+         <img style='margin-bottom:20px;' src='$imageUrl$place_Pic' alt='vxvdxx'>
          <img src='$map_url' alt='Map'>
          <p><br> fsdf $map_url </p>-->
          <iframe width='100%' height='400' frameborder='0'
