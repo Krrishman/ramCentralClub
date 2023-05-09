@@ -209,7 +209,7 @@ echo"
   
             <div class='studentMembers'>";
             foreach ($membersArra as $member) {
-                echo "$$member";
+                //echo "$$member";
                 $member = trim($member); // Remove any extra spaces
 
                 $query22 = 'SELECT * FROM "User" WHERE "User_Name" =\'' . $member . '\';';
