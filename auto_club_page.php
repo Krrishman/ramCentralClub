@@ -169,8 +169,8 @@ echo"
                 </div>
             </div>  ";}
 
-            echo"</div> </section>   <section> 
-
+            echo"</div> </section>   <section> ";
+/*
             <div class='staffMembers'>";
 
             foreach ($membersArra as $member) {
@@ -206,9 +206,9 @@ echo"
           
 
             echo"</div> </section> <section> 
-  
-            <div class='studentMembers'>";
-            
+*/  
+        echo " <div class='studentMembers'>";
+
             foreach ($membersArra as $member) {
                 //echo "$$member";
                 $member = trim($member); // Remove any extra spaces
