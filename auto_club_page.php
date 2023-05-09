@@ -388,10 +388,11 @@ echo " <section>
 if ($result15 && pg_num_rows($result15) > 0) {
     $row5 = pg_fetch_assoc($result15);
 $membersString = $row5['joined_users'];
+$cccc = pg_fetch_result($result15, 0, 0);
 //var_dump($membersString);
 //$membersArray = json_decode($membersString, true);
 
-echo "<h3>Members: $membersString  cc  $membersArray ss $row5 dd </h3>";
+echo "<h3>Members: $membersString  cc  $membersArray ss $row5 dd $cccc </h3>";
 foreach ($membersArray as $member) {
     echo " d $member s";
 }
@@ -401,6 +402,7 @@ foreach ($membersString as $member) {
 foreach ($row5 as $member) {
     echo " d $member s";
 }
+
 }
 
 
