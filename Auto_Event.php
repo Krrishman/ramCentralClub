@@ -27,6 +27,43 @@
 
 if (isset($_POST['event_id']))					$event_id = $_POST['event_id'];		
 if (isset($_GET['r']))					{$event_id = $_GET['r'];}
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+    if (isset($_POST['join'])) {
+        echo" ";
+        include('Supabase_connect.php');
+        // Update database with new user ID
+        $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "e_members" = "e_members"+ 1 WHERE "club_id" = \'' . $club_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "Joined successfully!";
+        } else {
+          echo "Error joining club: " . pg_last_error($conn);
+        }
+      }
+
+      if (isset($_POST['joined'])) {
+        echo" ";
+        include('Supabase_connect.php');
+        // Update database with new user ID
+        $query9 = 'UPDATE "event_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "e_members" = "e_members"- 1 WHERE "club_id" = \'' . $club_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "UnJoined successfully!";
+        } else {
+          echo "Error UnJoined club: " . pg_last_error($conn);
+        }
+      }
+
+}
+
 
 
 $query = 'SELECT * FROM "event_page" WHERE "event_id" =\'' . $event_id . '\';';
@@ -75,6 +112,20 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
         $joined_users = $row['joined_users'];
         $imageUrl = 'https://drive.google.com/uc?export=view&id=';
     
+
+            
+        $membersStrin = $joined_users;
+        $membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
+        $membersArra = explode(",", $membersStrin);
+     // Explode the string into an array using comma as the separator
+        $userJoined = in_array($user_name, $membersArra);
+        if ($userJoined) {
+            echo "<p>Already joined.</p>";
+            $xx="name='joined' value='Joined' >Joined";
+        } else {echo "<p>didnot joined.</p>";
+            $xx="name='join' value='Join' >Join";
+            
+            }
     
     echo"
      <div class='eventHeaderContainer'>
@@ -158,7 +209,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
              </div>
              <div class='joinSection'> 
                  <p>$e_price</p>
-                 <button class='joinButton'>Join</button>
+                 <button class='joinButton' $xx</button>
              </div>
          </div>
     
