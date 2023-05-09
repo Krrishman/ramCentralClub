@@ -214,12 +214,12 @@ section{
 .stName p{
     text-align: center;
     font-weight: bold;
+    width: 100%;
     
 }
 .stName{
     display: flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
     
 }
