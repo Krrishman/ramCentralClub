@@ -65,6 +65,9 @@ while ($row = pg_fetch_assoc($result)) {
     $joined_users = $row['joined_users'];
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
+    $mo = date("F", strtotime($e_date));
+    $da = date('d', strtotime($e_date));
+    $day = date("l", strtotime($e_date));
 echo"
     <div class='EventContainerr'>
         <div class='coverr'>
@@ -72,14 +75,15 @@ echo"
         </div>
         <div class='eventDescriptionr'>
             <div  class='calr'>
-                <p>$e_date</p>
-                <h1>10</h1>
-                <p> $e_time</p>
+                <p>$mo</p>
+                <h1>$da</h1>
+                <p> $day</p>
             </div>
 
             <div class='textr'>
                 <h1 class='Titler'><a style='text-decoration:none; color: black;' href='./Auto_Event.php?r=$event_id'>$e_name</a></h1>
                 <p class='Locationr'><i class='fas fa-location-dot'></i> $e_place</p>
+                <p class='Locationr'><i class='fas fa-location-dot'></i> $e_time</p>
             </div>               
          </div>  
     </div>";
