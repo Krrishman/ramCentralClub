@@ -391,13 +391,14 @@ $membersString = $row5['joined_users'];
 //var_dump($membersString);
 //$membersArray = json_decode($membersString, true);
 
-echo "<h3>Members: $membersString  cc  $membersArray ss $row5 dd $result15</h3>";
+echo "<h3>Members: $membersString  cc  $membersArray ss $row5 dd </h3>";
 foreach ($membersArray as $member) {
     echo " d $member s";
 }
 foreach ($sArray as $member) {
     echo " d $member s";
 }
+
 }
 
 
