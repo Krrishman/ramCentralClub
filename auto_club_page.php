@@ -384,6 +384,13 @@ echo " <section>
         echo "No members found.";
     }
 */
+while ($row = pg_fetch_assoc($result)) {
+    $joined_users = $row['joined_users'];
+    echo " f $joined_users f";
+    foreach ($$joined_users as $member) {
+        echo " d $member s";
+
+}}
 
 if ($result15 && pg_num_rows($result15) > 0) {
     $row5 = pg_fetch_assoc($result15);
