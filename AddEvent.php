@@ -140,13 +140,13 @@ if(isset($_FILES['image'])) {
 
     if(isset($_FILES['header'])) {
         //if(isset($_POST['submit'])){
-          try {
+          try {/*
               $valid_types = ['header/jpeg', 'header/jpg', 'header/gif', 'header/png', 'header/tif', 'header/tiff'];
               $file_type = $_FILES['header']['type'];
               if (!in_array($file_type, $valid_types)) {
                   throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
               }
-              
+              */
               $curl = curl_init();
               curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
               curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
