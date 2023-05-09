@@ -139,7 +139,7 @@ $membersStrin = $joined_users;
 $membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
 $membersArra = explode(",", $membersStrin);
      // Explode the string into an array using comma as the separator
-        $userJoined = in_array($user_name, $membersArray);
+        $userJoined = in_array($user_name, $membersArra);
         if ($userJoined) {
             echo "<p>Already joined.</p>";
             $xx="name='joined' value='Joined' >Joined";
