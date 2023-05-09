@@ -114,12 +114,13 @@ $result15 = pg_query($conn, $query15);
         $t_color1 = $row['t_color1'];
         $t_color2 = $row['t_color2'];
         $t_text = $row['t_text'];
+        $joined_users = $row['joined_users'];
         $des_color = $row['des_color'];
         $des_text = $row['$des_text'];
         $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
 echo"
-
+kk $joined_users ss
     <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);'>
                 <div class='imageHeader'>
                     <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt=\"Avatar\" alt=''>
