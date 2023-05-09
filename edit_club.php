@@ -86,7 +86,7 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // el
 
 $Slide_titles = isset($_POST['S_title']) ? $_POST['S_title'] : array();
 $Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
-
+$Slide_pics = isset($_POST['S_pic']) ? $_POST['S_pic'] : array();
 
 
 
@@ -95,14 +95,16 @@ $Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
 
 switch($task) {
 
-    case "preview": 
+    case "preview":   
+        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
         echo"   
+      
 
  <section>
         <input type='hidden' name='club_id' value='$club_id'> 
         <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
                 <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src=\"./upload/club_page/$file_name\"  alt=\"Avatar\" alt=''>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$filename'  alt='xzc'>
                 </div>
             <div class='nametag'>
             <h1 style='color:$t_text;' >$c_name</h1>
@@ -125,6 +127,7 @@ switch($task) {
                 for ($i = 0; $i < $max_entries; $i++) {
                     $Per_name = $perk_names[$i];
                     $Per_desc = $perk_descs[$i];
+
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
             
            echo"
@@ -148,12 +151,13 @@ switch($task) {
                 for ($i = 0; $i < $max_entry; $i++) {
                     $Slide_title = $Slide_titles[$i];
                     $Slide_des = $Slide_dess[$i];
+                    $Slide_pic = $Slide_pics[$i];
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
            echo"
 
             <div class='mySlides fade'>
             <div class='numbertext'> " . ($i+1) . "</div>
-            <img src=\"./upload/club_page/$Slide_pic\" style='width:100%' alt='Per_pic'>
+            <img src='$imageUrl$Slide_pic' style='width:100%' alt='Per_pic'>
             <div class='text'>$Slide_title<br>$Slide_des</div>
             </div>
             ";}
