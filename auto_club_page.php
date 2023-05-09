@@ -384,20 +384,19 @@ echo " <section>
         echo "No members found.";
     }
 */
-if ($result15){
+
 if ($result15 && pg_num_rows($result15) > 0) {
     $row5 = pg_fetch_assoc($result15);
 $membersString = $row5['joined_users'];
-$membersArray = json_decode($membersString, true);
+//var_dump($membersString);
+//$membersArray = json_decode($membersString, true);
 
 echo "<h3>Members: $membersString  cc  $membersArray</h3>";
 foreach ($membersArray as $member) {
     echo " d $member s";
     if (!empty($member)) { echo " f $member d";}
 }
-} else {    echo "No members found.";}}else {
-    echo "Error retrieving members: " . pg_last_error($conn);
-}
+} else {    echo "No members found.";}
 
 
         include('footer.php');
