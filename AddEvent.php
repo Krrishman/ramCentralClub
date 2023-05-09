@@ -177,7 +177,7 @@ if(isset($_FILES['image'])) {
         if(isset($_FILES['guest'])) {
             //if(isset($_POST['submit'])){
               try {
-                  $valid_types = ['guest/jpeg', 'guest/jpg', 'guest/gif', 'guest/png', 'guest/tif', 'guest/tiff'];
+                  $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
                   $file_type = $_FILES['guest']['type'];
                   if (!in_array($file_type, $valid_types)) {
                       throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
