@@ -59,7 +59,7 @@ while ($row = pg_fetch_assoc($result)) {
     $e_price = $row['e_price'];
     $e_categoris = $row['e_categoris'];
     $e_max_mem = $row['e_max_mem'];
-    $e_place = $row['e_place'];
+    $e_places = $row['e_places'];
     $e_members = $row['e_members'];
     $made_Date = $row['made_date'];
     $joined_users = $row['joined_users'];
@@ -82,7 +82,7 @@ echo"
 
             <div class='textr'>
                 <h1 class='Titler'><a style='text-decoration:none; color: black;' href='./Auto_Event.php?r=$event_id'>$e_name</a></h1>
-                <p class='Locationr'><i class='fas fa-location-dot'></i> $e_place</p>
+                <p class='Locationr'><i class='fas fa-location-dot'></i> $e_places</p>
                 <p class='Locationr'><i class='fas fa-location-dot'></i> $e_time</p>
             </div>               
          </div>  
