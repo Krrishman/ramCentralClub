@@ -21,7 +21,7 @@
         $account_balance = $row['account_balance'];
         $date = $row['date'];
     }
-    
+    ?>
 
 
 <!DOCTYPE html>
