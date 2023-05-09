@@ -51,6 +51,8 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
     $result5 = pg_query($conn, $query5);
     if (!$result5) {echo "Query Error [$query5] " . pg_last_error($conn);}
 
+    echo"
+     <div class='eventHeader'>";
 
     while ($row = pg_fetch_assoc($result)) {
         $event_id = $row['event_id'];
@@ -230,7 +232,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
 
 
     }
-    echo" <br><br><br>";
+    echo"</div> <br><br><br>";
 
     include('footer.php');
 ?>
