@@ -21,8 +21,6 @@ if (isset($_POST['location'])) {
     // Generate the map URL with the location and API key
     $mapsUrl = "https://www.google.com/maps?q=" . urlencode($location) . "&output=embed";
     $map_url = "https://maps.googleapis.com/maps/api/staticmap?center={$location}&zoom=14&size=400x300&markers=color:red%7C{$location}&key={$api_key}";
-  ?>
-  <?php
     /*<h2>Map for: <?php echo $_POST['location']; ?></h2>
     <img src="<?php echo $map_url; ?>" alt="Map"> */
 
@@ -44,7 +42,6 @@ if(isset($_POST['e_date']))         $e_date = trim($_POST['e_date']);         el
 if(isset($_POST['e_time']))         $e_time = trim($_POST['e_time']);         else $e_time = NULL;
 if(isset($_POST['e_location']))     $e_location = trim($_POST['e_location']); else $e_location = NULL;
 if(isset($_POST['e_places']))       $e_places = trim($_POST['e_places']);     else $e_places = NULL;
-if(isset($_POST['places_Pic']))     $places_Pic = trim($_POST['places_Pic']); else $places_Pic = NULL;
 if(isset($_POST['e_price']))        $e_price = trim($_POST['e_price']);       else $e_price = NULL;
 if(isset($_POST['e_categoris']))    $e_categoris = trim($_POST['e_categoris']); else $e_categoris = NULL;
 if(isset($_POST['e_max_mem']))      $e_max_mem = trim($_POST['e_max_mem']);     else $e_max_mem = NULL;
@@ -54,12 +51,12 @@ if(isset($_POST['guest_name']))     $guest_name = trim($_POST['guest_name']);   
 if(isset($_POST['guest_desc']))     $guest_desc = trim($_POST['guest_desc']);   else $guest_desc = NULL;
 if(isset($_POST['guest_pic']))      $guest_pic = trim($_POST['guest_pic']);     else $guest_pic = NULL;
 
-
+if(isset($_POST['place_Pic']))      $place_Pic = trim($_POST['place_Pic']);   else $places_Pic = NULL;
 if(isset($_POST['header_pic']))     $header_pic = trim($_POST['header_pic']);   else $header_pic = NULL;
 if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       else $icon_pic = NULL;
 
 
-if(isset($_POST['task'])) $task = $_POST['task']; else $task = NULL;
+if(isset($_POST['task'])) $task = $_POST['task'];   else $task = 'full';
 
 
 require_once 'drive/vendor/autoload.php';
@@ -201,7 +198,7 @@ if(isset($_FILES['image'])) {
               } 
         }
 
-            if(isset($_FILES['places'])) {
+            if(isset($_FILES['place'])) {
                 //if(isset($_POST['submit'])){
                   try {
                       $curl = curl_init();
@@ -224,8 +221,8 @@ if(isset($_FILES['image'])) {
                           'uploadType' => 'multipart',
                           'fields' => 'id'
                       ));
-                      $places_Pic = $file->id;
-                      $message = "File uploaded successfully. $places_Pic";
+                      $place_Pic = $file->id;
+                      $message = "File uploaded successfully. $place_Pic";
                   } catch(Exception $e) {
                       $message = "Error Message: ".$e->getMessage();
                   } 
@@ -297,7 +294,7 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
     <td><input type='text' name='e_places' value='$e_places' placeholder='Online or In-Person'></td>
 <tr>
     <td>Upload Event Photo For Location
-    <td> <input type='file' name='places' >$places_Pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
+    <td> <input type='file' name='place' >$place_Pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
     <tr><td></td>
     <td><br></td>
 <tr>
@@ -543,7 +540,8 @@ echo"
 
 ";  break;
 
-case "Finish": 	    
+case "Finish":
+    echo"good";
     include('Supabase_connect.php');
     //echo "$message";
     $query = 'INSERT INTO "event_page" ( "e_name", "e_tag", "e_desc", "e_pic", 
