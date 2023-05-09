@@ -240,6 +240,7 @@ switch($task) {
 
                                     else { echo"Deposit Failed" . pg_last_error($conn);}
                                     header("Location: bank.php");
+                                    exit();
 						break;
 	case "withdraw":
 						echo "    <form action='update.php' method='post'>
