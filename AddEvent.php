@@ -508,8 +508,9 @@ echo"
  </div>
  <div class='eventDescriptionBlock2'>
      <h1>Location</h1>
-     <img style='margin-bottom:20px;'src='$imageUrl$places_Pic' alt=''>
+     <img style='margin-bottom:20px;'src='$imageUrl$places_Pic' alt='dfsdfs'>
      <!--<img src='$map_url' alt='Map'>
+     <p><br> fsdf $map_url </p>-->
      <iframe width='100%' height='400' frameborder='0'
       style='border:0' src='$mapsUrl' allowfullscreen></iframe>
      <h2>Campus Center Ballroom</h2>
