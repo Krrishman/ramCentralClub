@@ -9,18 +9,7 @@
 	include('menubar.php');
     include('Supabase_connect.php');
 
-    $query0 = 'SELECT * FROM "bank" where "user_name"= \'rony\';';
-    $result0 = pg_query($conn, $query0);
-    if (!$result0) { echo "Query Error [$query0] " . pg_last_error($conn);}
-    if (pg_num_rows($result) > 0) {
-        $row = pg_fetch_assoc($result);
-        $account_number = $row['account_number'];
-        $user_name = $row['user_name'];
-        $pass_code = $row['pass_code'];
-        $account_type = $row['account_type'];
-        $account_balance = $row['account_balance'];
-        $date = $row['date'];
-    }
+    
 ?>
 
 
