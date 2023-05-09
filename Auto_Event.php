@@ -88,7 +88,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
                  <h1>$e_tag</h1>
              </div>
              <div class='eventDatePosted'>
-                 <h2>12:51 PM May, 2023 </h2>
+                 <h2>$made_Date </h2>
                  <h1>
                      <i class='far fa-heart'></i> 
                      
@@ -161,7 +161,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
          <p><br> fsdf $map_url </p>-->
          <iframe width='100%' height='400' frameborder='0'
           style='border:0' src='$e_location' allowfullscreen></iframe>
-         <h2>$e_place</h2>
+         <h2>$e_places</h2>
     
          <div class='eventPerks'>
          <h1>Perks</h1>";
