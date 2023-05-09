@@ -328,7 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Failed to insert image metadata into database: " . pg_last_error();
       }
     } else {
-      echo "Failed to upload image file to Supabase storage: " . $response;
+      echo "Failed to upload Supabase storage: " . $response;
     }
 
 
