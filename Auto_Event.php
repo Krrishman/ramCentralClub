@@ -141,7 +141,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
                 <script src='clickSlide.js'></script>
                 </section>
                  "; 
-             
+                 $imageUrl = 'https://drive.google.com/uc?export=view&id=';
          echo"</div>
     
     
@@ -233,12 +233,14 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
 
     }
     echo"</div> <br><br><br>";
-
-    include('footer.php');
 ?>
-
 </section>
 
 </body>
+
+<?php
+
+include('footer.php');
+?>
 
 </html>
