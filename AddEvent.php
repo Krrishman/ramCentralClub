@@ -306,7 +306,7 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
     <td><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
 <tr>
     <td>Event Location</td>
-    <td> <input type='text' name='e_location' value='$e_location' placeholder='Enter a location'></td>
+    <td> <input type='text' name='location' value='$e_location' placeholder='Enter a location'></td>
 <tr>
     <td>Event Place</td>
     <td><input type='text' name='e_place' value='$e_place' placeholder='Online or In-Person'></td>
@@ -563,7 +563,7 @@ case "Finish":
     $query = 'INSERT INTO "event_page" ( "e_name", "e_tag", "e_desc", "e_pic", 
     "e_date", "e_time", "e_location", "e_place","place_pic","header_pic","icon_pic", "e_price", "e_categoris","e_max_mem","e_members","status") 
     VALUES (\''.$e_name.'\',\''.$e_tag.'\',\''.$e_desc.'\', \''.$e_pic.'\', \''.$e_date.'\',
-     \''.$e_time.'\', \''.$e_location.'\', \''.$e_place.'\', \''.$place_pic.'\', \''.$header_pic.'\',
+     \''.$e_time.'\', \''.$mapsUrl.'\', \''.$e_place.'\', \''.$place_pic.'\', \''.$header_pic.'\',
       \''.$icon_pic.'\', \''.$e_price.'\', \''.$e_categoris.'\', \''.$e_max_mem.'\', \''.$e_members.'\', 1)
      RETURNING "event_id";';
     $result = pg_query($conn, $query);
