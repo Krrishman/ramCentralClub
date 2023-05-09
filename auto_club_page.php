@@ -119,8 +119,23 @@ $result15 = pg_query($conn, $query15);
         $des_text = $row['$des_text'];
         $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
+$membersStrin = $joined_users;
+
+// Remove the curly braces {}
+$membersStrin = trim($membersStrin, "{}");
+
+// Explode the string into an array using comma as the separator
+$membersArra = explode(",", $membersStrin);
+
+echo "<h3>Members:</h3>";
+foreach ($membersArra as $member) {
+    $member = trim($member); // Remove any extra spaces
+    echo "$member<br>";
+}
 echo"
 kk $joined_users ss
+
+
     <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);'>
                 <div class='imageHeader'>
                     <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt=\"Avatar\" alt=''>
