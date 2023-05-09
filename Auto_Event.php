@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="NewEventHomePage.css">
@@ -9,6 +10,12 @@
 
 
 <?php
+
+	echo"<p style=' width:100%; padding: 30px;'></p>";
+
+    include('session.php');
+	include('menubar.php');
+    include('Supabase_connect.php');
 
 if (isset($_POST['event_id']))					$event_id = $_POST['event_id'];		
 if (isset($_GET['r']))					{$event_id = $_GET['r'];}
