@@ -406,6 +406,33 @@ foreach ($row5 as $member) {
 }
 
 
+
+if ($result15 && pg_num_rows($result15) > 0) {
+    $row1 = pg_fetch_row($result15);
+    $membersString1 = $row1[0];
+
+    // Debugging: Check the value of $membersString
+    var_dump($membersString1);
+
+    // Remove the outer brackets []
+    $membersString1 = substr($membersString1, 1, -1);
+
+    // Explode the string into an array using comma as the separator
+    $membersArray1 = explode(",", $membersString1);
+
+    echo "<h3>Members:</h3>";
+    echo "<ul>";
+    foreach ($membersArray1 as $member) {
+        $member = trim($member, "\"' "); // Remove any extra quotes or spaces around each member
+        if (!empty($member)) { // Skip empty strings
+            echo "<li>$member</li>";
+        }
+    }
+    echo "</ul>";
+} else {
+    echo "No members found.";
+}
+
         include('footer.php');
 ?>
 
