@@ -43,7 +43,7 @@ if(isset($_POST['e_pic']))          $e_pic = trim($_POST['e_pic']);           el
 if(isset($_POST['e_date']))         $e_date = trim($_POST['e_date']);         else $e_date = NULL;
 if(isset($_POST['e_time']))         $e_time = trim($_POST['e_time']);         else $e_time = NULL;
 if(isset($_POST['e_location']))     $e_location = trim($_POST['e_location']); else $e_location = NULL;
-if(isset($_POST['e_place']))        $e_place = trim($_POST['e_place']);       else $e_place = NULL;
+if(isset($_POST['e_places']))       $e_places = trim($_POST['e_places']);     else $e_places = NULL;
 if(isset($_POST['places_Pic']))     $places_Pic = trim($_POST['places_Pic']); else $places_Pic = NULL;
 if(isset($_POST['e_price']))        $e_price = trim($_POST['e_price']);       else $e_price = NULL;
 if(isset($_POST['e_categoris']))    $e_categoris = trim($_POST['e_categoris']); else $e_categoris = NULL;
@@ -309,7 +309,7 @@ echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post'
     <td> <input type='text' name='location' value='$e_location' placeholder='Enter a location'></td>
 <tr>
     <td>Event Place</td>
-    <td><input type='text' name='e_place' value='$e_place' placeholder='Online or In-Person'></td>
+    <td><input type='text' name='e_places' value='$e_places' placeholder='Online or In-Person'></td>
 <tr>
     <td>Upload Event Photo For Location
     <td> <input type='file' name='places' >$places_Pic <br>(JPG, GIF, PNG or TIF File only)</td></tr>
@@ -513,7 +513,7 @@ echo"
      <iframe width='100%' height='400' frameborder='0'
       style='border:0' src='$mapsUrl' allowfullscreen></iframe>
      <h2>Campus Center Ballroom</h2>
-     <h2>$e_place</h2>
+     <h2>$e_places</h2>
 
      <div class='eventPerks'>
      <h1>Perks</h1>";
@@ -561,9 +561,9 @@ case "Finish":
     include('Supabase_connect.php');
     //echo "$message";
     $query = 'INSERT INTO "event_page" ( "e_name", "e_tag", "e_desc", "e_pic", 
-    "e_date", "e_time", "e_location", "e_place","place_pic","header_pic","icon_pic", "e_price", "e_categoris","e_max_mem","e_members","status") 
+    "e_date", "e_time", "e_location", "e_places","place_pic","header_pic","icon_pic", "e_price", "e_categoris","e_max_mem","e_members","status") 
     VALUES (\''.$e_name.'\',\''.$e_tag.'\',\''.$e_desc.'\', \''.$e_pic.'\', \''.$e_date.'\',
-     \''.$e_time.'\', \''.$mapsUrl.'\', \''.$e_place.'\', \''.$place_pic.'\', \''.$header_pic.'\',
+     \''.$e_time.'\', \''.$mapsUrl.'\', \''.$e_places.'\', \''.$place_pic.'\', \''.$header_pic.'\',
       \''.$icon_pic.'\', \''.$e_price.'\', \''.$e_categoris.'\', \''.$e_max_mem.'\', \''.$e_members.'\', 1)
      RETURNING "event_id";';
     $result = pg_query($conn, $query);
