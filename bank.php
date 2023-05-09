@@ -76,6 +76,7 @@
 		<td ><a href='bank.php?r=transfer'><button style='background-color: #32CD32; display:inline-block; padding: 5px; border: 1px solid black;'>Transfer</button></a></td>
 		<td ><a href='bank.php?r=pay'><button style='background-color: #32CD32; margin: 1px 10px;display:inline-block; padding: 5px; border: 1px solid black;'>Pay</button></a></td>
 	</tr>
+    
 	</table $jj style='display:none;'>
     <form method='post' action='bank.php?j=$_id'>
 			<table class='deposit' id='deposit_$_id'>
