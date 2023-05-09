@@ -54,8 +54,8 @@ if(isset($_POST['e_location']))     $e_location = trim($_POST['e_location']); el
 if(isset($_POST['e_places']))       $e_places = trim($_POST['e_places']);     else $e_places = NULL;
 if(isset($_POST['e_price']))        $e_price = trim($_POST['e_price']);       else $e_price = NULL;
 if(isset($_POST['e_categoris']))    $e_categoris = trim($_POST['e_categoris']); else $e_categoris = NULL;
-if(isset($_POST['e_max_mem']))      $e_max_mem = trim($_POST['e_max_mem']);     else $e_max_mem = NULL;
-if(isset($_POST['e_members']))      $e_members = trim($_POST['e_members']);     else $e_members = NULL;
+if(isset($_POST['e_max_mem']))      $e_max_mem = trim($_POST['e_max_mem']);     else $e_max_mem = 0;
+if(isset($_POST['e_members']))      $e_members = trim($_POST['e_members']);     else $e_members = 0;
 
 if(isset($_POST['guest_name']))     $guest_name = trim($_POST['guest_name']);   else $guest_name = NULL;
 if(isset($_POST['guest_desc']))     $guest_desc = trim($_POST['guest_desc']);   else $guest_desc = NULL;
@@ -169,6 +169,71 @@ if(isset($_FILES['icon'])) {
         ));
         $icon_pic = $file->id;
         $message = "File uploaded successfully. $icon_pic";
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+        echo"$message";
+    }
+}
+
+
+if(isset($_FILES['place'])) {
+    try {
+        $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+        $file_type = $_FILES['place']['type'];
+        if (!in_array($file_type, $valid_types)) {
+            throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+        }
+        
+        $client = new Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $fileMetadata = new DriveFile(array(
+            'name' => $_FILES['place']['name'],
+            'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+        ));
+        $content = file_get_contents($_FILES['place']['tmp_name']);
+        $file = $driveService->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => $file_type,
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        $place_pic = $file->id;
+        $message = "File uploaded successfully. $place_pic";
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+        echo"$message";
+    }
+}
+
+if(isset($_FILES['guest'])) {
+    try {
+        $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+        $file_type = $_FILES['guest']['type'];
+        if (!in_array($file_type, $valid_types)) {
+            throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+        }
+        
+        $client = new Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $fileMetadata = new DriveFile(array(
+            'name' => $_FILES['guest']['name'],
+            'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+        ));
+        $content = file_get_contents($_FILES['guest']['tmp_name']);
+        $file = $driveService->files->create($fileMetadata, array(
+            'data' => $content,
+            'mimeType' => $file_type,
+            'uploadType' => 'multipart',
+            'fields' => 'id'
+        ));
+        $guest_pic = $file->id;
+        $message = "File uploaded successfully. $guest_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
         echo"$message";
