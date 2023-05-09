@@ -575,7 +575,7 @@ case "Finish":
 
         $query4 ='INSERT INTO "event_guest" ("e_guest_desc","e_guest_name","e_guest_pic","event_id", "color") 
         VALUES (\''.$guest_desc.'\',\''.$guest_name.'\',\''.$guest_pic.'\', \''.$event_id.'\', NULL) 
-        RETURNING "e_perk_id";';
+        RETURNING "e_guest_id";';
          $result4 = pg_query($conn, $query4);
          if ($result4) {
             $e_guest_id = pg_fetch_result($result4, 0, 0);
