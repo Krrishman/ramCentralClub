@@ -43,8 +43,7 @@
 </footer>
 </html>
 <?php
-// footer.php - Webpage Footing
-// Written by: Charles Kaplan
+ 
 
 // Output
 //echo"<br><table width='600' align='center' style='background-color: #66CDAA' rules='all' border='frame' cellpadding='2'>

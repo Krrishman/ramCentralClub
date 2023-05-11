@@ -14,8 +14,7 @@
 
 <?php
 
-// header.php - Webpage Heading
-// Written by: Charles Kaplan
+ 
 $msg=NULL;
 // Output
 /*

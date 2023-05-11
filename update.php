@@ -1,6 +1,6 @@
 <?php
 // faculty.php - Faculty, restricted access, LOGON required, Role = Faculty
-// Written by:  Prof. Kaplan, November 2021
+
 
 error_reporting(E_ALL);
 $add=0;

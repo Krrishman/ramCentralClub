@@ -1,6 +1,6 @@
 <?PHP
 // logoff.php - Logoff
-// Written by:  Charles Kaplan, November 2021
+ 
 
 // Start Session 
 	include('session.php');

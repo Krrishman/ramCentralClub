@@ -1,6 +1,6 @@
 <?php
 // session.php - Start Session and Retrieve Session Variables
-// Written by: Charles Kaplan
+ 
 
 // Start Session
 	session_start();

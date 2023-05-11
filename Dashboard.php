@@ -1,7 +1,5 @@
 <?php
-// public.php - Public Page 
-// Written by:  Prof. Kaplan, November 2021
-
+ 
 // Output
 	$color="black";
 	$dd= date("Y/m/d");

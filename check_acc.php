@@ -1,6 +1,5 @@
 <?php
-// bcs350_mysqli_connect.php - Connect to MySQL and The bcs350 database
-// Written by: Charles Kaplan, October 2020
+ 
 
 // Variables
 	$mysql_host			= 'localhost';

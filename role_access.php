@@ -1,6 +1,6 @@
 <?php
 // role_access.php - Check Role Access to Selected Pages
-// Written by:  Prof. Kaplan, November 2021
+ 
 
 // Variables
 	$role_value = 'admin'; 

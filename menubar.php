@@ -1,7 +1,7 @@
 <?php
 // menubar.php - Navigation Bar for Enrollments
-// Written by: Sayed Haque, March 2023
-//include('session.php');
+ 
+ 
 // Varaiables
 	$headr		= array('Home' , 'Club' , 'Event' , 'About');
 	$logg 		= array('logon' => '#ffc21c');

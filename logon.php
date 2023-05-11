@@ -33,11 +33,7 @@
 	if (isset($_POST['role']))			$role 	= trim($_POST['role']);				else $role 	= NULL;
 
 
-
-//	if (isset($_POST['click']))			$click	= trim($_POST['click']);				else $click 	= NULL;
- //if (isset($_POST['click'])) {   $click = trim($_POST['click']);
-	//if ($click == 'register') {   $msg = "Fill Out All the Info!";	}  } else { $click = NULL; }
-
+ 
 	$desiredDomain = 'farmingdale.edu';
 
 // Extract the domain from the email address

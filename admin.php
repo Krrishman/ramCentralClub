@@ -1,7 +1,5 @@
 <?php
-// admin.php - admin, restricted access, LOGON required, Role = admin
-// Written by:  Prof. Kaplan, November 2021
-
+ 
 // Output
 	include('session.php');
 	include('check_logon.php');
