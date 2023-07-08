@@ -457,8 +457,8 @@ echo " <section>
                         </div>
                         <div class='reviewfunction'>        
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
-                        <input class='likeIcon' type='submit' name='Update_Likes' value='Like'>
-                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'>
+                        <input class='likeIcon' type='submit' name='Update_Likes' value='Like <font color='green'>$Likes</font>'>
+                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike <font color='red'>$Dislikes</font>'>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
                         </div></div></form>
