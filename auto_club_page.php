@@ -429,6 +429,7 @@ echo " <section>
                 $date = $row['date'];
                 $com_name = $row['com_name'];
                 $pro_pic = $row['pro_pic'];
+                $DaTi = date("Y-m-d H:i:s", strtotime($date));
                 $imageUrl = 'https://drive.google.com/uc?export=view&id=';
                 echo"
                 <div class='reviews'>
@@ -449,7 +450,7 @@ echo " <section>
 
  echo"
                             </div>
-                            <p>$date</p>
+                            <p>$DaTi</p>
                               
                         </div>
                         <div class='reviewDescription'>

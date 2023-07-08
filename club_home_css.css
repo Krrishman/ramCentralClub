@@ -338,7 +338,10 @@ section{
     padding-left: 30px;
     padding-bottom: 10px;
 }
-
+.reviewDescription p{
+    font-weight: bold;
+    color: green;
+}
 .reviewfunction{
     display: flex;
     align-items: center;
