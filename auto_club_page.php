@@ -32,14 +32,16 @@
 
         if (isset($_POST['Update_Likes'])) {
             echo" ";
+            if (isset($_GET['c']))					{$com = $_GET['c'];}
+
             include('Supabase_connect.php');
             echo"  <input type='hidden' name='club_id' value='$club_id'>
             <input type='hidden' name='com_id' value='$com_id'> ";
-
-        $query6 = 'UPDATE "club_comment" SET "Likes" = "Likes" + 1  WHERE "com_id" = \'' . $com_id . '\';';
+            echo"$com_id ";
+        $query6 = 'UPDATE "club_comment" SET "Likes" = "Likes" + 1  WHERE "com_id" = \'' . $com . '\';';
         $result6 = pg_query($conn, $query6);
         if ($result6) {
-            echo "<font color='green'>$com_id Like Added.</font>\n";}
+            echo "<font color='green'>$com Like Added.</font>\n";}
             else { echo"Unable to add Like\n" [$query6] . pg_last_error($conn);}
         
         }
@@ -420,7 +422,7 @@ echo " <section>
                 echo"
                 <div class='reviews'>
                         <div class='reviewAvatar'>
-                        <form method='post' action='auto_club_page.php'>
+                        <form method='post' action='auto_club_page.php?c=$com_id'>
                         <input type='hidden' name='club_id' value='$club_id'>
                         <input type='hidden' name='com_id' value='$com_id'>
                             <img class='reviewIcon' src='$imageUrl$pro_pic' alt='./ClubHomePage/ClubHomePagePictures/person-icon.png'>
