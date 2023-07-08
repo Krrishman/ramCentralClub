@@ -440,7 +440,7 @@ echo " <section>
                        
                             <img class='reviewIcon' src='$imageUrl$pro_pic' alt='./ClubHomePage/ClubHomePagePictures/person-icon.png'>
                             <h3>$com_name </h3>
-                            </div><div> ";
+                            <div> ";
                             for ($i = 1; $i <= 5; $i++) {
                                 if ($i <= $rating) {
                                     echo '<i class="fas fa-star"></i>'; // full star
@@ -461,7 +461,7 @@ echo " <section>
                         <input class='likeIcon' type='submit' name='Update_Likes' value='Like'><p>$Likes</p>
                         <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'><p>$Dislikes</p>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
-                        </div></div></form> ";
+                        </div></form></div> ";
                     //<button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
                     // <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
             }
