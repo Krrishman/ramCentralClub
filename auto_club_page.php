@@ -457,38 +457,11 @@ echo " <section>
                         </div>
                         <div class='reviewfunction'>        
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
-                        <input class='likeIcon' type='submit' name='Update_Likes' value='Like <font color='green'>$Likes</font>'>
+                        <input class='likeIcon' type='submit' name='Update_Likes' value='Like <p>$Likes</p>'>
                         <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike <font color='red'>$Dislikes</font>'>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
-                        </div></div></form>
-                        <div class='reply-section' id='reply-section-$com_id'>
-                                <form method='post' class='reply-form' id='reply-form-$com_id' action='auto_club_page.php'>
-                                <input type='hidden' name='club_id' value='$club_id'>
-                                                        <div class='reviews'>
-                                                        <div class='reviewAvatar'>
-                                                            <img class='reviewIcon' src='./ClubHomePage/ClubHomePagePictures/person-icon.png' alt=''>
-                                                            <h3>$user_name </h3>
-                                                            <div class='Rating'>
-                                                            <label>Rating:</label>
-                                                            <select name='rating'>
-                                                                <option value='1'>1 star</option>
-                                                                <option value='2'>2 stars</option>
-                                                                <option value='3'>3 stars</option>
-                                                                <option value='4'>4 stars</option>
-                                                                <option value='5'>5 stars</option>
-                                                            </select><br><br>
-                                                            </div>
-                                                        </div>
-                                                            <div class='reviewDescription'>
-                                                                    <textarea name='comments' value='$comments' size='500' cols='55' rows='5' placeholder='Review Content' ></textarea><br><p></p><br>
-                                                                    <input class='reviewButton' type='submit' name='task' value='Submit_Review'>
-                                                                    </form>
-                                                            </div>
-                                                        </div>
-                                    </div>          
-                            </div>    
-                    </div> ";
+                        </div></div></form> ";
 
             }
 

@@ -345,7 +345,10 @@ section{
     padding-left: 30px;
     column-gap: 30px;
 }
-
+.reviewfunction p{
+    font-weight: bold;
+    color: green;
+}
 .Rating{
     font-weight: bold;
     display: flex;
