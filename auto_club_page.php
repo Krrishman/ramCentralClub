@@ -46,7 +46,18 @@
         
         }
 
-    
+        if (isset($_POST['Update_Dislikes'])) {
+            echo" ";
+            if (isset($_GET['c']))					{$com = $_GET['c'];}
+
+            include('Supabase_connect.php');
+            echo"  <input type='hidden' name='club_id' value='$club_id'>";
+        $query6 = 'UPDATE "club_comment" SET "Dislikes" = "Dislikes" + 1  WHERE "com_id" = \'' . $com . '\';';
+        $result6 = pg_query($conn, $query6);
+        if ($result6) {
+            echo "<font color='green'>$com Dislike Added.</font>\n";}
+            else { echo"Unable to add Dislike\n" [$query6] . pg_last_error($conn);}      
+        }
 
         
         if (isset($_POST['join'])) {
@@ -446,7 +457,8 @@ echo " <section>
                         </div>
                         <div class='reviewfunction'>        
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
-                        <input class='likeIcon' type='submit' name='Update_Likes' value='Update_Likes'>
+                        <input class='likeIcon' type='submit' name='Update_Likes' value='Like'>
+                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
                         </div></div></form>
