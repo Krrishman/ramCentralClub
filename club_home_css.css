@@ -349,6 +349,9 @@ section{
     font-weight: bold;
     color: green;
 }
+.reviewfunction i{
+    font-size: 24px;
+}
 .Rating{
     font-weight: bold;
     display: flex;
