@@ -30,7 +30,23 @@
         
         echo"oovvvvvdddff $club_id"; }
 
+        if (isset($_POST['Update_Likes'])) {
+            echo" ";
+            include('Supabase_connect.php');
 
+        echo"<input type='hidden' name='com_id' value='$com_id'> ";
+
+        $query6 = 'UPDATE "club_comment" SET "Likes" = "Likes" + 1  WHERE "com_id" = \'' . $com_id . '\';';
+        $result6 = pg_query($conn, $query6);
+        if ($result6) {
+            echo "<font color='green'>$com_id Like Added.</font>\n";}
+            else { echo"Unable to add Like\n" [$query6] . pg_last_error($conn);}
+        
+        }
+
+    
+
+        
         if (isset($_POST['join'])) {
             echo" ";
             include('Supabase_connect.php');
@@ -404,6 +420,8 @@ echo " <section>
                 echo"
                 <div class='reviews'>
                         <div class='reviewAvatar'>
+                        <form method='post' action='auto_club_page.php'>
+                        <input type='hidden' name='com_id' value='$com_id'>
                             <img class='reviewIcon' src='$imageUrl$pro_pic' alt='./ClubHomePage/ClubHomePagePictures/person-icon.png'>
                             <h3>$com_name </h3>
                             <div> ";
@@ -425,9 +443,10 @@ echo " <section>
                         </div>
                         <div class='reviewfunction'>        
                         <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
+                        <input class='likeIcon' type='submit' name='Update_Likes' value='Update_Likes'>
                         <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
-                        </div></div>
+                        </div></div></form>
                         <div class='reply-section' id='reply-section-$com_id'>
                                 <form method='post' class='reply-form' id='reply-form-$com_id' action='auto_club_page.php'>
                                 <input type='hidden' name='club_id' value='$club_id'>
