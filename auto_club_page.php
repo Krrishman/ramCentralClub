@@ -432,14 +432,15 @@ echo " <section>
                 $DaTi = date("Y-m-d H:i:s", strtotime($date));
                 $imageUrl = 'https://drive.google.com/uc?export=view&id=';
                 echo"
-                <div class='reviews'>
-                        <div class='reviewAvatar'>
-                        <form method='post' action='auto_club_page.php?c=$com_id'>
+                <div class='reviews'> 
+                <form method='post' action='auto_club_page.php?c=$com_id'>
                         <input type='hidden' name='club_id' value='$club_id'>
                         <input type='hidden' name='com_id' value='$com_id'>
+                        <div class='reviewAvatar'>
+                       
                             <img class='reviewIcon' src='$imageUrl$pro_pic' alt='./ClubHomePage/ClubHomePagePictures/person-icon.png'>
                             <h3>$com_name </h3>
-                            <div> ";
+                            </div><div> ";
                             for ($i = 1; $i <= 5; $i++) {
                                 if ($i <= $rating) {
                                     echo '<i class="fas fa-star"></i>'; // full star
@@ -457,13 +458,12 @@ echo " <section>
                                 <p>$comments</p>
                         </div>
                         <div class='reviewfunction'>        
-                        <button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
                         <input class='likeIcon' type='submit' name='Update_Likes' value='Like'><p>$Likes</p>
-                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike <font color='red'>$Dislikes</font>'>
-                        <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
+                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'><p>$Dislikes</p>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
                         </div></div></form> ";
-
+                    //<button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
+                    // <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
             }
 
            echo"
