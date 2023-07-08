@@ -458,7 +458,7 @@ echo " <section>
                                 <p>$comments</p>
                         </div>
                         <div class='reviewfunction'>        
-                        <input class='likeIcon' class='fa-sharp fa-solid fa-thumbs-up' type='submit' name='Update_Likes' value='Like'><p>$Likes</p>
+                        <input class='likeIcon' type='submit' name='Update_Likes' value='&#xf164;'><p>$Likes</p>
                         <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'><i class='fa-sharp fa-solid fa-thumbs-up'></i><p>$Dislikes</p>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
                         </div></form></div> ";
