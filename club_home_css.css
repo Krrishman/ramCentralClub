@@ -337,7 +337,7 @@ section{
 }
 .reviewDescription p{
     font-weight: bold;
-    color: green;
+    color: rgb(0, 0, 0);
 }
 .reviewfunction{
     display: flex;
