@@ -458,8 +458,8 @@ echo " <section>
                                 <p>$comments</p>
                         </div>
                         <div class='reviewfunction'>        
-                        <input class='likeIcon' class='fa-sharp fa-solid fa-thumbs-up' type='submit' name='Update_Likes' value='Like'><i class='fa-sharp fa-solid fa-thumbs-up'></i><p>$Likes</p>
-                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'><p>$Dislikes</p>
+                        <input class='likeIcon' class='fa-sharp fa-solid fa-thumbs-up' type='submit' name='Update_Likes' value='Like'><p>$Likes</p>
+                        <input class='likeIcon' type='submit' name='Update_Dislikes' value='Dislike'><i class='fa-sharp fa-solid fa-thumbs-up'></i><p>$Dislikes</p>
                         <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
                         </div></form></div> ";
                     //<button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
