@@ -404,14 +404,16 @@ echo " <section>
         </div>
 
         <div class='sortComments'>
-        <label for='order'>Sort By: </label>
-        <select name='options' id='options'>
-            <option value='none' selected disabled hidden>Select an Option</option>
-            <option value='most_liked'>Most Liked</option>
-            <option value='most_disliked'>Most Disliked</option>
-            <option value='oldest'>Oldest</option>
-            <option value='latest'>Latest</option>
-        </select>
+        <form method='POST' action='auto_club_page.php'>
+            <label for='options'>Sort By:</label>
+            <select name='options' id='options' onchange='this.form.submit()'>
+                <option value='' disabled selected hidden>Select an Option</option>
+                <option value='most_liked'>Most Liked</option>
+                <option value='most_disliked'>Most Disliked</option>
+                <option value='oldest'>Oldest</option>
+                <option value='latest'>Latest</option>
+            </select>
+        </form>
         </div>
 
         <div class='reviewGrid'>
