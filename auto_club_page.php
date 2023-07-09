@@ -133,19 +133,19 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
     $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\' ORDER BY ';
     switch ($order) {
         case 'most_liked':
-            $query4 .= "Likes DESC";
+            $query4 .= '"Likes" DESC';
             break;
         case 'most_disliked':
-            $query4 .= "Dislikes DESC";
+            $query4 .= '"Dislikes" DESC';
             break;
         case 'oldest':
-            $query4 .= "date ASC";
+            $query4 .= '"date" ASC';
             break;
         case 'latest':
-            $query4 .= "date DESC";
+            $query4 .= '"date" DESC';
             break;
         default:
-            $query4 .= "com_id ASC";
+            $query4 .= '"com_id" ASC';
             break;
     }
 
