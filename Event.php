@@ -30,9 +30,22 @@ include('Supabase_connect.php');
 
         
         <?php
+echo "
+<form method='POST' action='Event.php' align='center'>
+    <p width='500px' ><label for='options'>Sort By:</label>
+    <select name='options' id='options' onchange='this.form.submit()'>
+        <option value='' disabled selected hidden>Select an Option</option>
+        <option value='Upcoming'>Upcoming</option>
+        <option value='Free'>Free</option>
+        <option value='Highest_Member'>Highest Member</option>
+        <option value='Lowest_Member'>Lowest Member</option>
+        <option value='oldest'>Oldest</option>
+        <option value='latest'>Latest</option>
+    </select></p>
+</form>";
 
 
-
+/*
 
 $cat	= array('event_id', 'e_date', 'e_members');
 $sort	= array('Ascending', 'Descending');
@@ -55,11 +68,40 @@ if ($ad == $value) $se = 'SELECTED'; else $se = NULL;
 echo "<option $se>$value</option>\n";
 }
 echo "</select></p></form>"; 
+$query = 'SELECT * FROM "event_page" ORDER BY '.$orderby.' '.$desc.'';
+
+*/
 
 
+$order = isset($_POST['options']) ? $_POST['options'] : 'none';
+
+$query = 'SELECT * FROM "event_page" where "status"= 1 ORDER BY';
+
+switch ($order) {
+    case 'Upcoming':
+        $query4 .= '"e_date" DESC';
+        break;
+    case 'Free':
+        $query4 .= '"e_price" = \' Free \' DESC';
+        break;
+    case 'Highest_Member':
+        $query4 .= '"e_members" DESC';
+        break;
+    case 'Lowest_Member':
+        $query4 .= '"e_members" DESC';
+        break;
+    case 'oldest':
+        $query4 .= '"made_date" ASC';
+        break;
+    case 'latest':
+        $query4 .= '"made_date" DESC';
+        break;
+    default:
+        $query4 .= '"event_id" ASC';
+        break;
+}
 
 
- $query = 'SELECT * FROM "event_page" ORDER BY '.$orderby.' '.$desc.'';
 $result = pg_query($conn, $query);
 if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
 
@@ -89,6 +131,12 @@ while ($row = pg_fetch_assoc($result)) {
     $mo = date("F", strtotime($e_date));
     $da = date('d', strtotime($e_date));
     $day = date("l", strtotime($e_date));
+
+
+
+
+
+
 echo"
     <div class='EventContainerr'>
         <div class='coverr'>
