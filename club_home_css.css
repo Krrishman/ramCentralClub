@@ -352,7 +352,8 @@ section{
 .reviewfunction input{
     font-weight: bold;
     font-size: 20px;
-    padding: 10px;
+    padding: 5px;
+    margin: 5px;
 }
 .reviewfunction i{
     font-size: 20px;
