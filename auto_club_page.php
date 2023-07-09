@@ -125,7 +125,30 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
     $result3 = pg_query($conn, $query3);
     if (!$result3) {echo "Query Error [$query3] " . pg_last_error($conn);}
 
-$query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\';';
+
+
+    $order = isset($_POST['options']) ? $_POST['options'] : 'none';
+
+    //$query4 = "SELECT * FROM club_comment WHERE club_id = '$club_id' ORDER BY ";
+    $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\' ORDER BY ';
+    switch ($order) {
+        case 'most_liked':
+            $query4 .= "Likes DESC";
+            break;
+        case 'most_disliked':
+            $query4 .= "Dislikes DESC";
+            break;
+        case 'oldest':
+            $query4 .= "date ASC";
+            break;
+        case 'latest':
+            $query4 .= "date DESC";
+            break;
+        default:
+            $query4 .= "id ASC";
+            break;
+    }
+
     $result4 = pg_query($conn, $query4);
     if (!$result4) {echo "Query Error [$query4] " . pg_last_error($conn);}
 
@@ -381,14 +404,14 @@ echo " <section>
         </div>
 
         <div class='sortComments'>
-            <label for='order'>Sort By: </label>
-            <select name='options' id='options'>
-                <option value='none' selected disabled hidden>Select an Option</option>
-                <option value='$'>Most Liked</option>
-                <option value='$'>Most Disliked</option>
-                <option value='$'>Oldest</option>
-                <option value='$'>Latest</option>
-            </select>
+        <label for='order'>Sort By: </label>
+        <select name='options' id='options'>
+            <option value='none' selected disabled hidden>Select an Option</option>
+            <option value='most_liked'>Most Liked</option>
+            <option value='most_disliked'>Most Disliked</option>
+            <option value='oldest'>Oldest</option>
+            <option value='latest'>Latest</option>
+        </select>
         </div>
 
         <div class='reviewGrid'>
