@@ -84,7 +84,7 @@ switch ($order) {
         $query0 .= '"c_members" DESC';
         break;
     case 'Lowest_Member':
-        $query0 .= '"c_members" DESC';
+        $query0 .= '"c_members" ASC';
         break;
     case 'oldest':
         $query0 .= '"made_date" ASC';
