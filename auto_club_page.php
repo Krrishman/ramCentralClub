@@ -145,7 +145,7 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
             $query4 .= "date DESC";
             break;
         default:
-            $query4 .= "id ASC";
+            $query4 .= "com_id ASC";
             break;
     }
 
