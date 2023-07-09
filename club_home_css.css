@@ -346,12 +346,12 @@ section{
 }
 .reviewfunction p{
     font-weight: bold;
-    color: green;
-    font-size: 30px;
+    font-size: 24px;
+    padding-right: 30px;
 }
 .reviewfunction input{
     font-weight: bold;
-    font-size: 30px;
+    font-size: 24px;
 }
 .reviewfunction i{
     font-size: 24px;

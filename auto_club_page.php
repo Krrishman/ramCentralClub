@@ -460,10 +460,11 @@ echo " <section>
                         <div class='reviewfunction'>        
                         <input class='fa fa-solid fa-thumbs-up' type='submit' name='Update_Likes' value='&#xf164;' style='color: green;'> <p>$Likes</p>
                         <input class='fa fa-solid fa-thumbs-down' type='submit' name='Update_Dislikes' value='&#xf165;' style='color: red;'> <p>$Dislikes</p>
-                        <button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
+                        <input class='' type='submit' name='showReply' value='Reply' style=''>
                         </div></form></div> ";
                     //<button class='likeIcon' class='fa-regular fa-thumbs-up' id='likeButton'  onclick='likeComment($com_id)'>Like ($Likes)</button>
                     // <button class='likeIcon' class='fa-regular fa-thumbs-down' id='dislikeButton' onclick='dislikeComment($com_id)'>Dislike ($Dislikes)</button>
+                    //<button class='reply-btn'  onclick='showReplyForm($com_id)'>Reply</button>
             }
 
            echo"
