@@ -405,6 +405,7 @@ echo " <section>
 
         <div class='sortComments'>
         <form method='POST' action='auto_club_page.php'>
+        <input type='hidden' name='club_id' value='$club_id'>
             <label for='options'>Sort By:</label>
             <select name='options' id='options' onchange='this.form.submit()'>
                 <option value='' disabled selected hidden>Select an Option</option>
