@@ -30,19 +30,7 @@ include('Supabase_connect.php');
 
         
         <?php
-echo "
-<form method='POST' action='Event.php' align='center'>
-    <p width='500px' ><label for='options'>Sort By:</label>
-    <select name='options' id='options' onchange='this.form.submit()'>
-        <option value='' disabled selected hidden>Select an Option</option>
-        <option value='Upcoming'>Upcoming</option>
-        <option value='Free'>Free</option>
-        <option value='Highest_Member'>Highest Member</option>
-        <option value='Lowest_Member'>Lowest Member</option>
-        <option value='oldest'>Oldest</option>
-        <option value='latest'>Latest</option>
-    </select></p>
-</form>";
+
 
 
 /*
@@ -134,7 +122,19 @@ while ($row = pg_fetch_assoc($result)) {
 
 
 
-
+echo "
+<form method='POST' action='Event.php' align='center'>
+    <p width='500px' ><label for='options'>Sort By:</label>
+    <select name='options' id='options' onchange='this.form.submit()'>
+        <option value='' disabled selected hidden>Select an Option</option>
+        <option value='Upcoming'>Upcoming</option>
+        <option value='Free'>Free</option>
+        <option value='Highest_Member'>Highest Member</option>
+        <option value='Lowest_Member'>Lowest Member</option>
+        <option value='oldest'>Oldest</option>
+        <option value='latest'>Latest</option>
+    </select></p>
+</form>";
 
 
 echo"
