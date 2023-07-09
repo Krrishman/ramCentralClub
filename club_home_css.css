@@ -343,11 +343,15 @@ section{
     display: flex;
     align-items: center;
     padding-left: 30px;
-    column-gap: 30px;
 }
 .reviewfunction p{
     font-weight: bold;
     color: green;
+    font-size: 30px;
+}
+.reviewfunction input{
+    font-weight: bold;
+    font-size: 30px;
 }
 .reviewfunction i{
     font-size: 24px;
