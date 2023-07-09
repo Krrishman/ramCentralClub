@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-
+/*
 $cat	= array('club_id', 'made_date', 'c_members');
 $sort	= array('Ascending', 'Descending');
 if (isset($_POST['orderby'])) 	$orderby = $_POST['orderby'];	else $orderby = 'club_id';
@@ -68,14 +68,35 @@ if ($ad == $value) $se = 'SELECTED'; else $se = NULL;
 echo "<option $se>$value</option>\n";
 }
 echo "</select></p></form>"; 
-
-
-
-$query = 'SELECT * FROM "club_page" where "status"= 1 ORDER BY '.$orderby.' '.$desc.'';
-$result = pg_query($conn, $query);
-if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
-
 $query0 = 'SELECT * FROM "club_page" where "status"= 1 ORDER BY '.$orderby.' '.$desc.'';
+*/
+
+//$query = 'SELECT * FROM "club_page" where "status"= 1 ORDER BY '.$orderby.' '.$desc.'';
+//$result = pg_query($conn, $query);
+//if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
+
+$order = isset($_POST['options']) ? $_POST['options'] : 'none';
+
+$query0 = 'SELECT * FROM "club_page" where "status"= 1 ORDER BY';
+
+switch ($order) {
+    case 'Highest_Member':
+        $query4 .= '"c_members" DESC';
+        break;
+    case 'Lowest_Member':
+        $query4 .= '"c_members" DESC';
+        break;
+    case 'oldest':
+        $query4 .= '"made_date" ASC';
+        break;
+    case 'latest':
+        $query4 .= '"made_date" DESC';
+        break;
+    default:
+        $query4 .= '"club_id" ASC';
+        break;
+}
+
 $result0 = pg_query($conn, $query0);
 if (!$result0) { echo "Query Error [$query0] " . pg_last_error($conn);}
 // club_id | c_name  | c_tag  | c_desc  | c_pic | c_members | made_by | made_date | t_color1 | t_color2 | t_text  |des_color | des_text status
@@ -117,6 +138,19 @@ echo"<form method='post' action='Club.php?r=$club_id'>
 
 echo "</div><br>";
 */
+echo "
+<form method='POST' action='Club.php' align='center'>
+    <p width='500px' ><label for='options'>Sort By:</label>
+    <select name='options' id='options' onchange='this.form.submit()'>
+        <option value='' disabled selected hidden>Select an Option</option>
+        <option value='Highest_Member'>Highest Member</option>
+        <option value='Lowest_Member'>Lowest Member</option>
+        <option value='oldest'>Oldest</option>
+        <option value='latest'>Latest</option>
+    </select></p>
+</form>";
+
+
 
 echo "<div class='events-Gridrr'>";
 while ($row = pg_fetch_assoc($result0)) {
