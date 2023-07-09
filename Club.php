@@ -77,7 +77,7 @@ $query0 = 'SELECT * FROM "club_page" where "status"= 1 ORDER BY '.$orderby.' '.$
 
 $order = isset($_POST['options']) ? $_POST['options'] : 'none';
 
-$query0 = 'SELECT * FROM "club_page" where "status"= \'' . 1 . '\' ORDER BY';
+$query0 = 'SELECT * FROM "club_page" where "status"= \'' . 1 . '\' ORDER BY ';
 
 switch ($order) {
     case 'Highest_Member':
