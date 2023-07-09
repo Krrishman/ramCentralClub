@@ -346,15 +346,16 @@ section{
 }
 .reviewfunction p{
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     padding-right: 30px;
 }
 .reviewfunction input{
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
+    padding: 10px;
 }
 .reviewfunction i{
-    font-size: 24px;
+    font-size: 20px;
 }
 .Rating{
     font-weight: bold;
