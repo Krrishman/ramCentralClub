@@ -67,25 +67,25 @@ $query = 'SELECT * FROM "event_page" where "status"= 1 ORDER BY';
 
 switch ($order) {
     case 'Upcoming':
-        $query4 .= '"e_date" DESC';
+        $query .= '"e_date" DESC';
         break;
     case 'Free':
-        $query4 .= '"e_price" = \' Free \' DESC';
+        $query .= '"e_price" = \' Free \' DESC';
         break;
     case 'Highest_Member':
-        $query4 .= '"e_members" DESC';
+        $query .= '"e_members" DESC';
         break;
     case 'Lowest_Member':
-        $query4 .= '"e_members" DESC';
+        $query .= '"e_members" DESC';
         break;
     case 'oldest':
-        $query4 .= '"made_date" ASC';
+        $query .= '"made_date" ASC';
         break;
     case 'latest':
-        $query4 .= '"made_date" DESC';
+        $query .= '"made_date" DESC';
         break;
     default:
-        $query4 .= '"event_id" ASC';
+        $query .= '"event_id" ASC';
         break;
 }
 

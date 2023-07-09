@@ -81,19 +81,19 @@ $query0 = 'SELECT * FROM "club_page" where "status"= \'' . 1 . '\' ORDER BY ';
 
 switch ($order) {
     case 'Highest_Member':
-        $query4 .= '"c_members" DESC';
+        $query0 .= '"c_members" DESC';
         break;
     case 'Lowest_Member':
-        $query4 .= '"c_members" DESC';
+        $query0 .= '"c_members" DESC';
         break;
     case 'oldest':
-        $query4 .= '"made_date" ASC';
+        $query0 .= '"made_date" ASC';
         break;
     case 'latest':
-        $query4 .= '"made_date" DESC';
+        $query0 .= '"made_date" DESC';
         break;
     default:
-        $query4 .= '"club_id" ASC';
+        $query0 .= '"club_id" ASC';
         break;
 }
 
