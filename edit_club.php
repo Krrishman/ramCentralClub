@@ -295,19 +295,19 @@ case "test":
                     $max_entri = 3;
                     for ($i = 0; $i < $max_entri; $i++) {
     
-                       $S_title = $_POST['S_title']; // Assuming S_title is an array of values
-                       $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+                       $Slide_title = $_POST['Slide_title']; // Assuming S_title is an array of values
+                       $Slide_des = $_POST['Slide_des']; // Assuming S_des is an array of values
     
             
-                        $S_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
-                        $S_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                        $S_des = isset($S_des[$i]) ? $S_des[$i] : null;
+                        $Sli_pic = isset($Slide_pic[$i]) ? $Slide_pic[$i] : null;
+                        $Sli_title = isset($Slide_title[$i]) ? $Slide_title[$i] : null;
+                        $Sli_des = isset($Slide_des[$i]) ? $Slide_des[$i] : null;
     
                         while ($row = pg_fetch_assoc($result3)) {
                             $slide_id = $row['slide_id'];
-                            $S_title = $row['S_title'];
-                            $S_des = $row['S_des'];
-                            $S_pic = $row['S_pic'];
+                            $Sli_title = $row['S_title'];
+                            $Sli_des = $row['S_des'];
+                            $Sli_pic = $row['S_pic'];
                            // $club_id = $row['club_id'];
                         }
                     }
@@ -459,15 +459,15 @@ echo "    <div class='add_club_info'>
     </tr>
     <tr>
         <td>Slide Title</td>
-        <td><input type='text' name='S_title[]' value='$S_title' size='50'></td>
+        <td><input type='text' name='Slide_title[]' value='$Sli_title' size='50'></td>
     </tr>
     <tr>
         <td>Slide Description</td>
-        <td><input type='text' name='S_des[]' value='$S_des' size='50'></td>
+        <td><input type='text' name='Slide_des[]' value='$Sli_des' size='50'></td>
     </tr>
     <tr>
         <td>Slide Pic</td>
-        <td><input type='file' name='picture[]' value='$S_pic' size='50'>$S_pic</td>
+        <td><input type='file' name='Slide_pic[]' value='$Sli_pic' size='50'>$Sli_pic</td>
     </tr>";  
     }
 
