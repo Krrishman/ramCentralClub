@@ -18,7 +18,11 @@ section{
     display: flex;
     flex-direction: row;
 }
-
+.club_make div{
+    display: flex;
+    flex-direction: row;
+    
+}
 .club_Container{
     background: linear-gradient(#006f71, #ffc21c);
     width: 200px;
