@@ -134,18 +134,14 @@ switch($task) {
             <section> 
             <div class='slideshow-container'>";
 
-            $max_entry = 3;
-                for ($i = 0; $i < $max_entry; $i++) {
-                    $Slide_title = $Slide_titles[$i];
-                    $Slide_des = $Slide_dess[$i];
-                    $Slide_pic = $Slide_pics[$i];
+            for ($i = 0; $i < count($slide_id); $i++) {
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
            echo"
-
+           <input type='hidden' name='perk_id' value='$slide_id[$i]'>
             <div class='mySlides fade'>
             <div class='numbertext'> " . ($i+1) . "</div>
-            <img src='$imageUrl$Slide_pic' style='width:100%' alt='Per_pic'>
-            <div class='text'>$Slide_title<br>$Slide_des</div>
+            <img src='$imageUrl' style='width:100%' alt='Per_pic'>
+            <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
             </div>
             ";}
             echo"	
