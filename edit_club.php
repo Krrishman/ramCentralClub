@@ -129,6 +129,89 @@ if(isset($_FILES['image'])) {
 }
 
 
+if(isset($_FILES['images'])) {
+    try {
+       // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+       // $file_type = $_FILES['image']['type'];
+       // if (!in_array($file_type, $valid_types)) {
+       //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+       // }
+          
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  
+        $client = new Google_Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+       // $client->addScope(Google_Service_Drive::DRIVE);
+      //  $driveService = new Google_Service_Drive($client);
+        $client->addScope(Drive::DRIVE);
+          $driveService = new Drive($client);
+        $perk_pic = array();
+        $uploaded_files = $_FILES['images'];
+        foreach ($uploaded_files['name'] as $key => $name) {
+            if ($uploaded_files['error'][$key] == 0) {
+                $fileMetadata = new Drive\DriveFile(array(
+                    'name' => $name,
+                    'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                ));
+                $content = file_get_contents($uploaded_files['tmp_name'][$key]);
+                $file = $driveService->files->create($fileMetadata, array(
+                    'data' => $content,
+                    'mimeType' => $uploaded_files['type'][$key],
+                    'uploadType' => 'multipart',
+                    'fields' => 'id'
+                ));
+                $per_pic[] = $file->id;
+            }
+        }
+        $message = "Files uploaded successfully. ".implode(",", $per_pic);
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    } 
+}
+if(isset($_FILES['picture'])) {
+    try {
+       // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+       // $file_type = $_FILES['image']['type'];
+       // if (!in_array($file_type, $valid_types)) {
+       //     throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+       // }
+          
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  
+        $client = new Google_Client();
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+        $client->useApplicationDefaultCredentials();
+
+        $client->addScope(Drive::DRIVE);
+        $driveService = new Drive($client);
+        $S_pic = array();
+        $uploaded_files = $_FILES['picture'];
+        foreach ($uploaded_files['name'] as $key => $name) {
+            if ($uploaded_files['error'][$key] == 0) {
+                $fileMetadata = new Drive\DriveFile(array(
+                    'name' => $name,
+                    'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                ));
+                $content = file_get_contents($uploaded_files['tmp_name'][$key]);
+                $file = $driveService->files->create($fileMetadata, array(
+                    'data' => $content,
+                    'mimeType' => $uploaded_files['type'][$key],
+                    'uploadType' => 'multipart',
+                    'fields' => 'id'
+                ));
+                $ss_pic[] = $file->id;
+            }
+        }
+        $message = "Files uploaded successfully. ".implode(",", $ss_pic);
+    } catch(Exception $e) {
+        $message = "Error Message: ".$e->getMessage();
+    } 
+}
 
 
 switch($task) {
@@ -361,7 +444,7 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Perk Pic</td>
-            <td><input type='file' name='perk_pic[]' value='$per_pic' size='50'>$per_pic</td>
+            <td><input type='file' name='images[]' value='$per_pic' size='50'>$per_pic</td>
             <input type='hidden' name='perk_pic[]' value='$per_pic'>
         </tr>
         <tr>
@@ -400,7 +483,7 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='Slide_pic[]' value='$ss_pic' size='50'>$ss_pic</td>
+            <td><input type='file' name='picture[]' value='$ss_pic' size='50'>$ss_pic</td>
             <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
         </tr>";
 }
