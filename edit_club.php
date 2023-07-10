@@ -296,6 +296,7 @@ echo "    <div class='add_club_info'>
 <tr><td>Club Members</td><td><input type='number' name='c_members' value='$c_members'   size='12'></td>
 <tr><td>Upload Club Photo(JPG, GIF, PNG or TIF File only):
     <td> <input type='file' name='image' value='$c_pic'>$c_pic</td></tr>
+    <input type='hidden' name='c_pic' value='$c_pic'>
     <tr><td></td>
     <td><br></td>
     </tr>";
@@ -315,6 +316,7 @@ echo "    <div class='add_club_info'>
         <tr>
             <td>Perk Pic</td>
             <td><input type='file' name='perk_pic[]' value='$per_pic' size='50'>$per_pic</td>
+            <input type='hidden' name='perk_pic[]' value='$per_pic'>
         </tr>
         <tr>
             <td>Perk Name</td>
