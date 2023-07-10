@@ -88,7 +88,9 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // el
 //$Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
 //$Slide_pics = isset($_POST['S_pic']) ? $_POST['S_pic'] : array();
 
-
+$Slide_title = array();
+$Slide_des = array();
+$Slide_pic = array();
 
 
 
