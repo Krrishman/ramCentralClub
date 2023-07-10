@@ -205,10 +205,10 @@ if(isset($_FILES['picture'])) {
                     'uploadType' => 'multipart',
                     'fields' => 'id'
                 ));
-                $ss_pic[] = $file->id;
+                $Slide_pic[] = $file->id;
             }
         }
-        $message = "Files uploaded successfully. $ss_pic";
+        $message = "Files uploaded successfully. $Slide_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
@@ -467,7 +467,7 @@ echo "    <div class='add_club_info'>
     $max_ent = 3;
 
     for ($j = 0; $j < $max_ent; $j++) {
-        $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+        //$ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
         $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
     echo "
@@ -485,8 +485,8 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='picture[]' value='$ss_pic' size='50'>$ss_pic</td>
-            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
+            <td><input type='file' name='picture[]' value='$Slide_pic[$j]' size='50'>$Slide_pic[$j]</td>
+            <input type='hidden' name='Slide_pic[]' value='$Slide_pic[$j]'>
         </tr>";
 }
 
