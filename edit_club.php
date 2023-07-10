@@ -229,9 +229,12 @@ case "Finish":
    */                    
                     $max_entriess = count($Slide_titles);
                 
-                    for ($i = 0; $i < $max_entriess; $i++) {
+                    for ($i = 0; $i < $max_ent; $i++) {
                         //$Slide_title = trim($Slide_titles[$i]);
                         //$Slide_des = trim($Slide_dess[$i]);
+                            $slide_id = $slide_id[$i];
+                            $Slide_title = isset($Slide_titles[$i]) ? trim($Slide_titles[$i]) : '';
+                            $Slide_des = isset($Slide_dess[$i]) ? trim($Slide_dess[$i]) : '';
 
                         $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
                         WHERE "club_slide"."club_id" = \'' . $club_id . '\';';
