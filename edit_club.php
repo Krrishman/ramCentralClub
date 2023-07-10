@@ -419,17 +419,19 @@ echo "    <div class='add_club_info'>
     </tr>";
 
 
-
+    $max_entri = 3;
     $j=0;
 
-  //  while(list($slide_id, $S_title, $S_des, $S_pic, $club_id) = mysqli_fetch_row($result3)) {
+  /*  while(list($slide_id, $S_title, $S_des, $S_pic, $club_id) = mysqli_fetch_row($result3)) {
         while ($row = pg_fetch_assoc($result3)) {
             $slide_id = $row['slide_id'];
             $S_title = $row['S_title'];
             $S_des = $row['S_des'];
             $S_pic = $row['S_pic'];
             $club_id = $row['club_id'];
+*/
 
+            for ($i = 0; $i < $max_entri; $i++) {
     echo " 
     <input type='hidden' name='slide_id[]' value='$slide_id'>
     <tr>
@@ -447,7 +449,6 @@ echo "    <div class='add_club_info'>
         <td>Slide Pic</td>
         <td><input type='file' name='picture[]' value='$S_pic' size='50'>$S_pic</td>
     </tr>";  
-    $j++;
     }
 
     echo "
