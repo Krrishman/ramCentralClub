@@ -237,7 +237,6 @@ case "Finish":
                     $Slide_titles = $_POST['Slide_title'];
                     $Slide_dess = $_POST['Slide_des'];
    */                    
-                    $max_entriess = count($Slide_titles);
                 
                     for ($i = 0; $i < $max_ent; $i++) {
                         //$Slide_title = trim($Slide_titles[$i]);
