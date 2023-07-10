@@ -65,7 +65,7 @@ if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       
 if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
 if (isset($_POST['perk_id']))           {$perk_id = $_POST['perk_id'];}         else {$perk_id = array();}
-
+if (isset($_POST['perk_pic']))          {$perk_pic = $_POST['perk_pic'];}       else {$perk_pic = array();}
 
 //$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
 //$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
@@ -94,7 +94,7 @@ switch($task) {
         <input type='hidden' name='club_id' value='$club_id'> 
         <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
                 <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$filename'  alt='xzc'>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt='xzc'>
                 </div>
             <div class='nametag'>
             <h1 style='color:$t_text;' >$c_name</h1>
