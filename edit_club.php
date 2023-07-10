@@ -81,8 +81,10 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);         // else
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);   // else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // else $des_text = 'white';
 
+if (isset($_POST['Slide_title'])) {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
 
-
+if (isset($_POST['Slide_des'])) {$Slide_des = $_POST['Slide_des'];} else {$Slide_des = array();}
+/*
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve the values from the form submission
     $slideIds = $_POST['slide_id'];
@@ -100,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // ...
 }
 
-
+*/
 
 //$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
 //$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
