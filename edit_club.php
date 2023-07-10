@@ -116,9 +116,9 @@ switch($task) {
 
                 for ($i = 0; $i < count($perk_id); $i++) {
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-            
+                    //$perk_id[$i];
            echo"
-
+           <input type='hidden' name='perk_id' value='$perk_id[$i]'>
             <div class='listOfBenefits'>
                 <div class='benefitsIcon'>
                     <img src='$imageUrl' alt='Per_pic'>
