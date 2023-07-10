@@ -10,29 +10,6 @@ include('menubar.php');
 include('Supabase_connect.php');
 
 
-
-/*
-$query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
-$result = pg_query($conn, $query);
-if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
-
-if (pg_num_rows($result) > 0) {
-	$row = pg_fetch_assoc($result);
-    $club_id = $row['club_id'];
-    $c_name = $row['c_name'];
-    $c_tag = $row['c_tag'];
-    $c_desc = $row['c_desc'];
-    $c_pic = $row['c_pic'];
-    $c_members = $row['c_members'];
-    $Date = $row['made_date'];
-    $made_by = $row['made_by'];
-    $t_color1 = $row['t_color1'];
-    $t_color2 = $row['t_color2'];
-    $t_text = $row['t_text'];
-    $des_color = $row['des_color'];
-    $des_text = $row['$des_text']; }
-*/
-
 ?>
 
 
@@ -85,9 +62,9 @@ if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} 
 if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
 if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
 
-if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
-if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
-if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
+if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
+if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
+if (isset($_POST['perk_id']))           {$perk_id = $_POST['perk_id'];}         else {$perk_id = array();}
 
 
 //$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
@@ -101,11 +78,8 @@ if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       
 //foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
 function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
-        if (is_array($value)) {
-            displayPostData($value, $prefix . $key . '[]');
-        } else {
-            echo "<p align='center'>$prefix$key = $value<br>";
-        }
+        if (is_array($value)) { displayPostData($value, $prefix . $key . '[]');}
+        else {echo "<p align='center'>$prefix$key = $value<br>";}
     }
 }
 
@@ -116,8 +90,6 @@ switch($task) {
     case "preview":   
         $imageUrl = 'https://drive.google.com/uc?export=view&id=';
         echo"   
-      
-
  <section>
         <input type='hidden' name='club_id' value='$club_id'> 
         <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
