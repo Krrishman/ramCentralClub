@@ -228,7 +228,7 @@ case "Finish":
                         $Slide_des = trim($Slide_dess[$i]);
 
                         $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
-                        WHERE "slide_pic"."club_id" = \'' . $club_id . '\';';
+                        WHERE "club_slide"."club_id" = \'' . $club_id . '\';';
                         $result3 = pg_query($conn, $query3);
                         if ($result3) echo"Your slideshow pic Updated.";
                         else { echo"Unable to add slideshow" . pg_last_error($conn);}}}
