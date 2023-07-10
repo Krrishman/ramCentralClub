@@ -81,43 +81,22 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);         // else
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);   // else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // else $des_text = 'white';
 
-if (isset($_POST['Slide_title'])) {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
+if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
+if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
+if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
 
-if (isset($_POST['Slide_des'])) {$Slide_des = $_POST['Slide_des'];} else {$Slide_des = array();}
-/*
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Retrieve the values from the form submission
-    $slideIds = $_POST['slide_id'];
-    $slideTitles = $_POST['Slide_title'];
-    $slideDescriptions = $_POST['Slide_des'];
+if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
+if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
+if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
 
-    // Loop through the slide data and process each slide
-    for ($i = 0; $i < count($slideIds); $i++) {
-        $slideId = $slideIds[$i];
-        $slideTitle = $slideTitles[$i];
-        $slideDescription = $slideDescriptions[$i];
-    }
-
-    // Redirect or display success message after processing the form
-    // ...
-}
-
-*/
 
 //$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
 //$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
-
-//$Slide_titles = isset($_POST['S_title']) ? $_POST['S_title'] : array();
-//$Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
-//$Slide_pics = isset($_POST['S_pic']) ? $_POST['S_pic'] : array();
 
 //$Slide_titles = isset($_POST['Slide_title']) ? $_POST['Slide_title'] : array();
 //$Slide_dess = isset($_POST['Slide_des']) ? $_POST['Slide_des'] : array();
 //$Slide_pics = isset($_POST['Slide_pic']) ? $_POST['Slide_pic'] : array();
 
-//$Slide_title = array();
-//$Slide_des = array();
-//$Slide_pic = array();
 
 //foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
 function displayPostData($data, $prefix = '') {
@@ -240,26 +219,7 @@ case "Finish":
                 WHERE "club_perks"."club_id" = \'' . $club_id . '\';';
                 $result2 = pg_query($conn, $query2);
                 if ($result2) echo"Your perk updated.";
-                else { echo"Unable to add perk" . pg_last_error($conn);}}
-
-/*
-                for ($j = 0; $j < $max_ent; $i++) {
-                    // Check if the array values are set, otherwise set them to null
-                    $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                    $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-                    $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
-
-                $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
-                WHERE "slide_pic"."club_id" = \'' . $club_id . '\';';
-                $result3 = pg_query($conn, $query3);
-                if ($result3) echo"Your slideshow pic Updated.";
-                else { echo"Unable to add slideshow" . pg_last_error($conn);}}
-             
-
-                if (isset($_POST['Slide_title']) && isset($_POST['Slide_des'])) {
-                    $Slide_titles = $_POST['Slide_title'];
-                    $Slide_dess = $_POST['Slide_des'];
-   */                    
+                else { echo"Unable to add perk" . pg_last_error($conn);}}             
                 
                     for ($i = 0; $i < $max_ent; $i++) {
                         //$Slide_title = trim($Slide_titles[$i]);
@@ -285,16 +245,21 @@ case "test":
     $result = pg_query($conn, $query);
     if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
     
-        
     $query2 = 'SELECT * FROM "club_perk" WHERE "club_id" =\'' . $club_id . '\';';
     $result2 = pg_query($conn, $query2);
     if (!$result2) { echo "Query Error [$query2] " . pg_last_error($conn);}
-
 
     $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
     $result3 = pg_query($conn, $query3);
     if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
 
+    while ($row = pg_fetch_assoc($result2)) {
+        $perk_id[] = $row['perk_id'];
+        $perk_name[] = $row['p_name'];
+        $perk_desc[] = $row['p_desc'];
+        $perk_pic[] = $row['p_pic'];
+        $perk_color[] = $row['color'];
+    }
 
     while ($row = pg_fetch_assoc($result3)) {
         $slide_id[] = $row['slide_id'];
@@ -302,8 +267,6 @@ case "test":
         $Slide_des[] = $row['S_des'];
         $Slide_pic[] = $row['S_pic'];
     }
-
-
 
     if (pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
@@ -320,25 +283,9 @@ case "test":
         $t_text = $row['t_text'];
         $des_color = $row['des_color'];
         $des_text = $row['$des_text']; }
-/*
-        if (pg_num_rows($result2) > 0) {
-            $row = pg_fetch_assoc($result2);
-            $perk_id = $row['perk_id'];
-            $p_name = $row['p_name'];
-            $p_desc = $row['p_desc'];
-            $p_pic = $row['p_pic'];
-            $club_id = $row['club_id'];
-            $color = $row['color']; }
-          
-            while ($row = pg_fetch_assoc($result2)) {
-                $perk_id = $row['perk_id'];
-                $p_name = $row['p_name'];
-                $p_desc = $row['p_desc'];
-                $p_pic = $row['p_pic'];
-                $club_id = $row['club_id'];
-                $color = $row['color'];}
 
-  */                $max_entries = 4;
+/*
+        $max_entries = 4;
                 for ($i = 0; $i < $max_entries; $i++) {
 
                    $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
@@ -357,26 +304,6 @@ case "test":
                        // $club_id = $row['club_id'];
                         $color = $row['color'];}
                     }
-/*
-                    $max_entri = 3;
-                    for ($j = 0; $j < $max_entri; $i++) {
-    
-                       $Slide_title = $_POST['Slide_title']; // Assuming S_title is an array of values
-                       $Slide_des = $_POST['Slide_des']; // Assuming S_des is an array of values
-    
-            
-                        $Sli_pic = isset($Slide_pic[$i]) ? $Slide_pic[$i] : null;
-                        $Sli_title = isset($Slide_title[$i]) ? $Slide_title[$i] : null;
-                        $Sli_des = isset($Slide_des[$i]) ? $Slide_des[$i] : null;
-    
-                        while ($row = pg_fetch_assoc($result3)) {
-                            $slide_id = $row['slide_id'];
-                            $Sli_title = $row['S_title'];
-                            $Sli_des = $row['S_des'];
-                            $Sli_pic = $row['S_pic'];
-                           // $club_id = $row['club_id'];
-                        }
-                    }
 */
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
@@ -384,63 +311,6 @@ case "test":
 
 }
 
-
-
-
-//if (isset($_POST['p']))			$p = trim($_POST['p']);     else $p = NULL;
-//if (isset($_POST['addd']))   {  $number = $_POST['number']; } else $number = NULL;
-/*
-    $query = 'SELECT * FROM "club_page" WHERE "club_id" = \'' . $club_id . '\';';
-    $result = pg_query($conn, $query);
-    if (!$result) { echo "Query Error [$query] " . pg_last_error($conn);}
-
-    $query2 = 'SELECT * FROM "club_perk" WHERE "club_id" =\'' . $club_id . '\';';
-    $result2 = pg_query($conn, $query2);
-    if (!$result2) { echo "Query Error [$query2] " . pg_last_error($conn);}
-
-
-    $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
-    $result3 = pg_query($conn, $query3);
-    if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
-
-// if (mysqli_num_rows($result) > 0) {
-//    list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
-//    $made_by, $made_date, $t_color1, $t_color2, $t_text, $des_color, $des_text) = mysqli_fetch_row($result);
-// }
-if (pg_num_rows($result) > 0) {
-	$row = pg_fetch_assoc($result);
-    $club_id = $row['club_id'];
-    $c_name = $row['c_name'];
-    $c_tag = $row['c_tag'];
-    $c_desc = $row['c_desc'];
-    $c_pic = $row['c_pic'];
-    $c_members = $row['c_members'];
-    $Date = $row['made_date'];
-    $made_by = $row['made_by'];
-    $t_color1 = $row['t_color1'];
-    $t_color2 = $row['t_color2'];
-    $t_text = $row['t_text'];
-    $des_color = $row['des_color'];
-    $des_text = $row['$des_text']; }
-
-//foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
-
-while ($row = pg_fetch_assoc($result)) {
-    $club_id = $row['club_id'];
-    $c_name = $row['c_name'];
-    $c_tag = $row['c_tag'];
-    $c_desc = $row['c_desc'];
-    $c_pic = $row['c_pic'];
-    $c_members = $row['c_members'];
-    $Date = $row['made_date'];
-    $made_by = $row['made_by'];
-    $t_color1 = $row['t_color1'];
-    $t_color2 = $row['t_color2'];
-    $t_text = $row['t_text'];
-    $des_color = $row['des_color'];
-    $des_text = $row['$des_text'];
-    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-*/
 echo " <div class='club_make'>";
 echo "    <div class='add_club_info'> 
 <form action='edit_club.php' method='post' enctype='multipart/form-data'>
@@ -463,22 +333,16 @@ echo "    <div class='add_club_info'>
     <tr><td></td>
     <td><br></td>
     </tr>";
-//}
+
     $max_entries = 4;
     $i = 0;
-      //  while(list($perk_id, $p_name, $p_desc,$p_pic, $club_id, $color) = mysqli_fetch_row($result2)){
-
-     /*     while ($row = pg_fetch_assoc($result2)) {
-                $perk_id = $row['perk_id'];
-                $p_name = $row['p_name'];
-                $p_desc = $row['p_desc'];
-                $p_pic = $row['p_pic'];
-                $club_id = $row['club_id'];
-                $color = $row['color'];
-                */
+   
                 for ($i = 0; $i < $max_entries; $i++) {
+                    $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+                    $per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+                    $per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
         echo "
-            <input type='hidden' name='perk_id[]' value='$perk_id'>
+            <input type='hidden' name='perk_id[]' value='$perk_id''" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
         <tr>
             <td>Perk No " . ($i+1) . "</td>
         </tr>
@@ -493,11 +357,7 @@ echo "    <div class='add_club_info'>
         <tr>
             <td>Perk Description</td>
             <td><input type='text' name='perk_desc[]' value='$per_desc' size='50'></td>
-        </tr>
-
-        ";
-      //  $i++;
-       // if ($i >= $max_entries) break;
+        </tr>";
     }
 
     echo "  <tr><td></td>
@@ -529,11 +389,6 @@ echo "    <div class='add_club_info'>
             <td><input type='file' name='Slide_pic[]' value='$ss_pic' size='50'>$ss_pic</td>
         </tr>";
 }
-
-
-
-
-
 
     echo "  <tr><td></td>
     <td><br></td>
