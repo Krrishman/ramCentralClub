@@ -141,7 +141,7 @@ switch($task) {
            <input type='hidden' name='perk_id' value='$slide_id[$i]'>
             <div class='mySlides fade'>
             <div class='numbertext'> " . ($i+1) . "</div>
-            <img src='$imageUrl' style='width:100%' alt='Per_pic'>
+            <img src='$imageUrl$Slide_pic[$i]' style='width:100%' alt='Per_pic'>
             <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
             </div>
             ";}
