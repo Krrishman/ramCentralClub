@@ -96,8 +96,18 @@ $Slide_pics = isset($_POST['Slide_pic']) ? $_POST['Slide_pic'] : array();
 //$Slide_des = array();
 //$Slide_pic = array();
 
-foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
+//foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
+function displayPostData($data, $prefix = '') {
+    foreach ($data as $key => $value) {
+        if (is_array($value)) {
+            displayPostData($value, $prefix . $key . '[]');
+        } else {
+            echo "<p align='center'>$prefix$key = $value<br>";
+        }
+    }
+}
 
+displayPostData($_POST);
 
 switch($task) {
 
