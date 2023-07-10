@@ -184,8 +184,8 @@ case "Finish":
                 if ($result) { echo"Your Club updated. $club_id";
                 
                 for ($i = 0; $i < $max_entries; $i++) {
-                        $Per_name = $perk_names[$i];
-                        $Per_desc = $perk_descs[$i];
+                       // $Per_name = $perk_names[$i];
+                       // $Per_desc = $perk_descs[$i];
                     
                 $query2 ='UPDATE "club_perk" SET "p_name" =  \'' .$Per_name. '\', "p_desc" =  \'' .$Per_desc. '\', "color" = NULL
                 WHERE "club_perks"."club_id" = \'' . $club_id . '\';';
@@ -314,7 +314,7 @@ echo "    <div class='add_club_info'>
                     $per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                     $per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
         echo "
-            <input type='hidden' name='perk_id[]' value='$perk_id''" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
+            <input type='hidden' name='perk_id[]' value='" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
         <tr>
             <td>Perk No " . ($i+1) . "</td>
         </tr>
