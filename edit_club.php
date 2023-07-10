@@ -182,25 +182,28 @@ case "Finish":
                 WHERE "club_page"."club_id" = \'' . $club_id . '\';';
                 $result = pg_query($conn, $query);
                 if ($result) { echo"Your Club updated. $club_id";
+                          
                 
-                for ($i = 0; $i < $max_entries; $i++) {
-                       // $Per_name = $perk_names[$i];
-                       // $Per_desc = $perk_descs[$i];
-                    
-                $query2 ='UPDATE "club_perk" SET "p_name" =  \'' .$Per_name. '\', "p_desc" =  \'' .$Per_desc. '\', "color" = NULL
-                WHERE "club_perks"."club_id" = \'' . $club_id . '\';';
-                $result2 = pg_query($conn, $query2);
-                if ($result2) echo"Your perk updated.";
-                else { echo"Unable to add perk" . pg_last_error($conn);}}             
-                
+                for ($i = 0; $i < count($perk_id); $i++) {
+                    $query2 = 'UPDATE "club_perk" SET "p_name" = \'' . $perk_name[$i] . '\', "p_desc" = \'' . $perk_desc[$i] . '\'
+                                WHERE "club_perks"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
+                    $result2 = pg_query($conn, $query2);
+                    if ($result2) {
+                        echo "Perk ID " . $perk_id[$i] . " updated.";
+                    } else {
+                        echo "Unable to update perk ID " . $perk_id[$i] . ": " . pg_last_error($conn);
+                    }
+                }
+
+
                 for ($i = 0; $i < count($slide_id); $i++) {
                     $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
                                 WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
                     $result3 = pg_query($conn, $query3);
                     if ($result3) {
-                        echo "Slide with ID " . $slide_id[$i] . " updated.";
+                        echo "Slide ID " . $slide_id[$i] . " updated.";
                     } else {
-                        echo "Unable to update slide with ID " . $slide_id[$i] . ": " . pg_last_error($conn);
+                        echo "Unable to update slide ID " . $slide_id[$i] . ": " . pg_last_error($conn);
                     }
                 }
                 
