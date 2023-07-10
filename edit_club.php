@@ -81,6 +81,27 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);         // else
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);   // else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // else $des_text = 'white';
 
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve the values from the form submission
+    $slideIds = $_POST['slide_id'];
+    $slideTitles = $_POST['Slide_title'];
+    $slideDescriptions = $_POST['Slide_des'];
+
+    // Loop through the slide data and process each slide
+    for ($i = 0; $i < count($slideIds); $i++) {
+        $slideId = $slideIds[$i];
+        $slideTitle = $slideTitles[$i];
+        $slideDescription = $slideDescriptions[$i];
+    }
+
+    // Redirect or display success message after processing the form
+    // ...
+}
+
+
+
 //$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
 //$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
 
