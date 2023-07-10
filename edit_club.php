@@ -245,12 +245,12 @@ switch($task) {
 
                 for ($i = 0; $i < count($perk_id); $i++) {
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                    //$perk_id[$i];
+                    //$perk_id[$i];$perk_pic[$i]
            echo"
            <input type='hidden' name='perk_id' value='$perk_id[$i]'>
             <div class='listOfBenefits'>
                 <div class='benefitsIcon'>
-                    <img src='$imageUrl$perk_pic[$i]' alt='Per_pic'>
+                    <img src='$imageUrl' alt='Per_pic'>
                 </div>
                 <div class='listOfBenefitsDesciption'>
                     <h3>$perk_name[$i]</h3>
@@ -265,11 +265,12 @@ switch($task) {
 
             for ($i = 0; $i < count($slide_id); $i++) {
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                    //$Slide_pic[$i]
            echo"
            <input type='hidden' name='perk_id' value='$slide_id[$i]'>
             <div class='mySlides fade'>
             <div class='numbertext'> " . ($i+1) . "</div>
-            <img src='$imageUrl$Slide_pic[$i]' style='width:100%' alt='Per_pic'>
+            <img src='$imageUrl' style='width:100%' alt='Per_pic'>
             <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
             </div>
             ";}
