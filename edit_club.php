@@ -186,7 +186,7 @@ case "Finish":
                 
                 for ($i = 0; $i < count($perk_id); $i++) {
                     $query2 = 'UPDATE "club_perk" SET "p_name" = \'' . $perk_name[$i] . '\', "p_desc" = \'' . $perk_desc[$i] . '\'
-                                WHERE "club_perks"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
+                                WHERE "club_perk"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
                     $result2 = pg_query($conn, $query2);
                     if ($result2) {
                         echo "Perk ID " . $perk_id[$i] . " updated.";
