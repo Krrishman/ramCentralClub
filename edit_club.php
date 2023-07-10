@@ -67,7 +67,7 @@ if (isset($_GET['r']))				{$club_id = $_GET['r'];}
 
 if (isset($_POST['club_id']))			$club_id = trim($_POST['club_id']);
 if (isset($_POST['c_name']))			$c_name = trim($_POST['c_name']);       //else $c_name = NULL;
-if (isset($_POST['color']))			$color = trim($_POST['color']);       //else $color = NULL;
+if (isset($_POST['color']))			    $color = trim($_POST['color']);       //else $color = NULL;
 if (isset($_POST['c_tag']))				$c_tag = trim($_POST['c_tag']);         //else $c_tag = NULL;
 if (isset($_POST['c_desc']))			$c_desc = trim($_POST['c_desc']);       //else $c_desc = NULL;
 if (isset($_POST['c_pic']))			    $c_pic = trim($_POST['c_pic']);         //else $c_pic = NULL;
@@ -239,6 +239,16 @@ case "test":
     $result3 = pg_query($conn, $query3);
     if (!$result3) { echo "Query Error [$query3] " . pg_last_error($conn);}
 
+
+    while ($row = pg_fetch_assoc($result3)) {
+        $slide_id[] = $row['slide_id'];
+        $Slide_title[] = $row['S_title'];
+        $Slide_des[] = $row['S_des'];
+        $Slide_pic[] = $row['S_pic'];
+    }
+
+
+
     if (pg_num_rows($result) > 0) {
         $row = pg_fetch_assoc($result);
         $club_id = $row['club_id'];
@@ -291,7 +301,7 @@ case "test":
                        // $club_id = $row['club_id'];
                         $color = $row['color'];}
                     }
-
+/*
                     $max_entri = 3;
                     for ($j = 0; $j < $max_entri; $i++) {
     
@@ -311,7 +321,7 @@ case "test":
                            // $club_id = $row['club_id'];
                         }
                     }
-
+*/
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
 
@@ -438,18 +448,18 @@ echo "    <div class='add_club_info'>
     <td><br></td>
     </tr>";
 
-
+ /* 
     $max_entri = 3;
     $j=0;
 
-  /*  while(list($slide_id, $S_title, $S_des, $S_pic, $club_id) = mysqli_fetch_row($result3)) {
+  while(list($slide_id, $S_title, $S_des, $S_pic, $club_id) = mysqli_fetch_row($result3)) {
         while ($row = pg_fetch_assoc($result3)) {
             $slide_id = $row['slide_id'];
             $S_title = $row['S_title'];
             $S_des = $row['S_des'];
             $S_pic = $row['S_pic'];
             $club_id = $row['club_id'];
-*/
+
 
             for ($j = 0; $j < $max_entri; $i++) {
     echo " 
@@ -469,8 +479,39 @@ echo "    <div class='add_club_info'>
         <td>Slide Pic</td>
         <td><input type='file' name='Slide_pic[]' value='$Sli_pic' size='50'>$Sli_pic</td>
     </tr>";  
-    
+
     }
+    
+    
+    */
+    
+    $max_ent = 3;
+
+    for ($j = 0; $j < $max_ent; $j++) {
+    echo "
+        <input type='hidden' name='slide_id[]' value='$slide_id'>
+        <tr>
+            <td>Slide No " . ($j + 1) . "</td>
+        </tr>
+        <tr>
+            <td>Slide Title</td>
+            <td><input type='text' name='Slide_title[]' value='" . (isset($Slide_title[$j]) ? $Slide_title[$j] : "") . "' size='50'></td>
+        </tr>
+        <tr>
+            <td>Slide Description</td>
+            <td><input type='text' name='Slide_des[]' value='" . (isset($Slide_des[$j]) ? $Slide_des[$j] : "") . "' size='50'></td>
+        </tr>
+        <tr>
+            <td>Slide Pic</td>
+            <td><input type='file' name='Slide_pic[]' value='" . (isset($Slide_pic[$j]) ? $Slide_pic[$j] : "") . "' size='50'></td>
+        </tr>";
+}
+
+
+
+
+
+
     echo "  <tr><td></td>
     <td><br></td>
     </tr>";
