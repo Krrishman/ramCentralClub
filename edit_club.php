@@ -205,10 +205,10 @@ if(isset($_FILES['picture'])) {
                     'uploadType' => 'multipart',
                     'fields' => 'id'
                 ));
-                $Slide_pic[] = $file->id;
+                $ss_pic[] = $file->id;
             }
         }
-        $message = "Files uploaded successfully. $Slide_pic";
+        $message = "Files uploaded successfully. $ss_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
@@ -485,8 +485,8 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='picture[]' value='$Slide_pic' size='50'>$Slide_pic</td>
-            <input type='hidden' name='Slide_pic[]' value='$Slide_pic'>
+            <td><input type='file' name='picture[]' value='$ss_pic' size='50'>$ss_pic</td>
+            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
         </tr>";
 }
 
