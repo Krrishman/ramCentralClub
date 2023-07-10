@@ -171,7 +171,7 @@ if(isset($_FILES['images'])) {
         $message = "Error Message: ".$e->getMessage();
     } 
 }
-
+*/
 if(isset($_FILES['picture'])) {
     try {
        // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
@@ -205,16 +205,16 @@ if(isset($_FILES['picture'])) {
                     'uploadType' => 'multipart',
                     'fields' => 'id'
                 ));
-                $ss_pic[] = $file->id;
+                $Slide_pic[] = $file->id;
             }
         }
-        $message = "Files uploaded successfully. ".implode(",", $ss_pic);
+        $message = "Files uploaded successfully. $Slide_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
 }
 
-*/
+
 switch($task) {
 
     case "preview":   
@@ -266,12 +266,12 @@ switch($task) {
 
             for ($i = 0; $i < count($slide_id); $i++) {
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                    //$Slide_pic[$i]
+                    //
            echo"
            <input type='hidden' name='perk_id' value='$slide_id[$i]'>
             <div class='mySlides fade'>
             <div class='numbertext'> " . ($i+1) . "</div>
-            <img src='$imageUrl' style='width:100%' alt='Per_pic'>
+            <img src='$imageUrl$Slide_pic[$i]' style='width:100%' alt='Per_pic'>
             <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
             </div>
             ";}
@@ -485,8 +485,8 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='picture[]' value='$ss_pic' size='50'>$ss_pic</td>
-            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
+            <td><input type='file' name='picture[]' value='$Slide_pic' size='50'>$Slide_pic</td>
+            <input type='hidden' name='Slide_pic[]' value='$Slide_pic'>
         </tr>";
 }
 
