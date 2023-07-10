@@ -193,18 +193,16 @@ case "Finish":
                 if ($result2) echo"Your perk updated.";
                 else { echo"Unable to add perk" . pg_last_error($conn);}}             
                 
-                    for ($i = 0; $i < $max_ent; $i++) {
-                        //$Slide_title = trim($Slide_titles[$i]);
-                        //$Slide_des = trim($Slide_dess[$i]);
-                           // $slide_id = $slide_id[$i];
-                           // $Slide_title = isset($Slide_titles[$i]) ? trim($Slide_titles[$i]) : '';
-                           // $Slide_des = isset($Slide_dess[$i]) ? trim($Slide_dess[$i]) : '';
-
-                        $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
-                        WHERE "club_slide"."club_id" = \'' . $club_id . '\';';
-                        $result3 = pg_query($conn, $query3);
-                        if ($result3) {echo"Your slideshow pic Updated.";}
-                        else { echo"Unable to add slideshow" . pg_last_error($conn);}}
+                for ($i = 0; $i < count($slide_id); $i++) {
+                    $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
+                                WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
+                    $result3 = pg_query($conn, $query3);
+                    if ($result3) {
+                        echo "Slide with ID " . $slide_id[$i] . " updated.";
+                    } else {
+                        echo "Unable to update slide with ID " . $slide_id[$i] . ": " . pg_last_error($conn);
+                    }
+                }
                 
                 }
                 else { echo"Unable to Make update" . pg_last_error($conn);}
