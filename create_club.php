@@ -125,8 +125,8 @@ if(isset($_FILES['image'])) {
             'uploadType' => 'multipart',
             'fields' => 'id'
         ));
-        $filename = $file->id;
-        $message = "File uploaded successfully. $filename";
+        $c_pic = $file->id;
+        $message = "File uploaded successfully. $c_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
@@ -231,8 +231,8 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
 
 <tr><td>Club Members</td><td><input type='number' name='c_members' value='$c_members'   size='12'></td>
 <tr><td>Upload Club Photo(JPG, GIF, PNG or TIF File only):
-        <td> <input type='file' name='image' >$filename</td></tr>
-        <input type='hidden' name='c_pic' value='$filename'>
+        <td> <input type='file' name='image' >$c_pic</td></tr>
+        <input type='hidden' name='c_pic' value='$c_pic'>
         <tr><td></td>
         <td><br></td>
         </tr>";
@@ -353,7 +353,7 @@ case "Finish":
                     //echo "$message";
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
                     "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
-	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$filename.'\', \''.$c_members.'\',
+	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$c_pic.'\', \''.$c_members.'\',
 	                 \''.$t_color1.'\', \''.$t_color2.'\', \''.$t_text.'\', \''.$des_color.'\', \''.$des_text.'\', 1)
                      RETURNING "club_id";';
 	                $result = pg_query($conn, $query);
