@@ -248,7 +248,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
         for ($i = 0; $i < $max_entries; $i++) {
            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
            $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
-           $perk_pic = $_POST['perk_pic']; // Assuming S_des is an array of values
+           //$perk_pic = $_POST['perk_pic']; // Assuming S_des is an array of values
 
             $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
