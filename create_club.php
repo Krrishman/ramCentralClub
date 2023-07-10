@@ -334,7 +334,7 @@ for ($i = 0; $i < $max_entry; $i++) {
     <tr>
         <td>Slide Pic</td> 
         <td> <input type='file' name='picture[]' value='$Slide_pic' size='50'>$Slide_pic</td>
-        <input type='hidden' name='Slide_pic[]' value='$Slide_pic'>
+        <input type='hidden' name='S_pic[]' value='$Slide_pic'>
     </tr>";
 }
 
