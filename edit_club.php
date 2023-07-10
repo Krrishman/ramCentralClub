@@ -128,7 +128,7 @@ if(isset($_FILES['image'])) {
   } 
 }
 
-
+/*
 if(isset($_FILES['images'])) {
     try {
        // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
@@ -171,6 +171,7 @@ if(isset($_FILES['images'])) {
         $message = "Error Message: ".$e->getMessage();
     } 
 }
+
 if(isset($_FILES['picture'])) {
     try {
        // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
@@ -213,7 +214,7 @@ if(isset($_FILES['picture'])) {
     } 
 }
 
-
+*/
 switch($task) {
 
     case "preview":   
