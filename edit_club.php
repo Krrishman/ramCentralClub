@@ -524,7 +524,7 @@ echo "    <div class='add_club_info'>
         <tr>
             <td>Slide Pic</td>
             <td><input type='file' name='picture[]' size='50'>$ss_pic</td>
-            <input type='hidden' name='Slide_pic[]' value='" . (isset($Slide_pic[$j]) ? $Slide_pic[$j] : "") . "'>
+            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
         </tr>";
 }
 

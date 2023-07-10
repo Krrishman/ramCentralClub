@@ -332,6 +332,7 @@ for ($i = 0; $i < $max_entry; $i++) {
 
 
     echo "
+    
     <tr>
         <td>Slide No " . ($i+1) . "</td>
     </tr>
