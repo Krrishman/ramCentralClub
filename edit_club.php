@@ -467,6 +467,9 @@ echo "    <div class='add_club_info'>
     <tr><td></td>
     <td><br></td>
     </tr>";
+echo " 
+    </table>
+    <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>";
 
     $max_entries = 4;
     $i = 0;
@@ -498,7 +501,9 @@ echo "    <div class='add_club_info'>
     echo "  <tr><td></td>
     <td><br></td>
     </tr>";
-
+echo " 
+    </table>
+    <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>";
     
     $max_ent = 3;
 
