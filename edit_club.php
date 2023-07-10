@@ -447,7 +447,7 @@ case "test":
 echo " <div class='club_make'>
 
 <form action='edit_club.php' method='post' enctype='multipart/form-data'>
-<table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
+<div><table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
 
 <input type='hidden' name='club_id' value='$club_id'>
 <tr><td width='30%'>Club Name</td><td ><input type='text' name='c_name' value='$c_name'  size='40'></td>
@@ -468,7 +468,7 @@ echo " <div class='club_make'>
     <td><br></td>
     </tr>";
 echo " 
-    </table>
+    </table></div><div>
     <table width='550' align='center' style='background-color: gray'  cellpadding='4'>";
 
     $max_entries = 4;
@@ -502,7 +502,7 @@ echo "
     <td><br></td>
     </tr>";
 echo " 
-    </table>
+    </table></div><div>
     <table width='550' align='center' style='background-color: yellow'  cellpadding='4'>";
     
     $max_ent = 3;
@@ -541,7 +541,7 @@ echo "
 <tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
 <input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
 
-</table></form></div>  <section>";
+</table></div></form></div>  <section>";
 
 
 
