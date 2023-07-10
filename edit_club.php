@@ -5,7 +5,7 @@
 echo"<p style=' width:100%; padding: 30px;'></p>";
 
 include('session.php');
-include('check_logon.php');
+//include('check_logon.php');
 include('menubar.php');
 include('Supabase_connect.php');
 
@@ -290,6 +290,26 @@ case "test":
                         $per_pic = $row['p_pic'];
                        // $club_id = $row['club_id'];
                         $color = $row['color'];}
+                    }
+
+                    $max_entri = 3;
+                    for ($i = 0; $i < $max_entri; $i++) {
+    
+                       $S_title = $_POST['S_title']; // Assuming S_title is an array of values
+                       $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+    
+            
+                        $S_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+                        $S_title = isset($S_title[$i]) ? $S_title[$i] : null;
+                        $S_des = isset($S_des[$i]) ? $S_des[$i] : null;
+    
+                        while ($row = pg_fetch_assoc($result3)) {
+                            $slide_id = $row['slide_id'];
+                            $S_title = $row['S_title'];
+                            $S_des = $row['S_des'];
+                            $S_pic = $row['S_pic'];
+                           // $club_id = $row['club_id'];
+                        }
                     }
 
         echo"yyyyyyyyyeeeeeeeeeesssssss";
