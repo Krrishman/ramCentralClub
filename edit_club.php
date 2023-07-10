@@ -203,8 +203,8 @@ case "Finish":
                 if ($result2) echo"Your perk updated.";
                 else { echo"Unable to add perk" . pg_last_error($conn);}}
 
-
-                for ($i = 0; $i < $max_entry; $i++) {
+/*
+                for ($j = 0; $j < $max_ent; $i++) {
                     // Check if the array values are set, otherwise set them to null
                     $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
                     $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
@@ -215,8 +215,23 @@ case "Finish":
                 $result3 = pg_query($conn, $query3);
                 if ($result3) echo"Your slideshow pic Updated.";
                 else { echo"Unable to add slideshow" . pg_last_error($conn);}}
+                */
+
+                if (isset($_POST['Slide_title']) && isset($_POST['Slide_des'])) {
+                    $Slide_titles = $_POST['Slide_title'];
+                    $Slide_dess = $_POST['Slide_des'];
+                    
+                    $max_entriess = count($Slide_titles);
                 
-                
+                    for ($i = 0; $i < $max_entriess; $i++) {
+                        $Slide_title = trim($Slide_titles[$i]);
+                        $Slide_des = trim($Slide_dess[$i]);
+
+                        $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
+                        WHERE "slide_pic"."club_id" = \'' . $club_id . '\';';
+                        $result3 = pg_query($conn, $query3);
+                        if ($result3) echo"Your slideshow pic Updated.";
+                        else { echo"Unable to add slideshow" . pg_last_error($conn);}}}
                 
                 }
                 else { echo"Unable to Make update" . pg_last_error($conn);}
