@@ -293,7 +293,7 @@ case "test":
                     }
 
                     $max_entri = 3;
-                    for ($i = 0; $i < $max_entri; $i++) {
+                    for ($j = 0; $j < $max_entri; $i++) {
     
                        $Slide_title = $_POST['Slide_title']; // Assuming S_title is an array of values
                        $Slide_des = $_POST['Slide_des']; // Assuming S_des is an array of values
@@ -469,7 +469,11 @@ echo "    <div class='add_club_info'>
         <td>Slide Pic</td>
         <td><input type='file' name='Slide_pic[]' value='$Sli_pic' size='50'>$Sli_pic</td>
     </tr>";  
+    
     }
+    echo "  <tr><td></td>
+    <td><br></td>
+    </tr>";
 
     echo "
 <tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
