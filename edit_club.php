@@ -114,10 +114,7 @@ switch($task) {
         <section>
         <div class='listOfBenefitsGrid'>";
 
-                for ($i = 0; $i < $max_entries; $i++) {
-                    $Per_name = $perk_names[$i];
-                    $Per_desc = $perk_descs[$i];
-
+                for ($i = 0; $i < count($perk_id); $i++) {
                     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
             
            echo"
@@ -127,8 +124,8 @@ switch($task) {
                     <img src='$imageUrl' alt='Per_pic'>
                 </div>
                 <div class='listOfBenefitsDesciption'>
-                    <h3>$Per_name</h3>
-                    <p>$Per_desc</p>
+                    <h3>$perk_name[$i]</h3>
+                    <p>$perk_desc[$i]</p>
                 </div>
             </div>  ";}
 
