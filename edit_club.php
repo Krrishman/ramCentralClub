@@ -61,6 +61,7 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // el
 if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
 if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
 if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
+if (isset($_POST['Slide_pic']))         {$Slide_pic = $_POST['Slide_pic'];}     else {$Slide_pic = array();}
 
 if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
@@ -355,6 +356,7 @@ echo "    <div class='add_club_info'>
         <tr>
             <td>Slide Pic</td>
             <td><input type='file' name='Slide_pic[]' value='$ss_pic' size='50'>$ss_pic</td>
+            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
         </tr>";
 }
 
