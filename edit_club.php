@@ -88,9 +88,9 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // el
 //$Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
 //$Slide_pics = isset($_POST['S_pic']) ? $_POST['S_pic'] : array();
 
-$Slide_titles = isset($_POST['Slide_title']) ? $_POST['Slide_title'] : array();
-$Slide_dess = isset($_POST['Slide_des']) ? $_POST['Slide_des'] : array();
-$Slide_pics = isset($_POST['Slide_pic']) ? $_POST['Slide_pic'] : array();
+//$Slide_titles = isset($_POST['Slide_title']) ? $_POST['Slide_title'] : array();
+//$Slide_dess = isset($_POST['Slide_des']) ? $_POST['Slide_des'] : array();
+//$Slide_pics = isset($_POST['Slide_pic']) ? $_POST['Slide_pic'] : array();
 
 //$Slide_title = array();
 //$Slide_des = array();
@@ -487,6 +487,7 @@ echo "    <div class='add_club_info'>
     for ($j = 0; $j < $max_ent; $j++) {
         $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
+        $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
     echo "
         <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
         <tr>
@@ -494,7 +495,7 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Title</td>
-            <td><input type='text' name='Slide_title[]' value='" . (isset($Slide_title[$j]) ? $Slide_title[$j] : "") . "' size='50'></td>
+            <td><input type='text' name='Slide_title[]' value='$ss_title' size='50'></td>
         </tr>
         <tr>
             <td>Slide Description</td>
