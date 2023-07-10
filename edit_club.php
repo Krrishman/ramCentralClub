@@ -486,8 +486,9 @@ echo "    <div class='add_club_info'>
 
     for ($j = 0; $j < $max_ent; $j++) {
         $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+        $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
     echo "
-        <input type='hidden' name='slide_id[]' value='$slide_id'>
+        <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
         <tr>
             <td>Slide No " . ($j + 1) . "</td>
         </tr>
@@ -497,7 +498,7 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Description</td>
-            <td><input type='text' name='Slide_des[]' value='" . (isset($Slide_des[$j]) ? $Slide_des[$j] : "") . "' size='50'></td>
+            <td><input type='text' name='Slide_des[]' value='$ss_des' size='50'></td>
         </tr>
         <tr>
             <td>Slide Pic</td>
