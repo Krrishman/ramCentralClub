@@ -86,6 +86,51 @@ function displayPostData($data, $prefix = '') {
 
 displayPostData($_POST);
 
+
+require_once 'drive/vendor/autoload.php';
+
+use Google\Client;
+use Google\Service\Drive;
+
+if(isset($_FILES['image'])) {
+//if(isset($_POST['submit'])){
+  try {
+      $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+      $file_type = $_FILES['image']['type'];
+      if (!in_array($file_type, $valid_types)) {
+          throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+      }
+      
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+      $client = new Client();
+      putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+      $client->useApplicationDefaultCredentials();
+      $client->addScope(Drive::DRIVE);
+      $driveService = new Drive($client);
+      $fileMetadata = new Drive\DriveFile(array(
+          'name' => $_FILES['image']['name'],
+          'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+      ));
+      $content = file_get_contents($_FILES['image']['tmp_name']);
+      $file = $driveService->files->create($fileMetadata, array(
+          'data' => $content,
+          'mimeType' => $file_type,
+          'uploadType' => 'multipart',
+          'fields' => 'id'
+      ));
+      $c_pic = $file->id;
+      $message = "File uploaded successfully. $c_pic";
+  } catch(Exception $e) {
+      $message = "Error Message: ".$e->getMessage();
+  } 
+}
+
+
+
+
 switch($task) {
 
     case "preview":   
@@ -172,7 +217,7 @@ case "Finish":
                 $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
                 "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
                 "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
-                "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\'
+                "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"c_pic" = \'' .$c_pic. '\'
                 WHERE "club_page"."club_id" = \'' . $club_id . '\';';
                 $result = pg_query($conn, $query);
                 if ($result) { echo"Your Club updated. $club_id";
