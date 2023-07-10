@@ -96,7 +96,7 @@ $Slide_pics = isset($_POST['Slide_pic']) ? $_POST['Slide_pic'] : array();
 //$Slide_des = array();
 //$Slide_pic = array();
 
-
+foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
 
 
 switch($task) {
@@ -221,23 +221,23 @@ case "Finish":
                 $result3 = pg_query($conn, $query3);
                 if ($result3) echo"Your slideshow pic Updated.";
                 else { echo"Unable to add slideshow" . pg_last_error($conn);}}
-                */
+             
 
                 if (isset($_POST['Slide_title']) && isset($_POST['Slide_des'])) {
                     $Slide_titles = $_POST['Slide_title'];
                     $Slide_dess = $_POST['Slide_des'];
-                    
+   */                    
                     $max_entriess = count($Slide_titles);
                 
                     for ($i = 0; $i < $max_entriess; $i++) {
-                        $Slide_title = trim($Slide_titles[$i]);
-                        $Slide_des = trim($Slide_dess[$i]);
+                        //$Slide_title = trim($Slide_titles[$i]);
+                        //$Slide_des = trim($Slide_dess[$i]);
 
                         $query3 = 'UPDATE "club_slide"  SET "S_title" = \'' .$Slide_title. '\', "S_des" = \'' .$Slide_des. '\'
                         WHERE "club_slide"."club_id" = \'' . $club_id . '\';';
                         $result3 = pg_query($conn, $query3);
                         if ($result3) echo"Your slideshow pic Updated.";
-                        else { echo"Unable to add slideshow" . pg_last_error($conn);}}}
+                        else { echo"Unable to add slideshow" . pg_last_error($conn);}}
                 
                 }
                 else { echo"Unable to Make update" . pg_last_error($conn);}
