@@ -321,7 +321,7 @@ case "Finish":
 
 
                 for ($i = 0; $i < count($slide_id); $i++) {
-                    $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
+                    $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\', "S_pic" = \'' . $Slide_pic[$i] . '\'
                                 WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
                     $result3 = pg_query($conn, $query3);
                     if ($result3) {
