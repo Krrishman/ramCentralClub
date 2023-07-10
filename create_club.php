@@ -254,6 +254,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
             $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
         //<td><input type='file' name='perk_pic[]' value='" . $per_pic . "' size='50'></td>
+        //<input type='hidden' name='perk_pic[]' value='$per_pic'>
        echo"
 
             <tr>
@@ -262,7 +263,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             <tr>
                 <td>Perk Pic</td>
                 <td> <input type='file' name='images[]' value='" . $Per_pic . "' size='50'>$Per_pic</td>
-                <input type='hidden' name='perk_pic[]' value='$per_pic'>
+                
             </tr>
             <tr>
                 <td>Perk Name</td>
