@@ -443,9 +443,9 @@ case "test":
 
 
 }
+//echo "    <div class='add_club_info'> 
+echo " <div class='club_make'>
 
-echo " <div class='club_make'>";
-echo "    <div class='add_club_info'> 
 <form action='edit_club.php' method='post' enctype='multipart/form-data'>
 <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
 
@@ -469,7 +469,7 @@ echo "    <div class='add_club_info'>
     </tr>";
 echo " 
     </table>
-    <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>";
+    <table width='550' align='center' style='background-color: gray'  cellpadding='4'>";
 
     $max_entries = 4;
     $i = 0;
@@ -503,7 +503,7 @@ echo "
     </tr>";
 echo " 
     </table>
-    <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>";
+    <table width='550' align='center' style='background-color: yellow'  cellpadding='4'>";
     
     $max_ent = 3;
 
