@@ -121,7 +121,7 @@ switch($task) {
            <input type='hidden' name='perk_id' value='$perk_id[$i]'>
             <div class='listOfBenefits'>
                 <div class='benefitsIcon'>
-                    <img src='$imageUrl' alt='Per_pic'>
+                    <img src='$imageUrl$perk_pic[$i]' alt='Per_pic'>
                 </div>
                 <div class='listOfBenefitsDesciption'>
                     <h3>$perk_name[$i]</h3>
