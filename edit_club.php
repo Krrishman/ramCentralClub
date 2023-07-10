@@ -61,7 +61,7 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // el
 if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
 if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
 if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
-if (isset($_POST['ss_pic']))         {$Slide_pic = $_POST['ss_pic'];}     else {$Slide_pic = array();}
+if (isset($_POST['Slide_pic']))         {$Slide_pic = $_POST['Slide_pic'];}     else {$Slide_pic = array();}
 
 if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
@@ -205,10 +205,10 @@ if(isset($_FILES['picture'])) {
                     'uploadType' => 'multipart',
                     'fields' => 'id'
                 ));
-                $Slide_pic[] = $file->id;
+                $ss_pic[] = $file->id;
             }
         }
-        $message = "Files uploaded successfully. $Slide_pic";
+        $message = "Files uploaded successfully. $ss_pic";
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
@@ -505,7 +505,7 @@ echo "    <div class='add_club_info'>
     for ($j = 0; $j < $max_ent; $j++) {
        // $Slide_pic = $_POST['Slide_pic'];
 
-        $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+        $ss_pic = isset($ss_pic[$j]) ? $ss_pic[$j] : null;
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
         $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
     echo "
@@ -523,8 +523,8 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='img[]' value='$ss_pic' size='50'>$ss_pic</td>
-            <input type='hidden' name='ss_pic[]' value='$ss_pic'>
+            <td><input type='file' name='picture[]' value='$ss_pic' size='50'>$ss_pic</td>
+            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
         </tr>";
 }
 
