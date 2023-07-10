@@ -16,7 +16,7 @@ section{
 
 .club_make{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .club_Container{
