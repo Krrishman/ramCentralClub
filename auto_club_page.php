@@ -131,6 +131,7 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
 
     //$query4 = "SELECT * FROM club_comment WHERE club_id = '$club_id' ORDER BY ";
     $query4 = 'SELECT * FROM "club_comment" WHERE "club_id" =\'' . $club_id . '\' ORDER BY ';
+    
     switch ($order) {
         case 'most_liked':
             $query4 .= '"Likes" DESC';
