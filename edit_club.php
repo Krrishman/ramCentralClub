@@ -84,9 +84,9 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);     // el
 //$perk_names = isset($_POST['perk_name']) ? $_POST['perk_name'] : array();
 //$perk_descs = isset($_POST['perk_desc']) ? $_POST['perk_desc'] : array();
 
-$Slide_titles = isset($_POST['S_title']) ? $_POST['S_title'] : array();
-$Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
-$Slide_pics = isset($_POST['S_pic']) ? $_POST['S_pic'] : array();
+//$Slide_titles = isset($_POST['S_title']) ? $_POST['S_title'] : array();
+//$Slide_dess = isset($_POST['S_des']) ? $_POST['S_des'] : array();
+//$Slide_pics = isset($_POST['S_pic']) ? $_POST['S_pic'] : array();
 
 
 
@@ -451,7 +451,7 @@ echo "    <div class='add_club_info'>
             $club_id = $row['club_id'];
 */
 
-            for ($i = 0; $i < $max_entri; $i++) {
+            for ($j = 0; $j < $max_entri; $i++) {
     echo " 
     <input type='hidden' name='slide_id[]' value='$slide_id'>
     <tr>
