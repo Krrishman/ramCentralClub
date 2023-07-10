@@ -321,7 +321,7 @@ for ($i = 0; $i < $max_entry; $i++) {
 
     $S_title = $_POST['S_title']; // Assuming S_title is an array of values
     $S_des = $_POST['S_des']; // Assuming S_des is an array of values
-    $S_pic = $_POST['S_pic']; // Assuming S_des is an array of values
+   // $S_pic = $_POST['S_pic']; // Assuming S_des is an array of values
 
         $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
