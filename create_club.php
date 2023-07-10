@@ -90,6 +90,14 @@ if(isset($_FILES['image'])) {
     }
   }
   */
+  function displayPostData($data, $prefix = '') {
+    foreach ($data as $key => $value) {
+        if (is_array($value)) { displayPostData($value, $prefix . $key . '[]');}
+        else {echo "<p align='center'>$prefix$key = $value<br>";}
+    }
+}
+
+displayPostData($_POST);
 
   
   require_once 'drive/vendor/autoload.php';
@@ -402,7 +410,7 @@ case "preview":
 
         echo"<div class='club_right'><div class='club_Container'>
                 <div class='image_Container'>
-                <img class='club_Icon' src='$imageUrl$filename' alt=\"Avatar\">
+                <img class='club_Icon' src='$imageUrl$c_pic' alt=\"Avatar\">
                 </div>
                 <div class='information'>
                     <h1 ><a style='text-decoration:none; color:white;' href='./club_home_page.php'>$c_name</a></h1>
@@ -415,7 +423,7 @@ case "preview":
  <section>
             <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
                 <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$filename' alt='avatar'>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic' alt='avatar'>
                 </div>
             <div class='nametag'>
             <h1 style='color:$t_text;' >$c_name</h1>
