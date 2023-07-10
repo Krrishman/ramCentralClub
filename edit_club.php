@@ -488,6 +488,7 @@ echo "    <div class='add_club_info'>
     $max_ent = 3;
 
     for ($j = 0; $j < $max_ent; $j++) {
+        $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
     echo "
         <input type='hidden' name='slide_id[]' value='$slide_id'>
         <tr>
@@ -503,7 +504,7 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='Slide_pic[]' value='" . (isset($Slide_pic[$j]) ? $Slide_pic[$j] : "") . "' size='50'></td>
+            <td><input type='file' name='Slide_pic[]' value='$ss_pic' size='50'>$ss_pic</td>
         </tr>";
 }
 
