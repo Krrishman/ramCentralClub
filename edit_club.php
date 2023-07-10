@@ -505,7 +505,7 @@ echo "    <div class='add_club_info'>
     for ($j = 0; $j < $max_ent; $j++) {
        // $Slide_pic = $_POST['Slide_pic'];
 
-        $ss_pic = isset($ss_pic[$j]) ? $ss_pic[$j] : null;
+        $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
         $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
     echo "
