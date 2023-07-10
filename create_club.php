@@ -48,7 +48,7 @@ if (isset($_POST['c_name']))			$c_name = trim($_POST['c_name']);       else $c_n
 if (isset($_POST['color']))			$color = trim($_POST['color']);       else $color = NULL;
 if (isset($_POST['c_tag']))				$c_tag = trim($_POST['c_tag']);         else $c_tag = NULL;
 if (isset($_POST['c_desc']))			$c_desc = trim($_POST['c_desc']);       else $c_desc = NULL;
-//if (isset($_POST['c_pic']))			    $c_pic = trim($_POST['c_pic']);         else $c_pic = NULL;
+if (isset($_POST['c_pic']))			    $c_pic = trim($_POST['c_pic']);         else $c_pic = NULL;
 if (isset($_POST['c_members']))			$c_members = trim($_POST['c_members']); else $c_members = NULL;
 if (isset($_POST['made_by']))			$made_by = trim($_POST['made_by']);     else $made_by = NULL;
 if (isset($_POST['made_date']))			$made_date = trim($_POST['made_date']); else $made_date = NULL;
@@ -232,16 +232,15 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
 <tr><td>Club Members</td><td><input type='number' name='c_members' value='$c_members'   size='12'></td>
 <tr><td>Upload Club Photo(JPG, GIF, PNG or TIF File only):
         <td> <input type='file' name='image' >$filename</td></tr>
+        <input type='hidden' name='c_pic' value='$filename'>
         <tr><td></td>
         <td><br></td>
         </tr>";
         $max_entries = 4;
         for ($i = 0; $i < $max_entries; $i++) {
-           // $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : '';
            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
            $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
-          // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
-          // $perk_pic = isset($_FILES[$filena]) ? $_FILES[$filena] : array();
+           $perk_pic = $_POST['perk_pic']; // Assuming S_des is an array of values
 
             $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
@@ -255,6 +254,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             <tr>
                 <td>Perk Pic</td>
                 <td> <input type='file' name='images[]' value='" . $Per_pic . "' size='50'>$Per_pic</td>
+                <input type='hidden' name='perk_pic[]' value='$per_pic'>
             </tr>
             <tr>
                 <td>Perk Name</td>
@@ -312,9 +312,8 @@ for ($i = 0; $i < $max_entry; $i++) {
 
     $S_title = $_POST['S_title']; // Assuming S_title is an array of values
     $S_des = $_POST['S_des']; // Assuming S_des is an array of values
-   // $S_pic = $_POST['S_pic']; // Assuming S_pic is an array of values
-    //$S_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array(); // Assuming S_pic is an array of file names
-        // Check if the array values are set, otherwise set them to null
+    $S_pic = $_POST['S_pic']; // Assuming S_des is an array of values
+
         $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
@@ -335,7 +334,7 @@ for ($i = 0; $i < $max_entry; $i++) {
     <tr>
         <td>Slide Pic</td> 
         <td> <input type='file' name='picture[]' value='$Slide_pic' size='50'>$Slide_pic</td>
-       
+        <input type='hidden' name='Slide_pic[]' value='$Slide_pic'>
     </tr>";
 }
 
