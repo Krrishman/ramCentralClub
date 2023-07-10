@@ -254,7 +254,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
             $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
         //<td><input type='file' name='perk_pic[]' value='" . $per_pic . "' size='50'></td>
-        //<input type='hidden' name='perk_pic[]' value='$per_pic'>
+        //
        echo"
 
             <tr>
@@ -263,7 +263,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
             <tr>
                 <td>Perk Pic</td>
                 <td> <input type='file' name='images[]' value='" . $Per_pic . "' size='50'>$Per_pic</td>
-                
+                <input type='hidden' name='perk_pic[]' value='$per_pic'>
             </tr>
             <tr>
                 <td>Perk Name</td>
@@ -343,13 +343,12 @@ for ($i = 0; $i < $max_entry; $i++) {
     <tr>
         <td>Slide Pic</td> 
         <td> <input type='file' name='picture[]' value='$Slide_pic' size='50'>$Slide_pic</td>
-        
+        <input type='hidden' name='S_pic[]' value='$Slide_pic'>
     </tr>";
 }
 
 // <td><input type='file' name='picture[]' value='" . $Slide_pic . "' size='50'></td>
-//<input type='hidden' name='S_pic[]' value='$Slide_pic'>
-
+//
 
         echo "
 <tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
