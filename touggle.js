@@ -7,6 +7,12 @@ function showMore(club_id) {
     //iconOption.show()
 
 }
+function showedit(event_id) {
+  var iconOptions = $('#icon_option_'+event_id);
+  iconOptions.toggle();
+  //iconOption.show()
+
+}
 
 function showMor(User_id) {
   var iconOpt = $('#pro_pic_'+User_id);
