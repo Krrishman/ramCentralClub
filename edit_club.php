@@ -443,11 +443,9 @@ case "test":
 
 
 }
-echo " <div class='club_make'>";
-echo "    <div class='add_club_info'> 
-
-<form action='edit_club.php' method='post' enctype='multipart/form-data'>
+echo " <div class='club_make'>
     <div class='form-container'>
+        <form action='edit_club.php' method='post' enctype='multipart/form-data'>
     <table class='form-table'>
     <input type='hidden' name='club_id' value='$club_id'>
     <tr>
@@ -517,8 +515,7 @@ echo "    <div class='add_club_info'>
         
 echo "</table></div>";
 
-    echo "
-        <div class='form-container'>
+echo "  <div class='form-container'>
         <table class='form-table'>";
     
     $max_ent = 3;
@@ -545,13 +542,13 @@ echo "</table></div>";
         <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
         <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>";}
 
-    echo "</table></div></tr>";
+    echo "</table></div></div></tr>";
 
 
     echo "
         <input type='submit' name='task' value='Finish' class='submit-button'>
         <input type='submit' name='task' value='preview' class='submit-button'>
-        </table></div></form></div>";
+        </form>";
 
 //<tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
 //<input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>

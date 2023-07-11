@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="label">
+            <div class="label0">
                 <h2>Farmingdale State College</h2>
             </div>
             <p style="text-align: center;background-color: black; color:white;">A College That Helps Prepare For Success In The Real World</p>
