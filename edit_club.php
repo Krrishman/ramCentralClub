@@ -84,7 +84,7 @@ function displayPostData($data, $prefix = '') {
     }
 }
 
-displayPostData($_POST);
+//displayPostData($_POST);
 
 
 require_once 'drive/vendor/autoload.php';
