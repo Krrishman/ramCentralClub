@@ -292,11 +292,11 @@ section{
     background-color: #45a049;
   }
   
-  /* Additional styles for the form layout */
+  /* Additional styles for the form layout 
   .form-table tr:not(:last-child) {
     margin-bottom: 10px;
   }
-  
+  */
   .form-table td {
     vertical-align: middle;
   }
