@@ -455,7 +455,7 @@ echo "    <div class='add_club_info'>
 <input type='color' name='t_color2' value='$t_color2' ></td>
 <tr><td>Text color </td><td><input type='color' name='t_text' value='$t_text' ></td>
 
-<tr><td>Club Tag </td><td><input type='text' name='c_tag' value='$c_tag' rows='10'  size='50'></td>
+<tr><td>Club Tag </td><td><input type='text' name='c_tag' value='$c_tag' size='40' rows='10' ></td>
 <tr><td>Club Description</td><td><textarea name='c_desc' value='$c_desc' size='500' cols='40' rows='10' >$c_desc</textarea></td>
 <tr><td>Background color </td><td><input type='color' name='des_color' value='$des_color' ></td>
 <tr><td>Text color </td><td><input type='color' name='des_text' value='$des_text' ></td>
@@ -482,16 +482,16 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Perk Pic</td>
-            <td><input type='file' name='images[]' value='$per_pic' size='50'>$per_pic</td>
+            <td><input type='file' name='images[]' value='$per_pic' size='40'>$per_pic</td>
             <input type='hidden' name='perk_pic[]' value='$per_pic'>
         </tr>
         <tr>
             <td>Perk Name</td>
-            <td><input type='text' name='perk_name[]' value='$per_name' size='50'></td>
+            <td><input type='text' name='perk_name[]' value='$per_name' size='40'></td>
         </tr>
         <tr>
             <td>Perk Description</td>
-            <td><input type='text' name='perk_desc[]' value='$per_desc' size='50'></td>
+            <td><input type='text' name='perk_desc[]' value='$per_desc' size='40'></td>
         </tr>";
     }
 
@@ -512,15 +512,15 @@ echo "    <div class='add_club_info'>
         </tr>
         <tr>
             <td>Slide Title</td>
-            <td><input type='text' name='Slide_title[]' value='$ss_title' size='50'></td>
+            <td><input type='text' name='Slide_title[]' value='$ss_title' size='40'></td>
         </tr>
         <tr>
             <td>Slide Description</td>
-            <td><input type='text' name='Slide_des[]' value='$ss_des' size='50'></td>
+            <td><input type='text' name='Slide_des[]' value='$ss_des' size='40'></td>
         </tr>
         <tr>
             <td>Slide Pic</td>
-            <td><input type='file' name='picture[]' size='50'>$ss_pic</td>
+            <td><input type='file' name='picture[]' size='40'>$ss_pic</td>
             <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
         </tr>";
 }
