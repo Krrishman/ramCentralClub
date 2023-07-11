@@ -20,8 +20,6 @@ section{
     background-color: aqua;
 }
 .club_make div{
-    display: flex;
-    flex-direction: row;
     margin:10px;
     
 }
