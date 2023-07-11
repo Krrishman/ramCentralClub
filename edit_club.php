@@ -484,9 +484,12 @@ echo "    <div class='add_club_info'>
         <input type='hidden' name='c_pic' value='$c_pic'></td>
     </table>
     </div>
-    </tr>
-    <div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
+    </tr>";
 
+    echo "
+    <div class='form-container'>
+    <table class='form-table'>";
+    
     $max_entries = 4;
     $i = 0;
    
@@ -494,27 +497,26 @@ echo "    <div class='add_club_info'>
                     $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
                     $per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                     $per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-        echo "
-            <input type='hidden' name='perk_id[]' value='" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
+    echo " 
+    <input type='hidden' name='perk_id[]' value='" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
         <tr>
             <td>Perk No " . ($i+1) . "</td>
-        </tr>
         <tr>
-            <td>Perk Pic</td>
-            <td><input type='file' name='images[]' value='$per_pic' size='40'>$per_pic</td>
-            <input type='hidden' name='perk_pic[]' value='$per_pic'>
-        </tr>
+            <td class='label'>Perk Pic</td>
+            <td class='input'>
+            <input type='file' name='images[]' value='$per_pic'>$per_pic
+            <input type='hidden' name='perk_pic[]' value='$per_pic'></td>
         <tr>
-            <td>Perk Name</td>
-            <td><input type='text' name='perk_name[]' value='$per_name' size='40'></td>
-        </tr>
+            <td class='label'>Perk Name</td>
+            <td class='input'><input type='text' name='perk_name[]' value='$per_name'></td>
         <tr>
-            <td>Perk Description</td>
-            <td><input type='text' name='perk_desc[]' value='$per_desc' size='40'></td>
+            <td class='label'>Perk Description</td>
+            <td class='input'><input type='text' name='perk_desc[]' value='$per_desc'></td>        
         </tr>";
-    }
+}
+        
+echo "</table></div>";
 
-    //echo "</tr><div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
     echo "
         <div class='form-container'>
         <table class='form-table'>";
@@ -528,9 +530,6 @@ echo "    <div class='add_club_info'>
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
         $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
     echo "
-        <div class='form-container'>
-        <table class='form-table'>
-
         <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
         <tr>
             <td>Slide No " . ($j + 1) . "</td>
@@ -545,19 +544,16 @@ echo "    <div class='add_club_info'>
         <td class='input'>
         <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
         <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>";}
-        
-    echo "
-    </table>
-    </div>
-    </tr>";
+
+    echo "</table></div></tr>";
 
 
     echo "
-<tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
-<input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
-<input type='submit' name='task' value='Finish' class='submit-button'>
-</table></div></form></div>";
+        <input type='submit' name='task' value='Finish' class='submit-button'>
+        <input type='submit' name='task' value='preview' class='submit-button'>
+        </table></div></form></div>";
 
-
+//<tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
+//<input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
 
 ?>
