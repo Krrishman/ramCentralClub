@@ -86,17 +86,15 @@ if(isset($_POST['place_Pic']))      $place_Pic = trim($_POST['place_Pic']);   //
 if(isset($_POST['header_pic']))     $header_pic = trim($_POST['header_pic']);   //else $header_pic = NULL;
 if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       //else $icon_pic = NULL;
 
+if (isset($_POST['S_title']))       {$S_title = $_POST['S_title'];}             else {$S_title = array();}
+if (isset($_POST['S_des']))         {$S_des = $_POST['S_des'];}                 else {$S_des = array();}
+if (isset($_POST['E_slide_id']))    {$E_slide_id = $_POST['E_slide_id'];}       else {$E_slide_id = array();}
+if (isset($_POST['S_pic']))         {$S_pic = $_POST['S_pic'];}                 else {$S_pic = array();}
 
 
-if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
-if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
-if (isset($_POST['slide_id']))          {$slide_id = $_POST['slide_id'];}       else {$slide_id = array();}
-if (isset($_POST['Slide_pic']))         {$Slide_pic = $_POST['Slide_pic'];}     else {$Slide_pic = array();}
-
-if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
-if (isset($_POST['perk_id']))           {$perk_id = $_POST['perk_id'];}         else {$perk_id = array();}
-if (isset($_POST['perk_pic']))          {$perk_pic = $_POST['perk_pic'];}       else {$perk_pic = array();}
+if (isset($_POST['e_perk_id']))           {$e_perk_id = $_POST['e_perk_id'];}         else {$e_perk_id = array();}
+
 
 
 //foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
