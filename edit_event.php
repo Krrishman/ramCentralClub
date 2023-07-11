@@ -403,7 +403,7 @@ case "test":
 
 echo "<div class='event_make'>
         <div class='form-container'>
-        <form action='edit_club.php' method='post' enctype='multipart/form-data'>
+        <form action='edit_event.php' method='post' enctype='multipart/form-data'>
         <table class='form-table'>
     <input type='hidden' name='club_id' value='$club_id'>
     <tr>
