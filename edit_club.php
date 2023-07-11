@@ -31,6 +31,7 @@ include('Supabase_connect.php');
         border: 1px solid #000;
     }
     #main {
+        padding-top: 10px;
         display: flex;
         flex-direction: row;
     }
@@ -57,8 +58,8 @@ $dd= date("Y-m-d");
 $i=1;
 $file_name =NULL;
 
-$ck="<i class='fa fa-duotone fa-check' style='font-size:30px;color:green;'></i>";
-$cr="<i class='fa fa-duotone fa-xmark' style='font-size:30px;color:red;'></i>";
+$ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
 
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
 if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
@@ -341,7 +342,6 @@ case "test":
                         $color = $row['color'];}
                     }
 */
-        echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
 }
 echo "<div class='club_make'>
@@ -380,7 +380,7 @@ echo "<div class='club_make'>
         <td class='label'>Upload Club Photo</td>
         <tr><td class='input'>
         <input type='file' name='image' value='$c_pic'>$c_pic
-        <input type='hidden' name='c_pic' value='$c_pic'></td> $ck $cr
+        <input type='hidden' name='c_pic' value='$c_pic'></td>
     </table>
     </div>";
 
