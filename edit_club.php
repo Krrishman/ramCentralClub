@@ -34,7 +34,15 @@ include('Supabase_connect.php');
         display: flex;
         flex-direction: row;
     }
-    
+    #main div{
+        width: 100%;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
 </style>
 <body>
 <section>
@@ -526,7 +534,7 @@ case "Finish":
     "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"c_pic" = \'' .$c_pic. '\'
     WHERE "club_page"."club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
-    if ($result) { echo"Your Club updated. $club_id";}
+    if ($result) { echo"Your Club updated $club_id";}
     else { echo"Unable to Make update" . pg_last_error($conn);}
     echo"</div><div>";
 
@@ -535,7 +543,7 @@ case "Finish":
         $query2 = 'UPDATE "club_perk" SET "p_name" = \'' . $perk_name[$i] . '\', "p_desc" = \'' . $perk_desc[$i] . '\'
                     WHERE "club_perk"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
-        if ($result2) {echo "Perk ID " . $perk_id[$i] . " updated.";
+        if ($result2) {echo "Perk ID  $perk_id[$i] updated.";
         } else {echo "Unable to update perk ID " . $perk_id[$i] . ": " . pg_last_error($conn);}
         echo"</div>";
     }
@@ -552,7 +560,7 @@ case "Finish":
     }
     
     echo"</div></div>";
-    echo"ooooook"; break;
+    break;
 
 
 
