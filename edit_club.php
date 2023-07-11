@@ -251,198 +251,7 @@ if(isset($_FILES['img'])) {
     }
     
 
-
-
-
-    echo "<div class='club_make'>
-    <div class='form-container'>
-    <form action='edit_club.php' method='post' enctype='multipart/form-data'>
-    <table class='form-table'>
-<input type='hidden' name='club_id' value='$club_id'>
-<tr>
-    <td class='label'>Club Name</td>
-    <tr><td class='input'><input type='text' name='c_name' value='$c_name' size='40'></td>
-<tr>
-    <td class='label'>Background Color</td>
-    <tr><td class='input'>
-    <input type='color' name='t_color1' value='$t_color1'>
-    <input type='color' name='t_color2' value='$t_color2'></td>
-<tr>
-    <td class='label'>Text Color</td>
-    <tr><td class='input'><input type='color' name='t_text' value='$t_text'></td>
-<tr>
-    <td class='label'>Club Tag</td>
-    <tr><td class='input'><input type='text' name='c_tag' value='$c_tag' size='40'></td>
-<tr>
-    <td class='label'>Club Description</td>
-    <tr><td class='input'>
-    <textarea name='c_desc' size='500' cols='40' rows='10'>$c_desc</textarea></td>
-<tr>
-    <td class='label'>Description Color</td>
-    <tr><td class='input'><input type='color' name='des_color' value='$des_color'></td>
-<tr>
-    <td class='label'>Description Text Color</td>
-    <tr><td class='input'><input type='color' name='des_text' value='$des_text'></td>
-<tr>
-    <td class='label'>Club Members</td>
-    <tr><td class='input'><input type='number' name='c_members' value='$c_members' size='12'></td>
-<tr>
-    <td class='label'>Upload Club Photo</td>
-    <tr><td class='input'>
-    <input type='file' name='image' value='$c_pic'>$c_pic
-    <input type='hidden' name='c_pic' value='$c_pic'></td>
-</table>
-</div>";
-
-echo "<div>";
-
-$max_entries = 4;
-$i = 0;
-
-            for ($i = 0; $i < $max_entries; $i++) {
-                $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-                $per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
-                $per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-echo "  <div class='form-container'>
-        <table class='form-table'>
-<input type='hidden' name='perk_id[]' value='" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
-    <tr>
-        <td>Perk No " . ($i+1) . "</td>
-    <tr>
-        <td class='label'>Perk Pic</td>
-        <tr><td class='input'>
-        <input type='file' name='images[]' value='$per_pic'>$per_pic
-        <input type='hidden' name='perk_pic[]' value='$per_pic'></td>
-    <tr>
-        <td class='label'>Perk Name</td>
-        <tr><td class='input'><input type='text' name='perk_name[]' value='$per_name'></td>
-    <tr>
-        <td class='label'>Perk Description</td>
-        <tr><td class='input'><input type='text' name='perk_desc[]' value='$per_desc'></td>        
-    </tr></table></div>";
-}
-    
-echo "</div><div>";
-
-$max_ent = 3;
-
-for ($j = 0; $j < $max_ent; $j++) {
-   // $Slide_pic = $_POST['Slide_pic'];
-
-    $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
-    $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
-    $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
-echo "  <div class='form-container'>
-        <table class='form-table'>
-    <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
-    <tr>
-        <td>Slide No " . ($j + 1) . "</td>
-    <tr>
-        <td class='label'>Slide Title</td>
-        <tr><td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
-    <tr>
-        <td class='label'>Slide Description</td>
-        <tr><td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
-    <tr>
-    <td class='label'>Slide Pic</td>
-    <tr><td class='input'>
-    <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
-    <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
-    </tr></table></div>";}
-
-echo "</div></div></div>
-
-    <input type='submit' name='task' value='Finish' class='submit-button'>
-    <input type='submit' name='task' value='preview' class='submit-button'>
-    </form>";
-
-
-
-
-
-
-
-
 switch($task) {
-
-    case "preview":   
-        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-        echo"   
- <section>
-        <input type='hidden' name='club_id' value='$club_id'> 
-        <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
-                <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt='xzc'>
-                </div>
-            <div class='nametag'>
-            <h1 style='color:$t_text;' >$c_name</h1>
-            <p  style='color:$t_text;' > $c_tag</p>
-            </div>
-            <div class='buttonSection'>
-                <div >
-                <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton'>Join Now</button></div>
-            </div>      
-        </div>
-
-
-        <div class='clubInfo'  style='background-color:$des_color;'>
-            <p  style='color: $des_text;' >$c_desc</p>
-        </div> </section>  
-        <section>
-        <div class='listOfBenefitsGrid'>";
-
-                for ($i = 0; $i < count($perk_id); $i++) {
-                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                    //$perk_id[$i];$perk_pic[$i]
-           echo"
-           <input type='hidden' name='perk_id' value='$perk_id[$i]'>
-            <div class='listOfBenefits'>
-                <div class='benefitsIcon'>
-                    <img src='$imageUrl$perk_pic[$i]' alt='Per_pic'>
-                </div>
-                <div class='listOfBenefitsDesciption'>
-                    <h3>$perk_name[$i]</h3>
-                    <p>$perk_desc[$i]</p>
-                </div>
-            </div>  ";}
-
-            echo"</div> </section>  
-            
-            <section> 
-            <div class='slideshow-container'>";
-
-            for ($i = 0; $i < count($slide_id); $i++) {
-                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                    //
-           echo"
-           <input type='hidden' name='perk_id' value='$slide_id[$i]'>
-            <div class='mySlides fade'>
-            <div class='numbertext'> " . ($i+1) . "</div>
-            <img src='$imageUrl$Slide_pic[$i]' style='width:100%' alt='Per_pic'>
-            <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
-            </div>
-            ";}
-            echo"	
-            <div class='prev' onclick='plusSlides(-1)'>❮</div>
-            <div class='next'  onclick='plusSlides(1)'>❯</div>
-            <br>
-            <div class='do' style='text-align:center'>
-                <span class='dot' onclick='currentSlide(1)'></span> 
-                <span class='dot' onclick='currentSlide(2)'></span> 
-                <span class='dot' onclick='currentSlide(3)'></span> 
-            </div>
-
-</div>
-<br>
-
-
-        
-
-<script src='autoSlide.js'></script>
-<script src='clickSlide.js'></script>
-
-</section>";     break;
 
 case "Finish":   
                 include('Supabase_connect.php');
@@ -552,12 +361,197 @@ case "test":
 */
         echo"yyyyyyyyyeeeeeeeeeesssssss";
         break;
-
-
 }
+echo "<div class='club_make'>
+        <div class='form-container'>
+        <form action='edit_club.php' method='post' enctype='multipart/form-data'>
+        <table class='form-table'>
+    <input type='hidden' name='club_id' value='$club_id'>
+    <tr>
+        <td class='label'>Club Name</td>
+        <tr><td class='input'><input type='text' name='c_name' value='$c_name' size='40'></td>
+    <tr>
+        <td class='label'>Background Color</td>
+        <tr><td class='input'>
+        <input type='color' name='t_color1' value='$t_color1'>
+        <input type='color' name='t_color2' value='$t_color2'></td>
+    <tr>
+        <td class='label'>Text Color</td>
+        <tr><td class='input'><input type='color' name='t_text' value='$t_text'></td>
+    <tr>
+        <td class='label'>Club Tag</td>
+        <tr><td class='input'><input type='text' name='c_tag' value='$c_tag' size='40'></td>
+    <tr>
+        <td class='label'>Club Description</td>
+        <tr><td class='input'>
+        <textarea name='c_desc' size='500' cols='40' rows='10'>$c_desc</textarea></td>
+    <tr>
+        <td class='label'>Description Color</td>
+        <tr><td class='input'><input type='color' name='des_color' value='$des_color'></td>
+    <tr>
+        <td class='label'>Description Text Color</td>
+        <tr><td class='input'><input type='color' name='des_text' value='$des_text'></td>
+    <tr>
+        <td class='label'>Club Members</td>
+        <tr><td class='input'><input type='number' name='c_members' value='$c_members' size='12'></td>
+    <tr>
+        <td class='label'>Upload Club Photo</td>
+        <tr><td class='input'>
+        <input type='file' name='image' value='$c_pic'>$c_pic
+        <input type='hidden' name='c_pic' value='$c_pic'></td>
+    </table>
+    </div>";
 
+echo "<div>";
+    
+    $max_entries = 4;
+    $i = 0;
+   
+                for ($i = 0; $i < $max_entries; $i++) {
+                    $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+                    $per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+                    $per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+    echo "  <div class='form-container'>
+            <table class='form-table'>
+    <input type='hidden' name='perk_id[]' value='" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
+        <tr>
+            <td>Perk No " . ($i+1) . "</td>
+        <tr>
+            <td class='label'>Perk Pic</td>
+            <tr><td class='input'>
+            <input type='file' name='images[]' value='$per_pic'>$per_pic
+            <input type='hidden' name='perk_pic[]' value='$per_pic'></td>
+        <tr>
+            <td class='label'>Perk Name</td>
+            <tr><td class='input'><input type='text' name='perk_name[]' value='$per_name'></td>
+        <tr>
+            <td class='label'>Perk Description</td>
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$per_desc'></td>        
+        </tr></table></div>";
+}
+        
+echo "</div><div>";
+    
+    $max_ent = 3;
+
+    for ($j = 0; $j < $max_ent; $j++) {
+       // $Slide_pic = $_POST['Slide_pic'];
+
+        $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+        $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
+        $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
+    echo "  <div class='form-container'>
+            <table class='form-table'>
+        <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
+        <tr>
+            <td>Slide No " . ($j + 1) . "</td>
+        <tr>
+            <td class='label'>Slide Title</td>
+            <tr><td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
+        <tr>
+            <td class='label'>Slide Description</td>
+            <tr><td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
+        <tr>
+        <td class='label'>Slide Pic</td>
+        <tr><td class='input'>
+        <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
+        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
+        </tr></table></div>";}
+
+    echo "</div></div></div>
+
+        <input type='submit' name='task' value='Finish' class='submit-button'>
+        <input type='submit' name='task' value='preview' class='submit-button'>
+        </form>";
 
 //<tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
 //<input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
+
+
+
+
+switch($task) {
+
+    case "preview":   
+        $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+        echo"   
+ <section>
+        <input type='hidden' name='club_id' value='$club_id'> 
+        <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
+                <div class='imageHeader'>
+                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt='xzc'>
+                </div>
+            <div class='nametag'>
+            <h1 style='color:$t_text;' >$c_name</h1>
+            <p  style='color:$t_text;' > $c_tag</p>
+            </div>
+            <div class='buttonSection'>
+                <div >
+                <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
+                <button class='joinButton'>Join Now</button></div>
+            </div>      
+        </div>
+
+
+        <div class='clubInfo'  style='background-color:$des_color;'>
+            <p  style='color: $des_text;' >$c_desc</p>
+        </div> </section>  
+        <section>
+        <div class='listOfBenefitsGrid'>";
+
+                for ($i = 0; $i < count($perk_id); $i++) {
+                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                    //$perk_id[$i];$perk_pic[$i]
+           echo"
+           <input type='hidden' name='perk_id' value='$perk_id[$i]'>
+            <div class='listOfBenefits'>
+                <div class='benefitsIcon'>
+                    <img src='$imageUrl$perk_pic[$i]' alt='Per_pic'>
+                </div>
+                <div class='listOfBenefitsDesciption'>
+                    <h3>$perk_name[$i]</h3>
+                    <p>$perk_desc[$i]</p>
+                </div>
+            </div>  ";}
+
+            echo"</div> </section>  
+            
+            <section> 
+            <div class='slideshow-container'>";
+
+            for ($i = 0; $i < count($slide_id); $i++) {
+                    $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                    //
+           echo"
+           <input type='hidden' name='perk_id' value='$slide_id[$i]'>
+            <div class='mySlides fade'>
+            <div class='numbertext'> " . ($i+1) . "</div>
+            <img src='$imageUrl$Slide_pic[$i]' style='width:100%' alt='Per_pic'>
+            <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
+            </div>
+            ";}
+            echo"	
+            <div class='prev' onclick='plusSlides(-1)'>❮</div>
+            <div class='next'  onclick='plusSlides(1)'>❯</div>
+            <br>
+            <div class='do' style='text-align:center'>
+                <span class='dot' onclick='currentSlide(1)'></span> 
+                <span class='dot' onclick='currentSlide(2)'></span> 
+                <span class='dot' onclick='currentSlide(3)'></span> 
+            </div>
+
+</div>
+<br>
+
+
+        
+
+<script src='autoSlide.js'></script>
+<script src='clickSlide.js'></script>
+
+</section>";     break;
+            }
+
+
 
 ?>
