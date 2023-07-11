@@ -57,8 +57,8 @@ $dd= date("Y-m-d");
 $i=1;
 $file_name =NULL;
 
-$ck="<i class='fa fa-duotone fa-check'></i>";
-$cr="<i class='fa fa-duotone fa-xmark' style='color: #0e5add;'></i>";
+$ck="<i class='fa fa-duotone fa-check' style='font-size:30px;color:green;'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='font-size:30px;color:red;'></i>";
 
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
 if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
@@ -542,8 +542,8 @@ case "Finish":
     "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"c_pic" = \'' .$c_pic. '\'
     WHERE "club_page"."club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
-    if ($result) { echo"Your Club updated $club_id";}
-    else { echo"Unable to Make update" . pg_last_error($conn);}
+    if ($result) { echo" $ck Your Club updated $club_id";}
+    else { echo" $cr Unable to Make update" . pg_last_error($conn);}
     echo"</div><div>";
 
     for ($i = 0; $i < count($perk_id); $i++) {
@@ -551,19 +551,19 @@ case "Finish":
         $query2 = 'UPDATE "club_perk" SET "p_name" = \'' . $perk_name[$i] . '\', "p_desc" = \'' . $perk_desc[$i] . '\'
                     WHERE "club_perk"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
-        if ($result2) {echo "Perk ID  $perk_id[$i] updated.";
-        } else {echo "Unable to update perk ID $perk_id[$i] " . pg_last_error($conn);}
+        if ($result2) {echo "$ck Perk ID  $perk_id[$i] updated.";
+        } else {echo " $cr Unable to update perk ID $perk_id[$i] " . pg_last_error($conn);}
         echo"</div>";
     }
     echo"</div><div>";
 
     for ($i = 0; $i < count($slide_id); $i++) {
         echo"<div id='ma'>";
-        $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
+        $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "Sd_des" = \'' . $Slide_des[$i] . '\'
                     WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
         $result3 = pg_query($conn, $query3);
-        if ($result3) {echo "Slide ID $slide_id[$i] updated.";}
-        else {echo "Unable to update slide ID $slide_id[$i] " . pg_last_error($conn);}
+        if ($result3) {echo "$ck Slide ID $slide_id[$i] updated.";}
+        else {echo " $cr Unable to update slide ID $slide_id[$i] " . pg_last_error($conn);}
         echo"</div>";
     }
     
