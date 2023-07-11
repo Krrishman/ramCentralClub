@@ -539,7 +539,7 @@ case "Finish":
     $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
     "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
     "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
-    "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"c_pic" = \'' .$c_pic. '\'
+    "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"cv_pic" = \'' .$c_pic. '\'
     WHERE "club_page"."club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
     if ($result) { echo" $ck Your Club updated $club_id";}
