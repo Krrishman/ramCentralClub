@@ -441,9 +441,10 @@ echo "</div><div>";
         </tr></table></div>";}
 
     echo "</div></div></div>
-
+    <div class='submit_button'>
         <input type='submit' name='task' value='Finish' class='submit-button'>
         <input type='submit' name='task' value='preview' class='submit-button'>
+        </div>
         </form>";
 
 
@@ -539,7 +540,7 @@ case "Finish":
     $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
     "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
     "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
-    "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"cv_pic" = \'' .$c_pic. '\'
+    "des_color" = \'' .$des_color. '\',"des_text" = \'' .$des_text. '\' ,"c_pic" = \'' .$c_pic. '\'
     WHERE "club_page"."club_id" = \'' . $club_id . '\';';
     $result = pg_query($conn, $query);
     if ($result) { echo" $ck Your Club updated $club_id";}
@@ -559,7 +560,7 @@ case "Finish":
 
     for ($i = 0; $i < count($slide_id); $i++) {
         echo"<div id='ma'>";
-        $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "Sd_des" = \'' . $Slide_des[$i] . '\'
+        $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
                     WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
         $result3 = pg_query($conn, $query3);
         if ($result3) {echo "$ck Slide ID $slide_id[$i] updated.";}
