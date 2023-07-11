@@ -466,7 +466,7 @@ echo "    <div class='add_club_info'>
     <input type='hidden' name='c_pic' value='$c_pic'>
     <tr><td></td>
     <td><br></td>
-    </tr><div><table width='550'  style='background-color: gray'  cellpadding='4'>";
+    </tr><div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
 
     $max_entries = 4;
     $i = 0;
@@ -495,7 +495,7 @@ echo "    <div class='add_club_info'>
         </tr>";
     }
 
-    echo "</tr><div><table width='550'  style='background-color: yellow'  cellpadding='4'>";
+    echo "</tr><div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
     
     $max_ent = 3;
 
