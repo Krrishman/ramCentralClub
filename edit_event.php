@@ -63,7 +63,7 @@ $ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>"
 $cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
 
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
-if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
+if (isset($_GET['r']))				{$event_id = $_GET['r'];}	
 
 if(isset($_POST['e_name']))         $e_name = trim($_POST['e_name']);         //else $e_name = NULL;
 if(isset($_POST['e_tag']))          $e_tag = trim($_POST['e_tag']);           //else $e_tag = NULL;
@@ -107,7 +107,7 @@ function displayPostData($data, $prefix = '') {
     }
 }
 
-//displayPostData($_POST);
+displayPostData($_POST);
 
 
 require_once 'drive/vendor/autoload.php';
