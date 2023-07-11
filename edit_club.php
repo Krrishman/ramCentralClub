@@ -443,50 +443,47 @@ case "test":
 
 
 }
-echo " <div class='club_make'>
-    <div class='form-container'>
+echo "<div class='club_make'>
+        <div class='form-container'>
         <form action='edit_club.php' method='post' enctype='multipart/form-data'>
-    <table class='form-table'>
+        <table class='form-table'>
     <input type='hidden' name='club_id' value='$club_id'>
     <tr>
         <td class='label'>Club Name</td>
-        <td class='input'><input type='text' name='c_name' value='$c_name' size='40'></td>
+        <tr><td class='input'><input type='text' name='c_name' value='$c_name' size='40'></td>
     <tr>
         <td class='label'>Background Color</td>
-        <td class='input'>
+        <tr><td class='input'>
         <input type='color' name='t_color1' value='$t_color1'>
         <input type='color' name='t_color2' value='$t_color2'></td>
     <tr>
         <td class='label'>Text Color</td>
-        <td class='input'><input type='color' name='t_text' value='$t_text'></td>
+        <tr><td class='input'><input type='color' name='t_text' value='$t_text'></td>
     <tr>
         <td class='label'>Club Tag</td>
-        <td class='input'><input type='text' name='c_tag' value='$c_tag' size='40'></td>
+        <tr><td class='input'><input type='text' name='c_tag' value='$c_tag' size='40'></td>
     <tr>
         <td class='label'>Club Description</td>
-        <td class='input'>
+        <tr><td class='input'>
         <textarea name='c_desc' size='500' cols='40' rows='10'>$c_desc</textarea></td>
     <tr>
         <td class='label'>Description Color</td>
-        <td class='input'><input type='color' name='des_color' value='$des_color'></td>
+        <tr><td class='input'><input type='color' name='des_color' value='$des_color'></td>
     <tr>
         <td class='label'>Description Text Color</td>
-        <td class='input'><input type='color' name='des_text' value='$des_text'></td>
+        <tr><td class='input'><input type='color' name='des_text' value='$des_text'></td>
     <tr>
         <td class='label'>Club Members</td>
-        <td class='input'><input type='number' name='c_members' value='$c_members' size='12'></td>
+        <tr><td class='input'><input type='number' name='c_members' value='$c_members' size='12'></td>
     <tr>
         <td class='label'>Upload Club Photo</td>
-        <td class='input'>
+        <tr><td class='input'>
         <input type='file' name='image' value='$c_pic'>$c_pic
         <input type='hidden' name='c_pic' value='$c_pic'></td>
     </table>
-    </div>
-    </tr>";
+    </div>";
 
-    echo "
-    <div class='form-container'>
-    <table class='form-table'>";
+echo "<div>";
     
     $max_entries = 4;
     $i = 0;
@@ -495,28 +492,26 @@ echo " <div class='club_make'>
                     $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
                     $per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                     $per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-    echo " 
+    echo "  <div class='form-container'>
+            <table class='form-table'>
     <input type='hidden' name='perk_id[]' value='" . (isset($perk_id[$i]) ? $perk_id[$i] : "") . "'>
         <tr>
             <td>Perk No " . ($i+1) . "</td>
         <tr>
             <td class='label'>Perk Pic</td>
-            <td class='input'>
+            <tr><td class='input'>
             <input type='file' name='images[]' value='$per_pic'>$per_pic
             <input type='hidden' name='perk_pic[]' value='$per_pic'></td>
         <tr>
             <td class='label'>Perk Name</td>
-            <td class='input'><input type='text' name='perk_name[]' value='$per_name'></td>
+            <tr><td class='input'><input type='text' name='perk_name[]' value='$per_name'></td>
         <tr>
             <td class='label'>Perk Description</td>
-            <td class='input'><input type='text' name='perk_desc[]' value='$per_desc'></td>        
-        </tr>";
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$per_desc'></td>        
+        </tr></table></div>";
 }
         
-echo "</table></div>";
-
-echo "  <div class='form-container'>
-        <table class='form-table'>";
+echo "</div><div>";
     
     $max_ent = 3;
 
@@ -526,7 +521,8 @@ echo "  <div class='form-container'>
         $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
         $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
-    echo "
+    echo "  <div class='form-container'>
+            <table class='form-table'>
         <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
         <tr>
             <td>Slide No " . ($j + 1) . "</td>
@@ -540,12 +536,11 @@ echo "  <div class='form-container'>
         <td class='label'>Slide Pic</td>
         <td class='input'>
         <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
-        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>";}
+        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
+        </tr></table></div>";}
 
-    echo "</table></div></div></tr>";
+    echo "</div></div></div>
 
-
-    echo "
         <input type='submit' name='task' value='Finish' class='submit-button'>
         <input type='submit' name='task' value='preview' class='submit-button'>
         </form>";

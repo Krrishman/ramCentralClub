@@ -22,6 +22,7 @@ section{
 .club_make div{
     display: flex;
     flex-direction: row;
+    margin:10px;
     
 }
 .club_Container{
