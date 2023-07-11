@@ -34,13 +34,15 @@ include('Supabase_connect.php');
         display: flex;
         flex-direction: row;
     }
-    #main div{
+    #ma{
+        display: flex;
         width: 100%;
         background-color: #FAF0E6;
         padding: 10px;
         margin: 10px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        align-items: center;
     }
 
 </style>
@@ -527,7 +529,7 @@ case "Finish":
     include('Supabase_connect.php');
 
    
-    echo"<div>";
+    echo"<div id='ma'>";
     $query = 'UPDATE "club_page" SET "c_name" = \'' .$c_name. '\',"c_tag" = \'' .$c_tag. '\',
     "c_desc" = \'' .$c_desc. '\',"c_members" = \'' .$c_members. '\',
     "t_color1" = \'' .$t_color1. '\',"t_color2" = \'' .$t_color2. '\',"t_text" = \'' .$t_text. '\',
@@ -539,7 +541,7 @@ case "Finish":
     echo"</div><div>";
 
     for ($i = 0; $i < count($perk_id); $i++) {
-        echo"<div>";
+        echo"<div id='ma'>";
         $query2 = 'UPDATE "club_perk" SET "p_name" = \'' . $perk_name[$i] . '\', "p_desc" = \'' . $perk_desc[$i] . '\'
                     WHERE "club_perk"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
@@ -550,7 +552,7 @@ case "Finish":
     echo"</div><div>";
 
     for ($i = 0; $i < count($slide_id); $i++) {
-        echo"<div>";
+        echo"<div id='ma'>";
         $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
                     WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
         $result3 = pg_query($conn, $query3);
