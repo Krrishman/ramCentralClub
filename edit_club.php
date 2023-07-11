@@ -34,6 +34,9 @@ include('Supabase_connect.php');
         display: flex;
         flex-direction: row;
     }
+    #main div{
+        width: 100%;
+    }
     #ma{
         width: 100%;
         background-color: #FAF0E6;
