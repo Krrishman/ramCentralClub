@@ -447,26 +447,45 @@ echo " <div class='club_make'>";
 echo "    <div class='add_club_info'> 
 
 <form action='edit_club.php' method='post' enctype='multipart/form-data'>
-<div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>
-
-<input type='hidden' name='club_id' value='$club_id'>
-<tr><td width='30%'>Club Name</td><td ><input type='text' name='c_name' value='$c_name'  size='40'></td>
-<tr><td>Background color </td><td><input type='color' name='t_color1' value='$t_color1' >       
-<input type='color' name='t_color2' value='$t_color2' ></td>
-<tr><td>Text color </td><td><input type='color' name='t_text' value='$t_text' ></td>
-
-<tr><td>Club Tag </td><td><input type='text' name='c_tag' value='$c_tag' size='40' rows='10' ></td>
-<tr><td>Club Description</td><td><textarea name='c_desc' value='$c_desc' size='500' cols='40' rows='10' >$c_desc</textarea></td>
-<tr><td>Background color </td><td><input type='color' name='des_color' value='$des_color' ></td>
-<tr><td>Text color </td><td><input type='color' name='des_text' value='$des_text' ></td>
-
-<tr><td>Club Members</td><td><input type='number' name='c_members' value='$c_members'   size='12'></td>
-<tr><td>Upload Club Photo(JPG, GIF, PNG or TIF File only):
-    <td> <input type='file' name='image' value='$c_pic'>$c_pic</td></tr>
-    <input type='hidden' name='c_pic' value='$c_pic'>
-    <tr><td></td>
-    <td><br></td>
-    </tr><div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
+    <div class='form-container'>
+    <table class='form-table'>
+    <input type='hidden' name='club_id' value='$club_id'>
+    <tr>
+        <td class='label'>Club Name</td>
+        <td class='input'><input type='text' name='c_name' value='$c_name' size='40'></td>
+    <tr>
+        <td class='label'>Background Color</td>
+        <td class='input'>
+        <input type='color' name='t_color1' value='$t_color1'>
+        <input type='color' name='t_color2' value='$t_color2'></td>
+    <tr>
+        <td class='label'>Text Color</td>
+        <td class='input'><input type='color' name='t_text' value='$t_text'></td>
+    <tr>
+        <td class='label'>Club Tag</td>
+        <td class='input'><input type='text' name='c_tag' value='$c_tag' size='40'></td>
+    <tr>
+        <td class='label'>Club Description</td>
+        <td class='input'>
+        <textarea name='c_desc' size='500' cols='40' rows='10'>$c_desc</textarea></td>
+    <tr>
+        <td class='label'>Description Color</td>
+        <td class='input'><input type='color' name='des_color' value='$des_color'></td>
+    <tr>
+        <td class='label'>Description Text Color</td>
+        <td class='input'><input type='color' name='des_text' value='$des_text'></td>
+    <tr>
+        <td class='label'>Club Members</td>
+        <td class='input'><input type='number' name='c_members' value='$c_members' size='12'></td>
+    <tr>
+        <td class='label'>Upload Club Photo</td>
+        <td class='input'>
+        <input type='file' name='image' value='$c_pic'>$c_pic
+        <input type='hidden' name='c_pic' value='$c_pic'></td>
+    </table>
+    </div>
+    </tr>
+    <div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
 
     $max_entries = 4;
     $i = 0;
@@ -495,7 +514,10 @@ echo "    <div class='add_club_info'>
         </tr>";
     }
 
-    echo "</tr><div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
+    //echo "</tr><div><table width='550'  style='background-color: #FAF0E6'  cellpadding='4'>";
+    echo "
+        <div class='form-container'>
+        <table class='form-table'>";
     
     $max_ent = 3;
 
@@ -506,33 +528,33 @@ echo "    <div class='add_club_info'>
         $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
         $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
     echo "
+        <div class='form-container'>
+        <table class='form-table'>
+
         <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
         <tr>
             <td>Slide No " . ($j + 1) . "</td>
-        </tr>
         <tr>
-            <td>Slide Title</td>
-            <td><input type='text' name='Slide_title[]' value='$ss_title' size='40'></td>
-        </tr>
+            <td class='label'>Slide Title</td>
+            <td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
         <tr>
-            <td>Slide Description</td>
-            <td><input type='text' name='Slide_des[]' value='$ss_des' size='40'></td>
-        </tr>
+            <td class='label'>Slide Description</td>
+            <td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
         <tr>
-            <td>Slide Pic</td>
-            <td><input type='file' name='picture[]' size='40'>$ss_pic</td>
-            <input type='hidden' name='Slide_pic[]' value='$ss_pic'>
-        </tr>";
+        <td class='label'>Slide Pic</td>
+        <td class='input'>
+        <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
+        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
+    </table>
+    </div>
+    </tr>";
 }
 
-    echo "  <tr><td></td>
-    <td><br></td>
-    </tr>";
 
     echo "
 <tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
 <input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
-
+<input type='submit' name='task' value='Finish' class='submit-button'>
 </table></div></form></div>";
 
 
