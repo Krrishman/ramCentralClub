@@ -455,8 +455,6 @@ echo "    <div class='add_club_info'>
 <input type='color' name='t_color2' value='$t_color2' ></td>
 <tr><td>Text color </td><td><input type='color' name='t_text' value='$t_text' ></td>
 
-<div><table width='550'  style='background-color: gray'  cellpadding='4'>
-
 <tr><td>Club Tag </td><td><input type='text' name='c_tag' value='$c_tag' rows='10'  size='50'></td>
 <tr><td>Club Description</td><td><textarea name='c_desc' value='$c_desc' size='500' cols='40' rows='10' >$c_desc</textarea></td>
 <tr><td>Background color </td><td><input type='color' name='des_color' value='$des_color' ></td>
@@ -468,10 +466,7 @@ echo "    <div class='add_club_info'>
     <input type='hidden' name='c_pic' value='$c_pic'>
     <tr><td></td>
     <td><br></td>
-    </tr>";
-echo " 
-    </table></div>
-    <div><table width='550'  style='background-color: gray'  cellpadding='4'>";
+    </tr><div><table width='550'  style='background-color: gray'  cellpadding='4'>";
 
     $max_entries = 4;
     $i = 0;
@@ -500,12 +495,7 @@ echo "
         </tr>";
     }
 
-    echo "  <tr><td></td>
-    <td><br></td>
-    </tr>";
-echo " 
-    </table></div><div>
-    <table width='550'  style='background-color: yellow'  cellpadding='4'>";
+    echo "</tr><div><table width='550'  style='background-color: yellow'  cellpadding='4'>";
     
     $max_ent = 3;
 
