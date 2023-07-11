@@ -35,14 +35,12 @@ include('Supabase_connect.php');
         flex-direction: row;
     }
     #ma{
-        display: flex;
         width: 100%;
         background-color: #FAF0E6;
         padding: 10px;
         margin: 10px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        align-items: center;
     }
 
 </style>
