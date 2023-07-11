@@ -17,6 +17,7 @@ section{
 .club_make{
     display: flex;
     flex-direction: row;
+    background-color: aqua;
 }
 .club_make div{
     display: flex;
