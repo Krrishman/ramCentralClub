@@ -38,6 +38,8 @@ include('Supabase_connect.php');
         width: 100%;
     }
     #ma{
+        display: flex;
+        justify-content: center;
         width: 100%;
         background-color: #FAF0E6;
         padding: 10px;
@@ -376,6 +378,11 @@ echo "<div class='club_make'>
         <tr><td class='input'>
         <input type='file' name='image' value='$c_pic'>$c_pic
         <input type='hidden' name='c_pic' value='$c_pic'></td>
+        <i class='fa fa-duotone fa-check'></i>
+        <i class='fa fa-duotone fa-xmark'></i>
+        <i class='fa fa-solid fa-xmark'></i>
+        
+        <i class='fa fa-badge-check'></i>
     </table>
     </div>";
 
@@ -547,7 +554,7 @@ case "Finish":
                     WHERE "club_perk"."club_id" = \'' . $club_id . '\' AND "perk_id" = \'' . $perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
         if ($result2) {echo "Perk ID  $perk_id[$i] updated.";
-        } else {echo "Unable to update perk ID " . $perk_id[$i] . ": " . pg_last_error($conn);}
+        } else {echo "Unable to update perk ID $perk_id[$i] " . pg_last_error($conn);}
         echo"</div>";
     }
     echo"</div><div>";
@@ -557,8 +564,8 @@ case "Finish":
         $query3 = 'UPDATE "club_slide" SET "S_title" = \'' . $Slide_title[$i] . '\', "S_des" = \'' . $Slide_des[$i] . '\'
                     WHERE "club_slide"."club_id" = \'' . $club_id . '\' AND "slide_id" = \'' . $slide_id[$i] . '\';';
         $result3 = pg_query($conn, $query3);
-        if ($result3) {echo "Slide ID " . $slide_id[$i] . " updated.";}
-        else {echo "Unable to update slide ID " . $slide_id[$i] . ": " . pg_last_error($conn);}
+        if ($result3) {echo "Slide ID $slide_id[$i] updated.";}
+        else {echo "Unable to update slide ID $slide_id[$i] " . pg_last_error($conn);}
         echo"</div>";
     }
     
