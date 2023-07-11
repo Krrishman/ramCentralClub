@@ -528,13 +528,13 @@ echo "</div><div>";
             <td>Slide No " . ($j + 1) . "</td>
         <tr>
             <td class='label'>Slide Title</td>
-            <td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
+            <tr><td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
         <tr>
             <td class='label'>Slide Description</td>
-            <td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
+            <tr><td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
         <tr>
         <td class='label'>Slide Pic</td>
-        <td class='input'>
+        <tr><td class='input'>
         <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
         <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
         </tr></table></div>";}
