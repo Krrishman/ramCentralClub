@@ -228,8 +228,9 @@ if(isset($_FILES['picture'])) {
 }
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 echo " <div class='club_make'>";
-echo "    <div class='add_club_info'> <form action='create_club.php' method='post' enctype='multipart/form-data'>
-<table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
+echo "    <div class='add_club_info'> 
+<form action='create_club.php' method='post' enctype='multipart/form-data'>
+<div><table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
 <tr><td width='30%'>Club Name</td><td ><input type='text' name='c_name' value='$c_name'  size='40'></td>
 <tr><td>Background color </td><td><input type='color' name='t_color1' value='$t_color1' >       
 <input type='color' name='t_color2' value='$t_color2' ></td>
@@ -246,7 +247,8 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
         <input type='hidden' name='c_pic' value='$c_pic'>
         <tr><td></td>
         <td><br></td>
-        </tr>";
+        </tr>
+        <div><table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>";
         $max_entries = 4;
         for ($i = 0; $i < $max_entries; $i++) {
            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
@@ -281,7 +283,7 @@ echo "    <div class='add_club_info'> <form action='create_club.php' method='pos
 
         echo "  <tr><td></td>
         <td><br></td>
-        </tr>";
+        </tr><div><table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>";
 
 /*
         if(isset($_FILES['picture'])) {

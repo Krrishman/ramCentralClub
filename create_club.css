@@ -17,6 +17,14 @@ section{
     display: flex;
     flex-direction: row;
 }
+
+.club_make div{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
 .club_right{
     width: 500px;
     height: 100%;
