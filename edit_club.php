@@ -544,11 +544,12 @@ echo "    <div class='add_club_info'>
         <td class='label'>Slide Pic</td>
         <td class='input'>
         <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
-        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
+        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>";}
+        
+    echo "
     </table>
     </div>
     </tr>";
-}
 
 
     echo "
