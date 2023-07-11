@@ -57,6 +57,9 @@ $dd= date("Y-m-d");
 $i=1;
 $file_name =NULL;
 
+$ck="<i class='fa fa-duotone fa-check'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='color: #0e5add;'></i>";
+
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
 if (isset($_GET['r']))				{$club_id = $_GET['r'];}	
 
@@ -377,12 +380,7 @@ echo "<div class='club_make'>
         <td class='label'>Upload Club Photo</td>
         <tr><td class='input'>
         <input type='file' name='image' value='$c_pic'>$c_pic
-        <input type='hidden' name='c_pic' value='$c_pic'></td>
-        <i class='fa fa-duotone fa-check'></i>
-        <i class='fa fa-duotone fa-xmark'></i>
-        <i class='fa fa-solid fa-xmark'></i>
-        
-        <i class='fa fa-badge-check'></i>
+        <input type='hidden' name='c_pic' value='$c_pic'></td> $ck $cr
     </table>
     </div>";
 
