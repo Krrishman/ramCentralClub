@@ -403,7 +403,7 @@ echo "<div class='event_make'>
         <div class='form-container'>
         <form action='edit_event.php' method='post' enctype='multipart/form-data'>
         <table class='form-table'>
-    <input type='hidden' name='club_id' value='$club_id'>
+    <input type='hidden' name='event_id' value='$event_id'>
     <tr>
         <td class='label'>Event Name</td>
         <tr><td class='input'><input type='text' name='e_name' value='$e_name' size='40'></td>
@@ -501,13 +501,14 @@ echo "</div><div>";
 
     for ($j = 0; $j < $max_ent; $j++) {
 
-       $_title = isset($S_title[$j]) ? $S_title[$j] : null;
-       $_des = isset($S_des[$j]) ? $S_des[$j] : null;
-       $_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
+    $_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
+    $_title = isset($S_title[$j]) ? $S_title[$j] : null;
+    $_des = isset($S_des[$j]) ? $S_des[$j] : null;
+       
 
     echo "  <div class='form-container'>
             <table class='form-table'>
-        <input type='hidden' name='E_slide_id[]' value='" . (isset($E_slide_id[$j]) ? $E_slide_id[$j] : "") . "'>
+        <input type='hidden' name='E_slide_id[]' value='$E_slide_id[$j]'>
         <tr>
             <td>Event Pic No " . ($j + 1) . "</td>
         <tr>
