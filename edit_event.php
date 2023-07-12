@@ -452,7 +452,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Overview</td>
         <tr><td class='input'>
-        <textarea name='e_desc' value='$e_desc' size='500' cols='10' rows='5'>$e_desc</textarea></td>
+        <textarea name='e_desc' value='$e_desc' size='200' cols='5' rows='2'>$e_desc</textarea></td>
     <tr>
         <td class='label_mem'><span>Event Members</span> <span>Event Max Members</span> </td>
         <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
