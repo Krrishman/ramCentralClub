@@ -486,7 +486,7 @@ echo "<div>";
             <td>Perk No " . ($i+1) . "</td>
         <tr>
             <td class='label'>Perk Description</td>
-            <tr><td class='input'><input type='text' name='perk_desc[]' value='$Per_desc'></td>        
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$Per_desc' cols='10' rows='5'></td>        
         </tr></table></div>";
 }
         
