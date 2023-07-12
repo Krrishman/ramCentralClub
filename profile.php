@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	echo"oovvvvvdddff $club_id";
 
 	if (isset($_POST['event_id'])) {$event_id = $_POST['event_id'];}
-	if (isset($_POST['club_id'])) {$lub_id = $_POST['club_id'];}
+	if (isset($_POST['club_id'])) {$club_id = $_POST['club_id'];}
 	
 	if (isset($_POST['club_join'])) {
 		echo" $user_name f $club_id";
