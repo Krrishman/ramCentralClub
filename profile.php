@@ -290,16 +290,16 @@ while ($row = pg_fetch_assoc($result2)) {
 echo" $club_id $c_name $c_tag $c_desc $c_pic $c_members<br>";
 echo "<div class='box-container'>
 		  <div class='box-row'>
+            <div class='box-label'>Club ID</div>
+            <div class='box-value'><p>$club_id</p></div>
+          </div>
+		  <div class='box-row'>
             <div class='box-label'>Club Picture</div>
             <div class='box-value'><img src='$imageUrl$c_pic' alt='Club Picture' width='100px'></div>
           </div>
           <div class='box-row'>
-            <div class='box-label'>Club ID</div>
-            <div class='box-value'><p>$club_id</p></div>
-          </div>
-          <div class='box-row'>
             <div class='box-label'>Club Name</div>
-            <div class='box-value'>$c_name</div>
+            <div class='box-value'>$c_name</div><br>
             <div class='box-label'>Club Tag</div>
             <div class='box-value'>$c_tag</div>
           </div>
