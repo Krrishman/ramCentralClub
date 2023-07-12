@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	echo"oovvvvvdddff $club_id";
 	if (isset($_GET['g']))					{$Club_id = $_GET['g'];}
 	if (isset($_GET['k']))					{$Event_id = $_GET['k'];}
+	if (isset($_POST['event_id'])) {$event_id = $_POST['event_id'];}
 	
 	if (isset($_POST['club_join'])) {
 		echo" $user_name f $Club_id";
@@ -61,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	  
 	  if (isset($_POST['event_join'])) {
-        echo" <input type='hidden' name='event_id' value='$event_id'> $user_name g $Event_id";
+        echo" <input type='hidden' name='event_id' value='$event_id'> $user_name g $Event_id h $event_id";
         include('Supabase_connect.php');
         // Update database with new user ID
         $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'),
@@ -78,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
 
       if (isset($_POST['event_joined'])) {
-        echo" <input type='hidden' name='event_id' value='$event_id'>$user_name g $Event_id";
+        echo" <input type='hidden' name='event_id' value='$event_id'>$user_name g $Event_id h $event_id";
 
         include('Supabase_connect.php');
         // Update database with new user ID
