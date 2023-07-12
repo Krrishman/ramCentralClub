@@ -25,7 +25,8 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	echo"oovvvvvdddff $club_id";
-
+	if (isset($_GET['g']))					{$club_id = $_GET['g'];}
+	if (isset($_GET['k']))					{$event_id = $_GET['k'];}
 	
 	if (isset($_POST['club_join'])) {
 		echo" $user_name f $club_id";
@@ -336,7 +337,7 @@ while ($row = pg_fetch_assoc($result1)) {
 	</div>
 	<div class='buttonSection'>
 		<div >
-			<form method='post' action='profile.php'>
+			<form method='post' action='profile.php?g=$event_id'>
 			<input type='hidden' name='event_id' value='$event_id'>
 			<button class='submit-button' type='submit' $xx</button></form> 
 		</div>
@@ -402,7 +403,7 @@ echo "<div class='box-container'>
           </div>
 		  <div class='buttonSection'>
 		  <div >
-		  <form method='post' action='profile.php'>
+		  <form method='post' action='profile.php?k=$club_id'>
 		  <input type='hidden' name='club_id' value='$club_id'>
 		  <button class='submit-button' type='submit' $xx</button></form> </div>
 	  </div>      
