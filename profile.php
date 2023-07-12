@@ -178,6 +178,70 @@ echo" 	<section>
 			</div></section>";
 
 }
+
+
+$query1 = 'SELECT * FROM  "event_page" where \'' . $user_name . '\' = ANY(joined_users);';
+$result1 = pg_query($conn, $query1);
+if (!$result1) {
+  echo "Query Error [$query1] " . pg_last_error($conn);
+}
+
+$query2 = 'SELECT * FROM  "club_page" where \'' . $user_name . '\' = ANY(joined_users);';
+$result2 = pg_query($conn, $query2);
+if (!$result2) {
+  echo "Query Error [$query2] " . pg_last_error($conn);
+}
+
+while ($row = pg_fetch_assoc($result1)) {
+	$event_id = $row['event_id'];
+	$e_name = $row['e_name'];
+	$e_tag = $row['e_tag'];
+	$e_desc = $row['e_desc'];
+	$e_pic = $row['e_pic'];
+	$e_date = $row['e_date'];
+	$e_time = $row['e_time'];
+	$e_location = $row['e_location'];
+	$e_places = $row['e_places'];
+	$place_pic = $row['place_pic'];
+	$header_pic = $row['header_pic'];
+	$icon_pic = $row['icon_pic'];
+	$e_price = $row['e_price'];
+	$e_categoris = $row['e_categoris'];
+	$e_max_mem = $row['e_max_mem'];
+	$e_members = $row['e_members'];
+	$made_Date = $row['made_date'];
+	$joined_users = $row['joined_users'];
+	$imageUrl = 'https://drive.google.com/uc?export=view&id=';
+
+	echo" $event_id $e_name $c_tag $icon_pic $e_date $e_time $e_places $e_members - $e_max_mem $e_price<br>";
+
+}
+
+while ($row = pg_fetch_assoc($result2)) {
+	$club_id = $row['club_id'];
+	$c_name = $row['c_name'];
+	$c_tag = $row['c_tag'];
+	$c_desc = $row['c_desc'];
+	$c_pic = $row['c_pic'];
+	$c_members = $row['c_members'];
+	$Date = $row['made_date'];
+	$made_by = $row['made_by'];
+	$t_color1 = $row['t_color1'];
+	$t_color2 = $row['t_color2'];
+	$t_text = $row['t_text'];
+	$joined_users = $row['joined_users'];
+	$des_color = $row['des_color'];
+	$des_text = $row['$des_text'];
+	$imageUrl = 'https://drive.google.com/uc?export=view&id=';
+
+
+echo" $club_id $c_name $c_tag $c_desc $c_pic $c_members<br>";
+
+
+}
+
+
+
 echo'
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="touggle.js"></script>
