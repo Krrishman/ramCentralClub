@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	echo"oovvvvvdddff $club_id";
 
 	
-	if (isset($_POST['join'])) {
+	if (isset($_POST['club_join'])) {
 		echo" ";
 		include('Supabase_connect.php');
 		// Update database with new user ID
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	  }
 
-	  if (isset($_POST['joined'])) {
+	  if (isset($_POST['club_joined'])) {
 		echo" ";
 		include('Supabase_connect.php');
 		// Update database with new user ID
@@ -54,6 +54,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		  echo "Error UnJoined club: " . pg_last_error($conn);
 		}
 	  }
+
+
+	  
+	  if (isset($_POST['event_join'])) {
+        echo" <input type='hidden' name='event_id' value='$event_id'>";
+        include('Supabase_connect.php');
+        // Update database with new user ID
+        $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "e_members" = "e_members"+ 1 WHERE "event_id" = \'' . $event_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "Joined successfully!";
+        } else {
+          echo "Error joining club: " . pg_last_error($conn);
+        }
+      }
+
+      if (isset($_POST['event_joined'])) {
+        echo" <input type='hidden' name='event_id' value='$event_id'>";
+        include('Supabase_connect.php');
+        // Update database with new user ID
+        $query9 = 'UPDATE "event_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "e_members" = "e_members"- 1 WHERE "event_id" = \'' . $event_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "UnJoined successfully!";
+        } else {
+          echo "Error UnJoined club: " . pg_last_error($conn);
+        }
+      }
 
 }
 
@@ -252,7 +286,63 @@ while ($row = pg_fetch_assoc($result1)) {
 	$joined_users = $row['joined_users'];
 	$imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
-	echo" $event_id $e_name $c_tag $icon_pic $e_date $e_time $e_places $e_members - $e_max_mem $e_price<br>";
+	      
+	$membersStrin = $joined_users;
+	$membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
+	$membersArra = explode(",", $membersStrin);
+ // Explode the string into an array using comma as the separator
+	$userJoined = in_array($user_name, $membersArra);
+	if ($userJoined) {
+		echo "<p>Already joined.</p>";
+		$xx="name='event_joined' value='Joined' >Joined";
+	} else {echo "<p>didnot joined.</p>";
+		$xx="name='event_join' value='Join' >Join";
+		
+		}
+
+	//echo" $event_id $e_name $c_tag $icon_pic $e_date $e_time $e_places $e_members - $e_max_mem $e_price<br>";
+	echo "<div class='box-container'>
+	<div class='box-row'>
+	  <div class='box-label'>Event ID</div>
+	  <div class='box-value'>$event_id</div>
+	</div>
+	<div class='box-row'>
+	  <div class='box-label'>Event Picture</div>
+	  <div class='box-value'><img src='$imageUrl$icon_pic' alt='Icon' width='100px'></div>
+	</div>
+	<div class='box-row'>
+	  <div class='box-label'>Event Name</div>
+	  <div class='box-value'>$e_name</div><br>
+	  <div class='box-label'>Organization</div>
+	  <div class='box-value'>$e_tag</div>
+	</div>
+	
+	<div class='box-row'>
+	  <div class='box-label'>Event Date</div>
+	  <div class='box-value'>$e_date</div><br>
+	  <div class='box-label'>Event Time</div>
+	  <div class='box-value'>$e_time</div>
+	</div>
+	<div class='box-row'>
+	  <div class='box-label'>Event Places</div>
+	  <div class='box-value'>$e_places</div>
+	</div>
+	<div class='box-row'>
+	  <div class='box-label'>Event Members</div>
+	  <div class='box-value'>$e_members - $e_max_mem</div>
+	</div>
+	<div class='box-row'>
+	  <div class='box-label'>Event Price</div>
+	  <div class='box-value'>$e_price</div>
+	</div>
+	<div class='buttonSection'>
+		<div >
+			<form method='post' action='profile.php'>
+			<input type='hidden' name='event_id' value='$event_id'>
+			<button class='submit-button' type='submit' $xx</button></form> 
+		</div>
+	</div>      
+  </div>";
 
 }
 
@@ -280,9 +370,9 @@ while ($row = pg_fetch_assoc($result2)) {
 			$userJoined = in_array($user_name, $membersArra);
 			if ($userJoined) {
 				echo "<p>Already joined.</p>";
-				$xx="name='joined' value='Joined' >Joined";
+				$xx="name='club_joined' value='Joined' >Joined";
 			} else {echo "<p>didnot joined.</p>";
-				$xx="name='join' value='Join Now ' >Join Now";
+				$xx="name='club_join' value='Join Now ' >Join Now";
 				
 				}
 
@@ -290,7 +380,7 @@ while ($row = pg_fetch_assoc($result2)) {
 //echo" $club_id $c_name $c_tag $c_desc $c_pic $c_members<br>";
 echo "<div class='box-container'>
 		  <div class='box-row'>
-            <div class='box-label'>Club ID</div>
+            <div class='box-label'>ID</div>
             <div class='box-value'><p>$club_id</p></div>
           </div>
 		  <div class='box-row'>
