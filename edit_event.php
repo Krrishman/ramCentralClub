@@ -707,8 +707,8 @@ case "Finish":
     "e_members" = \'' .$e_members. '\' ,"e_max_mem" = \'' .$e_max_mem. '\'
     WHERE "event_page"."event_id" = \'' . $event_id . '\';';
     $result = pg_query($conn, $query);
-    if ($result) { echo" $ck Your Event updated $event_id";}
-    else { echo" $cr Unable to Make update" . pg_last_error($conn);}
+    if ($result) { echo" $ck Your Event updated $event_id.";}
+    else { echo" $cr Unable to Make update.<br>" . pg_last_error($conn);}
     echo"</div><div>";
 
     for ($i = 0; $i < count($e_perk_id); $i++) {
@@ -717,7 +717,7 @@ case "Finish":
                     WHERE "event_perk"."event_id" = \'' . $event_id . '\' AND "e_perk_id" = \'' . $e_perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
         if ($result2) {echo "$ck Perk ID  $perk_id[$i] updated.";
-        } else {echo " $cr Unable to update perk ID $perk_id[$i] " . pg_last_error($conn);}
+        } else {echo " $cr Unable to update perk ID $perk_id[$i] .<br>" . pg_last_error($conn);}
         echo"</div>";
     }
     echo"</div><div>";
@@ -729,7 +729,7 @@ case "Finish":
                     WHERE "event_slide"."event_id" = \'' . $event_id . '\' AND "E_slide_id" = \'' . $E_slide_id[$i] . '\';';
         $result3 = pg_query($conn, $query3);
         if ($result3) {echo "$ck Slide ID $E_slide_id[$i] updated.";}
-        else {echo " $cr Unable to update slide ID $E_slide_id[$i] " . pg_last_error($conn);}
+        else {echo " $cr Unable to update slide ID $E_slide_id[$i] .<br>" . pg_last_error($conn);}
         echo"</div>";
     }
     echo"</div><div>";
@@ -739,7 +739,7 @@ case "Finish":
                     WHERE "event_guest"."event_id" = \'' . $event_id . '\' ;';
         $result4 = pg_query($conn, $query4);
         if ($result4) {echo "$ck Guest Member updated.";}
-        else {echo " $cr Unable to update Guest Member " . pg_last_error($conn);}
+        else {echo " $cr Unable to update Guest Member .<br>zx" . pg_last_error($conn);}
         echo"</div>";
 
     echo"</div></div>";
