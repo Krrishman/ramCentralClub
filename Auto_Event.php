@@ -18,20 +18,37 @@
         <link rel="stylesheet" href="NewEventHomePage.css">
 		<link rel="stylesheet" href="footer.css">
     </head>
+	<style>
+		#ma{
+        display: flex;
+        justify-content: center;
+        width: 300px;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
+	</style>
     <body>
 
 
     <?php
-
+$ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
 
 if (isset($_POST['event_id']))					$event_id = $_POST['event_id'];		
 if (isset($_GET['r']))					{$event_id = $_GET['r'];}
+
+echo"<section class='section_01'>";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if (isset($_POST['join'])) {
         echo" ";
+        echo"<div id='ma'>";
+
         include('Supabase_connect.php');
         // Update database with new user ID
         $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "e_members" = "e_members"+ 1 WHERE "event_id" = \'' . $event_id . '\'';
@@ -40,14 +57,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if query was successful
         if ($result9) {
-          echo "Joined successfully!";
+          echo "$ck Joined successfully!";
         } else {
-          echo "Error joining club: " . pg_last_error($conn);
+          echo "$cr Error joining club: " . pg_last_error($conn);
         }
+        echo"</div>";
       }
 
       if (isset($_POST['joined'])) {
         echo" ";
+        echo"<div id='ma'>";
+
         include('Supabase_connect.php');
         // Update database with new user ID
         $query9 = 'UPDATE "event_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "e_members" = "e_members"- 1 WHERE "event_id" = \'' . $event_id . '\'';
@@ -56,15 +76,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if query was successful
         if ($result9) {
-          echo "UnJoined successfully!";
+          echo "$ck UnJoined successfully!";
         } else {
-          echo "Error UnJoined club: " . pg_last_error($conn);
+          echo "$cr Error UnJoined club: " . pg_last_error($conn);
         }
+        echo"</div>";
       }
 
 }
 
-
+echo"</section>";
 
 $query = 'SELECT * FROM "event_page" WHERE "event_id" =\'' . $event_id . '\';';
     $result = pg_query($conn, $query);
@@ -120,9 +141,8 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
      // Explode the string into an array using comma as the separator
         $userJoined = in_array($user_name, $membersArra);
         if ($userJoined) {
-            echo "<p>Already joined.</p>";
             $xx="name='joined' value='Joined' >Joined";
-        } else {echo "<p>didnot joined.</p>";
+        } else {
             $xx="name='join' value='Join' >Join";
             
             }

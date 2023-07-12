@@ -372,8 +372,7 @@ section{
 .reply-form {
     display: none;
 }
-.fa-star, .fa-thumbs-up, .fa-thumbs-down{
-}
+
 
 .checked{
     color:orange;
@@ -422,3 +421,10 @@ section{
     font-weight: bold;
 }
 
+.section_01{
+    max-width: 1366px;
+    position: relative;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 20px;
+}

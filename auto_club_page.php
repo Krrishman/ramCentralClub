@@ -6,93 +6,7 @@
     include('session.php');
 	include('menubar.php');
     include('Supabase_connect.php');
-    if (isset($_POST['club_id']))					$club_id = $_POST['club_id'];		
-    if (isset($_GET['r']))					{$club_id = $_GET['r'];}
 
-    if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "First";
-
-    if (isset($_POST['comments']))			$comments = trim($_POST['comments']);	    else $comments = NULL;
-    if (isset($_POST['rating']))			$rating = trim($_POST['rating']);       else $rating = NULL;
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        if (isset($_POST['Submit_Review'])) {
-            echo" ";
-        echo"<input type='hidden' name='club_id' value='$club_id'> ";
-        $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name", "pro_pic")
-        VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$user_name.'\',\''. $pro_pic.'\')
-        RETURNING "com_id";';
-        $result5 = pg_query($conn, $query5);
-        if ($result5) {
-            $com_id = pg_fetch_result($result5, 0, 0);
-            echo "<font color='green'>$com_id Your Review Added.</font>\n";}
-            else { echo"Unable to add Review\n" [$query5] . pg_last_error($conn);}
-        
-        echo"oovvvvvdddff $club_id"; }
-
-        if (isset($_POST['Update_Likes'])) {
-            echo" ";
-            if (isset($_GET['c']))					{$com = $_GET['c'];}
-
-            include('Supabase_connect.php');
-            echo"  <input type='hidden' name='club_id' value='$club_id'>
-            <input type='hidden' name='com_id' value='$com_id'> ";
-            echo"$com_id ";
-        $query6 = 'UPDATE "club_comment" SET "Likes" = "Likes" + 1  WHERE "com_id" = \'' . $com . '\';';
-        $result6 = pg_query($conn, $query6);
-        if ($result6) {
-            echo "<font color='green'>$com Like Added.</font>\n";}
-            else { echo"Unable to add Like\n" [$query6] . pg_last_error($conn);}
-        
-        }
-
-        if (isset($_POST['Update_Dislikes'])) {
-            echo" ";
-            if (isset($_GET['c']))					{$com = $_GET['c'];}
-
-            include('Supabase_connect.php');
-            echo"  <input type='hidden' name='club_id' value='$club_id'>";
-        $query6 = 'UPDATE "club_comment" SET "Dislikes" = "Dislikes" + 1  WHERE "com_id" = \'' . $com . '\';';
-        $result6 = pg_query($conn, $query6);
-        if ($result6) {
-            echo "<font color='green'>$com Dislike Added.</font>\n";}
-            else { echo"Unable to add Dislike\n" [$query6] . pg_last_error($conn);}      
-        }
-
-        
-        if (isset($_POST['join'])) {
-            echo" ";
-            include('Supabase_connect.php');
-            // Update database with new user ID
-            $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "c_members" = "c_members"+ 1 WHERE "club_id" = \'' . $club_id . '\'';
-            $result9 = pg_query($conn, $query9);
-          //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-    
-            // Check if query was successful
-            if ($result9) {
-              echo "Joined successfully!";
-            } else {
-              echo "Error joining club: " . pg_last_error($conn);
-            }
-          }
-
-          if (isset($_POST['joined'])) {
-            echo" ";
-            include('Supabase_connect.php');
-            // Update database with new user ID
-            $query9 = 'UPDATE "club_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "c_members" = "c_members"- 1 WHERE "club_id" = \'' . $club_id . '\'';
-            $result9 = pg_query($conn, $query9);
-          //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
-    
-            // Check if query was successful
-            if ($result9) {
-              echo "UnJoined successfully!";
-            } else {
-              echo "Error UnJoined club: " . pg_last_error($conn);
-            }
-          }
-
-    }
 ?>
 
 
@@ -104,12 +18,132 @@
 		<link rel="stylesheet" href="club_home_css.css">
         <link rel="stylesheet" href="SlideShow.css">
 		<link rel="stylesheet" href="footer.css">
+        <style>
+		#ma{
+        display: flex;
+        justify-content: center;
+        width: 300px;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    </style>
     </head>
 
     <body>
 
-<section>
 <?php        
+
+$ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
+
+
+if (isset($_POST['club_id']))					$club_id = $_POST['club_id'];		
+if (isset($_GET['r']))					{$club_id = $_GET['r'];}
+
+if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "First";
+
+if (isset($_POST['comments']))			$comments = trim($_POST['comments']);	    else $comments = NULL;
+if (isset($_POST['rating']))			$rating = trim($_POST['rating']);       else $rating = NULL;
+
+echo"<section class='section_01'>";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if (isset($_POST['Submit_Review'])) {
+        echo" ";
+        echo"<div id='ma'>";
+    echo"<input type='hidden' name='club_id' value='$club_id'> ";
+    $query5 ='INSERT INTO "club_comment" ("rating", "Likes", "Dislikes", "comments", "club_id", "com_name", "pro_pic")
+    VALUES (\''.$rating.'\', 0,0, \''.$comments.'\', \''.$club_id.'\', \''.$user_name.'\',\''. $pro_pic.'\')
+    RETURNING "com_id";';
+    $result5 = pg_query($conn, $query5);
+    if ($result5) {
+        $com_id = pg_fetch_result($result5, 0, 0);
+        echo "$ck $com_id Your Review Added.\n";}
+        else { echo"$cr Unable to add Review\n" [$query5] . pg_last_error($conn);}
+        echo"</div";
+    }
+
+    if (isset($_POST['Update_Likes'])) {
+        echo" ";
+        echo"<div id='ma'>";
+
+        if (isset($_GET['c']))					{$com = $_GET['c'];}
+
+        include('Supabase_connect.php');
+        echo"  <input type='hidden' name='club_id' value='$club_id'>
+        <input type='hidden' name='com_id' value='$com_id'> ";
+    $query6 = 'UPDATE "club_comment" SET "Likes" = "Likes" + 1  WHERE "com_id" = \'' . $com . '\';';
+    $result6 = pg_query($conn, $query6);
+    if ($result6) {
+        echo "$ck $com Like Added.\n";}
+        else { echo"$cr Unable to add Like\n" [$query6] . pg_last_error($conn);}
+        echo"</div>";
+    }
+
+    if (isset($_POST['Update_Dislikes'])) {
+        echo" ";
+        echo"<div id='ma'>";
+        if (isset($_GET['c']))					{$com = $_GET['c'];}
+
+        include('Supabase_connect.php');
+        echo"  <input type='hidden' name='club_id' value='$club_id'>";
+    $query6 = 'UPDATE "club_comment" SET "Dislikes" = "Dislikes" + 1  WHERE "com_id" = \'' . $com . '\';';
+    $result6 = pg_query($conn, $query6);
+    if ($result6) {
+        echo "$ck $com Dislike Added.\n";}
+        else { echo"$cr Unable to add Dislike\n" [$query6] . pg_last_error($conn);}      
+        echo"</div>";
+    }
+
+    
+    if (isset($_POST['join'])) {
+        echo" ";
+        echo"<div id='ma'>";
+
+        include('Supabase_connect.php');
+        // Update database with new user ID
+        $query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "c_members" = "c_members"+ 1 WHERE "club_id" = \'' . $club_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "$ck Joined successfully!";
+        } else {
+          echo "$cr Error joining club: " . pg_last_error($conn);
+        }
+        echo"</div>";
+      }
+
+      if (isset($_POST['joined'])) {
+        echo" ";
+        echo"<div id='ma'>";
+
+        include('Supabase_connect.php');
+        // Update database with new user ID
+        $query9 = 'UPDATE "club_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "c_members" = "c_members"- 1 WHERE "club_id" = \'' . $club_id . '\'';
+        $result9 = pg_query($conn, $query9);
+      //  $query9 = 'UPDATE "club_page" SET "joined_users" = \'' . implode(',', $joined_users) . '\' WHERE id = \'' . $club_id . '\'';
+
+        // Check if query was successful
+        if ($result9) {
+          echo "$ck UnJoined successfully!";
+        } else {
+          echo "$cr Error UnJoined club: " . pg_last_error($conn);
+        }
+        echo"</div>";
+      }
+
+}
+echo"</section>";
+
+
+
+
 
 $query = 'SELECT * FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
     $result = pg_query($conn, $query);
@@ -154,23 +188,11 @@ $query3 = 'SELECT * FROM "club_slide" WHERE "club_id" =\'' . $club_id . '\';';
     if (!$result4) {echo "Query Error [$query4] " . pg_last_error($conn);}
 
 
-    // Check if the user has already joined the club
-//$query15 = 'SELECT "joined_users" FROM "club_page" WHERE "club_id" =\'' . $club_id . '\';';
-//$result15 = pg_query($conn, $query15);
-//if (!$result15) {echo "Query Error [$query15] " . pg_last_error($conn);}
-//$club1 = pg_fetch_assoc($result15);
-
-// Check if the user ID exists in the members array
-//$membersArray = json_decode($club1['joined_users'], true); // Convert members string to an array
-//$userJoined = in_array($user_name, $membersArray);
-//$userJoined = in_array($user_name, $club1['joined_users']);
 
 
-
+echo"<section>";
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
-// Process Query Results 
- //  while(list($club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, 
-   //  $made_by, $made_date, $t_color1, $t_color2, $t_text, $des_color, $des_text) = mysqli_fetch_row($result)) {
+
     while ($row = pg_fetch_assoc($result)) {
         $club_id = $row['club_id'];
         $c_name = $row['c_name'];
@@ -194,9 +216,8 @@ $membersArra = explode(",", $membersStrin);
      // Explode the string into an array using comma as the separator
         $userJoined = in_array($user_name, $membersArra);
         if ($userJoined) {
-            echo "<p>Already joined.</p>";
             $xx="name='joined' value='Joined' >Joined";
-        } else {echo "<p>didnot joined.</p>";
+        } else {
             $xx="name='join' value='Join Now ' >Join Now";
             
             }

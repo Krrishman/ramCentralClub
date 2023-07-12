@@ -357,6 +357,13 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5; fo
 
 
 
+.section_01{
+    max-width: 1366px;
+    position: relative;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 20px;
+}
 
 
 
