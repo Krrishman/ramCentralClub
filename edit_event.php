@@ -65,6 +65,9 @@ $cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
 if (isset($_GET['r']))				{$event_id = $_GET['r'];}	
 
+//if(isset($_POST['map_url']))        $map_url = $_POST['map_url'];
+//if(isset($_POST['mapsUrl']))        $map_url = $_POST['mapsUrl'];
+
 if(isset($_POST['e_name']))         $e_name = trim($_POST['e_name']);         //else $e_name = NULL;
 if(isset($_POST['e_tag']))          $e_tag = trim($_POST['e_tag']);           //else $e_tag = NULL;
 if(isset($_POST['e_desc']))         $e_desc = trim($_POST['e_desc']);         //else $e_desc = NULL;
@@ -415,7 +418,7 @@ echo "<div class='event_make'>
         <tr><td class='input'><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
     <tr>
         <td class='label'>Event Location</td>
-        <tr><td class='input'><input type='text' name='location' value='$location' placeholder='Enter a location'></td>
+        <tr><td class='input'><input type='text' name='e_location' value='$e_location' placeholder='Enter a location'></td>
     <tr>
         <td class='label'>Event Place</td>
         <tr><td class='input'>
@@ -594,8 +597,8 @@ echo"
          echo"
          <div class='mySlides fade'>
          <div class='numbertext'> " . ($i+1) . "</div>
-         <img src='$imageUrl$Slide_pic[$i]' style='width:100%'>
-         <div class='text'>$Slide_title[$i]<br>$Slide_des[$i]</div>
+         <img src='$imageUrl$S_pic[$i]' style='width:100%'>
+         <div class='text'>$S_title[$i]<br>$S_des[$i]</div>
          </div>
          ";}
          echo"	
@@ -643,7 +646,7 @@ echo"
   <!--<img src='$map_url' alt='Map'>
   <p><br> fsdf $map_url </p>-->
   <iframe width='100%' height='400' frameborder='0'
-   style='border:0' src='$mapsUrl' allowfullscreen></iframe>
+   style='border:0' src='$e_location' allowfullscreen></iframe>
   <h2>Campus Center Ballroom</h2>
   <h2>$e_places</h2>
 
@@ -651,7 +654,7 @@ echo"
   <h1>Perks</h1>";
  for ($i = 0; $i < count($e_perk_id); $i++) {
       
-     echo" <button>$e_perk_id[$i]</button>";
+     echo" <button>$perk_desc[$i]</button>";
  }
  echo"
   </div>
@@ -695,7 +698,7 @@ case "Finish":
     echo"<div id='ma'>";
     $query = 'UPDATE "event_page" SET "e_name" = \'' .$e_name. '\',"e_tag" = \'' .$e_tag. '\',
     "e_desc" = \'' .$e_desc. '\',"e_pic" = \'' .$e_pic. '\',
-    "e_date" = \'' .$e_date. '\',"e_time" = \'' .$e_time. '\',"e_location" = \'' .$mapsUrl. '\',
+    "e_date" = \'' .$e_date. '\',"e_time" = \'' .$e_time. '\',"e_location" = \'' .$e_location. '\',
     "e_places" = \'' .$e_places. '\',"place_pic" = \'' .$place_pic. '\' ,"header_pic" = \'' .$header_pic. '\',
     "icon_pic" = \'' .$icon_pic. '\',"e_price" = \'' .$e_price. '\' ,"e_categoris" = \'' .$e_categoris. '\',
     "e_members" = \'' .$e_members. '\' ,"e_max_mem" = \'' .$e_max_mem. '\'
@@ -707,7 +710,7 @@ case "Finish":
 
     for ($i = 0; $i < count($e_perk_id); $i++) {
         echo"<div id='ma'>";
-        $query2 = 'UPDATE "event_perk" SET "e_p_desc" = \'' . $Per_desc[$i] . '\'
+        $query2 = 'UPDATE "event_perk" SET "e_p_desc" = \'' . $Perk_desc[$i] . '\'
                     WHERE "event_perk"."event_id" = \'' . $event_id . '\' AND "e_perk_id" = \'' . $e_perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
         if ($result2) {echo "$ck Perk ID  $perk_id[$i] updated.";
@@ -719,7 +722,7 @@ case "Finish":
 
     for ($i = 0; $i < count($E_slide_id); $i++) {
         echo"<div id='ma'>";
-        $query3 = 'UPDATE "event_slide" SET "E_S_title" = \'' . $Slide_title[$i] . '\', "E_S_des" = \'' . $Slide_des[$i] . '\'
+        $query3 = 'UPDATE "event_slide" SET "E_S_title" = \'' . $S_title[$i] . '\', "E_S_des" = \'' . $S_des[$i] . '\'
                     WHERE "event_slide"."event_id" = \'' . $event_id . '\' AND "E_slide_id" = \'' . $E_slide_id[$i] . '\';';
         $result3 = pg_query($conn, $query3);
         if ($result3) {echo "$ck Slide ID $E_slide_id[$i] updated.";}
