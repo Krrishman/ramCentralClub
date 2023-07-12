@@ -52,6 +52,7 @@ section{
   
   .input input[type="text"],
   .input input[type="number"],
+  .input input[type="date"],
   .input textarea {
     width: 100%;
     padding: 8px;
@@ -125,7 +126,7 @@ section{
     font-weight: bold;
   }
       .label_mem span{
-    padding-right: 40px;
+    padding-right: 20px;
   }
   
   .input_mem {
