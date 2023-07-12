@@ -426,8 +426,8 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Price</td>
         <tr><td class='input'>
-        <input type='hidden' name='e_price' value='$e_price'>
-        <input type='radio' name='e_price' value='$e_price'>
+        <input type='hidden' name='e_price' value='$e_price'>$e_price
+        <input type='radio' name='e_price' value='$e_price'>$e_price
         <input type='radio' name='e_price' value='Free'>Free
         <input type='radio' name='e_price'   value='$5'>$5
         <input type='radio' name='e_price'  value='$10'>$10
@@ -437,17 +437,17 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Category </td>
         <tr><td class='input'>
-        <input type='hidden' name='e_categoris' value='$e_categoris'>
-        <input type='radio' name='e_categoris' value='Science'>
-        <input type='radio' name='e_categoris' value='Health'>
-        <input type='radio' name='e_categoris'  value='Entertainment'>
-        <input type='radio' name='e_categoris' value='Sports'>
-        <input type='radio' name='e_categoris' value='Studies'>
-        <input type='radio' name='e_categoris' value='Seminar'>
-        <input type='radio' name='e_categoris' value='Celebration'>
-        <input type='radio' name='e_categoris' value='Environment'>
-        <input type='radio' name='e_categoris' value='Technology'>
-        <input type='radio' name='e_categoris' value='Religion'>
+        <input type='hidden' name='e_categoris' value='$e_categoris'>$e_categoris
+        <input type='radio' name='e_categoris' value='Science'>Science
+        <input type='radio' name='e_categoris' value='Health'>Health
+        <input type='radio' name='e_categoris'  value='Entertainment'>Entertainment
+        <input type='radio' name='e_categoris' value='Sports'>Sports
+        <input type='radio' name='e_categoris' value='Studies'>Studies
+        <input type='radio' name='e_categoris' value='Seminar'>Seminar
+        <input type='radio' name='e_categoris' value='Celebration'>Celebration
+        <input type='radio' name='e_categoris' value='Environment'>Environment
+        <input type='radio' name='e_categoris' value='Technology'>Technology
+        <input type='radio' name='e_categoris' value='Religion'>Religion
         </td>
     <tr>
         <td class='label'>Event Overview</td>
