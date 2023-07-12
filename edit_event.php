@@ -560,6 +560,7 @@ switch($task) {
  echo"rww";
  $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 echo"
+<input type='hidden' name='event_id' value='$event_id'>
 <section>
 <div class='eventHeaderContainer'>
 <div class='eventImageHeaderContainer'>
