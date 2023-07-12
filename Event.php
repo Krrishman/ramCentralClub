@@ -50,35 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-
-/*
-
-$cat	= array('event_id', 'e_date', 'e_members');
-$sort	= array('Ascending', 'Descending');
-if (isset($_POST['orderby'])) 	$orderby = $_POST['orderby'];	else $orderby = 'club_id';
-if (isset($_POST['ad'])) 		$ad 	 = $_POST['ad'];		else $ad 	  = NULL;
-if ($ad == 'Descending')		$desc	 = 'DESC';				else $desc	  = NULL;
-foreach($_POST as $keyx => $value) echo "$keyx = $value<br>"; 
-
-
-
-echo "<form action='Event.php' method='POST' align='center' > 
-<p width='500px' > Sort By: <select name='orderby' onchange='this.form.submit();'>";
-foreach($cat as $category) {
-if ($orderby == $category) $se = 'SELECTED'; else $se = NULL;
-echo "<option $se>$category</option>\n";
-}
-echo "</select> <select name='ad' onchange='this.form.submit();'>";
-foreach($sort as $value) {
-if ($ad == $value) $se = 'SELECTED'; else $se = NULL;
-echo "<option $se>$value</option>\n";
-}
-echo "</select></p></form>"; 
-$query = 'SELECT * FROM "event_page" ORDER BY '.$orderby.' '.$desc.'';
-
-*/
-
-
 $order = isset($_POST['options']) ? $_POST['options'] : 'none';
 
 $query = 'SELECT * FROM "event_page" where "status"= 1 ORDER BY';
