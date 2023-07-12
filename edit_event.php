@@ -477,7 +477,7 @@ echo "<div>";
    
         for ($i = 0; $i < $max_entries; $i++) {
 
-        $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+        //$Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
 
     echo "  <div class='form-container'>
             <table class='form-table'>
@@ -486,7 +486,7 @@ echo "<div>";
             <td>Perk No " . ($i+1) . "</td>
         <tr>
             <td class='label'>Perk Description</td>
-            <tr><td class='input'><input type='text' name='perk_desc[]' value='$Per_desc' size='20' cols='10' rows='5'></td>        
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$perk_desc[$i]' size='20' cols='10' rows='5'></td>        
         </tr></table></div>";
 }
         
