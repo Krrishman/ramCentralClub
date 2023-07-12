@@ -317,8 +317,8 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-value'>$e_tag</div>
 	</div>
 	
-	<div class='box-row'>
-	  <div class='box-label'>Event Date</div>
+	<div class='box-row' style=' width: 200px;' >
+	  <div class='box-label'>Date</div>
 	  <div class='box-value'>$e_date</div><br>
 	  <div class='box-label'>Event Time</div>
 	  <div class='box-value'>$e_time</div>
@@ -328,11 +328,11 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-value'>$e_places</div>
 	</div>
 	<div class='box-row'>
-	  <div class='box-label'>Event Members</div>
+	  <div class='box-label'>Members</div>
 	  <div class='box-value'>$e_members - $e_max_mem</div>
 	</div>
 	<div class='box-row'>
-	  <div class='box-label'>Event Price</div>
+	  <div class='box-label'>Price</div>
 	  <div class='box-value'>$e_price</div>
 	</div>
 	<div class='buttonSection'>
@@ -397,7 +397,7 @@ echo "<div class='box-container'>
             <div class='box-label'>Club Description</div>
             <div class='box-value'><span>$c_desc</span></div>
           </div>
-          <div class='box-row'>
+          <div class='box-row' style=' width: 100px; display: flex; align-items: center; justify-items: center;'>
             <div class='box-label'>Club Members</div>
             <div class='box-value'><p>$c_members</p></div>
           </div>
