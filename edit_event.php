@@ -67,7 +67,7 @@ if (isset($_GET['r']))				{$event_id = $_GET['r'];}
 
 //if(isset($_POST['map_url']))        $map_url = $_POST['map_url'];
 //if(isset($_POST['mapsUrl']))        $map_url = $_POST['mapsUrl'];
-
+if(isset($_POST['event_id']))       $event_id = trim($_POST['event_id']);         //else $e_name = NULL;
 if(isset($_POST['e_name']))         $e_name = trim($_POST['e_name']);         //else $e_name = NULL;
 if(isset($_POST['e_tag']))          $e_tag = trim($_POST['e_tag']);           //else $e_tag = NULL;
 if(isset($_POST['e_desc']))         $e_desc = trim($_POST['e_desc']);         //else $e_desc = NULL;
