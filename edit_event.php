@@ -435,24 +435,25 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Category </td>
         <tr><td class='input'>
-        <label> Science </label><input type='radio' name='e_categoris' value='Science'>
-        <label> Health </label><input type='radio' name='e_categoris' value='Health'>
-        <label> Entertainment </label><input type='radio' name='e_categoris'  value='Entertainment'>
-        <label> Sports </label><input type='radio' name='e_categoris' value='Sports'>
-        <label> Studies </label><input type='radio' name='e_categoris' value='Studies'>
-        <label> Seminar </label><input type='radio' name='e_categoris' value='Seminar'>
-        <label> Celebration </label><input type='radio' name='e_categoris' value='Celebration'>
-        <label> Environment </label><input type='radio' name='e_categoris' value='Environment'>
-        <label> Technology </label><input type='radio' name='e_categoris' value='Technology'>
-        <label> Technology </label><input type='radio' name='e_categoris' value='Religion'>
+        <input type='radio' name='e_categoris' value='Science'>
+        <input type='radio' name='e_categoris' value='Health'>
+        <input type='radio' name='e_categoris'  value='Entertainment'>
+        <input type='radio' name='e_categoris' value='Sports'>
+        <input type='radio' name='e_categoris' value='Studies'>
+        <input type='radio' name='e_categoris' value='Seminar'>
+        <input type='radio' name='e_categoris' value='Celebration'>
+        <input type='radio' name='e_categoris' value='Environment'>
+        <input type='radio' name='e_categoris' value='Technology'>
+        <input type='radio' name='e_categoris' value='Religion'>
         </td>
     <tr>
         <td class='label'>Event Overview</td>
         <tr><td class='input'>
-        <textarea name='e_desc' value='$e_desc' size='500' cols='40' rows='10'>$e_desc</textarea></td>
+        <textarea name='e_desc' value='$e_desc' size='500' cols='20' rows='10'>$e_desc</textarea></td>
     <tr>
-        <td class='label'>Event Members</td>
+        <td class='label'>Event Members</td><td class='label'>Event Max Members</td>
         <tr><td class='input'><input type='number' name='e_members' value='$e_members' size='12'></td>
+        <td class='input'><input type='number' name='e_max_mem' value='$e_max_mem' size='12'></td>
     <tr>
         <td class='label'>Event Max Members</td>
         <tr><td class='input'><input type='number' name='e_max_mem' value='$e_max_mem' size='12'></td>
@@ -472,7 +473,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Guest Speaker Description</td>
         <tr><td class='input'>
-        <textarea name='guest_desc' value='$guest_desc' size='500' cols='40' rows='10'>$guest_desc</textarea></td>
+        <textarea name='guest_desc' value='$guest_desc' size='500' cols='20' rows='10'>$guest_desc</textarea></td>
     <tr>
         <td class='label'>Upload Photo For Header</td>
         <tr><td class='input'>
