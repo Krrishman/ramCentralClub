@@ -426,7 +426,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Price</td>
         <tr><td class='input'>
-        <input type='hidden' name='e_price' value='$e_price'>$e_price
+        <input type='hidden' name='e_price' value='$e_price'>
         <input type='radio' name='e_price' value='$e_price'checked=$e_price>$e_price
         <input type='radio' name='e_price' value='Free'>Free
         <input type='radio' name='e_price'   value='$5'>$5
@@ -437,7 +437,8 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Category </td>
         <tr><td class='input'>
-        <input type='hidden' name='e_categoris' value='$e_categoris'>$e_categoris
+        <input type='hidden' name='e_categoris' value='$e_categoris'>
+        <input type='hidden' name='e_categoris' value='$e_categoris' checked=$e_categoris>$e_categoris
         <input type='radio' name='e_categoris' value='Science'>Science
         <input type='radio' name='e_categoris' value='Health'>Health
         <input type='radio' name='e_categoris'  value='Entertainment'>Entertainment
@@ -454,7 +455,7 @@ echo "<div class='event_make'>
         <tr><td class='input'>
         <textarea name='e_desc' value='$e_desc' size='500' cols='10' rows='5'>$e_desc</textarea></td>
     <tr>
-        <td class='label_mem'><span>Event Members</span> <span>Event Max Members</span> </td>
+        <td class='label_mem'><span>Members</span> <span>Total Members</span> </td>
         <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
         <input type='number' name='e_max_mem' value='$e_max_mem' size='10'></td>
     <tr>
