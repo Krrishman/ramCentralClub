@@ -16,21 +16,43 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="profile.css">
 		<link rel="stylesheet" href="footer.css">
+		<style>
+		#ma{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+	</style>
+
     </head>
 
     <body>
 
 <?php
 
+
+$ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
+
+echo"<section class='section_01'>";
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
 	echo"oovvvvvdddff $club_id";
 
 	if (isset($_POST['event_id'])) {$event_id = $_POST['event_id'];}
-	if (isset($_POST['club_id'])) {$club_id = $_POST['club_id'];}
+	if (isset($_POST['club_id'])) {$lub_id = $_POST['club_id'];}
 	
 	if (isset($_POST['club_join'])) {
 		echo" $user_name f $club_id";
+		echo"<div id='ma'>";
+
 		include('Supabase_connect.php');
 		// Update database with new user ID
 		$query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), 
@@ -38,14 +60,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$result9 = pg_query($conn, $query9);
 
 		if ($result9) {
-		  echo "Joined successfully!";
+		  echo "$ck Joined successfully!";
 		} else {
-		  echo "Error joining club: " . pg_last_error($conn);
+		  echo " $cr Error joining club: " . pg_last_error($conn);
 		}
+		echo"</div>";
 	  }
 
 	  if (isset($_POST['club_joined'])) {
 		echo" $user_name f $club_id";
+		echo"<div id='ma'>";
+
 		include('Supabase_connect.php');
 		// Update database with new user ID
 		$query9 = 'UPDATE "club_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), 
@@ -53,16 +78,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$result9 = pg_query($conn, $query9);
 
 		if ($result9) {
-		  echo "UnJoined successfully!";
+		  echo "$ck UnJoined successfully!";
 		} else {
-		  echo "Error UnJoined club: " . pg_last_error($conn);
+		  echo " $cr Error UnJoined club: " . pg_last_error($conn);
 		}
+		echo"</div>";
+
 	  }
 
 
 	  
 	  if (isset($_POST['event_join'])) {
         echo" <input type='hidden' name='event_id' value='$event_id'> $user_name h $event_id";
+		echo"<div id='ma'>";
+
         include('Supabase_connect.php');
         // Update database with new user ID
         $query9 = 'UPDATE "event_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'),
@@ -72,15 +101,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if query was successful
         if ($result9) {
-          echo "Joined successfully!";
+          echo "$ck Joined successfully!";
         } else {
-          echo "Error joining club: " . pg_last_error($conn);
+          echo " $cr Error joining club: " . pg_last_error($conn);
         }
+		echo"</div>";
+
       }
 
       if (isset($_POST['event_joined'])) {
         echo" <input type='hidden' name='event_id' value='$event_id'>$user_name h $event_id";
-
+		echo"<div id='ma'>";
         include('Supabase_connect.php');
         // Update database with new user ID
         $query9 = 'UPDATE "event_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'),
@@ -90,14 +121,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Check if query was successful
         if ($result9) {
-          echo "UnJoined successfully!";
+          echo " $ck UnJoined successfully!";
         } else {
-          echo "Error UnJoined club: " . pg_last_error($conn);
+          echo " $cr Error UnJoined club: " . pg_last_error($conn);
         }
+		echo"</div>";
       }
 
 }
-
+echo"</section>";
 
 
 
@@ -300,9 +332,8 @@ while ($row = pg_fetch_assoc($result1)) {
  // Explode the string into an array using comma as the separator
 	$userJoined = in_array($user_name, $membersArra);
 	if ($userJoined) {
-		echo "<p>Already joined.</p>";
 		$xx="name='event_joined' value='Joined' >Joined";
-	} else {echo "<p>didnot joined.</p>";
+	} else {
 		$xx="name='event_join' value='Join' >Join";
 		
 		}
