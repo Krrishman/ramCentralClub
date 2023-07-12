@@ -98,11 +98,13 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
   .box-value {
      padding-right: 10px;
   }
-  .box-value p{
-    display: flex;
-    align-items: center;
+
+ #mid{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+
  }
- 
   .box-value span{
       width: 300px;
      padding-right: 10px;
