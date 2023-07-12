@@ -302,12 +302,12 @@ while ($row = pg_fetch_assoc($result1)) {
 
 	//echo" $event_id $e_name $c_tag $icon_pic $e_date $e_time $e_places $e_members - $e_max_mem $e_price<br>";
 	echo "<div class='box-container'>
-	<div class='box-row' style=' width: 100px; display: flex; align-items: center; justify-items: center;' >
+	<div class='box-row' style=' width: 50px; display: flex; align-items: center; justify-items: center;' >
 	  <div class='box-label'>Event ID</div>
 	  <div class='box-value'>$event_id</div>
 	</div>
-	<div class='box-row'>
-	  <div class='box-label'>Event Picture</div>
+	<div class='box-row' style=' width: 120px;>
+	  <div class='box-label' >Event Picture</div>
 	  <div class='box-value'><img src='$imageUrl$icon_pic' alt='Icon' width='100px'></div>
 	</div>
 	<div class='box-row' style=' width: 200px;'>
@@ -323,7 +323,7 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-label'>Event Time</div>
 	  <div class='box-value'>$e_time</div>
 	</div>
-	<div class='box-row'>
+	<div class='box-row' style=' width: 130px;>
 	  <div class='box-label'>Event Places</div>
 	  <div class='box-value'>$e_places</div><br>
 	  <div class='box-label'>Members</div>
@@ -385,13 +385,13 @@ echo "<div class='box-container'>
             <div class='box-label'>Club Picture</div>
             <div class='box-value'><img src='$imageUrl$c_pic' alt='Club Picture' width='100px'></div>
           </div>
-          <div class='box-row'>
+          <div class='box-row' style=' width: 200px;>
             <div class='box-label'>Club Name</div>
             <div class='box-value'>$c_name</div><br>
             <div class='box-label'>Club Tag</div>
             <div class='box-value'>$c_tag</div>
           </div>
-          <div class='box-row'>
+          <div class='box-row' >
             <div class='box-label'>Club Description</div>
             <div class='box-value'><span>$c_desc</span></div>
           </div>
