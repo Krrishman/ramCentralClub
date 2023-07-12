@@ -264,7 +264,7 @@ $result2 = pg_query($conn, $query2);
 if (!$result2) {
   echo "Query Error [$query2] " . pg_last_error($conn);
 }
-
+echo"<div class='list'>List of Events</div>";
 while ($row = pg_fetch_assoc($result1)) {
 	$event_id = $row['event_id'];
 	$e_name = $row['e_name'];
@@ -343,7 +343,7 @@ while ($row = pg_fetch_assoc($result1)) {
   </div>";
 
 }
-
+echo"<div class='list'>List of Clubs</div>";
 while ($row = pg_fetch_assoc($result2)) {
 	$club_id = $row['club_id'];
 	$c_name = $row['c_name'];
