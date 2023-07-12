@@ -452,7 +452,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Overview</td>
         <tr><td class='input'>
-        <textarea name='e_desc' value='$e_desc' size='200' cols='5' rows='2'>$e_desc</textarea></td>
+        <textarea name='e_desc' value='$e_desc' size='500' cols='10' rows='5'>$e_desc</textarea></td>
     <tr>
         <td class='label_mem'><span>Event Members</span> <span>Event Max Members</span> </td>
         <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
@@ -530,11 +530,11 @@ echo "</div><div>";
                 <input type='hidden' name='guest_pic' value='$guest_pic'></td>
             <tr>
                 <td class='label'>Guest Speaker</td>
-                <tr><td class='input'><input type='text' name='guest_name' value='$guest_name' size='40'></td>
+                <tr><td class='input'><input type='text' name='guest_name' value='$guest_name'></td>
             <tr>
                 <td class='label'>Guest Speaker Description</td>
                 <tr><td class='input'>
-                <textarea name='guest_desc' value='$guest_desc' size='500' cols='10' rows='5'>$guest_desc</textarea></td>       
+                <textarea name='guest_desc' value='$guest_desc' size='200' cols='5' rows='2'>$guest_desc</textarea></td>       
             </tr></table></div>";
             
     echo "</div></div></div>
