@@ -463,18 +463,6 @@ echo "<div class='event_make'>
         <input type='file' name='places' >$place_Pic
         <input type='hidden' name='place_Pic' value='$place_Pic'></td>
     <tr>
-        <td class='label'>Guest Speaker Image</td>
-        <tr><td class='input'>
-        <input type='file' name='guest' value='$guest_pic' >$guest_pic
-        <input type='hidden' name='guest_pic' value='$guest_pic'></td>
-    <tr>
-        <td class='label'>Guest Speaker</td>
-        <tr><td class='input'><input type='text' name='guest_name' value='$guest_name' size='40'></td>
-    <tr>
-        <td class='label'>Guest Speaker Description</td>
-        <tr><td class='input'>
-        <textarea name='guest_desc' value='$guest_desc' size='500' cols='10' rows='5'>$guest_desc</textarea></td>
-    <tr>
         <td class='label'>Upload Photo For Header</td>
         <tr><td class='input'>
         <input type='file' name='header' value='$header_pic'>$header_pic
@@ -535,6 +523,24 @@ echo "</div><div>";
         <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
 
+    echo "</div><div>";
+    
+        echo "  <div class='form-container'>
+                <table class='form-table'>
+            <tr>
+                <td class='label'>Guest Speaker Image</td>
+                <tr><td class='input'>
+                <input type='file' name='guest' value='$guest_pic' >$guest_pic
+                <input type='hidden' name='guest_pic' value='$guest_pic'></td>
+            <tr>
+                <td class='label'>Guest Speaker</td>
+                <tr><td class='input'><input type='text' name='guest_name' value='$guest_name' size='40'></td>
+            <tr>
+                <td class='label'>Guest Speaker Description</td>
+                <tr><td class='input'>
+                <textarea name='guest_desc' value='$guest_desc' size='500' cols='10' rows='5'>$guest_desc</textarea></td>       
+            </tr></table></div>";
+            
     echo "</div></div></div>
     <div class='submit_button'>
         <input type='submit' name='task' value='Finish' class='submit-button'>
