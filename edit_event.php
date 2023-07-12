@@ -519,7 +519,7 @@ echo "</div><div>";
         <tr>
         <td class='label'>Event Pic</td>
         <tr><td class='input'>
-        <input type='file' name='picture[]' value='$_pic'>$_pic
+        <input type='file' name='picture[]' value='$_pic'>
         <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
 
