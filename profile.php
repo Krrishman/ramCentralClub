@@ -330,8 +330,8 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-value'>$e_members - $e_max_mem</div>
 	</div>
 	<div style=' display: flex; align-items: center; justify-items: center; flex-direction: column;' >
-	  <div class='box-label'  >Price</div>
-	  <span style=' color: green;'>$e_price</span>
+	  <div>Price</div>
+	  <div style=' color: green;'>$e_price</div>
 	</div>
 	<div class='buttonSection'>
 		<div >
