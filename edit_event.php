@@ -438,7 +438,7 @@ echo "<div class='event_make'>
         <td class='label'>Event Category </td>
         <tr><td class='input'>
         <input type='hidden' name='e_categoris' value='$e_categoris'>
-        <input type='hidden' name='e_categoris' value='$e_categoris' checked=$e_categoris>$e_categoris
+        <input type='radio' name='e_categoris' value='$e_categoris' checked=$e_categoris>$e_categoris
         <input type='radio' name='e_categoris' value='Science'>Science
         <input type='radio' name='e_categoris' value='Health'>Health
         <input type='radio' name='e_categoris'  value='Entertainment'>Entertainment
