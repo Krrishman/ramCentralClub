@@ -22,6 +22,45 @@
 
 <?php
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	
+	echo"oovvvvvdddff $club_id";
+
+	
+	if (isset($_POST['join'])) {
+		echo" ";
+		include('Supabase_connect.php');
+		// Update database with new user ID
+		$query9 = 'UPDATE "club_page" SET "joined_users" = array_append(joined_users, \''.$user_name.'\'), "c_members" = "c_members"+ 1 WHERE "club_id" = \'' . $club_id . '\'';
+		$result9 = pg_query($conn, $query9);
+
+		if ($result9) {
+		  echo "Joined successfully!";
+		} else {
+		  echo "Error joining club: " . pg_last_error($conn);
+		}
+	  }
+
+	  if (isset($_POST['joined'])) {
+		echo" ";
+		include('Supabase_connect.php');
+		// Update database with new user ID
+		$query9 = 'UPDATE "club_page" SET "joined_users" = array_remove(joined_users, \''.$user_name.'\'), "c_members" = "c_members"- 1 WHERE "club_id" = \'' . $club_id . '\'';
+		$result9 = pg_query($conn, $query9);
+
+		if ($result9) {
+		  echo "UnJoined successfully!";
+		} else {
+		  echo "Error UnJoined club: " . pg_last_error($conn);
+		}
+	  }
+
+}
+
+
+
+
+
 
 $query = 'SELECT * FROM "User" where "User_Name" = \'' . $user_name . '\'';
 $result = pg_query($conn, $query);
@@ -234,9 +273,51 @@ while ($row = pg_fetch_assoc($result2)) {
 	$des_text = $row['$des_text'];
 	$imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
+	$membersStrin = $joined_users;
+	$membersStrin = trim($membersStrin, "{}");// Remove the curly braces {}
+	$membersArra = explode(",", $membersStrin);
+		 // Explode the string into an array using comma as the separator
+			$userJoined = in_array($user_name, $membersArra);
+			if ($userJoined) {
+				echo "<p>Already joined.</p>";
+				$xx="name='joined' value='Joined' >Joined";
+			} else {echo "<p>didnot joined.</p>";
+				$xx="name='join' value='Join Now ' >Join Now";
+				
+				}
+
 
 echo" $club_id $c_name $c_tag $c_desc $c_pic $c_members<br>";
-
+echo "<div class='box-container'>
+		  <div class='box-row'>
+            <div class='box-label'>Club Picture</div>
+            <div class='box-value'><img src='$imageUrl$c_pic' alt='Club Picture' width='100px'></div>
+          </div>
+          <div class='box-row'>
+            <div class='box-label'>Club ID</div>
+            <div class='box-value'>$club_id</div>
+          </div>
+          <div class='box-row'>
+            <div class='box-label'>Club Name</div>
+            <div class='box-value'>$c_name</div>
+            <div class='box-label'>Club Tag</div>
+            <div class='box-value'>$c_tag</div>
+          </div>
+          <div class='box-row'>
+            <div class='box-label'>Club Description</div>
+            <div class='box-value'><p>$c_desc<p></div>
+          </div>
+          <div class='box-row'>
+            <div class='box-label'>Club Members</div>
+            <div class='box-value'>$c_members</div>
+          </div>
+		  <div class='buttonSection'>
+		  <div >
+		  <form method='post' action='profile.php'>
+		  <input type='hidden' name='club_id' value='$club_id'>
+		  <button class='submit-button' type='submit' $xx</button></form> </div>
+	  </div>      
+        </div>";
 
 }
 
