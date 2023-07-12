@@ -291,7 +291,7 @@ while ($row = pg_fetch_assoc($result2)) {
 echo "<div class='box-container'>
 		  <div class='box-row'>
             <div class='box-label'>Club ID</div>
-            <div class='box-value' id='mid'>$club_id</p></div>
+            <div class='box-value'><p>$club_id</p></div>
           </div>
 		  <div class='box-row'>
             <div class='box-label'>Club Picture</div>
@@ -309,7 +309,7 @@ echo "<div class='box-container'>
           </div>
           <div class='box-row'>
             <div class='box-label'>Club Members</div>
-            <div class='box-value' id='mid'>$c_members</div>
+            <div class='box-value'><p>$c_members</p></div>
           </div>
 		  <div class='buttonSection'>
 		  <div >
