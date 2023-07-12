@@ -307,8 +307,8 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-value'>$event_id</div>
 	</div>
 	<div class='box-row' >
-	  <div class='box-label' style=' width: 120px;' >Event Picture</div>
-	  <div class='box-value'><img src='$imageUrl$icon_pic' alt='Icon' width='100px'></div>
+	  <div class='box-label' style=' width: 120px; height: 160px;' >Event Picture</div>
+	  <div class='box-value'><img src='$imageUrl$icon_pic' alt='Icon' width='100px' height='100px;'></div>
 	</div>
 	<div class='box-row' style=' width: 200px;'>
 	  <div class='box-label'>Event Name</div>
@@ -329,9 +329,9 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-label'>Members</div>
 	  <div class='box-value'>$e_members - $e_max_mem</div>
 	</div>
-	<div style=' display: flex; align-items: center; justify-items: center;' >
+	<div style=' display: flex; align-items: center; justify-items: center; flex-direction: column;' >
 	  <div class='box-label'  >Price</div>
-	  <div class='box-value'>$e_price</div>
+	  <div class='box-value' style=' background-color: green;'>$e_price</div>
 	</div>
 	<div class='buttonSection'>
 		<div >

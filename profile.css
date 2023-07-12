@@ -98,7 +98,10 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
   .box-value {
      padding-right: 10px;
   }
-
+  .box-value img{
+    object-fit: cover;
+ }
+  
   .box-value p{
   text-align: center;
   display: flex;
