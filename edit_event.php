@@ -465,7 +465,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Upload Photo For Header</td>
         <tr><td class='input'>
-        <input type='file' name='header' value='$header_pic'>$header_pic
+        <input type='file' name='header' >$header_pic
         <input type='hidden' name='header_pic' value='$header_pic'></td>
     <tr>
         <td class='label'>Upload Event Photo Icon</td>
