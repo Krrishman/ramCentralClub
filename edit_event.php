@@ -520,8 +520,8 @@ echo "</div><div>";
         <tr>
         <td class='label'>Event Pic</td>
         <tr><td class='input'>
-        <input type='file' name='picture[]' value='$_pic'>
-        <input type='hidden' name='S_pic[]' value='$_pic'></td>
+        <input type='file' name='picture[]' >$_pic
+        <input type='hidden' name='S_pic[]' value='$S_pic[$j]'></td>
         </tr></table></div>";}
 
     echo "</div><div>";
