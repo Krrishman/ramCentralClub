@@ -525,7 +525,7 @@ echo "</div><div>";
 
 switch($task) {
 
-    case "preview":
+    case "previews":
  
  echo"rww";
  $imageUrl = 'https://drive.google.com/uc?export=view&id=';
