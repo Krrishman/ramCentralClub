@@ -426,6 +426,8 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Price</td>
         <tr><td class='input'>
+        <input type='hidden' name='e_price' value='$e_price'>
+        <input type='radio' name='e_price' value='$e_price'>
         <input type='radio' name='e_price' value='Free'>Free
         <input type='radio' name='e_price'   value='$5'>$5
         <input type='radio' name='e_price'  value='$10'>$10
@@ -435,6 +437,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Category </td>
         <tr><td class='input'>
+        <input type='hidden' name='e_categoris' value='$e_categoris'>
         <input type='radio' name='e_categoris' value='Science'>
         <input type='radio' name='e_categoris' value='Health'>
         <input type='radio' name='e_categoris'  value='Entertainment'>
