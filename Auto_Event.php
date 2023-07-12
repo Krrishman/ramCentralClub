@@ -262,15 +262,6 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
              </div>";
          } 
          echo"
-             <div class='guestIconContainter'>
-                 <img src='./NewEventHomePagePictures/jeff-bezos.jpg' alt=''>
-                 <div class='guestSpeakerDescription'>
-                     <h2>Josh Smith</h2>
-                     <p>Josh Smith is the president of Amazon and is visiting Farmigndale State College to talk about future jobs.
-                         He is a must listen as you get to learn valuable knowledge and network with him
-                     </p>
-                 </div>
-             </div>
     
          </div>
      </div>
