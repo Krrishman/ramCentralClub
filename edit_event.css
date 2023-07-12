@@ -116,3 +116,30 @@ section{
     color: green;
     margin-top: 10px;
   }
+
+
+
+   
+  .label_mem {
+    padding-right: 10px;
+    font-weight: bold;
+  }
+      .label_mem span{
+    padding-right: 70px;
+  }
+  
+  .input_mem {
+ width: 70%;
+  }
+  
+  .input_mem input[type="text"],
+  .input_mem input[type="number"],
+  .input_mem textarea {
+    width: 40%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  

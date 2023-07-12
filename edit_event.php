@@ -454,9 +454,9 @@ echo "<div class='event_make'>
         <tr><td class='input'>
         <textarea name='e_desc' value='$e_desc' size='500' cols='20' rows='10'>$e_desc</textarea></td>
     <tr>
-        <td class='label'>Event Members</td><td class='label'>Event Max Members</td>
-        <tr><td class='input'><input type='number' name='e_members' value='$e_members' size='12'></td>
-        <td class='input'><input type='number' name='e_max_mem' value='$e_max_mem' size='12'></td>
+        <td class='label_mem'><span>Event Members</span> <span>Event Max Members</span> </td>
+        <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
+        <input type='number' name='e_max_mem' value='$e_max_mem' size='10'></td>
     <tr>
         <td class='label'>Event Max Members</td>
         <tr><td class='input'><input type='number' name='e_max_mem' value='$e_max_mem' size='12'></td>
