@@ -134,6 +134,7 @@ section{
   
   .input_mem input[type="text"],
   .input_mem input[type="number"],
+  .input_mem input[type="date"],
   .input_mem textarea {
     width: 40%;
     padding: 8px;
