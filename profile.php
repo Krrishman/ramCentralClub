@@ -45,13 +45,13 @@ echo"<section class='section_01'>";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	
-	echo"oovvvvvdddff $club_id";
+	echo" ";
 
 	if (isset($_POST['event_id'])) {$event_id = $_POST['event_id'];}
 	if (isset($_POST['club_id'])) {$club_id = $_POST['club_id'];}
 	
 	if (isset($_POST['club_join'])) {
-		echo" $user_name f $club_id";
+		echo" ";
 		echo"<div id='ma'>";
 
 		include('Supabase_connect.php');
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	  }
 
 	  if (isset($_POST['club_joined'])) {
-		echo" $user_name f $club_id";
+		echo"  ";
 		echo"<div id='ma'>";
 
 		include('Supabase_connect.php');
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	  
 	  if (isset($_POST['event_join'])) {
-        echo" <input type='hidden' name='event_id' value='$event_id'> $user_name h $event_id";
+        echo" ";
 		echo"<div id='ma'>";
 
         include('Supabase_connect.php');
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       }
 
       if (isset($_POST['event_joined'])) {
-        echo" <input type='hidden' name='event_id' value='$event_id'>$user_name h $event_id";
+        echo"  ";
 		echo"<div id='ma'>";
         include('Supabase_connect.php');
         // Update database with new user ID
