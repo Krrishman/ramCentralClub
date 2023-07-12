@@ -280,7 +280,7 @@ if(isset($_FILES['guest'])) {
         $message = "Error Message g: ".$e->getMessage();
     }
 }
-            
+  /*          
             if(isset($_FILES['picture'])) {
             try {
             // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
@@ -314,16 +314,16 @@ if(isset($_FILES['guest'])) {
                             'uploadType' => 'multipart',
                             'fields' => 'id'
                         ));
-                        $_pic[] = $file->id;
+                        $S_pic[] = $file->id;
                     }
                 }
-                $message = "Files uploaded successfully. ".implode(",", $_pic);
+                $message = "Files uploaded successfully. ".implode(",", $S_pic);
             } catch(Exception $e) {
                 $message = "Error Message p: ".$e->getMessage();
             } 
         }
 
-
+*/
 
 
 
