@@ -306,8 +306,8 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-label'>Event ID</div>
 	  <div class='box-value'>$event_id</div>
 	</div>
-	<div class='box-row' style=' width: 120px;>
-	  <div class='box-label' >Event Picture</div>
+	<div class='box-row' >
+	  <div class='box-label' style=' width: 120px;' >Event Picture</div>
 	  <div class='box-value'><img src='$imageUrl$icon_pic' alt='Icon' width='100px'></div>
 	</div>
 	<div class='box-row' style=' width: 200px;'>
@@ -323,15 +323,15 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-label'>Event Time</div>
 	  <div class='box-value'>$e_time</div>
 	</div>
-	<div class='box-row' style=' width: 130px;>
+	<div class='box-row'>
 	  <div class='box-label'>Event Places</div>
 	  <div class='box-value'>$e_places</div><br>
 	  <div class='box-label'>Members</div>
 	  <div class='box-value'>$e_members - $e_max_mem</div>
 	</div>
 	<div class='box-row'>
-	  <div class='box-label' style=' width: 100px; display: flex; align-items: center; justify-items: center;' >Price</div>
-	  <div class='box-value'>$e_price</div>
+	  <div class='box-label'  >Price</div>
+	  <div class='box-value' style=' width: 100px; display: flex; align-items: center; justify-items: center;'>$e_price</div>
 	</div>
 	<div class='buttonSection'>
 		<div >
@@ -385,7 +385,7 @@ echo "<div class='box-container'>
             <div class='box-label'>Club Picture</div>
             <div class='box-value'><img src='$imageUrl$c_pic' alt='Club Picture' width='100px'></div>
           </div>
-          <div class='box-row' style=' width: 200px;>
+          <div class='box-row'>
             <div class='box-label'>Club Name</div>
             <div class='box-value'>$c_name</div><br>
             <div class='box-label'>Club Tag</div>
