@@ -310,7 +310,7 @@ while ($row = pg_fetch_assoc($result1)) {
 	  <div class='box-label'>Event Picture</div>
 	  <div class='box-value'><img src='$imageUrl$icon_pic' alt='Icon' width='100px'></div>
 	</div>
-	<div class='box-row'>
+	<div class='box-row' style=' width: 200px;'>
 	  <div class='box-label'>Event Name</div>
 	  <div class='box-value'>$e_name</div><br>
 	  <div class='box-label'>Organization</div>
