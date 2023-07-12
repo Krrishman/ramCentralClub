@@ -117,6 +117,41 @@ use Google\Client;
 use Google\Service\Drive;
 use Google\Service\Drive\DriveFile;
 
+if(isset($_FILES['image'])) {
+//if(isset($_POST['submit'])){
+  try {
+      $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
+      $file_type = $_FILES['image']['type'];
+      if (!in_array($file_type, $valid_types)) {
+          throw new Exception('Invalid file type. jpeg, JPG, GIF, PNG, or TIF files are allowed.');
+      }
+      
+      $curl = curl_init();
+      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+      $client = new Client();
+      putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+      $client->useApplicationDefaultCredentials();
+      $client->addScope(Drive::DRIVE);
+      $driveService = new Drive($client);
+      $fileMetadata = new Drive\DriveFile(array(
+          'name' => $_FILES['image']['name'],
+          'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+      ));
+      $content = file_get_contents($_FILES['image']['tmp_name']);
+      $file = $driveService->files->create($fileMetadata, array(
+          'data' => $content,
+          'mimeType' => $file_type,
+          'uploadType' => 'multipart',
+          'fields' => 'id'
+      ));
+      $filename = $file->id;
+      $message = "File uploaded successfully. $filename";
+  } catch(Exception $e) {
+      $message = "Error Message im: ".$e->getMessage();
+  } 
+}
 
 
 if(isset($_FILES['header'])) {
@@ -279,10 +314,10 @@ if(isset($_FILES['guest'])) {
                             'uploadType' => 'multipart',
                             'fields' => 'id'
                         ));
-                        $_pic[] = $file->id;
+                        $S_pic[] = $file->id;
                     }
                 }
-                $message = "Files uploaded successfully. ".implode(",", $_pic);
+                $message = "Files uploaded successfully. ".implode(",", $S_pic);
             } catch(Exception $e) {
                 $message = "Error Message p: ".$e->getMessage();
             } 
@@ -525,7 +560,7 @@ echo "</div><div>";
 
 switch($task) {
 
-    case "previews":
+    case "preview":
  
  echo"rww";
  $imageUrl = 'https://drive.google.com/uc?export=view&id=';
