@@ -149,7 +149,7 @@ if(isset($_FILES['image'])) {
       $filename = $file->id;
       $message = "File uploaded successfully. $filename";
   } catch(Exception $e) {
-      $message = "Error Message: ".$e->getMessage();
+      $message = "Error Message im: ".$e->getMessage();
   } 
 }
 
@@ -181,7 +181,7 @@ if(isset($_FILES['header'])) {
         $header_pic = $file->id;
         $message = "File uploaded successfully. $header_pic";
     } catch(Exception $e) {
-        $message = "Error Message: ".$e->getMessage();
+        $message = "Error Message h: ".$e->getMessage();
         echo"$message";
     }
 }
@@ -213,7 +213,7 @@ if(isset($_FILES['icon'])) {
         $icon_pic = $file->id;
         $message = "File uploaded successfully. $icon_pic";
     } catch(Exception $e) {
-        $message = "Error Message: ".$e->getMessage();
+        $message = "Error Message i: ".$e->getMessage();
         echo"$message";
     }
 }
@@ -246,7 +246,7 @@ if(isset($_FILES['places'])) {
         $place_pic = $file->id;
         $message = "File uploaded successfully. $place_pic";
     } catch(Exception $e) {
-        $message = "Error Message: ".$e->getMessage();
+        $message = "Error Message p: ".$e->getMessage();
     }
 }
 
@@ -277,7 +277,7 @@ if(isset($_FILES['guest'])) {
         $guest_pic = $file->id;
         $message = "File uploaded successfully. $guest_pic";
     } catch(Exception $e) {
-        $message = "Error Message: ".$e->getMessage();
+        $message = "Error Message g: ".$e->getMessage();
     }
 }
             
@@ -319,7 +319,7 @@ if(isset($_FILES['guest'])) {
                 }
                 $message = "Files uploaded successfully. ".implode(",", $S_pic);
             } catch(Exception $e) {
-                $message = "Error Message: ".$e->getMessage();
+                $message = "Error Message p: ".$e->getMessage();
             } 
         }
 
