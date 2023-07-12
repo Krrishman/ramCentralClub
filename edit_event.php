@@ -431,8 +431,8 @@ echo "<div class='event_make'>
         <input type='radio' name='e_price' value='Free'checked=Free>Free
         <input type='radio' name='e_price'   value='$5'checked=$5>$5
         <input type='radio' name='e_price'  value='$10'checked=$10>$10
-        <input type='radio' name='e_price'  value='$15'>$15
-        <input type='radio' name='e_price'  value='$20'>$20
+        <input type='radio' name='e_price'  value='$15'checked=$15>$15
+        <input type='radio' name='e_price'  value='$20'checked=$20>$20
        </td>
     <tr>
         <td class='label'>Event Category </td>
@@ -452,14 +452,11 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Overview</td>
         <tr><td class='input'>
-        <textarea name='e_desc' value='$e_desc' size='500' cols='20' rows='10'>$e_desc</textarea></td>
+        <textarea name='e_desc' value='$e_desc' size='500' cols='10' rows='5'>$e_desc</textarea></td>
     <tr>
         <td class='label_mem'><span>Event Members</span> <span>Event Max Members</span> </td>
         <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
         <input type='number' name='e_max_mem' value='$e_max_mem' size='10'></td>
-    <tr>
-        <td class='label'>Event Max Members</td>
-        <tr><td class='input'><input type='number' name='e_max_mem' value='$e_max_mem' size='12'></td>
     <tr>
         <td class='label'>Upload Event Photo For Location</td>
         <tr><td class='input'>
@@ -476,7 +473,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Guest Speaker Description</td>
         <tr><td class='input'>
-        <textarea name='guest_desc' value='$guest_desc' size='500' cols='20' rows='10'>$guest_desc</textarea></td>
+        <textarea name='guest_desc' value='$guest_desc' size='500' cols='10' rows='5'>$guest_desc</textarea></td>
     <tr>
         <td class='label'>Upload Photo For Header</td>
         <tr><td class='input'>
