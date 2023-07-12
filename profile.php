@@ -295,7 +295,7 @@ echo "<div class='box-container'>
           </div>
           <div class='box-row'>
             <div class='box-label'>Club ID</div>
-            <div class='box-value'>$club_id</div>
+            <div class='box-value'><p>$club_id</p></div>
           </div>
           <div class='box-row'>
             <div class='box-label'>Club Name</div>
@@ -305,11 +305,11 @@ echo "<div class='box-container'>
           </div>
           <div class='box-row'>
             <div class='box-label'>Club Description</div>
-            <div class='box-value'><p>$c_desc<p></div>
+            <div class='box-value'><span>$c_desc</span></div>
           </div>
           <div class='box-row'>
             <div class='box-label'>Club Members</div>
-            <div class='box-value'>$c_members</div>
+            <div class='box-value'><p>$c_members</p></div>
           </div>
 		  <div class='buttonSection'>
 		  <div >
