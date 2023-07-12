@@ -113,9 +113,18 @@ if (isset($_POST['S_pic']))         {$S_pic = $_POST['S_pic'];}                 
 
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
 if (isset($_POST['e_perk_id']))           {$e_perk_id = $_POST['e_perk_id'];}         else {$e_perk_id = array();}
+/*
+$start_time = $_POST['start_time'];
+$end_time = $_POST['end_time'];
+$time_range = $start_time . ' - ' . $end_time;
 
+   <td class='label'>Event Time</td>
+        <tr><td class='input'>
+        <input type='time' name='name='start_time'' value='$start_time'> - 
+        <input type='time' name='end_time' value='$end_time'></td>
+    <tr>
 
-
+*/
 //foreach($_POST as $keyx => $value) echo "<p align='center'>$keyx = $value<br>"; 
 function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
@@ -432,11 +441,6 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Time</td>
         <tr><td class='input'><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
-    <tr>
-        <td class='label'>Event Time</td>
-        <td class='input'>
-        <input type='time' name='tttime' value='$start_time'> - 
-        <input type='time' name='tttime' value='$end_time'></td>
     <tr>
         <td class='label'>Event Location</td>
         <tr><td class='input'><input type='text' name='e_location' value='$e_location' placeholder='Enter a location'></td>
