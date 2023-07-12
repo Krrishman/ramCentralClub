@@ -62,6 +62,22 @@ $file_name =NULL;
 $ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
 $cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
 
+/*
+if (isset($_POST['location'])) {
+    //echo "$ ";
+    $location = urlencode($_POST['location']);
+    $api_key = 'AIzaSyC-k2ly18smlEzk-JlhWtqOgNZQc0x5lZU';
+    //echo $location;
+    //AIzaSyC-k2ly18smlEzk-JlhWtqOgNZQc0x5lZU
+    // Generate the map URL with the location and API key
+    $mapsUrl = "https://www.google.com/maps?q=" . urlencode($location) . "&output=embed";
+    $map_url = "https://maps.googleapis.com/maps/api/staticmap?center={$location}&zoom=14&size=400x300&markers=color:red%7C{$location}&key={$api_key}";
+    /*<h2>Map for: <?php echo $_POST['location']; ?></h2>
+    <img src="<?php echo $map_url; ?>" alt="Map"> */
+
+ // }
+ if(isset($_POST['tttime']))       $tttime = trim($_POST['tttime']);         //else $e_name = NULL;
+
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "test";
 if (isset($_GET['r']))				{$event_id = $_GET['r'];}	
 
@@ -417,6 +433,11 @@ echo "<div class='event_make'>
         <td class='label'>Event Time</td>
         <tr><td class='input'><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
     <tr>
+        <td class='label'>Event Time</td>
+        <td class='input'>
+        <input type='time' name='tttime' value='$start_time'> - 
+        <input type='time' name='tttime' value='$end_time'></td>
+    <tr>
         <td class='label'>Event Location</td>
         <tr><td class='input'><input type='text' name='e_location' value='$e_location' placeholder='Enter a location'></td>
     <tr>
@@ -484,7 +505,7 @@ echo "<div>";
             <table class='form-table'>
     <input type='hidden' name='e_perk_id[]' value='$e_perk_id[$i]'>
         <tr>
-            <td>Perk No " . ($i+1) . "</td>
+            <td>Perk No " . ($i+1) . " <span style='float:right;'>$e_perk_id[$i]</span></td>
         <tr>
             <td class='label'>Perk Description</td>
             <tr><td class='input'><input type='text' name='perk_desc[]' value='$perk_desc[$i]' size='20' cols='10' rows='5'></td>        
@@ -506,7 +527,7 @@ echo "</div><div>";
             <table class='form-table'>
         <input type='hidden' name='E_slide_id[]' value='$E_slide_id[$j]'>
         <tr>
-            <td>Event Pic No " . ($j + 1) . "</td>
+            <td>Event Pic No " . ($j + 1) . " <span style='float:right;'>$E_slide_id[$j]</span></td>
         <tr>
             <td class='label'>Event Pic Title</td>
             <tr><td class='input'><input type='text' name='S_title[]' value='$_title'></td>
