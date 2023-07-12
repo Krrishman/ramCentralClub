@@ -68,8 +68,10 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
 
 .list{
   font-size: 20px;
-  background-color: #026fd4;
-  color: #ffffff;
+  background-color: #026ed465;
+  padding: 10px 20px;
+
+  color: #000000;
 
 }
 
