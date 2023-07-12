@@ -314,10 +314,10 @@ if(isset($_FILES['guest'])) {
                             'uploadType' => 'multipart',
                             'fields' => 'id'
                         ));
-                        $S_pic[] = $file->id;
+                        $_pic[] = $file->id;
                     }
                 }
-                $message = "Files uploaded successfully. ".implode(",", $S_pic);
+                $message = "Files uploaded successfully. ".implode(",", $_pic);
             } catch(Exception $e) {
                 $message = "Error Message p: ".$e->getMessage();
             } 
