@@ -349,17 +349,15 @@ case "test":
 
     while ($row = pg_fetch_assoc($result2)) {
         $e_perk_id = $row['e_perk_id'];
-        $Per_desc = $row['e_p_desc'];
+        $perk_desc = $row['e_p_desc'];
         $color = $row['color'];
-        $event_id = $row['event_id'];
     }
 
     while ($row = pg_fetch_assoc($result3)) {
         $E_slide_id = $row['E_slide_id'];
-        $Slide_title = $row['E_S_title'];
-        $Slide_des = $row['E_S_des'];
-        $Slide_pic = $row['E_S_pic'];
-        $event_id = $row['event_id'];
+        $S_title = $row['E_S_title'];
+        $S_des = $row['E_S_des'];
+        $S_pic = $row['E_S_pic'];
     }
     while ($row = pg_fetch_assoc($result4)) {
         $e_guest_id = $row['e_guest_id'];
@@ -367,7 +365,6 @@ case "test":
         $guest_desc = $row['e_guest_desc'];
         $guest_pic = $row['e_guest_pic'];
         $color = $row['color'];
-        $event_id = $row['event_id'];
     }
 
     if (pg_num_rows($result) > 0) {
@@ -476,7 +473,12 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Upload Photo For Header</td>
         <tr><td class='input'>
-        <input type='file' name='icon' >$icon_pic
+        <input type='file' name='header' value='$header_pic'>$header_pic
+        <input type='hidden' name='header_pic' value='$header_pic'></td>
+    <tr>
+        <td class='label'>Upload Event Photo Icon</td>
+        <tr><td class='input'>
+        <input type='file' name='icon' value='$icon_pic'>$icon_pic
         <input type='hidden' name='icon_pic' value='$icon_pic'></td>
     </table>
     </div>";
@@ -492,7 +494,7 @@ echo "<div>";
 
     echo "  <div class='form-container'>
             <table class='form-table'>
-    <input type='hidden' name='perk_id[]' value='" . (isset($e_perk_id[$i]) ? $e_perk_id[$i] : "") . "'>
+    <input type='hidden' name='e_perk_id[]' value='" . (isset($e_perk_id[$i]) ? $e_perk_id[$i] : "") . "'>
         <tr>
             <td>Perk No " . ($i+1) . "</td>
         <tr>
@@ -513,7 +515,7 @@ echo "</div><div>";
 
     echo "  <div class='form-container'>
             <table class='form-table'>
-        <input type='hidden' name='slide_id[]' value='" . (isset($E_slide_id[$j]) ? $E_slide_id[$j] : "") . "'>
+        <input type='hidden' name='E_slide_id[]' value='" . (isset($E_slide_id[$j]) ? $E_slide_id[$j] : "") . "'>
         <tr>
             <td>Event Pic No " . ($j + 1) . "</td>
         <tr>
@@ -526,7 +528,7 @@ echo "</div><div>";
         <td class='label'>Event Pic</td>
         <tr><td class='input'>
         <input type='file' name='picture[]' value='$_pic'>$_pic
-        <input type='hidden' name='Slide_pic[]' value='$_pic'></td>
+        <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
 
     echo "</div></div></div>
