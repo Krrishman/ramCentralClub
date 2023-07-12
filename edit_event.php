@@ -695,7 +695,7 @@ echo"
 
 
 case "Finish":   
-     echo"<div id='main'>";
+     echo"<div id='main'> <input type='hidden' name='event_id' value='$event_id'>";
     include('Supabase_connect.php');
    
     echo"<div id='ma'>";
