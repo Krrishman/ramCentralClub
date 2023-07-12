@@ -458,19 +458,14 @@ echo "<div class='event_make'>
         <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
         <input type='number' name='e_max_mem' value='$e_max_mem' size='10'></td>
     <tr>
-        <td class='label'>Upload Event Photo For Location</td>
-        <tr><td class='input'>
-        <input type='file' name='places' >$place_Pic
-        <input type='hidden' name='place_Pic' value='$place_Pic'></td>
-    <tr>
         <td class='label'>Upload Photo For Header</td>
         <tr><td class='input'>
-        <input type='file' name='header' >$header_pic
+        <input type='file' name='header' >
         <input type='hidden' name='header_pic' value='$header_pic'></td>
     <tr>
         <td class='label'>Upload Event Photo Icon</td>
         <tr><td class='input'>
-        <input type='file' name='icon' value='$icon_pic'>$icon_pic
+        <input type='file' name='icon'>
         <input type='hidden' name='icon_pic' value='$icon_pic'></td>
     </table>
     </div>";
@@ -520,7 +515,7 @@ echo "</div><div>";
         <tr>
         <td class='label'>Event Pic</td>
         <tr><td class='input'>
-        <input type='file' name='picture[]' >$_pic
+        <input type='file' name='picture[]' >
         <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
 
@@ -531,7 +526,7 @@ echo "</div><div>";
             <tr>
                 <td class='label'>Guest Speaker Image</td>
                 <tr><td class='input'>
-                <input type='file' name='guest' value='$guest_pic' >$guest_pic
+                <input type='file' name='guest' >
                 <input type='hidden' name='guest_pic' value='$guest_pic'></td>
             <tr>
                 <td class='label'>Guest Speaker</td>
@@ -650,12 +645,11 @@ echo"
 </div>
 <div class='eventDescriptionBlock2'>
   <h1>Location</h1>
-  <img style='margin-bottom:20px; 'src='$imageUrl$place_Pic' alt='dfsdfs'>
-  <!--<img src='$map_url' alt='Map'>
+  <!--<img style='margin-bottom:20px; 'src='$imageUrl$place_Pic' alt='dfsdfs'>
+  <img src='$map_url' alt='Map'>
   <p><br> fsdf $map_url </p>-->
   <iframe width='100%' height='400' frameborder='0'
    style='border:0' src='$e_location' allowfullscreen></iframe>
-  <h2>Campus Center Ballroom</h2>
   <h2>$e_places</h2>
 
   <div class='eventPerks'>
