@@ -364,7 +364,7 @@ case "test":
     }
     while ($row = pg_fetch_assoc($result4)) {
         $e_guest_id = $row['e_guest_id'];
-        $guest_name = $row['e_guest_title'];
+        $guest_name = $row['e_guest_name'];
         $guest_desc = $row['e_guest_desc'];
         $guest_pic = $row['e_guest_pic'];
         $color = $row['color'];
@@ -670,16 +670,6 @@ echo"
               <p>$guest_desc</p>
           </div>
       </div>
-      
-      <div class='guestIconContainter'>
-          <img src='./NewEventHomePagePictures/jeff-bezos.jpg' alt=''>
-          <div class='guestSpeakerDescription'>
-              <h2>Josh Smith</h2>
-              <p>Josh Smith is the president of Amazon and is visiting Farmigndale State College to talk about future jobs.
-                  He is a must listen as you get to learn valuable knowledge and network with him
-              </p>
-          </div>
-      </div>
 
   </div>
 </div>
@@ -713,7 +703,7 @@ case "Finish":
 
     for ($i = 0; $i < count($e_perk_id); $i++) {
         echo"<div id='ma'>";
-        $query2 = 'UPDATE "event_perk" SET "e_p_desc" = \'' . $Perk_desc[$i] . '\'
+        $query2 = 'UPDATE "event_perk" SET "e_p_desc" = \'' . $perk_desc[$i] . '\'
                     WHERE "event_perk"."event_id" = \'' . $event_id . '\' AND "e_perk_id" = \'' . $e_perk_id[$i] . '\';';
         $result2 = pg_query($conn, $query2);
         if ($result2) {echo "$ck Perk ID  $perk_id[$i] updated.";

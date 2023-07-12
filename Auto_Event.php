@@ -245,7 +245,7 @@ $query5 = 'SELECT * FROM "club_comment" WHERE "event_id" =\'' . $event_id . '\';
 
          while ($row = pg_fetch_assoc($result4)) {
             $e_guest_id = $row['e_guest_id'];
-            $guest_name = $row['e_guest_title'];
+            $guest_name = $row['e_guest_name'];
             $guest_desc = $row['e_guest_desc'];
             $guest_pic = $row['e_guest_pic'];
             $color = $row['color'];
