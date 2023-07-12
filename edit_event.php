@@ -460,12 +460,12 @@ echo "<div class='event_make'>
         <input type='number' name='e_max_mem' value='$e_max_mem' size='10'></td>
     <tr>
         <td class='label'>Upload Photo For Header</td>
-        <tr><td class='input'>
+        <tr><td class='input_up'>
         <input type='file' name='header' >
         <input type='hidden' name='header_pic' value='$header_pic'></td>
     <tr>
         <td class='label'>Upload Event Photo Icon</td>
-        <tr><td class='input'>
+        <tr><td class='input_up'>
         <input type='file' name='icon'>
         <input type='hidden' name='icon_pic' value='$icon_pic'></td>
     </table>
@@ -515,7 +515,7 @@ echo "</div><div>";
             <tr><td class='input'><input type='text' name='S_des[]' value='$_des'></td>
         <tr>
         <td class='label'>Event Pic</td>
-        <tr><td class='input'>
+        <tr><td class='input_up'>
         <input type='file' name='picture[]' >
         <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
@@ -526,7 +526,7 @@ echo "</div><div>";
                 <table class='form-table'>
             <tr>
                 <td class='label'>Guest Speaker Image</td>
-                <tr><td class='input'>
+                <tr><td class='input_up'>
                 <input type='file' name='guest' >
                 <input type='hidden' name='guest_pic' value='$guest_pic'></td>
             <tr>
