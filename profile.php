@@ -385,7 +385,7 @@ echo "<div class='box-container'>
             <div class='box-label'>Club Picture</div>
             <div class='box-value'><img src='$imageUrl$c_pic' alt='Club Picture' width='100px'></div>
           </div>
-          <div class='box-row'>
+          <div class='box-row' style=' width: 200px;'>
             <div class='box-label'>Club Name</div>
             <div class='box-value'>$c_name</div><br>
             <div class='box-label'>Club Tag</div>
