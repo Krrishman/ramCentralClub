@@ -71,6 +71,7 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
 
 
   .box-container {
+    font-size: 15px;
     max-width: 700px;
     max-height: 200px;
     background-color: #FAF0E6;
@@ -127,4 +128,10 @@ body {font-family: Verdana, sans-serif; margin: 0; background-color: #f5f5f5;}
     background-color: #45a049;
   }
   
-  
+  .section_01{
+    max-width: 1366px;
+    position: relative;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 20px;
+}

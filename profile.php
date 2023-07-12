@@ -214,7 +214,7 @@ echo" 	<section>
 			<tr><th>Phone</th> <td>$Phone</td></tr>
 			<tr><th>Member Since</th> <td>$Date</td></tr>
 			</table>
-			</div></section>";
+			</div></section><section class='section_01'>";
 
 }
 
@@ -323,10 +323,12 @@ echo "<div class='box-container'>
 
 
 
-echo'
+echo'</section>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="touggle.js"></script>
 <br>';
+
+
 switch($task) {
 
 	case "Finish": 	 break;
