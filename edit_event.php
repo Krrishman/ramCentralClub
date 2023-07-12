@@ -348,16 +348,16 @@ case "test":
     if (!$result4) {echo "Query Error [$query4] " . pg_last_error($conn);}
 
     while ($row = pg_fetch_assoc($result2)) {
-        $e_perk_id = $row['e_perk_id'];
-        $perk_desc = $row['e_p_desc'];
-        $color = $row['color'];
+        $e_perk_id[] = $row['e_perk_id'];
+        $perk_desc[] = $row['e_p_desc'];
+        $color[] = $row['color'];
     }
 
     while ($row = pg_fetch_assoc($result3)) {
-        $E_slide_id = $row['E_slide_id'];
-        $S_title = $row['E_S_title'];
-        $S_des = $row['E_S_des'];
-        $S_pic = $row['E_S_pic'];
+        $E_slide_id[] = $row['E_slide_id'];
+        $S_title[] = $row['E_S_title'];
+        $S_des[] = $row['E_S_des'];
+        $S_pic[] = $row['E_S_pic'];
     }
     while ($row = pg_fetch_assoc($result4)) {
         $e_guest_id = $row['e_guest_id'];
@@ -465,7 +465,7 @@ echo "<div class='event_make'>
         <input type='hidden' name='guest_pic' value='$guest_pic'></td>
     <tr>
         <td class='label'>Guest Speaker</td>
-        <tr><td class='input'><input type='text' name='guest_name' value='$guest_name'></td>
+        <tr><td class='input'><input type='text' name='guest_name' value='$guest_name' size='40'></td>
     <tr>
         <td class='label'>Guest Speaker Description</td>
         <tr><td class='input'>
