@@ -428,11 +428,11 @@ echo "<div class='event_make'>
         <tr><td class='input'>
         <input type='hidden' name='e_price' value='$e_price'>$e_price
         <input type='radio' name='e_price' value='$e_price'checked=$e_price>$e_price
-        <input type='radio' name='e_price' value='Free'checked=Free>Free
-        <input type='radio' name='e_price'   value='$5'checked=$5>$5
-        <input type='radio' name='e_price'  value='$10'checked=$10>$10
-        <input type='radio' name='e_price'  value='$15'checked=$15>$15
-        <input type='radio' name='e_price'  value='$20'checked=$20>$20
+        <input type='radio' name='e_price' value='Free'>Free
+        <input type='radio' name='e_price'   value='$5'>$5
+        <input type='radio' name='e_price'  value='$10'>$10
+        <input type='radio' name='e_price'  value='$15'>$15
+        <input type='radio' name='e_price'  value='$20'>$20
        </td>
     <tr>
         <td class='label'>Event Category </td>
