@@ -406,9 +406,8 @@ while ($row = pg_fetch_assoc($result2)) {
 		 // Explode the string into an array using comma as the separator
 			$userJoined = in_array($user_name, $membersArra);
 			if ($userJoined) {
-				echo "<p>Already joined.</p>";
 				$xx="name='club_joined' value='Joined' >Joined";
-			} else {echo "<p>didnot joined.</p>";
+			} else {
 				$xx="name='club_join' value='Join Now ' >Join Now";
 				
 				}
