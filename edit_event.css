@@ -14,12 +14,12 @@ section{
 }
 
 
-.club_make{
+.event_make{
     display: flex;
     flex-direction: row;
     background-color: aqua;
 }
-.club_make div{
+.event_make div{
     margin:10px;
     
 }
