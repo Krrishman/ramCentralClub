@@ -486,7 +486,7 @@ echo "<div>";
 
     echo "  <div class='form-container'>
             <table class='form-table'>
-    <input type='hidden' name='e_perk_id[]' value='" . (isset($e_perk_id[$i]) ? $e_perk_id[$i] : "") . "'>
+    <input type='hidden' name='e_perk_id[]' value='$e_perk_id[$i]'>
         <tr>
             <td>Perk No " . ($i+1) . "</td>
         <tr>
