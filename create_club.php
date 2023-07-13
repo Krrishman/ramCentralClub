@@ -7,7 +7,7 @@
 	echo"<p style=' width:100%; padding: 30px;'></p>";
 
     include('session.php');
-    include('check_logon.php');
+    //include('check_logon.php');
 	include('menubar.php');
     include('Supabase_connect.php');
 
@@ -361,7 +361,7 @@ for ($i = 0; $i < $max_entry; $i++) {
 
 echo "<div class='club_make'>
         <div class='form-container'>
-        <form action='edit_club.php' method='post' enctype='multipart/form-data'>
+        <form action='create_club.php' method='post' enctype='multipart/form-data'>
         <table class='form-table'>
     <tr>
         <td class='label'>Club Name</td>
