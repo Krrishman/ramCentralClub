@@ -451,7 +451,7 @@ for ($i = 0; $i < $max_entry; $i++) {
 
 echo "<div class='event_make'>
         <div class='form-container'>
-        <form action='Addevent.php' method='post' enctype='multipart/form-data'>
+        <form action='AddEvent.php' method='post' enctype='multipart/form-data'>
         <table class='form-table'>
     <input type='hidden' name='event_id' value='$event_id'>
     <tr>
