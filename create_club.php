@@ -56,8 +56,7 @@
 <?php
 //$club_id, $c_name, $c_tag,$c_desc, $c_pic, $c_members, $made_by, $made_date
 $dd= date("Y-m-d");
-$i=1;
-$file_name =NULL;
+
 
 $ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
 $cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
@@ -82,9 +81,10 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);          else $
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
-//if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
-
-$S_pic = array();
+if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     else $S_pic = array();
+if (isset($_POST['S_title']))         $S_pic = $_POST['S_title'];     else $S_title = array();
+if (isset($_POST['S_des']))         $S_pic = $_POST['S_des'];     else $S_des = array();
+//$S_pic = array();
 
   function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
@@ -545,8 +545,9 @@ for ($j = 0; $j < $max_ent; $j++) {
 switch($task) {
 
 case "Finish": 	    
+    echo"<div id='main'>";
                     include('Supabase_connect.php');
-                    echo"<div id='main'>";
+                    
                     //echo "$message";
                     echo"<div id='ma'>";
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
@@ -597,6 +598,7 @@ case "Finish":
                             }
                             echo "</div>";
                         }
+                        echo "</div>";
                     
                     }else { echo"$cr Unable to Make Account  [$query] " . pg_last_error($conn);}
                     echo"</div>";
