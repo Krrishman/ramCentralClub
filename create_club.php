@@ -578,13 +578,13 @@ case "Finish":
                         $max_entry=3;
                         for ($i = 0; $i < $max_entry; $i++) {
                             // Check if the array values are set, otherwise set them to null
-                            $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                            $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-                            $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+                            $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+                            $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
+                            $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
                         
                             echo "<div id='ma'>";
                             $query3 = 'INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
-                                        VALUES (\'' . $Slide_title . '\', \'' . $Slide_des . '\', \'' . $Slide_pic . '\', \'' . $club_id . '\')
+                                        VALUES (\'' . $ss_title . '\', \'' . $ss_des . '\', \'' . $ss_pic . '\', \'' . $club_id . '\')
                                         RETURNING "slide_id";';
                             $result3 = pg_query($conn, $query3);
                             if ($result3) {
