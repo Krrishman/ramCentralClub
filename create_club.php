@@ -221,7 +221,7 @@ if(isset($_FILES['picture'])) {
         $message = "Error Message: ".$e->getMessage();
     } 
 }*/
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_FILES['picture'])) {
         try {
             $client = new Google_Client();
@@ -258,8 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = "No files uploaded.";
     }
 
-    echo $message;
-}
+    //echo $message;
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
 
