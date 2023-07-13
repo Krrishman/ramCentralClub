@@ -230,7 +230,7 @@ if(isset($_FILES['image'])) {
 }
 
 
-foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
+//foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
 
 
