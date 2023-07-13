@@ -110,7 +110,7 @@ function displayPostData($data, $prefix = '') {
     }
 }
 
-displayPostData($_POST);
+//displayPostData($_POST);
 
 
 require_once 'drive/vendor/autoload.php';
@@ -615,7 +615,7 @@ echo"</section>";
 switch($task) {
 
  case "preview": 
-    echo"rww";
+    
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 echo"
  <div class='eventHeaderContainer'>
