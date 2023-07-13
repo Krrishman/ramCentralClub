@@ -84,6 +84,8 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else
 
 //if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
 
+$S_pic = array();
+
 
   function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
