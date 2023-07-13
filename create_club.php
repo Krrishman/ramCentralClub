@@ -582,7 +582,7 @@ case "Finish":
 
                         echo"</div><div>";
                         $max_entry=3;
-                        for ($i = 0; $i < $max_entry; $i++) {
+                        for ($i = 0; $i < count($_POST['S_title']); $i++) {
                             // Check if the array values are set, otherwise set them to null
                             $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
                             $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
@@ -670,7 +670,7 @@ case "preview":
                        <section> 
                        <div class='slideshow-container'>";
                        $max_ent = 3;
-                       for ($i = 0; $i < $max_ent; $i++) {
+                       for ($i = 0; $i < count($_POST['S_title']); $i++) {
                                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
                                $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
                                $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
