@@ -176,7 +176,7 @@ displayPostData($_POST);
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
-}
+}/*
 if(isset($_FILES['picture'])) {
     try {
        // $valid_types = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'image/tif', 'image/tiff'];
@@ -217,6 +217,45 @@ if(isset($_FILES['picture'])) {
     } catch(Exception $e) {
         $message = "Error Message: ".$e->getMessage();
     } 
+}*/
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_FILES['picture'])) {
+        try {
+            $client = new Google_Client();
+            putenv('GOOGLE_APPLICATION_CREDENTIALS=./drive/snappy-axle.json');
+            $client->useApplicationDefaultCredentials();
+            
+            $client->addScope(Drive::DRIVE);
+            $driveService = new Drive($client);
+            $S_pic = array();
+            $uploaded_files = $_FILES['picture'];
+
+            foreach ($uploaded_files['name'] as $key => $name) {
+                if ($uploaded_files['error'][$key] == 0) {
+                    $fileMetadata = new Drive\DriveFile(array(
+                        'name' => $name,
+                        'parents' => ['1IiHE3gswsWePC-zuQR-Hw7xCN0NivJq8']
+                    ));
+                    $content = file_get_contents($uploaded_files['tmp_name'][$key]);
+                    $file = $driveService->files->create($fileMetadata, array(
+                        'data' => $content,
+                        'mimeType' => $uploaded_files['type'][$key],
+                        'uploadType' => 'multipart',
+                        'fields' => 'id'
+                    ));
+                    $S_pic[] = $file->id;
+                }
+            }
+
+            $message = "Files uploaded successfully. " . implode(",", $S_pic);
+        } catch (Exception $e) {
+            $message = "Error Message: " . $e->getMessage();
+        }
+    } else {
+        $message = "No files uploaded.";
+    }
+
+    echo $message;
 }
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
 
@@ -429,7 +468,38 @@ echo "<div>";
 }
         
 echo "</div><div>";
-    
+$max_ent = 3;
+
+for ($j = 0; $j < $max_ent; $j++) {
+    $Slide_title = isset($_POST['S_title'][$j]) ? $_POST['S_title'][$j] : '';
+    $Slide_des = isset($_POST['S_des'][$j]) ? $_POST['S_des'][$j] : '';
+    $Slide_pic = isset($_POST['S_pic'][$j]) ? $_POST['S_pic'][$j] : '';
+
+    echo "
+    <div class='form-container'>
+        <table class='form-table'>
+            <tr>
+                <td>Slide No " . ($j + 1) . "</td>
+            </tr>
+            <tr>
+                <td class='label'>Slide Title</td>
+                <td class='input'><input type='text' name='S_title[]' value='$Slide_title'></td>
+            </tr>
+            <tr>
+                <td class='label'>Slide Description</td>
+                <td class='input'><input type='text' name='S_des[]' value='$Slide_des'></td>
+            </tr>
+            <tr>
+                <td class='label'>Slide Pic</td>
+                <td class='input'>
+                    <input type='file' name='picture[]'>
+                    <input type='hidden' name='S_pic[]' value='$Slide_pic'>
+                </td>
+            </tr>
+        </table>
+    </div>";
+}
+/*
     $max_ent = 3;
 
     for ($j = 0; $j < $max_ent; $j++) {
@@ -457,7 +527,7 @@ echo "</div><div>";
         <tr><td class='input'>
         <input type='file' name='picture[]' value='$Slide_pic'>$Slide_pic
         <input type='hidden' name='S_pic[]' value='$Slide_pic'></td>
-        </tr></table></div>";}
+        </tr></table></div>";}*/
 
     echo "</div></div></div>
     <div class='submit_button'>
