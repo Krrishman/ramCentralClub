@@ -4,7 +4,7 @@
 	echo"<p style=' width:100%; padding: 30px;'></p>";
 
     include('session.php');
-    //include('check_logon.php');
+    include('check_logon.php');
 	include('menubar.php');
     include('Supabase_connect.php');
 
@@ -615,7 +615,7 @@ echo"</section>";
 switch($task) {
 
  case "preview": 
-    
+
     $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 echo"
  <div class='eventHeaderContainer'>
