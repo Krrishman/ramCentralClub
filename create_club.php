@@ -83,6 +83,11 @@ if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    els
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
 
+if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
+if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
+if (isset($_POST['perk_pic']))          {$perk_pic = $_POST['perk_pic'];}       else {$perk_pic = array();}
+
+
 if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
 
 
