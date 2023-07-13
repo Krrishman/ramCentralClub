@@ -481,7 +481,6 @@ for ($j = 0; $j < $max_ent; $j++) {
     $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
 echo "  <div class='form-container'>
         <table class='form-table'>
-    <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
     <tr>
         <td>Slide No " . ($j + 1) . "</td>
     <tr>
@@ -576,7 +575,7 @@ case "Finish":
 
                         echo"</div><div>";
                         $max_entry=3;
-                        for ($i = 0; $i < $max_entry; $i++) {
+                        for ($j = 0; $j < $max_entry; $j++) {
                             // Check if the array values are set, otherwise set them to null
                             $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
                             $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
@@ -664,7 +663,7 @@ case "preview":
                        <section> 
                        <div class='slideshow-container'>";
                        $max_ent = 3;
-                       for ($i = 0; $i < $max_ent; $i++) {
+                       for ($j = 0; $j < $max_ent; $j++) {
                                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
 
                                $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
