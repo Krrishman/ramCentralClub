@@ -101,6 +101,15 @@ if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
 //if (isset($_POST['e_perk_id']))           {$e_perk_id = $_POST['e_perk_id'];}         else {$e_perk_id = array();}
 
+function displayPostData($data, $prefix = '') {
+    foreach ($data as $key => $value) {
+        if (is_array($value)) { displayPostData($value, $prefix . $key . '[]');}
+        else {echo "<p align='center'>$prefix$key = $value<br>";}
+    }
+}
+
+displayPostData($_POST);
+
 
 require_once 'drive/vendor/autoload.php';
 
