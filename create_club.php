@@ -95,7 +95,7 @@ if (isset($_POST['S_pic']))         {$S_pic = $_POST['S_pic'];}     else {$S_pic
     }
 }
 
-displayPostData($_POST);
+//displayPostData($_POST);
 
   
   require_once 'drive/vendor/autoload.php';
