@@ -230,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             $client->addScope(Drive::DRIVE);
             $driveService = new Drive($client);
-            $Slide_pic = array();
+            $S_pic = array();
             $uploaded_files = $_FILES['picture'];
 
             foreach ($uploaded_files['name'] as $key => $name) {
@@ -246,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'uploadType' => 'multipart',
                         'fields' => 'id'
                     ));
-                    $Slide_pic[] = $file->id;
+                    $S_pic[$key] = $file->id;
                 }
             }
 
@@ -474,28 +474,35 @@ echo "</div><div>";
 $max_ent = 3;
 
 for ($j = 0; $j < $max_ent; $j++) {
-   // $Slide_pic = $_POST['Slide_pic'];
+    $Slide_title = isset($_POST['S_title'][$j]) ? $_POST['S_title'][$j] : '';
+    $Slide_des = isset($_POST['S_des'][$j]) ? $_POST['S_des'][$j] : '';
+    $Slide_pic = isset($_POST['S_pic'][$j]) ? $_POST['S_pic'][$j] : '';
+    
 
-    $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
-    $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
-    $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
-echo "  <div class='form-container'>
+    echo "
+    <div class='form-container'>
         <table class='form-table'>
-    <tr>
-        <td>Slide No " . ($j + 1) . "</td>
-    <tr>
-        <td class='label'>Slide Title</td>
-        <tr><td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
-    <tr>
-        <td class='label'>Slide Description</td>
-        <tr><td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
-    <tr>
-    <td class='label'>Slide Pic</td>
-    <tr><td class='input'>
-    <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
-    <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
-    </tr></table></div>";}
-
+            <tr>
+                <td>Slide No " . ($j + 1) . "</td>
+            </tr>
+            <tr>
+                <td class='label'>Slide Title</td>
+                <td class='input'><input type='text' name='S_title[]' value='$Slide_title'></td>
+            </tr>
+            <tr>
+                <td class='label'>Slide Description</td>
+                <td class='input'><input type='text' name='S_des[]' value='$Slide_des'></td>
+            </tr>
+            <tr>
+                <td class='label'>Slide Pic</td>
+                <td class='input'>
+                    <input type='file' name='picture[]'>
+                    <input type='hidden' name='S_pic[]' value='$Slide_pic'>
+                </td>
+            </tr>
+        </table>
+    </div>";
+}
 /*
     $max_ent = 3;
 
@@ -575,15 +582,15 @@ case "Finish":
 
                         echo"</div><div>";
                         $max_entry=3;
-                        for ($j = 0; $j < $max_entry; $j++) {
+                        for ($i = 0; $i < $max_entry; $i++) {
                             // Check if the array values are set, otherwise set them to null
-                            $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
-                            $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
-                            $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
+                            $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+                            $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+                            $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
                         
                             echo "<div id='ma'>";
                             $query3 = 'INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
-                                        VALUES (\'' . $ss_title . '\', \'' . $ss_des . '\', \'' . $ss_pic . '\', \'' . $club_id . '\')
+                                        VALUES (\'' . $Slide_title . '\', \'' . $Slide_des . '\', \'' . $Slide_pic . '\', \'' . $club_id . '\')
                                         RETURNING "slide_id";';
                             $result3 = pg_query($conn, $query3);
                             if ($result3) {
@@ -663,18 +670,17 @@ case "preview":
                        <section> 
                        <div class='slideshow-container'>";
                        $max_ent = 3;
-                       for ($j = 0; $j < $max_ent; $j++) {
+                       for ($i = 0; $i < $max_ent; $i++) {
                                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-
-                               $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
-                               $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
-                               $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
+                               $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+                               $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+                               $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
                                //
                       echo"
                        <div class='mySlides fade'>
-                       <div class='numbertext'> " . ($j+1) . "</div>
-                       <img src='$imageUrl$ss_pic' style='width:100%' alt='Per_pic'>
-                       <div class='text'>$ss_title<br>$ss_des</div>
+                       <div class='numbertext'> " . ($i+1) . "</div>
+                       <img src='$imageUrl$Slide_pic' style='width:100%' alt='Per_pic'>
+                       <div class='text'>$Slide_title<br>$Slide_des</div>
                        </div>
                        ";}
                        echo"	
