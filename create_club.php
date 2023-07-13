@@ -82,12 +82,6 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);          else $
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
-
-if (isset($_POST['perk_name']))         {$perk_name = $_POST['perk_name'];}     else {$perk_name = array();}
-if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
-//if (isset($_POST['perk_pic']))          {$perk_pic = $_POST['perk_pic'];}       else {$perk_pic = array();}
-
-
 if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
 
 
@@ -409,9 +403,13 @@ echo "<div>";
     $i = 0;
    
                 for ($i = 0; $i < $max_entries; $i++) {
-                    $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-                    //$per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
-                    //$per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+            $perk_name = $_POST['perk_name']; // Assuming S_title is an array of values
+            $perk_desc = $_POST['perk_desc']; // Assuming S_des is an array of values
+           //$perk_pic = $_POST['perk_pic']; // Assuming S_des is an array of values
+
+            $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+            $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+            $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
     echo "  <div class='form-container'>
             <table class='form-table'>
         <tr>
@@ -423,10 +421,10 @@ echo "<div>";
             <input type='hidden' name='perk_pic[]' value='$per_pic'></td>
         <tr>
             <td class='label'>Perk Name</td>
-            <tr><td class='input'><input type='text' name='perk_name[]' value='$perk_name[$i]'></td>
+            <tr><td class='input'><input type='text' name='perk_name[]' value='$Per_name'></td>
         <tr>
             <td class='label'>Perk Description</td>
-            <tr><td class='input'><input type='text' name='perk_desc[]' value='$perk_desc[$i]'></td>        
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$Per_desc'></td>        
         </tr></table></div>";
 }
         
@@ -435,18 +433,15 @@ echo "</div><div>";
     $max_ent = 3;
 
     for ($j = 0; $j < $max_ent; $j++) {
-       // $Slide_pic = $_POST['Slide_pic'];
 
-        //$ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
-        //$ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
-        //$ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
         $S_title = $_POST['S_title']; // Assuming S_title is an array of values
-    $S_des = $_POST['S_des']; // Assuming S_des is an array of values
-   // $S_pic = $_POST['S_pic']; // Assuming S_des is an array of values
-
-        $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-        $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-        $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+        $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+       // $S_pic = $_POST['S_pic']; // Assuming S_des is an array of values
+    
+            $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+            $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+            $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+    
     echo "  <div class='form-container'>
             <table class='form-table'>
         <tr>
