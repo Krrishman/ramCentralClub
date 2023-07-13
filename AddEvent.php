@@ -18,6 +18,34 @@
         <link rel="stylesheet" href="NewEventHomePage.css">
 		<link rel="stylesheet" href="footer.css">
     </head>
+    <style>
+    .color-box {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        margin-right: 10px;
+        border: 1px solid #000;
+    }
+    #main {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row;
+    }
+    #main div{
+        width: 100%;
+    }
+    #ma{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+</style>
 
     <body>
 
@@ -38,10 +66,12 @@ if (isset($_POST['location'])) {
 
   }
 
+  $ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+  $cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
 
 
 if(isset($_POST['map_url']))        $map_url = $_POST['map_url'];
-if(isset($_POST['mapsUrl']))        $map_url = $_POST['mapsUrl'];
+if(isset($_POST['mapsUrl']))        $mapUrl = $_POST['mapsUrl'];
 
 if(isset($_POST['task'])) $task = $_POST['task'];   else $task = "First";
 
@@ -67,6 +97,8 @@ if(isset($_POST['header_pic']))     $header_pic = trim($_POST['header_pic']);   
 if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       else $icon_pic = NULL;
 
 
+if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
+//if (isset($_POST['e_perk_id']))           {$e_perk_id = $_POST['e_perk_id'];}         else {$e_perk_id = array();}
 
 
 require_once 'drive/vendor/autoload.php';
@@ -281,7 +313,7 @@ if(isset($_FILES['guest'])) {
             } 
         }
 
-
+/*
 echo " <div class='event_make'>";
 echo "    <div class='add_event_info'> <form action='AddEvent.php' method='post' enctype='multipart/form-data'>
 <table width='550' align='center' style='background-color: #FAF0E6'  cellpadding='4'>
@@ -409,6 +441,164 @@ for ($i = 0; $i < $max_entry; $i++) {
 </table></form></div>";
 
 
+*/
+
+
+
+
+
+
+echo "<div class='event_make'>
+        <div class='form-container'>
+        <form action='Addevent.php' method='post' enctype='multipart/form-data'>
+        <table class='form-table'>
+    <input type='hidden' name='event_id' value='$event_id'>
+    <tr>
+        <td class='label'>Event Name</td>
+        <tr><td class='input'><input type='text' name='e_name' value='$e_name' size='40'></td>
+    <tr>
+        <td class='label'>Organization Name</td>
+        <tr><td class='input'><input type='text' name='e_tag' value='$e_tag' size='40'></td>
+    <tr>
+        <td class='label'>Event Date</td>
+        <tr><td class='input'><input type='date' name='e_date' value='$e_date' size='40'></td>
+    <tr>
+        <td class='label'>Event Time</td>
+        <tr><td class='input'><input type='text' name='e_time' value='$e_time' size='40' placeholder='12:00 PM - 2:00 PM'></td>
+    <tr>
+        <td class='label'>Event Location</td>
+        <tr><td class='input'><input type='text' name='location' value='$e_location' placeholder='Enter a location'></td>
+    <tr>
+        <td class='label'>Event Place</td>
+        <tr><td class='input'>
+        <input type='text' name='e_places' value='$e_places' placeholder='Online or In-Person'></td>
+    <tr>
+        <td class='label'>Event Price</td>
+        <tr><td class='input'>
+        <input type='radio' name='e_price' value='$e_price'checked=$e_price>$e_price
+        <input type='radio' name='e_price' value='Free'>Free
+        <input type='radio' name='e_price'   value='$5'>$5
+        <input type='radio' name='e_price'  value='$10'>$10
+        <input type='radio' name='e_price'  value='$15'>$15
+        <input type='radio' name='e_price'  value='$20'>$20
+       </td>
+    <tr>
+        <td class='label'>Event Category </td>
+        <tr><td class='input'>
+        <input type='radio' name='e_categoris' value='$e_categoris' checked=$e_categoris>$e_categoris
+        <input type='radio' name='e_categoris' value='Science'>Science
+        <input type='radio' name='e_categoris' value='Health'>Health
+        <input type='radio' name='e_categoris'  value='Entertainment'>Entertainment
+        <input type='radio' name='e_categoris' value='Sports'>Sports
+        <input type='radio' name='e_categoris' value='Studies'>Studies
+        <input type='radio' name='e_categoris' value='Seminar'>Seminar
+        <input type='radio' name='e_categoris' value='Celebration'>Celebration
+        <input type='radio' name='e_categoris' value='Environment'>Environment
+        <input type='radio' name='e_categoris' value='Technology'>Technology
+        <input type='radio' name='e_categoris' value='Religion'>Religion
+        </td>
+    <tr>
+        <td class='label'>Event Overview</td>
+        <tr><td class='input'>
+        <textarea name='e_desc' value='$e_desc' size='500' cols='10' rows='5'>$e_desc</textarea></td>
+    <tr>
+        <td class='label_mem'><span>Members</span> <span>Total Members</span> </td>
+        <tr><td class='input_mem'><input type='number' name='e_members' value='$e_members' size='10'>
+        <input type='number' name='e_max_mem' value='$e_max_mem' size='10'></td>
+    <tr>
+        <td class='label'>Upload Photo For Header</td>
+        <tr><td class='input_up'>
+        <input type='file' name='header' >
+        <input type='hidden' name='header_pic' value='$header_pic'></td>
+    <tr>
+        <td class='label'>Upload Event Photo Icon</td>
+        <tr><td class='input_up'>
+        <input type='file' name='icon'>
+        <input type='hidden' name='icon_pic' value='$icon_pic'></td>
+    </table>
+    </div>";
+
+echo "<div>";
+    
+    $max_entries = 4;
+    $i = 0;
+   
+        for ($i = 0; $i < $max_entries; $i++) {
+
+        //$Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+
+    echo "  <div class='form-container'>
+            <table class='form-table'>
+        <tr>
+            <td>Perk No " . ($i+1) . "</td>
+        <tr>
+            <td class='label'>Perk Description</td>
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$perk_desc[$i]' size='20' cols='10' rows='5'></td>        
+        </tr></table></div>";
+}
+        
+echo "</div><div>";
+    
+    $max_ent = 3;
+
+    for ($j = 0; $j < $max_ent; $j++) {
+
+        $S_title = $_POST['S_title']; // Assuming S_des is an array of values 
+        $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+    
+        $_title = isset($S_title[$j]) ? $S_title[$j] : null;
+        $_des = isset($S_des[$j]) ? $S_des[$j] : null;
+        $_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
+       
+
+    echo "  <div class='form-container'>
+            <table class='form-table'>
+        <tr>
+            <td>Event Pic No " . ($j + 1) . "</td>
+        <tr>
+            <td class='label'>Event Pic Title</td>
+            <tr><td class='input'><input type='text' name='S_title[]' value='$_title'></td>
+        <tr>
+            <td class='label'>Event Pic Description</td>
+            <tr><td class='input'><input type='text' name='S_des[]' value='$_des'></td>
+        <tr>
+        <td class='label'>Event Pic</td>
+        <tr><td class='input_up'>
+        <input type='file' name='picture[]' >
+        <input type='hidden' name='S_pic[]' value='$_pic'></td>
+        </tr></table></div>";}
+
+    echo "</div><div>";
+    
+        echo "  <div class='form-container'>
+                <table class='form-table'>
+            <tr>
+                <td class='label'>Guest Speaker Image</td>
+                <tr><td class='input_up'>
+                <input type='file' name='guest' >$guest_pic
+                <input type='hidden' name='guest_pic' value='$guest_pic'></td>
+            <tr>
+                <td class='label'>Guest Speaker</td>
+                <tr><td class='input'><input type='text' name='guest_name' value='$guest_name'></td>
+            <tr>
+                <td class='label'>Guest Speaker Description</td>
+                <tr><td class='input'>
+                <textarea name='guest_desc' value='$guest_desc' size='200' cols='5' rows='2'>$guest_desc</textarea></td>       
+            </tr></table></div>";
+            
+    echo "</div></div></div>
+    <div class='submit_button'>
+        <input type='submit' name='task' value='Finish' class='submit-button'>
+        <input type='submit' name='task' value='preview' class='submit-button'>
+        </div>
+        </form>";
+
+
+
+
+
+
+
 switch($task) {
 
  case "preview": 
@@ -501,8 +691,8 @@ echo"
  </div>
  <div class='eventDescriptionBlock2'>
      <h1>Location</h1>
-     <img style='margin-bottom:20px; 'src='$imageUrl$place_Pic' alt='dfsdfs'>
-     <!--<img src='$map_url' alt='Map'>
+     <!--<img style='margin-bottom:20px; 'src='$imageUrl$place_Pic' alt='dfsdfs'>
+     <img src='$map_url' alt='Map'>
      <p><br> fsdf $map_url </p>-->
      <iframe width='100%' height='400' frameborder='0'
       style='border:0' src='$mapsUrl' allowfullscreen></iframe>
@@ -552,8 +742,9 @@ echo"
 ";  break;
 
 case "Finish":
-    echo"good";
+    echo"<div id='main'>";
     include('Supabase_connect.php');
+    echo"<div id='ma'>";
     //echo "$message";
     $query = 'INSERT INTO "event_page" ( "e_name", "e_tag", "e_desc", "e_pic", 
     "e_date", "e_time", "e_location", "e_places","place_pic","header_pic","icon_pic", "e_price", "e_categoris","e_max_mem","e_members","status") 
@@ -564,37 +755,32 @@ case "Finish":
     $result = pg_query($conn, $query);
     if ($result) {
         $event_id = pg_fetch_result($result, 0, 0);
-        echo "<font color='green'> $event_id Your NEW Event Created.</font>\n";
-
-
-        $query4 ='INSERT INTO "event_guest" ("e_guest_desc","e_guest_name","e_guest_pic","event_id", "color") 
-        VALUES (\''.$guest_desc.'\',\''.$guest_name.'\',\''.$guest_pic.'\', \''.$event_id.'\', NULL) 
-        RETURNING "e_guest_id";';
-         $result4 = pg_query($conn, $query4);
-         if ($result4) {
-            $e_guest_id = pg_fetch_result($result4, 0, 0);
-             echo "<font color='green'>$e_guest_id Your NEW Guest Created.</font>\n";}
-             else { echo"Unable to add guest\n" . pg_last_error($conn);}
-
-
+        echo "$ck $event_id Your NEW Event Created. ";
+        echo"</div><div>";
+      
         for ($i = 0; $i < $max_entries; $i++) {
         // Check if the array values are set, otherwise set them to null
         $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+        echo"<div id='ma'>";
+
     $query2 ='INSERT INTO "event_perk" ("e_p_desc","event_id", "color") 
     VALUES (\''.$Per_desc.'\', \''.$event_id.'\', NULL) 
     RETURNING "e_perk_id";';
      $result2 = pg_query($conn, $query2);
      if ($result2) {
         $e_perk_id = pg_fetch_result($result2, 0, 0);
-         echo "<font color='green'>$e_perk_id Your NEW perk Created.</font>\n";}
-         else { echo"Unable to add perk\n" . pg_last_error($conn);}}
-
+         echo "$ck $e_perk_id Your NEW perk Created. ";}
+         else { echo" $cr Unable to add perk " . pg_last_error($conn);}
+         echo"</div>";
+        }
+        echo"</div><div>";
 
     for ($i = 0; $i < $max_entry; $i++) {
         // Check if the array values are set, otherwise set them to null
         $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+        echo"<div id='ma'>";
 
     $query3 ='INSERT INTO "event_slide" ("E_S_title", "E_S_des", "E_S_pic", "event_id")
     VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$event_id.'\')
@@ -602,11 +788,25 @@ case "Finish":
      $result3 = pg_query($conn, $query3);
      if ($result3) {
         $E_slide_id = pg_fetch_result($result3, 0, 0);
-         echo "<font color='green'>$E_slide_id Your NEW slideshow Created.</font>\n";}
-         else { echo"Unable to add slideshow\n" . pg_last_error($conn);}}
-    
-    }else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
-    
+         echo "$ck $E_slide_id Your NEW slideshow Created.";}
+         else { echo"$cr Unable to add slideshow" . pg_last_error($conn);}
+        echo"</div>";}
+        echo"<div>";
+
+         echo"<div id='ma'>";
+         $query4 ='INSERT INTO "event_guest" ("e_guest_desc","e_guest_name","e_guest_pic","event_id", "color") 
+         VALUES (\''.$guest_desc.'\',\''.$guest_name.'\',\''.$guest_pic.'\', \''.$event_id.'\', NULL) 
+         RETURNING "e_guest_id";';
+          $result4 = pg_query($conn, $query4);
+          if ($result4) {
+             $e_guest_id = pg_fetch_result($result4, 0, 0);
+              echo "$ck $e_guest_id Your NEW Guest Created.";}
+              else { echo"$cr Unable to add guest " . pg_last_error($conn);}
+              echo"</div>";
+              echo"</div></div>";
+
+    }else { echo"$cr Unable to Make Account [$query] " . pg_last_error($conn);}
+     echo"</div>";
     echo"ooooook"; break;
 
 case "First":  echo"oooooofff"; break;
