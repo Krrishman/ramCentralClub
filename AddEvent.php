@@ -101,6 +101,8 @@ if(isset($_POST['icon_pic']))       $icon_pic = trim($_POST['icon_pic']);       
 if (isset($_POST['perk_desc']))         {$perk_desc = $_POST['perk_desc'];}     else {$perk_desc = array();}
 //if (isset($_POST['e_perk_id']))           {$e_perk_id = $_POST['e_perk_id'];}         else {$e_perk_id = array();}
 
+if (isset($_POST['S_pic']))         {$S_pic = $_POST['S_pic'];}     else {$S_pic = array();}
+
 function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
         if (is_array($value)) { displayPostData($value, $prefix . $key . '[]');}
@@ -551,20 +553,20 @@ echo "</div><div>";
     
     $max_ent = 3;
 
-    for ($j = 0; $j < $max_ent; $j++) {
+    for ($i = 0; $i < $max_ent; $i++) {
 
         $S_title = $_POST['S_title']; // Assuming S_des is an array of values 
         $S_des = $_POST['S_des']; // Assuming S_des is an array of values
     
-        $_title = isset($S_title[$j]) ? $S_title[$j] : null;
-        $_des = isset($S_des[$j]) ? $S_des[$j] : null;
-        $_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
+        $_title = isset($S_title[$i]) ? $S_title[$i] : null;
+        $_des = isset($S_des[$i]) ? $S_des[$i] : null;
+        $_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
        
 
     echo "  <div class='form-container'>
             <table class='form-table'>
         <tr>
-            <td>Event Pic No " . ($j + 1) . "</td>
+            <td>Event Pic No " . ($i + 1) . "</td>
         <tr>
             <td class='label'>Event Pic Title</td>
             <tr><td class='input'><input type='text' name='S_title[]' value='$_title'></td>
@@ -574,7 +576,7 @@ echo "</div><div>";
         <tr>
         <td class='label'>Event Pic</td>
         <tr><td class='input_up'>
-        <input type='file' name='picture[]' >$_pic
+        <input type='file' name='picture[]' value='$_pic'>$_pic
         <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
 
@@ -648,7 +650,7 @@ echo"
      <div class='eventDecriptionBlock1Images'>
 <div class='slideshow-container'>";
          //<img src='./NewEventHomePagePictures/fsc-job-fair-event.jpg' alt=''>
-         for ($i = 0; $i < $max_entry; $i++) {
+         for ($i = 0; $i < count($_POST['S_title']); $i++) {
             // Check if the array values are set, otherwise set them to null
             $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
             $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
@@ -785,7 +787,7 @@ case "Finish":
         }
         echo"</div><div>";
 
-    for ($i = 0; $i < $max_entry; $i++) {
+    for ($i = 0; $i < count($_POST['S_title']); $i++) {
         // Check if the array values are set, otherwise set them to null
         $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;

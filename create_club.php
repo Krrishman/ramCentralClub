@@ -607,7 +607,7 @@ case "Finish":
                     
                     }else { echo"$cr Unable to Make Account  [$query] " . pg_last_error($conn);}
                     echo"</div>";
-                    echo"ooooook"; break;
+                   break;
 
 case "First": break;
 case "preview": 
