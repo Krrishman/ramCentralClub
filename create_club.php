@@ -82,7 +82,7 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);          else $
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
-if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
+//if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
 
 
   function displayPostData($data, $prefix = '') {
@@ -616,86 +616,82 @@ case "preview":
                 </div>
             </div>   </div></div>
             */
-            echo"<section>
-
-            <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
-                <div class='imageHeader'>
-                    <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic' alt='avatar'>
-                </div>
-            <div class='nametag'>
-            <h1 style='color:$t_text;' >$c_name</h1>
-            <p  style='color:$t_text;' > $c_tag</p>
-            </div>
-            <div class='buttonSection'>
-                <div >
-                <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
-                <button class='joinButton'>Join Now</button></div>
-            </div>      
-        </div>
-
-
-        <div class='clubInfo'  style='background-color:$des_color;'>
-            <p  style='color: $des_text;' >$c_desc</p>
-        </div> 
-        <div class='listOfBenefitsGrid'>";
-
-                for ($i = 0; $i < $max_entries; $i++) {
-                    // Check if the array values are set, otherwise set them to null
-                   // $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-                  //  $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
-                   // $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
-            
-           echo"
-
-            <div class='listOfBenefits'>
-                <div class='benefitsIcon'>
-                    <img src='$imageUrl$perk_pic[$i]' alt='$perk_pic[$i]'>
-                </div>
-                <div class='listOfBenefitsDesciption'>
-                    <h3>$perk_name[$i]</h3>
-                    <p>$perk_desc[$i]</p>
-                </div>
-            </div>  ";}
-
-            echo"</div> </section>  
-            
-            <section> 
-            <div class='slideshow-container'>";
-
-                for ($i = 0; $i < $max_entry; $i++) {
-                    // Check if the array values are set, otherwise set them to null
-                    //$Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                    //$Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-                    //$Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
-           echo"
-
-            <div class='mySlides fade'>
-			<div class='numbertext'> " . ($i+1) . "</div>
-			<img src='$imageUrl$S_pic[$i]' style='width:100%'>
-			<div class='text'>$S_title[$i]<br>$S_des[$i]</div>
-			</div>
-            ";}
-            echo"	
-            <div class='prev' onclick='plusSlides(-1)'>❮</div>
-			<div class='next'  onclick='plusSlides(1)'>❯</div>
-			<br>
-			<div class='do' style='text-align:center'>
-				<span class='dot' onclick='currentSlide(1)'></span> 
-				<span class='dot' onclick='currentSlide(2)'></span> 
-				<span class='dot' onclick='currentSlide(3)'></span> 
-			</div>
-
-</div>
-<br>
-
-
-		
-
-<script src='autoSlide.js'></script>
-<script src='clickSlide.js'></script>
-
-</section>
-             ";  break;
+            echo"   
+            <section>
+                   <input type='hidden' name='club_id' value='$club_id'> 
+                   <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
+                           <div class='imageHeader'>
+                               <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic'  alt='xzc'>
+                           </div>
+                       <div class='nametag'>
+                       <h1 style='color:$t_text;' >$c_name</h1>
+                       <p  style='color:$t_text;' > $c_tag</p>
+                       </div>
+                       <div class='buttonSection'>
+                           <div >
+                           <button class='contactButton'><i style='color:white;' class='fa fa-envelope'></i> Contact Us</button>   
+                           <button class='joinButton'>Join Now</button></div>
+                       </div>      
+                   </div>
+           
+           
+                   <div class='clubInfo'  style='background-color:$des_color;'>
+                       <p  style='color: $des_text;' >$c_desc</p>
+                   </div> </section>  
+                   <section>
+                   <div class='listOfBenefitsGrid'>";
+                   $max_entries = 4;
+                   $i = 0;
+                           for ($i = 0; $i < $max_entries; $i++) {
+                               $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                               //$perk_id[$i];$perk_pic[$i]
+                      echo"
+                      <input type='hidden' name='perk_id' value='$perk_id[$i]'>
+                       <div class='listOfBenefits'>
+                           <div class='benefitsIcon'>
+                               <img src='$imageUrl$perk_pic[$i]' alt='Per_pic'>
+                           </div>
+                           <div class='listOfBenefitsDesciption'>
+                               <h3>$perk_name[$i]</h3>
+                               <p>$perk_desc[$i]</p>
+                           </div>
+                       </div>  ";}
+           
+                       echo"</div> </section>  
+                       
+                       <section> 
+                       <div class='slideshow-container'>";
+                       $max_ent = 3;
+                       for ($i = 0; $i < $max_ent; $i++) {
+                               $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                               //
+                      echo"
+                       <div class='mySlides fade'>
+                       <div class='numbertext'> " . ($i+1) . "</div>
+                       <img src='$imageUrl$S_pic[$i]' style='width:100%' alt='Per_pic'>
+                       <div class='text'>$S_title[$i]<br>$S_des[$i]</div>
+                       </div>
+                       ";}
+                       echo"	
+                       <div class='prev' onclick='plusSlides(-1)'>❮</div>
+                       <div class='next'  onclick='plusSlides(1)'>❯</div>
+                       <br>
+                       <div class='do' style='text-align:center'>
+                           <span class='dot' onclick='currentSlide(1)'></span> 
+                           <span class='dot' onclick='currentSlide(2)'></span> 
+                           <span class='dot' onclick='currentSlide(3)'></span> 
+                       </div>
+           
+           </div>
+           <br>
+           
+           
+                   
+           
+           <script src='autoSlide.js'></script>
+           <script src='clickSlide.js'></script>
+           
+           </section>";     break;
 
 }
 
