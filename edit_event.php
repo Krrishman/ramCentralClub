@@ -523,8 +523,8 @@ echo "</div><div>";
     for ($j = 0; $j < $max_ent; $j++) {
 
     $_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
-    $_title = isset($S_title[$j]) ? $S_title[$j] : null;
-    $_des = isset($S_des[$j]) ? $S_des[$j] : null;
+    //$_title = isset($S_title[$j]) ? $S_title[$j] : null;
+    //$_des = isset($S_des[$j]) ? $S_des[$j] : null;
        
 
     echo "  <div class='form-container'>
@@ -534,10 +534,10 @@ echo "</div><div>";
             <td>Event Pic No " . ($j + 1) . " <span style='float:right;'>$E_slide_id[$j]</span></td>
         <tr>
             <td class='label'>Event Pic Title</td>
-            <tr><td class='input'><input type='text' name='S_title[]' value='$_title'></td>
+            <tr><td class='input'><input type='text' name='S_title[]' value='$S_title[$j]'></td>
         <tr>
             <td class='label'>Event Pic Description</td>
-            <tr><td class='input'><input type='text' name='S_des[]' value='$_des'></td>
+            <tr><td class='input'><input type='text' name='S_des[]' value='$S_des[$j]'></td>
         <tr>
         <td class='label'>Event Pic</td>
         <tr><td class='input_up'>
