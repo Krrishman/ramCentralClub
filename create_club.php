@@ -244,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'uploadType' => 'multipart',
                         'fields' => 'id'
                     ));
-                    $S_pic[] = $file->id;
+                    $S_pic[$key] = $file->id;
                 }
             }
 
