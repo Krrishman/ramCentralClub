@@ -565,7 +565,7 @@ echo "</div><div>";
         <tr>
         <td class='label'>Event Pic</td>
         <tr><td class='input_up'>
-        <input type='file' name='picture[]' >
+        <input type='file' name='picture[]' >$_pic
         <input type='hidden' name='S_pic[]' value='$_pic'></td>
         </tr></table></div>";}
 
