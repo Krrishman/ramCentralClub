@@ -81,9 +81,11 @@ if (isset($_POST['t_text']))			$t_text = trim($_POST['t_text']);          else $
 if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    else $des_color = 'black';
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
-if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     else $S_pic = array();
-if (isset($_POST['S_title']))         $S_pic = $_POST['S_title'];     else $S_title = array();
-if (isset($_POST['S_des']))         $S_pic = $_POST['S_des'];     else $S_des = array();
+
+if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
+if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
+if (isset($_POST['Slide_pic']))         {$Slide_pic = $_POST['Slide_pic'];}     else {$Slide_pic = array();}
+
 //$S_pic = array();
 
   function displayPostData($data, $prefix = '') {
@@ -228,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             $client->addScope(Drive::DRIVE);
             $driveService = new Drive($client);
-            $S_pic = array();
+            $Slide_pic = array();
             $uploaded_files = $_FILES['picture'];
 
             foreach ($uploaded_files['name'] as $key => $name) {
@@ -244,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'uploadType' => 'multipart',
                         'fields' => 'id'
                     ));
-                    $S_pic[$key] = $file->id;
+                    $Slide_pic[] = $file->id;
                 }
             }
 
@@ -472,34 +474,29 @@ echo "</div><div>";
 $max_ent = 3;
 
 for ($j = 0; $j < $max_ent; $j++) {
-    $Slide_title = isset($_POST['S_title'][$j]) ? $_POST['S_title'][$j] : '';
-    $Slide_des = isset($_POST['S_des'][$j]) ? $_POST['S_des'][$j] : '';
-    $Slide_pic = isset($_POST['S_pic'][$j]) ? $_POST['S_pic'][$j] : '';
+   // $Slide_pic = $_POST['Slide_pic'];
 
-    echo "
-    <div class='form-container'>
+    $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+    $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
+    $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
+echo "  <div class='form-container'>
         <table class='form-table'>
-            <tr>
-                <td>Slide No " . ($j + 1) . "</td>
-            </tr>
-            <tr>
-                <td class='label'>Slide Title</td>
-                <td class='input'><input type='text' name='S_title[]' value='$Slide_title'></td>
-            </tr>
-            <tr>
-                <td class='label'>Slide Description</td>
-                <td class='input'><input type='text' name='S_des[]' value='$Slide_des'></td>
-            </tr>
-            <tr>
-                <td class='label'>Slide Pic</td>
-                <td class='input'>
-                    <input type='file' name='picture[]'>
-                    <input type='hidden' name='S_pic[]' value='$Slide_pic'>
-                </td>
-            </tr>
-        </table>
-    </div>";
-}
+    <input type='hidden' name='slide_id[]' value='" . (isset($slide_id[$j]) ? $slide_id[$j] : "") . "'>
+    <tr>
+        <td>Slide No " . ($j + 1) . "</td>
+    <tr>
+        <td class='label'>Slide Title</td>
+        <tr><td class='input'><input type='text' name='Slide_title[]' value='$ss_title'></td>
+    <tr>
+        <td class='label'>Slide Description</td>
+        <tr><td class='input'><input type='text' name='Slide_des[]' value='$ss_des'></td>
+    <tr>
+    <td class='label'>Slide Pic</td>
+    <tr><td class='input'>
+    <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
+    <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
+    </tr></table></div>";}
+
 /*
     $max_ent = 3;
 
@@ -669,15 +666,16 @@ case "preview":
                        $max_ent = 3;
                        for ($i = 0; $i < $max_ent; $i++) {
                                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-                               $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                               $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-                               $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+
+                               $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+                               $ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
+                               $ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
                                //
                       echo"
                        <div class='mySlides fade'>
                        <div class='numbertext'> " . ($i+1) . "</div>
-                       <img src='$imageUrl$Slide_pic' style='width:100%' alt='Per_pic'>
-                       <div class='text'>$Slide_title<br>$Slide_des</div>
+                       <img src='$imageUrl$ss_pic' style='width:100%' alt='Per_pic'>
+                       <div class='text'>$ss_title<br>$ss_des</div>
                        </div>
                        ";}
                        echo"	
