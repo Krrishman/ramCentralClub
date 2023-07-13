@@ -86,7 +86,6 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else
 
 $S_pic = array();
 
-
   function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
         if (is_array($value)) { displayPostData($value, $prefix . $key . '[]');}
@@ -666,12 +665,15 @@ case "preview":
                        $max_ent = 3;
                        for ($i = 0; $i < $max_ent; $i++) {
                                $imageUrl = 'https://drive.google.com/uc?export=view&id=';
+                               $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+                               $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+                               $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
                                //
                       echo"
                        <div class='mySlides fade'>
                        <div class='numbertext'> " . ($i+1) . "</div>
-                       <img src='$imageUrl$S_pic[$i]' style='width:100%' alt='Per_pic'>
-                       <div class='text'>$S_title[$i]<br>$S_des[$i]</div>
+                       <img src='$imageUrl$Slide_pic' style='width:100%' alt='Per_pic'>
+                       <div class='text'>$Slide_title<br>$Slide_des</div>
                        </div>
                        ";}
                        echo"	
