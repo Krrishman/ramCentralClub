@@ -24,13 +24,31 @@
 		<link rel="stylesheet" href="footer.css">
     </head>
     <style>
-        .color-box {
-            width: 50px;
-            height: 50px;
-            display: inline-block;
-            margin-right: 10px;
-            border: 1px solid #000;
-        }
+    .color-box {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        margin-right: 10px;
+        border: 1px solid #000;
+    }
+    #main {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: row;
+    }
+    #main div{
+        width: 100%;
+    }
+    #ma{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
     </style>
     <body>
 <section>
@@ -41,11 +59,16 @@ $dd= date("Y-m-d");
 $i=1;
 $file_name =NULL;
 
+$ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+$cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
+
+
 if (isset($_POST['task']))			$task = $_POST['task'];						else $task = "First";
 if (isset($_GET['r']))				{$task = $_GET['r'];}	
+
 if (isset($_POST['club_id']))			$club_id = trim($_POST['club_id']);	    else $club_id = NULL;
 if (isset($_POST['c_name']))			$c_name = trim($_POST['c_name']);       else $c_name = NULL;
-if (isset($_POST['color']))			$color = trim($_POST['color']);       else $color = NULL;
+if (isset($_POST['color']))			    $color = trim($_POST['color']);         else $color = NULL;
 if (isset($_POST['c_tag']))				$c_tag = trim($_POST['c_tag']);         else $c_tag = NULL;
 if (isset($_POST['c_desc']))			$c_desc = trim($_POST['c_desc']);       else $c_desc = NULL;
 if (isset($_POST['c_pic']))			    $c_pic = trim($_POST['c_pic']);         else $c_pic = NULL;
@@ -62,37 +85,7 @@ if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else
 
 if (isset($_POST['S_pic']))         $S_pic = $_POST['S_pic'];     //else $S_pic = array();
 
-//if (isset($_POST['perk_name']))	       $perk_name = $_POST['perk_name'];     else $perk_name = Null;
-//if (isset($_POST['perk_desc']))	       $perk_desc = $_POST['perk_desc'];     else $perk_desc = Null;
 
-//$perk_pic = isset($_FILES['picture']['name']) ? $_FILES['picture']['name'] : array();
-/*
-if (isset($_POST['p']))			$p = trim($_POST['p']); else $p = NULL;
-if (isset($_POST['addd'])) {
-    $number = $_POST['number'];
-  } else $number = NULL;
-
-if(isset($_FILES['image'])) {
-    $file_name = $_FILES['image']['name'];
-    $file_tmp = $_FILES['image']['tmp_name'];
-    $file_type = $_FILES['image']['type'];
-    //$file_ext = strtolower(end(explode('.', $file_name)));
-    $file_parts = explode('.', $file_name);
-    $file_ext = strtolower(end($file_parts));
-
-
-    $valid_exts = array("jpg", "jpeg", "png","tif","gif<br>");
-    
-    if(in_array($file_ext, $valid_exts)) {
-      $upload_path = "./upload/club_page/" . $file_name;
-      move_uploaded_file($file_tmp, $upload_path);
-      echo "File uploaded successfully.<br>";
-    } else {
-        $file_name =NULL;
-      echo "Invalid file type. JPG, GIF, PNG or TIF files are allowed.<br>";
-    }
-  }
-  */
   function displayPostData($data, $prefix = '') {
     foreach ($data as $key => $value) {
         if (is_array($value)) { displayPostData($value, $prefix . $key . '[]');}
@@ -227,6 +220,9 @@ if(isset($_FILES['picture'])) {
     } 
 }
 //foreach($_POST as $keyx => $value) echo "$keyx = $value<br>";
+
+
+/*
 echo " <div class='club_make'>";
 echo "    <div class='add_club_info'> 
 <form action='create_club.php' method='post' enctype='multipart/form-data'>
@@ -319,7 +315,7 @@ echo "    <div class='add_club_info'>
             }
         }
 
-*/
+
 
 $max_entry = 3;
 for ($i = 0; $i < $max_entry; $i++) {
@@ -360,12 +356,121 @@ for ($i = 0; $i < $max_entry; $i++) {
 <tr><td></td><td><input type='submit' name='task' value='Finish' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'>
 <input type='submit' name='task' value='preview' style=' font-size: 15px; margin: 1px 10px; display:inline-block; padding: 5px; border: 2px solid black;' size='08'></td>
 </table></form></div>";
+*/
+
+
+echo "<div class='club_make'>
+        <div class='form-container'>
+        <form action='edit_club.php' method='post' enctype='multipart/form-data'>
+        <table class='form-table'>
+    <tr>
+        <td class='label'>Club Name</td>
+        <tr><td class='input'><input type='text' name='c_name' value='$c_name' size='40'></td>
+    <tr>
+        <td class='label'>Background Color</td>
+        <tr><td class='input'>
+        <input type='color' name='t_color1' value='$t_color1'>
+        <input type='color' name='t_color2' value='$t_color2'></td>
+    <tr>
+        <td class='label'>Text Color</td>
+        <tr><td class='input'><input type='color' name='t_text' value='$t_text'></td>
+    <tr>
+        <td class='label'>Club Tag</td>
+        <tr><td class='input'><input type='text' name='c_tag' value='$c_tag' size='40'></td>
+    <tr>
+        <td class='label'>Club Description</td>
+        <tr><td class='input'>
+        <textarea name='c_desc' size='500' cols='40' rows='10'>$c_desc</textarea></td>
+    <tr>
+        <td class='label'>Description Color</td>
+        <tr><td class='input'><input type='color' name='des_color' value='$des_color'></td>
+    <tr>
+        <td class='label'>Description Text Color</td>
+        <tr><td class='input'><input type='color' name='des_text' value='$des_text'></td>
+    <tr>
+        <td class='label'>Club Members</td>
+        <tr><td class='input'><input type='number' name='c_members' value='$c_members' size='12'></td>
+    <tr>
+        <td class='label'>Upload Club Photo</td>
+        <tr><td class='input'>
+        <input type='file' name='image' value='$c_pic'>$c_pic
+        <input type='hidden' name='c_pic' value='$c_pic'></td>
+    </table>
+    </div>";
+
+echo "<div>";
+    
+    $max_entries = 4;
+    $i = 0;
+   
+                for ($i = 0; $i < $max_entries; $i++) {
+                    $per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+                    //$per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+                    //$per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+    echo "  <div class='form-container'>
+            <table class='form-table'>
+        <tr>
+            <td>Perk No " . ($i+1) . "</td>
+        <tr>
+            <td class='label'>Perk Pic</td>
+            <tr><td class='input'>
+            <input type='file' name='images[]' value='$per_pic'>$per_pic
+            <input type='hidden' name='perk_pic[]' value='$per_pic'></td>
+        <tr>
+            <td class='label'>Perk Name</td>
+            <tr><td class='input'><input type='text' name='perk_name[]' value='$perk_name[$i]'></td>
+        <tr>
+            <td class='label'>Perk Description</td>
+            <tr><td class='input'><input type='text' name='perk_desc[]' value='$perk_desc[$i]'></td>        
+        </tr></table></div>";
+}
+        
+echo "</div><div>";
+    
+    $max_ent = 3;
+
+    for ($j = 0; $j < $max_ent; $j++) {
+       // $Slide_pic = $_POST['Slide_pic'];
+
+        $ss_pic = isset($Slide_pic[$j]) ? $Slide_pic[$j] : null;
+        //$ss_des = isset($Slide_des[$j]) ? $Slide_des[$j] : null;
+        //$ss_title = isset($Slide_title[$j]) ? $Slide_title[$j] : null;
+    echo "  <div class='form-container'>
+            <table class='form-table'>
+        <tr>
+            <td>Slide No " . ($j + 1) . "</td>
+        <tr>
+            <td class='label'>Slide Title</td>
+            <tr><td class='input'><input type='text' name='Slide_title[]' value='$Slide_title[$j]'></td>
+        <tr>
+            <td class='label'>Slide Description</td>
+            <tr><td class='input'><input type='text' name='Slide_des[]' value='$Slide_des[$j]'></td>
+        <tr>
+        <td class='label'>Slide Pic</td>
+        <tr><td class='input'>
+        <input type='file' name='picture[]' value='$ss_pic'>$ss_pic
+        <input type='hidden' name='Slide_pic[]' value='$ss_pic'></td>
+        </tr></table></div>";}
+
+    echo "</div></div></div>
+    <div class='submit_button'>
+        <input type='submit' name='task' value='Finish' class='submit-button'>
+        <input type='submit' name='task' value='preview' class='submit-button'>
+        </div>
+        </form>";
+
+
+
+
+
 
 switch($task) {
 
 case "Finish": 	    
                     include('Supabase_connect.php');
+                    echo"<div id='main'>";
                     //echo "$message";
+                    echo"<div id='ma'>";
                     $query = 'INSERT INTO "club_page" ( "c_name", "c_tag", "c_desc", "c_pic", 
                     "c_members", "t_color1", "t_color2", "t_text", "des_color", "des_text","status") 
 	                VALUES (\''.$c_name.'\',\''. $c_tag.'\',\''.$c_desc.'\', \''.$c_pic.'\', \''.$c_members.'\',
@@ -374,46 +479,53 @@ case "Finish":
 	                $result = pg_query($conn, $query);
                     if ($result) {
                         $club_id = pg_fetch_result($result, 0, 0);
-                        echo "<font color='green'> $club_id Your NEW Club Created.</font>\n"; 
+                        echo "$ck $club_id Your NEW Club Created. "; 
+                        echo"</div><div>";
                     
                         for ($i = 0; $i < $max_entries; $i++) {
                         // Check if the array values are set, otherwise set them to null
                         $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
                         $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
                         $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+                        echo"<div id='ma'>";
                     $query2 ='INSERT INTO "club_perk" ("p_name", "p_desc", "p_pic", "club_id", "color") 
                     VALUES (\''.$Per_name.'\', \''.$Per_desc.'\', \''.$Per_pic.'\', \''.$club_id.'\', NULL) 
                     RETURNING "perk_id";';
                      $result2 = pg_query($conn, $query2);
                      if ($result2) {
                         $perk_id = pg_fetch_result($result2, 0, 0);
-                         echo "<font color='green'>$perk_id Your NEW perk Created.</font>\n";}
-                         else { echo"Unable to add perk\n" . pg_last_error($conn);}}
+                         echo " $ck $perk_id Your NEW perk Created. ";}
+                         else { echo" $cr Unable to add perk " . pg_last_error($conn);}
+                         echo"</div>";}
 
+                        echo"</div><div>";
 
                     for ($i = 0; $i < $max_entry; $i++) {
                         // Check if the array values are set, otherwise set them to null
                         $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
                         $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
                         $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
-                
+
+                    echo"<div id='ma'>";
                     $query3 ='INSERT INTO "club_slide" ("S_title", "S_des", "S_pic", "club_id")
                     VALUES (\''.$Slide_title.'\', \''.$Slide_des.'\', \''.$Slide_pic.'\', \''.$club_id.'\')
                      RETURNING "slide_id";';
                      $result3 = pg_query($conn, $query3);
                      if ($result3) {
                         $slide_id = pg_fetch_result($result3, 0, 0);
-                         echo "<font color='green'>$slide_id Your NEW slideshow Created.</font>\n";}
-                         else { echo"Unable to add slideshow\n" . pg_last_error($conn);}}
+                         echo " $ck $slide_id Your NEW slideshow Created. ";}
+                         else { echo" $cr Unable to add slideshow " . pg_last_error($conn);}
+                         echo"</div>";}
+                         echo"</div>";
                     
-                    }else { echo"Unable to Make Account\n [$query] " . pg_last_error($conn);}
-                    
+                    }else { echo"$cr Unable to Make Account  [$query] " . pg_last_error($conn);}
+                    echo"</div>";
                     echo"ooooook"; break;
 
 case "First": break;
 case "preview": 
                 $imageUrl = 'https://drive.google.com/uc?export=view&id=';
-
+/*
         echo"<div class='club_right'><div class='club_Container'>
                 <div class='image_Container'>
                 <img class='club_Icon' src='$imageUrl$c_pic' alt=\"Avatar\">
@@ -426,7 +538,9 @@ case "preview":
                     <h1 class='counter_Text'><i class='fas fa-user-friends'></i> Members: $c_members</h1>
                 </div>
             </div>   </div></div>
- <section>
+            */
+            echo"<section>
+
             <div class='top'  style='background-image:radial-gradient($t_color1 40%, $t_color2);' >
                 <div class='imageHeader'>
                     <img style='width:100%; height: 100px; object-fit: cover;' src='$imageUrl$c_pic' alt='avatar'>
@@ -450,19 +564,19 @@ case "preview":
 
                 for ($i = 0; $i < $max_entries; $i++) {
                     // Check if the array values are set, otherwise set them to null
-                    $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
-                    $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
-                    $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
+                   // $Per_pic = isset($perk_pic[$i]) ? $perk_pic[$i] : null;
+                  //  $Per_name = isset($perk_name[$i]) ? $perk_name[$i] : null;
+                   // $Per_desc = isset($perk_desc[$i]) ? $perk_desc[$i] : null;
             
            echo"
 
             <div class='listOfBenefits'>
                 <div class='benefitsIcon'>
-                    <img src='$imageUrl$Per_pic' alt='$Per_pic'>
+                    <img src='$imageUrl$perk_pic[$i]' alt='$perk_pic[$i]'>
                 </div>
                 <div class='listOfBenefitsDesciption'>
-                    <h3>$Per_name $Per_pic</h3>
-                    <p>$Per_desc</p>
+                    <h3>$perk_name[$i]</h3>
+                    <p>$perk_desc[$i]</p>
                 </div>
             </div>  ";}
 
@@ -473,15 +587,15 @@ case "preview":
 
                 for ($i = 0; $i < $max_entry; $i++) {
                     // Check if the array values are set, otherwise set them to null
-                    $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
-                    $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
-                    $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
+                    //$Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+                    //$Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+                    //$Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
            echo"
 
             <div class='mySlides fade'>
 			<div class='numbertext'> " . ($i+1) . "</div>
-			<img src='$imageUrl$Slide_pic' style='width:100%'>
-			<div class='text'>$Slide_title<br>$Slide_des</div>
+			<img src='$imageUrl$S_pic[$i]' style='width:100%'>
+			<div class='text'>$S_title[$i]<br>$S_des[$i]</div>
 			</div>
             ";}
             echo"	

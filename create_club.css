@@ -12,15 +12,13 @@ section{
     margin: auto;
     padding-bottom: 20px;
 }
-
 .club_make{
     display: flex;
     flex-direction: row;
+    background-color: aqua;
 }
-
 .club_make div{
-    display: flex;
-    flex-direction: row;
+    margin:10px;
     
 }
 
@@ -226,3 +224,102 @@ section{
     justify-content: center;
     text-align: center;
 }
+
+
+
+
+
+
+
+
+
+
+.form-container {
+    max-width: 550px;
+    background-color: #FAF0E6;
+    padding: 20px;
+   
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-table {
+    width: 100%;
+  }
+  
+  .label {
+    width: 30%;
+    padding-right: 10px;
+    font-weight: bold;
+  }
+  
+  .input {
+    width: 70%;
+  }
+  
+  .input input[type="text"],
+  .input input[type="number"],
+  .input textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .input input[type="color"] {
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+  }
+  .submit_button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .submit-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Additional styles for the form layout 
+  .form-table tr:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  */
+  .form-table td {
+    vertical-align: middle;
+  }
+  
+  .form-table textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .success-message {
+    color: green;
+    margin-top: 10px;
+  }
