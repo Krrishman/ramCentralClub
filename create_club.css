@@ -304,7 +304,7 @@ section{
   .form-table tr:not(:last-child) {
     margin-bottom: 10px;
   }
-  */
+ 
   .form-table td {
     vertical-align: middle;
   }
@@ -322,4 +322,4 @@ section{
   .success-message {
     color: green;
     margin-top: 10px;
-  }
+  } */

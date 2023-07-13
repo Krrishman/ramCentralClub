@@ -82,9 +82,9 @@ if (isset($_POST['des_color']))			$des_color = trim($_POST['des_color']);    els
 if (isset($_POST['des_text']))			$des_text = trim($_POST['des_text']);      else $des_text = 'white';
 
 
-if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
-if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
-if (isset($_POST['Slide_pic']))         {$Slide_pic = $_POST['Slide_pic'];}     else {$Slide_pic = array();}
+//if (isset($_POST['Slide_title']))       {$Slide_title = $_POST['Slide_title'];} else {$Slide_title = array();}
+//if (isset($_POST['Slide_des']))         {$Slide_des = $_POST['Slide_des'];}     else {$Slide_des = array();}
+if (isset($_POST['S_pic']))         {$S_pic = $_POST['S_pic'];}     else {$S_pic = array();}
 
 //$S_pic = array();
 
@@ -471,23 +471,21 @@ echo "<div>";
 }
         
 echo "</div><div>";
-$max_ent = 3;
+$max_entry = 3;
+for ($i = 0; $i < $max_entry; $i++) {
 
-for ($j = 0; $j < $max_ent; $j++) {
-    //$Slide_title = isset($_POST['S_title'][$j]) ? $_POST['S_title'][$j] : '';
-    //$Slide_des = isset($_POST['S_des'][$j]) ? $_POST['S_des'][$j] : '';
-    //$Slide_pic = isset($_POST['S_pic'][$j]) ? $_POST['S_pic'][$j] : '';
     $S_title = $_POST['S_title']; // Assuming S_title is an array of values
-    $perk_desc = $_POST['S_des']; // Assuming S_des is an array of values
+    $S_des = $_POST['S_des']; // Assuming S_des is an array of values
+   // $S_pic = $_POST['S_pic']; // Assuming S_des is an array of values
 
-    $Slide_title = isset($S_title[$ij]) ? $S_title[$j] : null;
-    $Slide_des = isset($S_des[$j]) ? $S_des[$j] : null;
-    $Slide_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
+        $Slide_title = isset($S_title[$i]) ? $S_title[$i] : null;
+        $Slide_des = isset($S_des[$i]) ? $S_des[$i] : null;
+        $Slide_pic = isset($S_pic[$i]) ? $S_pic[$i] : null;
     echo "
     <div class='form-container'>
         <table class='form-table'>
             <tr>
-                <td>Slide No " . ($j + 1) . "</td>
+                <td>Slide No " . ($i + 1) . "</td>
             </tr>
             <tr>
                 <td class='label'>Slide Title</td>
@@ -500,7 +498,7 @@ for ($j = 0; $j < $max_ent; $j++) {
             <tr>
                 <td class='label'>Slide Pic</td>
                 <td class='input'>
-                    <input type='file' name='picture[]'>
+                    <input type='file' name='picture[]' value='$Slide_pic'>$Slide_pic</td>
                     <input type='hidden' name='S_pic[]' value='$Slide_pic'>
                 </td>
             </tr>
