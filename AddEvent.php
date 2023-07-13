@@ -480,6 +480,7 @@ echo "<div class='event_make'>
     <tr>
         <td class='label'>Event Location</td>
         <tr><td class='input'><input type='text' name='location' value='$e_location' placeholder='Enter a location'></td>
+        <input type='hidden' name='e_location' value='$e_location'>
     <tr>
         <td class='label'>Event Place</td>
         <tr><td class='input'>
@@ -708,6 +709,7 @@ echo"
      <p><br> fsdf $map_url </p>-->
      <iframe width='100%' height='400' frameborder='0'
       style='border:0' src='$mapsUrl' allowfullscreen></iframe>
+      <input type='hidden' name='mapsUrl' value='$mapsUrl' '>
      <h2>Campus Center Ballroom</h2>
      <h2>$e_places</h2>
 
