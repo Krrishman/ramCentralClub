@@ -474,11 +474,15 @@ echo "</div><div>";
 $max_ent = 3;
 
 for ($j = 0; $j < $max_ent; $j++) {
-    $Slide_title = isset($_POST['S_title'][$j]) ? $_POST['S_title'][$j] : '';
-    $Slide_des = isset($_POST['S_des'][$j]) ? $_POST['S_des'][$j] : '';
-    $Slide_pic = isset($_POST['S_pic'][$j]) ? $_POST['S_pic'][$j] : '';
-    
+    //$Slide_title = isset($_POST['S_title'][$j]) ? $_POST['S_title'][$j] : '';
+    //$Slide_des = isset($_POST['S_des'][$j]) ? $_POST['S_des'][$j] : '';
+    //$Slide_pic = isset($_POST['S_pic'][$j]) ? $_POST['S_pic'][$j] : '';
+    $S_title = $_POST['S_title']; // Assuming S_title is an array of values
+    $perk_desc = $_POST['S_des']; // Assuming S_des is an array of values
 
+    $Slide_title = isset($S_title[$ij]) ? $S_title[$j] : null;
+    $Slide_des = isset($S_des[$j]) ? $S_des[$j] : null;
+    $Slide_pic = isset($S_pic[$j]) ? $S_pic[$j] : null;
     echo "
     <div class='form-container'>
         <table class='form-table'>
