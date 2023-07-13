@@ -672,7 +672,7 @@ case "preview":
                                //
                       echo"
                        <div class='mySlides fade'>
-                       <div class='numbertext'> " . ($i+1) . "</div>
+                       <div class='numbertext'> " . ($j+1) . "</div>
                        <img src='$imageUrl$ss_pic' style='width:100%' alt='Per_pic'>
                        <div class='text'>$ss_title<br>$ss_des</div>
                        </div>
