@@ -453,10 +453,10 @@ echo "</div><div>";
             <td>Slide No " . ($j + 1) . "</td>
         <tr>
             <td class='label'>Slide Title</td>
-            <tr><td class='input'><input type='text' name='Slide_title[]' value='$Slide_title'></td>
+            <tr><td class='input'><input type='text' name='S_title[]' value='$Slide_title'></td>
         <tr>
             <td class='label'>Slide Description</td>
-            <tr><td class='input'><input type='text' name='Slide_des[]' value='$Slide_des'></td>
+            <tr><td class='input'><input type='text' name='S_des[]' value='$Slide_des'></td>
         <tr>
         <td class='label'>Slide Pic</td>
         <tr><td class='input'>
