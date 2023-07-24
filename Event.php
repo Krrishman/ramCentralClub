@@ -174,7 +174,7 @@ echo"
             <div class='textr'>
                 <h1 class='Titler'><a style='text-decoration:none; color: black;' href='./Auto_Event.php?r=$event_id'>$e_name</a></h1>
                 <p class='Locationr'><i class='fas fa-location-dot'></i> $e_places</p>
-                <p class='Locationr'><i class='fas fa-location-dot'></i> $e_time</p>
+                <p class='Locationr'>$e_time</p>
             </div>               
          </div>  
     </div></form>";
