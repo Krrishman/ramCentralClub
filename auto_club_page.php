@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $com_id = pg_fetch_result($result5, 0, 0);
         echo "$ck $com_id Your Review Added.\n";}
         else { echo"$cr Unable to add Review\n" [$query5] . pg_last_error($conn);}
-        echo"</div";
+        echo"</div>";
     }
 
     if (isset($_POST['Update_Likes'])) {

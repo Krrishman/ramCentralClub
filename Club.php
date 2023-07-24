@@ -9,6 +9,9 @@
 	include('menubar.php');
     include('Supabase_connect.php');
 
+    $ck="<i class='fa fa-duotone fa-check' style='font-size:25px;color:green;'></i>";
+    $cr="<i class='fa fa-duotone fa-xmark' style='font-size:25px;color:red;'></i>";
+
 ?>
 
 
@@ -19,6 +22,18 @@
 		<link rel="stylesheet" href="cclub_Page.css">
 		<link rel="stylesheet" href="footer.css">
     </head>
+    <style>
+		#ma{
+        display: flex;
+        justify-content: center;
+        width: 300px;
+        background-color: #FAF0E6;
+        padding: 10px;
+        margin: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    </style>
 
     <body>
     <div class="add_club">
@@ -28,6 +43,7 @@
              <h3>List of Clubs</h3>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo"<div id='ma'>";
     if (isset($_GET['r']))					{$club_id = $_GET['r'];}
     if (isset($_POST['delete'])) {
         include('Supabase_connect.php');
@@ -38,11 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
            $result2 = pg_query($conn, $query2);
 
            if ($result2) {
-             echo "Deleted successfully!";
+             echo "$ck Deleted successfully!";
            } else {
-             echo "Error Deleted club: " . pg_last_error($conn);
+             echo "$cr Error Deleted club: " . pg_last_error($conn);
            }
-    }
+    } echo"</div>";
 }
 
 
