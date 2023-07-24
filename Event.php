@@ -32,7 +32,7 @@ include('Supabase_connect.php');
         <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo" ";
+    echo"gg ";
     if (isset($_GET['r']))					{$event_id = $_GET['r'];}
     if (isset($_POST['delete'])) {
         echo" ";
@@ -133,6 +133,7 @@ while ($row = pg_fetch_assoc($result)) {
 
 
 echo"
+   <form method='post' action='Event.php?r=$event_id'>
     <div class='EventContainerr'>
     <div class='icon'>
     <a href='#' >
@@ -159,7 +160,7 @@ echo"
                 <p class='Locationr'><i class='fas fa-location-dot'></i> $e_time</p>
             </div>               
          </div>  
-    </div>";
+    </div></form>";
 
 }
 
