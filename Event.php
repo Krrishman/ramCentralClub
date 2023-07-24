@@ -32,8 +32,10 @@ include('Supabase_connect.php');
         <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo" ";
     if (isset($_GET['r']))					{$event_id = $_GET['r'];}
     if (isset($_POST['delete'])) {
+        echo" ";
         include('Supabase_connect.php');
         echo"<input type='hidden' name='event_id' value='$event_id'> ";
 
@@ -52,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $order = isset($_POST['options']) ? $_POST['options'] : 'none';
 
-$query = 'SELECT * FROM "event_page" where "status"= 1 ORDER BY';
+$query = 'SELECT * FROM "event_page" where "status"= \'' . 1 . '\' ORDER BY';
 
 switch ($order) {
     case 'Upcoming':
